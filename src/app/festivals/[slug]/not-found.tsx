@@ -1,0 +1,19 @@
+export default function FestivalNotFound() {
+  return (
+    <main className="mx-auto max-w-3xl px-6 py-16">
+      <a
+        href="/festivals"
+        className="inline-flex items-center gap-1 text-sm text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors mb-8"
+      >
+        <span aria-hidden="true">←</span> All festivals
+      </a>
+      <h1 className="text-3xl font-semibold tracking-tight">
+        Festival not found
+      </h1>
+      <p className="mt-3 text-neutral-500 dark:text-neutral-400 text-sm">
+        We couldn&apos;t find the festival you&apos;re looking for. It may have
+        been removed or the URL may be incorrect.
+      </p>
+    </main>
+  );
+}
