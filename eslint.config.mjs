@@ -16,6 +16,10 @@ const eslintConfig = defineConfig([
     "public/**",
     "**/public/**",
     "src/generated/**",
+    ".claude/**",
+    ".claude-flow/**",
+    ".swarm/**",
+    ".agents/**",
   ]),
 ]);
 
