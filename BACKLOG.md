@@ -30,6 +30,27 @@ _Updated automatically each loop iteration. Items move from Queued → In Progre
 
 ---
 
+## In Progress (Iteration 3)
+
+### Pages & Routes
+
+- [ ] `generateStaticParams` + ISR (`revalidate`) for festival/artist/promoter/region detail pages
+- [ ] Pagination on `/festivals`, `/artists`, `/promoters` listing pages
+- [ ] Breadcrumb navigation on detail pages
+- [ ] iCal export for individual festivals (`/festivals/[slug]/calendar.ics`)
+- [ ] Open Graph images per festival (`opengraph-image.tsx`)
+- [ ] Dark mode toggle (manual override on top of existing OS-preference CSS)
+
+### Data & Seed
+
+- [x] Add verified websites for 7 festivals still missing links (Bay of Islands Jazz & Blues, Rhythm and Vines, Marton Country Music Festival, Electric Avenue, Tora Bombora, Southern Sounds, Parklands)
+
+### Tests & Infrastructure
+
+- [ ] Vitest unit tests for `formatRegion`, `formatStatus`, `slugify`, and a seed data validator
+
+---
+
 ## Queued
 
 ### Pages & Routes
@@ -40,7 +61,7 @@ _Updated automatically each loop iteration. Items move from Queued → In Progre
 
 ### Data & Seed
 
-- [ ] Add websites for festivals still missing links (~25 entries)
+- [ ] Add remaining websites for festivals still missing links (11 entries: High Tide Festival, Carlucci Carnival, 8th Wonder, Rippon Festival/Tuki Festival, Big Day Out (NZ), Raggamuffin Music Festival, Wanderlust NZ, Oasis Festival, Golden Lights Music Festival, Urban Jungle, Aum NYE Festival — no verifiable official domain found this pass)
 - [ ] Add promoter records (Fuzen NZ, Audiology Touring, Rhythm & Vines Ltd, etc.)
 - [ ] Add artist records for known headliners (Alison Wonderland, Andy C, Clean Bandit…)
 - [ ] Add lineup entries linking artists to festivals and years
@@ -50,20 +71,13 @@ _Updated automatically each loop iteration. Items move from Queued → In Progre
 
 ### UI / UX
 
-- [ ] Dark mode toggle (CSS var foundation already in globals.css)
 - [ ] Festival status badge component — consistent colour system across all pages
 - [ ] Upcoming vs past festival split on listing page (use `startDate` field)
 - [ ] Map view of NZ festivals by region (static SVG of NZ or Leaflet)
-- [ ] iCal export for individual festivals (`/festivals/[slug]/calendar.ics`)
-- [ ] Open Graph / social share cards per festival (`generateMetadata` already used)
-- [ ] Breadcrumb navigation on detail pages
-- [ ] Pagination or infinite scroll on listing pages (currently loads all)
 - [ ] Accessibility audit pass (axe — pre-push hook wired, E2E tests pending)
 
 ### Performance & Infrastructure
 
 - [ ] `use cache` on Prisma queries (Next.js 16 cache components when stable)
-- [ ] `generateStaticParams` for festival/artist/promoter detail pages (currently force-dynamic)
 - [ ] Playwright E2E tests for listing and detail pages
-- [ ] Vitest unit tests for seed data parser/validator, slug helper, region formatter
 - [ ] Renovate dependency PRs — review queued updates
