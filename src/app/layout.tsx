@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -8,13 +9,27 @@ export const metadata: Metadata = {
     "New Zealand music festivals, promoters, and the artists who play them.",
 };
 
+const THEME_INIT_SCRIPT = `
+(function () {
+  try {
+    var theme = window.localStorage.getItem("theme");
+    if (theme === "dark" || theme === "light") {
+      document.documentElement.classList.add(theme);
+    }
+  } catch (e) {}
+})();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body>
         <header className="site-header" role="banner">
           <nav className="site-nav" aria-label="Main navigation">
@@ -45,6 +60,9 @@ export default function RootLayout({
                 <Link href="/search" className="site-nav__link">
                   Search
                 </Link>
+              </li>
+              <li>
+                <ThemeToggle />
               </li>
             </ul>
           </nav>
