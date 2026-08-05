@@ -21,6 +21,17 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Festival seed data enriched with website URLs and new festival entries
 - `README.md` updated with full routes documentation
 
+### Iteration 2 additions:
+
+- Region pages (`/regions`, `/regions/[region]`) with festival listings and subscribe CTA
+- Fuzzy search page (`/search`) powered by Fuse.js, client-side instant results
+- RSS feed (`/feed.xml`) for upcoming ACTIVE/TBC festivals
+- Email subscription API (`/api/subscribe`, `/api/unsubscribe`) with token-based unsubscribe
+- Sitemap (`/sitemap.xml`) covering all festivals, artists, and promoters
+- Improved home page: upcoming festivals grid, stats, region browsing
+- Nav updated with Regions and Search links; site footer added
+- Shared format helpers (`src/lib/format.ts`) extracted from duplicate inline code
+
 ---
 
 ## [0.1.0] — Initial scaffold
