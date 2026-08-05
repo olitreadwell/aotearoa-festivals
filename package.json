@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=22.17.1"
+    "node": ">=22.17.1 <23.0.0"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
@@ -28,7 +28,8 @@
     "db:seed": "tsx prisma/seed.ts",
     "db:studio": "prisma studio",
     "ci": "npm run format:check && npm run lint && npm run typecheck && npm run test:coverage && npm run build",
-    "prepare": "husky"
+    "prepare": "husky",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^6.3.0",

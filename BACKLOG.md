@@ -30,24 +30,32 @@ _Updated automatically each loop iteration. Items move from Queued → In Progre
 
 ---
 
-## In Progress (Iteration 3)
+## Done (Iteration 3)
 
-### Pages & Routes
-
-- [ ] `generateStaticParams` + ISR (`revalidate`) for festival/artist/promoter/region detail pages
-- [ ] Pagination on `/festivals`, `/artists`, `/promoters` listing pages
-- [ ] Breadcrumb navigation on detail pages
-- [ ] iCal export for individual festivals (`/festivals/[slug]/calendar.ics`)
-- [ ] Open Graph images per festival (`opengraph-image.tsx`)
-- [ ] Dark mode toggle (manual override on top of existing OS-preference CSS)
-
-### Data & Seed
-
+- [x] `generateStaticParams` + ISR (`revalidate`) for festival/artist/promoter/region detail pages
+- [x] Pagination on `/festivals`, `/artists`, `/promoters` listing pages
+- [x] Breadcrumb navigation on detail pages
+- [x] iCal export for individual festivals (`/festivals/[slug]/calendar.ics`)
+- [x] Open Graph images per festival (`opengraph-image.tsx`)
+- [x] Dark mode toggle (manual override on top of existing OS-preference CSS)
 - [x] Add verified websites for 7 festivals still missing links (Bay of Islands Jazz & Blues, Rhythm and Vines, Marton Country Music Festival, Electric Avenue, Tora Bombora, Southern Sounds, Parklands)
+- [x] Vitest unit tests for `formatRegion`, `formatStatus`, `slugify`, and a seed data validator
+- [x] Fixed CI `Build` job (needed a real ephemeral Postgres once ISR started querying at build time) and two pre-existing bugs the fix surfaced: an a11y link-contrast violation on three inline empty-state links, and a stale smoke test asserting text from before the iteration-2 home page redesign
+
+---
+
+## In Progress (Iteration 4 — test backfill)
+
+New policy (see README.md "Testing policy"): every feature gets unit + integration + e2e + a11y + smoke coverage as close to 100% as the feature warrants, TDD/BDD workflow going forward. Backfilling the gap across iterations 1-3 before resuming new feature work.
 
 ### Tests & Infrastructure
 
-- [ ] Vitest unit tests for `formatRegion`, `formatStatus`, `slugify`, and a seed data validator
+- [ ] Postgres service added to CI `test` job so integration tests can run against a real DB
+- [ ] Unit tests: `Breadcrumbs`, `Pagination`, `ThemeToggle` components
+- [ ] Integration tests: `/api/subscribe`, `/api/unsubscribe`, `calendar.ics`, `opengraph-image`, `feed.xml`, `sitemap.ts`
+- [ ] E2E: every page and iteration-3 feature (filters, pagination, breadcrumbs, dark mode, search)
+- [ ] A11y: axe checks expanded from home-page-only to every route
+- [ ] Smoke: broadened from home-page-only to every top-level route
 
 ---
 
@@ -74,10 +82,8 @@ _Updated automatically each loop iteration. Items move from Queued → In Progre
 - [ ] Festival status badge component — consistent colour system across all pages
 - [ ] Upcoming vs past festival split on listing page (use `startDate` field)
 - [ ] Map view of NZ festivals by region (static SVG of NZ or Leaflet)
-- [ ] Accessibility audit pass (axe — pre-push hook wired, E2E tests pending)
 
 ### Performance & Infrastructure
 
 - [ ] `use cache` on Prisma queries (Next.js 16 cache components when stable)
-- [ ] Playwright E2E tests for listing and detail pages
 - [ ] Renovate dependency PRs — review queued updates
