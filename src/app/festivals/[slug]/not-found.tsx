@@ -1,12 +1,14 @@
+import Link from "next/link";
+
 export default function FestivalNotFound() {
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
-      <a
+      <Link
         href="/festivals"
         className="inline-flex items-center gap-1 text-sm text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors mb-8"
       >
         <span aria-hidden="true">←</span> All festivals
-      </a>
+      </Link>
       <h1 className="text-3xl font-semibold tracking-tight">
         Festival not found
       </h1>

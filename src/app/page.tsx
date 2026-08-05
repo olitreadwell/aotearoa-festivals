@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 
 // Counts change as festivals/promoters are added; also keeps `next build`
@@ -22,24 +23,24 @@ export default async function Home() {
       </p>
 
       <nav className="mt-10 flex flex-wrap gap-4" aria-label="Browse sections">
-        <a
+        <Link
           href="/festivals"
           className="rounded-lg border border-current/15 px-5 py-3 text-sm font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
         >
           Browse Festivals →
-        </a>
-        <a
+        </Link>
+        <Link
           href="/artists"
           className="rounded-lg border border-current/15 px-5 py-3 text-sm font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
         >
           Browse Artists →
-        </a>
-        <a
+        </Link>
+        <Link
           href="/promoters"
           className="rounded-lg border border-current/15 px-5 py-3 text-sm font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
         >
           Browse Promoters →
-        </a>
+        </Link>
       </nav>
     </main>
   );

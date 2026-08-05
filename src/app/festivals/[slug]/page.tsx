@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import type { Festival, Artist, Promoter } from "@/generated/prisma";
 import { FestivalStatus, Region } from "@/generated/prisma";
@@ -147,12 +148,12 @@ export default async function FestivalDetailPage({
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
       {/* Back link */}
-      <a
+      <Link
         href="/festivals"
         className="inline-flex items-center gap-1 text-sm text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors mb-8"
       >
         <span aria-hidden="true">←</span> All festivals
-      </a>
+      </Link>
 
       {/* Header */}
       <div className="flex flex-wrap items-start gap-3 mb-2">

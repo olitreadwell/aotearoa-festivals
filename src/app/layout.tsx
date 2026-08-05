@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,18 +18,18 @@ export default function RootLayout({
       <body>
         <header className="site-header" role="banner">
           <nav className="site-nav" aria-label="Main navigation">
-            <a href="/" className="site-nav__brand" aria-label="Aotearoa Festivals home">
+            <Link href="/" className="site-nav__brand" aria-label="Aotearoa Festivals home">
               Aotearoa Festivals
-            </a>
+            </Link>
             <ul className="site-nav__links" role="list">
               <li>
-                <a href="/festivals" className="site-nav__link">Festivals</a>
+                <Link href="/festivals" className="site-nav__link">Festivals</Link>
               </li>
               <li>
-                <a href="/artists" className="site-nav__link">Artists</a>
+                <Link href="/artists" className="site-nav__link">Artists</Link>
               </li>
               <li>
-                <a href="/promoters" className="site-nav__link">Promoters</a>
+                <Link href="/promoters" className="site-nav__link">Promoters</Link>
               </li>
             </ul>
           </nav>
