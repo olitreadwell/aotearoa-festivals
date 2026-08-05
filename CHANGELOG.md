@@ -11,6 +11,15 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - `BACKLOG.md` — living feature backlog, updated each loop iteration
 - `CHANGELOG.md` — this file
+- Festival listing page (`/festivals`) with region and status filter controls
+- Festival detail page (`/festivals/[slug]`) displaying lineup and promoter information
+- Artist listing page (`/artists`) with genre filter
+- Artist detail page (`/artists/[slug]`) showing bio and festival history
+- Promoter listing page (`/promoters`)
+- Promoter detail page (`/promoters/[slug]`) listing associated festivals
+- Site-wide navigation bar added to root layout
+- Festival seed data enriched with website URLs and new festival entries
+- `README.md` updated with full routes documentation
 
 ---
 
