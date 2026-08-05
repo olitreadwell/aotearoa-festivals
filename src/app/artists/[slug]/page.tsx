@@ -3,7 +3,14 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const artists = await prisma.artist.findMany({
+    select: { slug: true },
+  });
+  return artists.map((artist) => ({ slug: artist.slug }));
+}
 
 interface PageProps {
   params: Promise<{ slug: string }>;

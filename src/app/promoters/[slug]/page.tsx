@@ -4,7 +4,14 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { FestivalStatus } from "@/generated/prisma";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const promoters = await prisma.promoter.findMany({
+    select: { slug: true },
+  });
+  return promoters.map((promoter) => ({ slug: promoter.slug }));
+}
 
 const statusStyles: Record<FestivalStatus, string> = {
   ACTIVE:

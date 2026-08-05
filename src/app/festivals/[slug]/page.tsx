@@ -6,7 +6,15 @@ import type { Festival, Artist, Promoter } from "@/generated/prisma";
 import { FestivalStatus } from "@/generated/prisma";
 import { formatRegion, formatStatus } from "@/lib/format";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const festivals = await prisma.festival.findMany({
+    where: { approved: true },
+    select: { slug: true },
+  });
+  return festivals.map((festival) => ({ slug: festival.slug }));
+}
 
 // ---------------------------------------------------------------------------
 // Types returned from the query
