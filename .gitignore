@@ -24,3 +24,10 @@ test-results/
 *.pem
 .vercel
 .env*
+
+# Ruflo local secrets and runtime data
+.claude-flow/
+.claude/
+.swarm/
+.agents/
+ruvector.db
