@@ -19,6 +19,18 @@ Inspired by [techevents.co.nz](https://techevents.co.nz) ([source](https://githu
 
 The Festival/Promoter shape borrows from nz-tech-events' proven model (region enum, approval flag). Artist/LineupEntry is this project's own extension — nz-tech-events doesn't track lineups.
 
+## Pages & Routes
+
+| Route | Description |
+|---|---|
+| `/` | Home — live counts of festivals, artists, and promoters |
+| `/festivals` | Browse all festivals with region and status filters |
+| `/festivals/[slug]` | Festival detail — full lineup and promoter info |
+| `/artists` | Browse all artists |
+| `/artists/[slug]` | Artist detail — festival history across editions |
+| `/promoters` | Browse all promoters |
+| `/promoters/[slug]` | Promoter detail — list of festivals they run |
+
 ## Setup
 
 ```bash
