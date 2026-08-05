@@ -18,15 +18,26 @@ import {
 type FestivalWithPromoter = Festival & { promoter: Promoter | null };
 
 // ---------------------------------------------------------------------------
+// Pagination
+// ---------------------------------------------------------------------------
+
+const PAGE_SIZE = 24;
+
+// ---------------------------------------------------------------------------
 // Page
 // ---------------------------------------------------------------------------
 
 export default async function FestivalsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ region?: string; status?: string; genre?: string }>;
+  searchParams: Promise<{
+    region?: string;
+    status?: string;
+    genre?: string;
+    page?: string;
+  }>;
 }) {
-  const { region, status } = await searchParams;
+  const { region, status, page } = await searchParams;
 
   // Validate enum values so invalid query strings don't crash Prisma
   const validRegion =
@@ -39,17 +50,25 @@ export default async function FestivalsPage({
       ? (status as FestivalStatus)
       : undefined;
 
+  const requestedPage = Math.max(1, Math.floor(Number(page)) || 1);
+
+  const where = {
+    approved: true,
+    ...(validRegion ? { region: validRegion } : {}),
+    ...(validStatus ? { status: validStatus } : {}),
+  };
+
+  const totalCount = await prisma.festival.count({ where });
+  const totalPages = Math.max(1, Math.ceil(totalCount / PAGE_SIZE));
+  const currentPage = Math.min(requestedPage, totalPages);
+
   const festivals: FestivalWithPromoter[] = await prisma.festival.findMany({
-    where: {
-      approved: true,
-      ...(validRegion ? { region: validRegion } : {}),
-      ...(validStatus ? { status: validStatus } : {}),
-    },
+    where,
     orderBy: [{ startDate: "asc" }, { name: "asc" }],
     include: { promoter: true },
+    skip: (currentPage - 1) * PAGE_SIZE,
+    take: PAGE_SIZE,
   });
-
-  const totalCount = festivals.length;
 
   // Build URL helper — preserves existing filters while swapping one param
   function filterUrl(key: string, value: string | undefined): string {
@@ -57,6 +76,16 @@ export default async function FestivalsPage({
     if (key !== "region" && validRegion) params.set("region", validRegion);
     if (key !== "status" && validStatus) params.set("status", validStatus);
     if (value) params.set(key, value);
+    const qs = params.toString();
+    return qs ? `/festivals?${qs}` : "/festivals";
+  }
+
+  // Build URL helper — preserves existing filters while swapping the page
+  function pageUrl(targetPage: number): string {
+    const params = new URLSearchParams();
+    if (validRegion) params.set("region", validRegion);
+    if (validStatus) params.set("status", validStatus);
+    if (targetPage > 1) params.set("page", String(targetPage));
     const qs = params.toString();
     return qs ? `/festivals?${qs}` : "/festivals";
   }
@@ -313,6 +342,46 @@ export default async function FestivalsPage({
             to see all festivals.
           </p>
         </div>
+      )}
+
+      {/* ------------------------------------------------------------------ */}
+      {/* Pagination                                                          */}
+      {/* ------------------------------------------------------------------ */}
+      {totalPages > 1 && (
+        <nav
+          aria-label="Pagination"
+          className="mt-8 flex items-center justify-between"
+        >
+          {currentPage > 1 ? (
+            <Link
+              href={pageUrl(currentPage - 1)}
+              className="rounded-md border border-gray-300 px-3 py-1.5 text-sm hover:border-gray-500 dark:border-gray-600"
+            >
+              Previous
+            </Link>
+          ) : (
+            <span className="rounded-md border border-gray-200 px-3 py-1.5 text-sm text-gray-400 dark:border-gray-800 dark:text-gray-600">
+              Previous
+            </span>
+          )}
+
+          <span className="text-sm text-[#555] dark:text-[#aaa]">
+            Page {currentPage} of {totalPages}
+          </span>
+
+          {currentPage < totalPages ? (
+            <Link
+              href={pageUrl(currentPage + 1)}
+              className="rounded-md border border-gray-300 px-3 py-1.5 text-sm hover:border-gray-500 dark:border-gray-600"
+            >
+              Next
+            </Link>
+          ) : (
+            <span className="rounded-md border border-gray-200 px-3 py-1.5 text-sm text-gray-400 dark:border-gray-800 dark:text-gray-600">
+              Next
+            </span>
+          )}
+        </nav>
       )}
     </main>
   );
