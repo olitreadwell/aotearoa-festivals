@@ -20,6 +20,27 @@ export default async function Home() {
         {festivalCount} festivals · {promoterCount} promoters · {artistCount}{" "}
         artists
       </p>
+
+      <nav className="mt-10 flex flex-wrap gap-4" aria-label="Browse sections">
+        <a
+          href="/festivals"
+          className="rounded-lg border border-current/15 px-5 py-3 text-sm font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+        >
+          Browse Festivals →
+        </a>
+        <a
+          href="/artists"
+          className="rounded-lg border border-current/15 px-5 py-3 text-sm font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+        >
+          Browse Artists →
+        </a>
+        <a
+          href="/promoters"
+          className="rounded-lg border border-current/15 px-5 py-3 text-sm font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+        >
+          Browse Promoters →
+        </a>
+      </nav>
     </main>
   );
 }
