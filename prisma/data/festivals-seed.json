@@ -791,6 +791,66 @@
       "cost": "Free",
       "links": "https://worldbuskersfestival.co.nz/",
       "notes": "Annual 10-day free festival since 1993. 5 city pitches and 2 pop-up locations. International and local performers. Significant live music component."
+    },
+    {
+      "name": "Afterglow Festival",
+      "promoter": "",
+      "status": "active",
+      "date": "Jan 2027 (2026 was 24 Jan)",
+      "region": "Auckland",
+      "location": "Aotea / Great Barrier Island",
+      "genre": "Indie / Roots / Eclectic",
+      "cost": "",
+      "links": "https://afterglowfestival.nz/",
+      "notes": "All-NZ artist lineup. Billed as NZ's most remote music festival; community-focused, supports local Aotea economy. Debut ~2025."
+    },
+    {
+      "name": "Aotearoa New Zealand Festival of the Arts",
+      "promoter": "",
+      "status": "active",
+      "date": "24 Feb – 15 Mar 2026 (biennial; next ~2028)",
+      "region": "Wellington",
+      "location": "Wellington, various venues",
+      "genre": "Multi-arts (music, theatre, dance, interdisciplinary)",
+      "cost": "",
+      "links": "https://festival.nz/",
+      "notes": "Biennial, 40th anniversary edition in 2026. Co-directed by Tama Waipara and Dolina Wehipeihana. 150,000+ attendees since 1986."
+    },
+    {
+      "name": "Waiheke Jazz & Blues Festival",
+      "promoter": "",
+      "status": "active",
+      "date": "Easter weekend (2026 was 3–6 Apr), annual",
+      "region": "Auckland",
+      "location": "Goldie Estate and Batch Winery, Waiheke Island",
+      "genre": "Jazz / Blues",
+      "cost": "",
+      "links": "https://waihekejazzfestival.co.nz/",
+      "notes": "Four curated events across two island wineries: Good Friday Groove, Blues Revue, Jazz Sundowner, Jazz Long Lunch. Sells out every year."
+    },
+    {
+      "name": "Harbour Street Jazz & Blues Festival",
+      "promoter": "",
+      "status": "active",
+      "date": "20–22 Mar 2026 (Otago Anniversary Weekend, annual)",
+      "region": "Otago",
+      "location": "Victorian Precinct, Oamaru",
+      "genre": "Jazz / Blues",
+      "cost": "Free",
+      "links": "https://harbourstreetfestival.com/",
+      "notes": "Free to attend. 40+ musicians across indoor and street stages in Oamaru's heritage Victorian precinct."
+    },
+    {
+      "name": "Aum NYE Festival",
+      "promoter": "",
+      "status": "tbc",
+      "date": "Late Dec 2026 (NYE, exact TBC)",
+      "region": "Auckland",
+      "location": "Mangawhai area",
+      "genre": "Multi-genre / Arts / Wellness (electronic, live music, performance, healing)",
+      "cost": "",
+      "links": "",
+      "notes": "Family-friendly camping festival with themed nights, wellness zones, and multiple stages. Distinct from AUM Festival (South Head) and Northern Bass (also Mangawhai area)."
     }
   ],
   "promoters": [
