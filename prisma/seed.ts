@@ -79,12 +79,27 @@ async function main() {
   }
 
   console.log(`Seeding ${seedData.festivals.length} festivals...`);
-  let skippedPromoter = 0;
+  let autoCreatedPromoters = 0;
 
   for (const f of seedData.festivals) {
     const slug = slugify(f.name);
-    const promoterId = f.promoter ? (promoterIdByName.get(f.promoter) ?? null) : null;
-    if (f.promoter && !promoterId) skippedPromoter++;
+    let promoterId = f.promoter ? (promoterIdByName.get(f.promoter) ?? null) : null;
+
+    // Some historic festivals only ever had a founder's name recorded
+    // (e.g. "Andrew McManus" for Raggamuffin), not a company/collective
+    // with its own Promoter entry. Auto-create a minimal Promoter row
+    // rather than silently dropping the attribution.
+    if (f.promoter && !promoterId) {
+      const fallbackSlug = slugify(f.promoter);
+      const fallback = await prisma.promoter.upsert({
+        where: { slug: fallbackSlug },
+        update: {},
+        create: { name: f.promoter, slug: fallbackSlug },
+      });
+      promoterId = fallback.id;
+      promoterIdByName.set(f.promoter, promoterId);
+      autoCreatedPromoters++;
+    }
 
     await prisma.festival.upsert({
       where: { slug },
@@ -115,8 +130,8 @@ async function main() {
     });
   }
 
-  if (skippedPromoter > 0) {
-    console.warn(`${skippedPromoter} festival(s) referenced a promoter name not found in the promoters list.`);
+  if (autoCreatedPromoters > 0) {
+    console.warn(`${autoCreatedPromoters} festival(s) had a promoter name not in the curated list; auto-created a minimal Promoter row for it.`);
   }
 
   console.log("Seed complete.");
