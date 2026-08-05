@@ -18,6 +18,7 @@ _Updated automatically each loop iteration. Items move from Queued → In Progre
 ## Queued
 
 ### Pages & Routes
+
 - [ ] Region pages (`/regions/[region]`) — all festivals in a NZ region
 - [ ] Search page (`/search`) — fuzzy search across festivals, artists, promoters (Fuse.js)
 - [ ] RSS feed route (`/feed.xml`) — upcoming festivals atom feed
@@ -27,6 +28,7 @@ _Updated automatically each loop iteration. Items move from Queued → In Progre
 - [ ] Artist claim flow — organiser can link their artist profile
 
 ### Data & Seed
+
 - [ ] Add websites for festivals missing links (~30 entries)
 - [ ] Add promoter records (Fuzen NZ, Audiology Touring, Rhythm & Vines Ltd, etc.)
 - [ ] Add artist records for known headliners (Alison Wonderland, Andy C, Clean Bandit…)
@@ -35,6 +37,7 @@ _Updated automatically each loop iteration. Items move from Queued → In Progre
 - [ ] Region normalisation: "East Coast" → GISBORNE, "Nelson-Tasman" → split to TASMAN/NELSON
 
 ### UI / UX
+
 - [ ] Dark mode toggle
 - [ ] Festival status badge colours (ACTIVE green, TBC amber, HIATUS grey, DEFUNCT red)
 - [ ] Upcoming vs past festival split on listing page
@@ -44,6 +47,7 @@ _Updated automatically each loop iteration. Items move from Queued → In Progre
 - [ ] Accessibility audit (axe — pre-push hook already wired)
 
 ### Performance & Infrastructure
+
 - [ ] `use cache` on Prisma queries once stable (Next.js 16 cache components)
 - [ ] ISR for festival detail pages
 - [ ] Playwright E2E tests for listing and detail pages
