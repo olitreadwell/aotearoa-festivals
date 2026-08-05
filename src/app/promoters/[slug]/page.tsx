@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { FestivalStatus } from "@/generated/prisma";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const dynamic = "force-dynamic";
 
@@ -57,18 +58,13 @@ export default async function PromoterDetailPage({ params }: Props) {
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
-      <nav className="mb-8 text-sm text-neutral-500">
-        <Link
-          href="/promoters"
-          className="transition-colors hover:text-neutral-900 dark:hover:text-neutral-100"
-        >
-          Promoters
-        </Link>
-        <span className="mx-2">/</span>
-        <span className="text-neutral-800 dark:text-neutral-200">
-          {promoter.name}
-        </span>
-      </nav>
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Promoters", href: "/promoters" },
+          { label: promoter.name },
+        ]}
+      />
 
       <h1 className="text-3xl font-semibold tracking-tight">{promoter.name}</h1>
 

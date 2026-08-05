@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import type { Festival, Artist, Promoter } from "@/generated/prisma";
 import { FestivalStatus } from "@/generated/prisma";
 import { formatRegion, formatStatus } from "@/lib/format";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const dynamic = "force-dynamic";
 
@@ -83,13 +83,13 @@ export default async function FestivalDetailPage({
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
-      {/* Back link */}
-      <Link
-        href="/festivals"
-        className="mb-8 inline-flex items-center gap-1 text-sm text-neutral-500 transition-colors hover:text-neutral-700 dark:hover:text-neutral-300"
-      >
-        <span aria-hidden="true">←</span> All festivals
-      </Link>
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Festivals", href: "/festivals" },
+          { label: festival.name },
+        ]}
+      />
 
       {/* Header */}
       <div className="mb-2 flex flex-wrap items-start gap-3">
