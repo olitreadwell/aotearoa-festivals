@@ -7,10 +7,18 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
-  const artists = await prisma.artist.findMany({
-    select: { slug: true },
-  });
-  return artists.map((artist) => ({ slug: artist.slug }));
+  try {
+    const artists = await prisma.artist.findMany({
+      select: { slug: true },
+    });
+    return artists.map((artist) => ({ slug: artist.slug }));
+  } catch (error) {
+    console.warn(
+      "generateStaticParams: could not reach the database, falling back to on-demand rendering for /artists/[slug]",
+      error,
+    );
+    return [];
+  }
 }
 
 interface PageProps {

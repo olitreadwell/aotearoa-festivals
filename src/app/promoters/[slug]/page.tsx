@@ -8,10 +8,18 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 export const revalidate = 3600;
 
 export async function generateStaticParams() {
-  const promoters = await prisma.promoter.findMany({
-    select: { slug: true },
-  });
-  return promoters.map((promoter) => ({ slug: promoter.slug }));
+  try {
+    const promoters = await prisma.promoter.findMany({
+      select: { slug: true },
+    });
+    return promoters.map((promoter) => ({ slug: promoter.slug }));
+  } catch (error) {
+    console.warn(
+      "generateStaticParams: could not reach the database, falling back to on-demand rendering for /promoters/[slug]",
+      error,
+    );
+    return [];
+  }
 }
 
 const statusStyles: Record<FestivalStatus, string> = {
