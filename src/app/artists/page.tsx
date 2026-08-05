@@ -4,8 +4,10 @@ import type { Artist } from "@/generated/prisma";
 
 export const dynamic = "force-dynamic";
 
+const PAGE_SIZE = 24;
+
 interface PageProps {
-  searchParams: Promise<{ genre?: string; city?: string }>;
+  searchParams: Promise<{ genre?: string; city?: string; page?: string }>;
 }
 
 function SocialIcons({ artist }: { artist: Artist }) {
@@ -60,22 +62,41 @@ function SocialIcons({ artist }: { artist: Artist }) {
 }
 
 export default async function ArtistsPage({ searchParams }: PageProps) {
-  const { genre, city } = await searchParams;
+  const { genre, city, page } = await searchParams;
+
+  const requestedPage = Math.max(1, Math.floor(Number(page)) || 1);
+
+  const where = {
+    genre: genre ? { contains: genre, mode: "insensitive" as const } : undefined,
+    homeCity: city ? { contains: city, mode: "insensitive" as const } : undefined,
+  };
+
+  const totalCount = await prisma.artist.count({ where });
+  const totalPages = Math.max(1, Math.ceil(totalCount / PAGE_SIZE));
+  const currentPage = Math.min(requestedPage, totalPages);
 
   const artists = await prisma.artist.findMany({
     orderBy: { name: "asc" },
-    where: {
-      genre: genre ? { contains: genre, mode: "insensitive" } : undefined,
-      homeCity: city ? { contains: city, mode: "insensitive" } : undefined,
-    },
+    where,
+    skip: (currentPage - 1) * PAGE_SIZE,
+    take: PAGE_SIZE,
   });
+
+  function pageUrl(targetPage: number): string {
+    const params = new URLSearchParams();
+    if (genre) params.set("genre", genre);
+    if (city) params.set("city", city);
+    if (targetPage > 1) params.set("page", String(targetPage));
+    const qs = params.toString();
+    return qs ? `/artists?${qs}` : "/artists";
+  }
 
   return (
     <main className="mx-auto max-w-5xl px-6 py-12">
       <div className="mb-8">
         <h1 className="text-3xl font-semibold tracking-tight">Artists</h1>
         <p className="mt-1 text-neutral-500 dark:text-neutral-400">
-          {artists.length} artist{artists.length !== 1 ? "s" : ""}
+          {totalCount} artist{totalCount !== 1 ? "s" : ""}
           {genre ? ` in ${genre}` : ""}
           {city ? ` from ${city}` : ""}
         </p>
@@ -142,6 +163,43 @@ export default async function ArtistsPage({ searchParams }: PageProps) {
             </Link>
           ))}
         </div>
+      )}
+
+      {totalPages > 1 && (
+        <nav
+          aria-label="Pagination"
+          className="mt-8 flex items-center justify-between"
+        >
+          {currentPage > 1 ? (
+            <Link
+              href={pageUrl(currentPage - 1)}
+              className="rounded-md border border-neutral-300 px-3 py-1.5 text-sm hover:border-neutral-500 dark:border-neutral-700"
+            >
+              Previous
+            </Link>
+          ) : (
+            <span className="rounded-md border border-neutral-200 px-3 py-1.5 text-sm text-neutral-400 dark:border-neutral-800 dark:text-neutral-600">
+              Previous
+            </span>
+          )}
+
+          <span className="text-sm text-neutral-500 dark:text-neutral-400">
+            Page {currentPage} of {totalPages}
+          </span>
+
+          {currentPage < totalPages ? (
+            <Link
+              href={pageUrl(currentPage + 1)}
+              className="rounded-md border border-neutral-300 px-3 py-1.5 text-sm hover:border-neutral-500 dark:border-neutral-700"
+            >
+              Next
+            </Link>
+          ) : (
+            <span className="rounded-md border border-neutral-200 px-3 py-1.5 text-sm text-neutral-400 dark:border-neutral-800 dark:text-neutral-600">
+              Next
+            </span>
+          )}
+        </nav>
       )}
     </main>
   );
