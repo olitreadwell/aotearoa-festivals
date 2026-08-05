@@ -3,74 +3,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import type { Festival, Artist, Promoter } from "@/generated/prisma";
-import { FestivalStatus, Region } from "@/generated/prisma";
+import { FestivalStatus } from "@/generated/prisma";
+import { formatRegion, formatStatus } from "@/lib/format";
 
 export const dynamic = "force-dynamic";
-
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
-
-function formatRegion(region: Region): string {
-  const map: Record<Region, string> = {
-    NORTHLAND: "Northland",
-    AUCKLAND: "Auckland",
-    WAIKATO: "Waikato",
-    BAY_OF_PLENTY: "Bay of Plenty",
-    GISBORNE: "Gisborne",
-    HAWKES_BAY: "Hawke's Bay",
-    TARANAKI: "Taranaki",
-    MANAWATU_WHANGANUI: "Manawatū-Whanganui",
-    WELLINGTON: "Wellington",
-    WAIRARAPA: "Wairarapa",
-    TASMAN: "Tasman",
-    NELSON: "Nelson",
-    MARLBOROUGH: "Marlborough",
-    WEST_COAST: "West Coast",
-    CANTERBURY: "Canterbury",
-    OTAGO: "Otago",
-    SOUTHLAND: "Southland",
-    ONLINE: "Online",
-  };
-  return map[region] ?? region;
-}
-
-type StatusStyle = { label: string; className: string };
-
-function statusStyle(status: FestivalStatus): StatusStyle {
-  switch (status) {
-    case FestivalStatus.ACTIVE:
-      return {
-        label: "Active",
-        className:
-          "bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300",
-      };
-    case FestivalStatus.TBC:
-      return {
-        label: "TBC",
-        className:
-          "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-300",
-      };
-    case FestivalStatus.HIATUS:
-      return {
-        label: "Hiatus",
-        className:
-          "bg-orange-100 text-orange-800 dark:bg-orange-900/40 dark:text-orange-300",
-      };
-    case FestivalStatus.DEFUNCT:
-      return {
-        label: "Defunct",
-        className:
-          "bg-neutral-200 text-neutral-600 dark:bg-neutral-700 dark:text-neutral-400",
-      };
-    case FestivalStatus.UNCONFIRMED:
-      return {
-        label: "Unconfirmed",
-        className:
-          "bg-neutral-100 text-neutral-500 dark:bg-neutral-800 dark:text-neutral-400",
-      };
-  }
-}
 
 // ---------------------------------------------------------------------------
 // Types returned from the query
@@ -132,7 +68,7 @@ export default async function FestivalDetailPage({
     notFound();
   }
 
-  const { label: statusLabel, className: statusClass } = statusStyle(
+  const { label: statusLabel, className: statusClass } = formatStatus(
     festival.status,
   );
 
