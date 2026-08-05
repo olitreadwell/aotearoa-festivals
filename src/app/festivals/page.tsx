@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { FestivalStatus, Region } from "@/generated/prisma";
 import type { Festival, Promoter } from "@/generated/prisma";
 import Link from "next/link";
+import Pagination from "@/components/Pagination";
 import {
   REGION_LABELS,
   STATUS_LABELS,
@@ -347,42 +348,11 @@ export default async function FestivalsPage({
       {/* ------------------------------------------------------------------ */}
       {/* Pagination                                                          */}
       {/* ------------------------------------------------------------------ */}
-      {totalPages > 1 && (
-        <nav
-          aria-label="Pagination"
-          className="mt-8 flex items-center justify-between"
-        >
-          {currentPage > 1 ? (
-            <Link
-              href={pageUrl(currentPage - 1)}
-              className="rounded-md border border-gray-300 px-3 py-1.5 text-sm hover:border-gray-500 dark:border-gray-600"
-            >
-              Previous
-            </Link>
-          ) : (
-            <span className="rounded-md border border-gray-200 px-3 py-1.5 text-sm text-gray-400 dark:border-gray-800 dark:text-gray-600">
-              Previous
-            </span>
-          )}
-
-          <span className="text-sm text-[#555] dark:text-[#aaa]">
-            Page {currentPage} of {totalPages}
-          </span>
-
-          {currentPage < totalPages ? (
-            <Link
-              href={pageUrl(currentPage + 1)}
-              className="rounded-md border border-gray-300 px-3 py-1.5 text-sm hover:border-gray-500 dark:border-gray-600"
-            >
-              Next
-            </Link>
-          ) : (
-            <span className="rounded-md border border-gray-200 px-3 py-1.5 text-sm text-gray-400 dark:border-gray-800 dark:text-gray-600">
-              Next
-            </span>
-          )}
-        </nav>
-      )}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        buildHref={pageUrl}
+      />
     </main>
   );
 }

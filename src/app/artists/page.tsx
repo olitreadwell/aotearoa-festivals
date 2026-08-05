@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import type { Artist } from "@/generated/prisma";
+import Pagination from "@/components/Pagination";
 
 export const dynamic = "force-dynamic";
 
@@ -165,42 +166,11 @@ export default async function ArtistsPage({ searchParams }: PageProps) {
         </div>
       )}
 
-      {totalPages > 1 && (
-        <nav
-          aria-label="Pagination"
-          className="mt-8 flex items-center justify-between"
-        >
-          {currentPage > 1 ? (
-            <Link
-              href={pageUrl(currentPage - 1)}
-              className="rounded-md border border-neutral-300 px-3 py-1.5 text-sm hover:border-neutral-500 dark:border-neutral-700"
-            >
-              Previous
-            </Link>
-          ) : (
-            <span className="rounded-md border border-neutral-200 px-3 py-1.5 text-sm text-neutral-400 dark:border-neutral-800 dark:text-neutral-600">
-              Previous
-            </span>
-          )}
-
-          <span className="text-sm text-neutral-500 dark:text-neutral-400">
-            Page {currentPage} of {totalPages}
-          </span>
-
-          {currentPage < totalPages ? (
-            <Link
-              href={pageUrl(currentPage + 1)}
-              className="rounded-md border border-neutral-300 px-3 py-1.5 text-sm hover:border-neutral-500 dark:border-neutral-700"
-            >
-              Next
-            </Link>
-          ) : (
-            <span className="rounded-md border border-neutral-200 px-3 py-1.5 text-sm text-neutral-400 dark:border-neutral-800 dark:text-neutral-600">
-              Next
-            </span>
-          )}
-        </nav>
-      )}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        buildHref={pageUrl}
+      />
     </main>
   );
 }

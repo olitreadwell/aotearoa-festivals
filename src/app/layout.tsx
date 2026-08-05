@@ -12,10 +12,14 @@ export const metadata: Metadata = {
 const THEME_INIT_SCRIPT = `
 (function () {
   try {
-    var theme = window.localStorage.getItem("theme");
-    if (theme === "dark" || theme === "light") {
-      document.documentElement.classList.add(theme);
-    }
+    var stored = window.localStorage.getItem("theme");
+    var theme =
+      stored === "dark" || stored === "light"
+        ? stored
+        : window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+    document.documentElement.classList.add(theme);
   } catch (e) {}
 })();
 `;
