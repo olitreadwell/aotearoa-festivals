@@ -103,6 +103,16 @@ export default async function FestivalDetailPage({
         </span>
       </div>
 
+      {/* Add to calendar */}
+      {festival.startDate && (
+        <a
+          href="./calendar.ics"
+          className="mt-4 inline-flex items-center gap-1 text-sm text-blue-600 hover:underline dark:text-blue-400"
+        >
+          Add to calendar <span aria-hidden="true">↓</span>
+        </a>
+      )}
+
       {/* Meta row */}
       <dl className="mt-6 grid grid-cols-1 gap-x-8 gap-y-4 text-sm sm:grid-cols-2">
         {festival.region && (
