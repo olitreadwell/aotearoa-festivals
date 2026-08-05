@@ -117,7 +117,7 @@ export default async function SubscribePage({
           View all festivals on the{" "}
           <Link
             href="/festivals"
-            className="text-blue-600 hover:underline dark:text-blue-400"
+            className="text-blue-600 underline dark:text-blue-400"
           >
             festivals page
           </Link>

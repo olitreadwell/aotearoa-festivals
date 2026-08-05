@@ -336,7 +336,7 @@ export default async function FestivalsPage({
             No festivals match your current filters.{" "}
             <Link
               href="/festivals"
-              className="text-blue-600 hover:underline dark:text-blue-400"
+              className="text-blue-600 underline dark:text-blue-400"
             >
               Clear filters
             </Link>{" "}
