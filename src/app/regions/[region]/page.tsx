@@ -254,8 +254,8 @@ export default async function RegionDetailPage({
           Get notified about {regionLabel} festivals
         </h2>
         <p className="mb-5 text-sm text-[#555] dark:text-[#aaa]">
-          Be the first to hear about new and upcoming festivals in {regionLabel}.
-          No spam — unsubscribe any time.
+          Be the first to hear about new and upcoming festivals in {regionLabel}
+          . No spam — unsubscribe any time.
         </p>
         <form
           method="POST"

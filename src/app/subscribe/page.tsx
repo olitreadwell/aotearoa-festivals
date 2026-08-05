@@ -1,38 +1,38 @@
-import { Region } from '@/generated/prisma'
-import Link from 'next/link'
+import { Region } from "@/generated/prisma";
+import Link from "next/link";
 
 const REGION_LABELS: Record<Region, string> = {
-  NORTHLAND: 'Northland',
-  AUCKLAND: 'Auckland',
-  WAIKATO: 'Waikato',
-  BAY_OF_PLENTY: 'Bay of Plenty',
-  GISBORNE: 'Gisborne',
+  NORTHLAND: "Northland",
+  AUCKLAND: "Auckland",
+  WAIKATO: "Waikato",
+  BAY_OF_PLENTY: "Bay of Plenty",
+  GISBORNE: "Gisborne",
   HAWKES_BAY: "Hawke's Bay",
-  TARANAKI: 'Taranaki',
-  MANAWATU_WHANGANUI: 'Manawatū-Whanganui',
-  WELLINGTON: 'Wellington',
-  WAIRARAPA: 'Wairarapa',
-  TASMAN: 'Tasman',
-  NELSON: 'Nelson',
-  MARLBOROUGH: 'Marlborough',
-  WEST_COAST: 'West Coast',
-  CANTERBURY: 'Canterbury',
-  OTAGO: 'Otago',
-  SOUTHLAND: 'Southland',
-  ONLINE: 'Online',
-}
+  TARANAKI: "Taranaki",
+  MANAWATU_WHANGANUI: "Manawatū-Whanganui",
+  WELLINGTON: "Wellington",
+  WAIRARAPA: "Wairarapa",
+  TASMAN: "Tasman",
+  NELSON: "Nelson",
+  MARLBOROUGH: "Marlborough",
+  WEST_COAST: "West Coast",
+  CANTERBURY: "Canterbury",
+  OTAGO: "Otago",
+  SOUTHLAND: "Southland",
+  ONLINE: "Online",
+};
 
 export default async function SubscribePage({
   searchParams,
 }: {
-  searchParams: Promise<{ region?: string }>
+  searchParams: Promise<{ region?: string }>;
 }) {
-  const { region } = await searchParams
+  const { region } = await searchParams;
 
   const preselectedRegion =
     region && Object.values(Region).includes(region as Region)
       ? (region as Region)
-      : undefined
+      : undefined;
 
   return (
     <main className="mx-auto min-h-screen max-w-lg px-4 py-16">
@@ -47,14 +47,18 @@ export default async function SubscribePage({
           </p>
         </header>
 
-        <form method="POST" action="/api/subscribe" className="flex flex-col gap-6">
+        <form
+          method="POST"
+          action="/api/subscribe"
+          className="flex flex-col gap-6"
+        >
           {/* Email field */}
           <div className="flex flex-col gap-1.5">
             <label
               htmlFor="email"
               className="text-sm font-semibold text-[#333] dark:text-[#ddd]"
             >
-              Email address{' '}
+              Email address{" "}
               <span className="text-red-500" aria-hidden="true">
                 *
               </span>
@@ -76,7 +80,7 @@ export default async function SubscribePage({
               htmlFor="region"
               className="text-sm font-semibold text-[#333] dark:text-[#ddd]"
             >
-              Region{' '}
+              Region{" "}
               <span className="text-red-500" aria-hidden="true">
                 *
               </span>
@@ -85,7 +89,7 @@ export default async function SubscribePage({
               id="region"
               name="region"
               required
-              defaultValue={preselectedRegion ?? ''}
+              defaultValue={preselectedRegion ?? ""}
               className="rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-[#1a1a1a]"
             >
               <option value="" disabled>
@@ -110,7 +114,7 @@ export default async function SubscribePage({
 
         <p className="mt-6 text-xs text-[#888] dark:text-[#666]">
           You can unsubscribe at any time via the link in any email we send.
-          View all festivals on the{' '}
+          View all festivals on the{" "}
           <Link
             href="/festivals"
             className="text-blue-600 hover:underline dark:text-blue-400"
@@ -121,5 +125,5 @@ export default async function SubscribePage({
         </p>
       </div>
     </main>
-  )
+  );
 }

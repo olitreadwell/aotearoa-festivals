@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from "next/link";
 
 export default function UnsubscribeConfirmedPage() {
   return (
@@ -43,5 +43,5 @@ export default function UnsubscribeConfirmedPage() {
         </div>
       </div>
     </main>
-  )
+  );
 }

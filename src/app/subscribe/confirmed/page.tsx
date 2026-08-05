@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from "next/link";
 
 export default function SubscribeConfirmedPage() {
   return (
@@ -46,5 +46,5 @@ export default function SubscribeConfirmedPage() {
         </div>
       </div>
     </main>
-  )
+  );
 }

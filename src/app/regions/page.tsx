@@ -81,13 +81,11 @@ export default async function RegionsPage() {
                 className="group flex h-full items-center justify-between overflow-hidden rounded-xl border border-gray-200 bg-white px-6 py-5 shadow-sm transition-all duration-150 hover:border-blue-400 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:border-gray-700 dark:bg-[#111] dark:hover:border-blue-500"
               >
                 <div>
-                  <p className="text-base font-semibold leading-snug transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                  <p className="text-base leading-snug font-semibold transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">
                     {REGION_LABELS[region]}
                   </p>
                   <p className="mt-0.5 text-sm text-[#555] dark:text-[#aaa]">
-                    {_count.id === 1
-                      ? "1 festival"
-                      : `${_count.id} festivals`}
+                    {_count.id === 1 ? "1 festival" : `${_count.id} festivals`}
                   </p>
                 </div>
                 <svg

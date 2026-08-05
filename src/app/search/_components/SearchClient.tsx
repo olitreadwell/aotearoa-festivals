@@ -1,40 +1,40 @@
-'use client'
-import { useState, useMemo } from 'react'
-import Fuse from 'fuse.js'
-import Link from 'next/link'
+"use client";
+import { useState, useMemo } from "react";
+import Fuse from "fuse.js";
+import Link from "next/link";
 
 export type SearchItem = {
-  type: 'festival' | 'artist' | 'promoter'
-  name: string
-  slug: string
-  subtitle: string  // genre, region, etc.
-}
+  type: "festival" | "artist" | "promoter";
+  name: string;
+  slug: string;
+  subtitle: string; // genre, region, etc.
+};
 
-const TYPE_BADGE_STYLES: Record<SearchItem['type'], string> = {
-  festival:
-    'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+const TYPE_BADGE_STYLES: Record<SearchItem["type"], string> = {
+  festival: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
   artist:
-    'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
+    "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200",
   promoter:
-    'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200',
-}
+    "bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200",
+};
 
 export function SearchClient({ items }: { items: SearchItem[] }) {
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState("");
 
   const fuse = useMemo(
     () =>
       new Fuse(items, {
-        keys: ['name', 'subtitle'],
+        keys: ["name", "subtitle"],
         threshold: 0.3,
         includeScore: true,
       }),
     [items],
-  )
+  );
 
-  const results = query.length > 0
-    ? fuse.search(query).map((r) => r.item)
-    : items.slice(0, 20)
+  const results =
+    query.length > 0
+      ? fuse.search(query).map((r) => r.item)
+      : items.slice(0, 20);
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10">
@@ -69,7 +69,7 @@ export function SearchClient({ items }: { items: SearchItem[] }) {
         aria-live="polite"
       >
         {query
-          ? `${results.length} result${results.length !== 1 ? 's' : ''} for "${query}"`
+          ? `${results.length} result${results.length !== 1 ? "s" : ""} for "${query}"`
           : `${items.length} total — showing first 20`}
       </p>
 
@@ -91,7 +91,7 @@ export function SearchClient({ items }: { items: SearchItem[] }) {
 
                 {/* Name + subtitle */}
                 <div className="min-w-0 flex-1">
-                  <strong className="block font-semibold leading-snug transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                  <strong className="block leading-snug font-semibold transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">
                     {item.name}
                   </strong>
                   {item.subtitle && (
@@ -120,9 +120,11 @@ export function SearchClient({ items }: { items: SearchItem[] }) {
         </ul>
       ) : (
         <div className="rounded-xl border border-dashed border-gray-300 p-12 text-center text-[#555] dark:border-gray-600 dark:text-[#aaa]">
-          <p className="text-sm">No results for &ldquo;{query}&rdquo;. Try a different search term.</p>
+          <p className="text-sm">
+            No results for &ldquo;{query}&rdquo;. Try a different search term.
+          </p>
         </div>
       )}
     </div>
-  )
+  );
 }

@@ -1,47 +1,47 @@
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 
-import type { Metadata } from 'next'
-import { prisma } from '@/lib/prisma'
-import type { Region } from '@/generated/prisma'
-import { SearchClient } from './_components/SearchClient'
-import type { SearchItem } from './_components/SearchClient'
+import type { Metadata } from "next";
+import { prisma } from "@/lib/prisma";
+import type { Region } from "@/generated/prisma";
+import { SearchClient } from "./_components/SearchClient";
+import type { SearchItem } from "./_components/SearchClient";
 
 // ---------------------------------------------------------------------------
 // Metadata
 // ---------------------------------------------------------------------------
 
 export const metadata: Metadata = {
-  title: 'Search | Aotearoa Festivals',
-}
+  title: "Search | Aotearoa Festivals",
+};
 
 // ---------------------------------------------------------------------------
 // Region display helper (same map used in festivals/page.tsx)
 // ---------------------------------------------------------------------------
 
 const REGION_LABELS: Record<Region, string> = {
-  NORTHLAND: 'Northland',
-  AUCKLAND: 'Auckland',
-  WAIKATO: 'Waikato',
-  BAY_OF_PLENTY: 'Bay of Plenty',
-  GISBORNE: 'Gisborne',
+  NORTHLAND: "Northland",
+  AUCKLAND: "Auckland",
+  WAIKATO: "Waikato",
+  BAY_OF_PLENTY: "Bay of Plenty",
+  GISBORNE: "Gisborne",
   HAWKES_BAY: "Hawke's Bay",
-  TARANAKI: 'Taranaki',
-  MANAWATU_WHANGANUI: 'Manawatū-Whanganui',
-  WELLINGTON: 'Wellington',
-  WAIRARAPA: 'Wairarapa',
-  TASMAN: 'Tasman',
-  NELSON: 'Nelson',
-  MARLBOROUGH: 'Marlborough',
-  WEST_COAST: 'West Coast',
-  CANTERBURY: 'Canterbury',
-  OTAGO: 'Otago',
-  SOUTHLAND: 'Southland',
-  ONLINE: 'Online',
-}
+  TARANAKI: "Taranaki",
+  MANAWATU_WHANGANUI: "Manawatū-Whanganui",
+  WELLINGTON: "Wellington",
+  WAIRARAPA: "Wairarapa",
+  TASMAN: "Tasman",
+  NELSON: "Nelson",
+  MARLBOROUGH: "Marlborough",
+  WEST_COAST: "West Coast",
+  CANTERBURY: "Canterbury",
+  OTAGO: "Otago",
+  SOUTHLAND: "Southland",
+  ONLINE: "Online",
+};
 
 function formatRegion(region: Region | null | undefined): string | null {
-  if (!region) return null
-  return REGION_LABELS[region] ?? region
+  if (!region) return null;
+  return REGION_LABELS[region] ?? region;
 }
 
 // ---------------------------------------------------------------------------
@@ -53,42 +53,59 @@ export default async function SearchPage() {
   const [festivals, artists, promoters] = await Promise.all([
     prisma.festival.findMany({
       where: { approved: true },
-      select: { id: true, name: true, slug: true, genre: true, region: true, status: true },
-      orderBy: { name: 'asc' },
+      select: {
+        id: true,
+        name: true,
+        slug: true,
+        genre: true,
+        region: true,
+        status: true,
+      },
+      orderBy: { name: "asc" },
     }),
     prisma.artist.findMany({
       select: { id: true, name: true, slug: true, genre: true, homeCity: true },
-      orderBy: { name: 'asc' },
+      orderBy: { name: "asc" },
     }),
     prisma.promoter.findMany({
-      select: { id: true, name: true, slug: true, region: true, genreFocus: true },
-      orderBy: { name: 'asc' },
+      select: {
+        id: true,
+        name: true,
+        slug: true,
+        region: true,
+        genreFocus: true,
+      },
+      orderBy: { name: "asc" },
     }),
-  ])
+  ]);
 
   // Map to SearchItem
   const festivalItems: SearchItem[] = festivals.map((f) => ({
-    type: 'festival',
+    type: "festival",
     name: f.name,
     slug: f.slug,
-    subtitle: [f.genre, formatRegion(f.region)].filter(Boolean).join(' · '),
-  }))
+    subtitle: [f.genre, formatRegion(f.region)].filter(Boolean).join(" · "),
+  }));
 
   const artistItems: SearchItem[] = artists.map((a) => ({
-    type: 'artist',
+    type: "artist",
     name: a.name,
     slug: a.slug,
-    subtitle: [a.genre, a.homeCity].filter(Boolean).join(' · '),
-  }))
+    subtitle: [a.genre, a.homeCity].filter(Boolean).join(" · "),
+  }));
 
   const promoterItems: SearchItem[] = promoters.map((p) => ({
-    type: 'promoter',
+    type: "promoter",
     name: p.name,
     slug: p.slug,
-    subtitle: [p.region, p.genreFocus].filter(Boolean).join(' · '),
-  }))
+    subtitle: [p.region, p.genreFocus].filter(Boolean).join(" · "),
+  }));
 
-  const allItems: SearchItem[] = [...festivalItems, ...artistItems, ...promoterItems]
+  const allItems: SearchItem[] = [
+    ...festivalItems,
+    ...artistItems,
+    ...promoterItems,
+  ];
 
   return (
     <main className="site-content">
@@ -100,5 +117,5 @@ export default async function SearchPage() {
       </div>
       <SearchClient items={allItems} />
     </main>
-  )
+  );
 }
