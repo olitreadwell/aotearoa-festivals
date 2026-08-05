@@ -16,7 +16,7 @@ function SocialIcons({ artist }: { artist: Artist }) {
           href={`https://instagram.com/${artist.instagram.replace(/^@/, "")}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs text-neutral-500 hover:text-pink-500 transition-colors"
+          className="text-xs text-neutral-500 transition-colors hover:text-pink-500"
           aria-label="Instagram"
           title="Instagram"
         >
@@ -25,10 +25,14 @@ function SocialIcons({ artist }: { artist: Artist }) {
       )}
       {artist.soundcloud && (
         <a
-          href={artist.soundcloud.startsWith("http") ? artist.soundcloud : `https://soundcloud.com/${artist.soundcloud}`}
+          href={
+            artist.soundcloud.startsWith("http")
+              ? artist.soundcloud
+              : `https://soundcloud.com/${artist.soundcloud}`
+          }
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs text-neutral-500 hover:text-orange-500 transition-colors"
+          className="text-xs text-neutral-500 transition-colors hover:text-orange-500"
           aria-label="SoundCloud"
           title="SoundCloud"
         >
@@ -37,10 +41,14 @@ function SocialIcons({ artist }: { artist: Artist }) {
       )}
       {artist.raUrl && (
         <a
-          href={artist.raUrl.startsWith("http") ? artist.raUrl : `https://ra.co/${artist.raUrl}`}
+          href={
+            artist.raUrl.startsWith("http")
+              ? artist.raUrl
+              : `https://ra.co/${artist.raUrl}`
+          }
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs text-neutral-500 hover:text-blue-500 transition-colors"
+          className="text-xs text-neutral-500 transition-colors hover:text-blue-500"
           aria-label="Resident Advisor"
           title="Resident Advisor"
         >
@@ -57,12 +65,8 @@ export default async function ArtistsPage({ searchParams }: PageProps) {
   const artists = await prisma.artist.findMany({
     orderBy: { name: "asc" },
     where: {
-      genre: genre
-        ? { contains: genre, mode: "insensitive" }
-        : undefined,
-      homeCity: city
-        ? { contains: city, mode: "insensitive" }
-        : undefined,
+      genre: genre ? { contains: genre, mode: "insensitive" } : undefined,
+      homeCity: city ? { contains: city, mode: "insensitive" } : undefined,
     },
   });
 
@@ -84,25 +88,25 @@ export default async function ArtistsPage({ searchParams }: PageProps) {
           name="genre"
           defaultValue={genre ?? ""}
           placeholder="Filter by genre..."
-          className="rounded-md border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-400"
+          className="rounded-md border border-neutral-300 bg-white px-3 py-1.5 text-sm focus:ring-2 focus:ring-neutral-400 focus:outline-none dark:border-neutral-700 dark:bg-neutral-900"
         />
         <input
           type="text"
           name="city"
           defaultValue={city ?? ""}
           placeholder="Filter by city..."
-          className="rounded-md border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-400"
+          className="rounded-md border border-neutral-300 bg-white px-3 py-1.5 text-sm focus:ring-2 focus:ring-neutral-400 focus:outline-none dark:border-neutral-700 dark:bg-neutral-900"
         />
         <button
           type="submit"
-          className="rounded-md bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900 px-4 py-1.5 text-sm font-medium hover:opacity-80 transition-opacity"
+          className="rounded-md bg-neutral-900 px-4 py-1.5 text-sm font-medium text-white transition-opacity hover:opacity-80 dark:bg-neutral-100 dark:text-neutral-900"
         >
           Filter
         </button>
         {(genre || city) && (
           <Link
             href="/artists"
-            className="rounded-md border border-neutral-300 dark:border-neutral-700 px-4 py-1.5 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+            className="rounded-md border border-neutral-300 px-4 py-1.5 text-sm transition-colors hover:bg-neutral-100 dark:border-neutral-700 dark:hover:bg-neutral-800"
           >
             Clear
           </Link>
@@ -110,16 +114,20 @@ export default async function ArtistsPage({ searchParams }: PageProps) {
       </form>
 
       {artists.length === 0 ? (
-        <p className="text-neutral-500 dark:text-neutral-400">No artists found.</p>
+        <p className="text-neutral-500 dark:text-neutral-400">
+          No artists found.
+        </p>
       ) : (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {artists.map((artist) => (
             <Link
               key={artist.id}
               href={`/artists/${artist.slug}`}
-              className="group rounded-lg border border-neutral-200 dark:border-neutral-800 p-4 hover:border-neutral-400 dark:hover:border-neutral-600 transition-colors"
+              className="group rounded-lg border border-neutral-200 p-4 transition-colors hover:border-neutral-400 dark:border-neutral-800 dark:hover:border-neutral-600"
             >
-              <h2 className="font-medium group-hover:underline">{artist.name}</h2>
+              <h2 className="font-medium group-hover:underline">
+                {artist.name}
+              </h2>
               {artist.genre && (
                 <p className="mt-0.5 text-sm text-neutral-500 dark:text-neutral-400">
                   {artist.genre}

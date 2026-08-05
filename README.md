@@ -21,15 +21,15 @@ The Festival/Promoter shape borrows from nz-tech-events' proven model (region en
 
 ## Pages & Routes
 
-| Route | Description |
-|---|---|
-| `/` | Home — live counts of festivals, artists, and promoters |
-| `/festivals` | Browse all festivals with region and status filters |
-| `/festivals/[slug]` | Festival detail — full lineup and promoter info |
-| `/artists` | Browse all artists |
-| `/artists/[slug]` | Artist detail — festival history across editions |
-| `/promoters` | Browse all promoters |
-| `/promoters/[slug]` | Promoter detail — list of festivals they run |
+| Route               | Description                                             |
+| ------------------- | ------------------------------------------------------- |
+| `/`                 | Home — live counts of festivals, artists, and promoters |
+| `/festivals`        | Browse all festivals with region and status filters     |
+| `/festivals/[slug]` | Festival detail — full lineup and promoter info         |
+| `/artists`          | Browse all artists                                      |
+| `/artists/[slug]`   | Artist detail — festival history across editions        |
+| `/promoters`        | Browse all promoters                                    |
+| `/promoters/[slug]` | Promoter detail — list of festivals they run            |
 
 ## Setup
 

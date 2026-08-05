@@ -107,12 +107,12 @@ export default async function FestivalsPage({
   }
 
   return (
-    <main className="min-h-screen px-4 py-8 max-w-6xl mx-auto">
+    <main className="mx-auto min-h-screen max-w-6xl px-4 py-8">
       {/* ------------------------------------------------------------------ */}
       {/* Header                                                              */}
       {/* ------------------------------------------------------------------ */}
       <header className="mb-8">
-        <h1 className="text-3xl font-bold tracking-tight mb-1">
+        <h1 className="mb-1 text-3xl font-bold tracking-tight">
           Aotearoa Festivals
         </h1>
         <p className="text-sm text-[#555] dark:text-[#aaa]">
@@ -125,13 +125,13 @@ export default async function FestivalsPage({
       {/* ------------------------------------------------------------------ */}
       <section
         aria-label="Filter festivals"
-        className="mb-6 flex flex-wrap gap-4 items-center"
+        className="mb-6 flex flex-wrap items-center gap-4"
       >
         {/* Region filter */}
         <div className="flex flex-col gap-1">
           <label
             htmlFor="region-select"
-            className="text-xs font-semibold uppercase tracking-wide text-[#555] dark:text-[#aaa]"
+            className="text-xs font-semibold tracking-wide text-[#555] uppercase dark:text-[#aaa]"
           >
             Region
           </label>
@@ -145,7 +145,7 @@ export default async function FestivalsPage({
               id="region-select"
               name="region"
               defaultValue={validRegion ?? ""}
-              className="rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#1a1a1a] text-sm px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-[#1a1a1a]"
             >
               <option value="">All regions</option>
               {Object.values(Region).map((r) => (
@@ -156,7 +156,7 @@ export default async function FestivalsPage({
             </select>
             <button
               type="submit"
-              className="rounded-md bg-blue-600 text-white text-sm px-3 py-1.5 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="rounded-md bg-blue-600 px-3 py-1.5 text-sm text-white hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
             >
               Apply
             </button>
@@ -165,7 +165,7 @@ export default async function FestivalsPage({
 
         {/* Status filter — quick-link chips */}
         <div className="flex flex-col gap-1">
-          <span className="text-xs font-semibold uppercase tracking-wide text-[#555] dark:text-[#aaa]">
+          <span className="text-xs font-semibold tracking-wide text-[#555] uppercase dark:text-[#aaa]">
             Status
           </span>
           <div className="flex flex-wrap gap-1.5" role="list">
@@ -173,10 +173,10 @@ export default async function FestivalsPage({
               href={filterUrl("status", undefined)}
               role="listitem"
               aria-current={!validStatus ? "true" : undefined}
-              className={`rounded-full px-3 py-0.5 text-xs font-medium border transition-colors ${
+              className={`rounded-full border px-3 py-0.5 text-xs font-medium transition-colors ${
                 !validStatus
-                  ? "bg-[#171717] text-white border-transparent dark:bg-[#ededed] dark:text-[#171717]"
-                  : "bg-transparent text-[#555] border-gray-300 hover:border-gray-500 dark:text-[#aaa] dark:border-gray-600"
+                  ? "border-transparent bg-[#171717] text-white dark:bg-[#ededed] dark:text-[#171717]"
+                  : "border-gray-300 bg-transparent text-[#555] hover:border-gray-500 dark:border-gray-600 dark:text-[#aaa]"
               }`}
             >
               All
@@ -187,10 +187,10 @@ export default async function FestivalsPage({
                 href={filterUrl("status", s)}
                 role="listitem"
                 aria-current={validStatus === s ? "true" : undefined}
-                className={`rounded-full px-3 py-0.5 text-xs font-medium border transition-colors ${
+                className={`rounded-full border px-3 py-0.5 text-xs font-medium transition-colors ${
                   validStatus === s
-                    ? "bg-[#171717] text-white border-transparent dark:bg-[#ededed] dark:text-[#171717]"
-                    : "bg-transparent text-[#555] border-gray-300 hover:border-gray-500 dark:text-[#aaa] dark:border-gray-600"
+                    ? "border-transparent bg-[#171717] text-white dark:bg-[#ededed] dark:text-[#171717]"
+                    : "border-gray-300 bg-transparent text-[#555] hover:border-gray-500 dark:border-gray-600 dark:text-[#aaa]"
                 }`}
               >
                 {STATUS_LABELS[s]}
@@ -202,12 +202,12 @@ export default async function FestivalsPage({
         {/* Clear filters */}
         {(validRegion ?? validStatus) && (
           <div className="flex flex-col gap-1">
-            <span className="text-xs font-semibold uppercase tracking-wide opacity-0 select-none">
+            <span className="text-xs font-semibold tracking-wide uppercase opacity-0 select-none">
               &nbsp;
             </span>
             <Link
               href="/festivals"
-              className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+              className="text-sm text-blue-600 hover:underline dark:text-blue-400"
             >
               Clear filters
             </Link>
@@ -218,7 +218,7 @@ export default async function FestivalsPage({
       {/* ------------------------------------------------------------------ */}
       {/* Result count                                                        */}
       {/* ------------------------------------------------------------------ */}
-      <p className="text-sm text-[#555] dark:text-[#aaa] mb-5" role="status">
+      <p className="mb-5 text-sm text-[#555] dark:text-[#aaa]" role="status">
         {totalCount === 0
           ? "No festivals found."
           : totalCount === 1
@@ -231,25 +231,25 @@ export default async function FestivalsPage({
       {/* ------------------------------------------------------------------ */}
       {festivals.length > 0 ? (
         <ul
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
           role="list"
         >
           {festivals.map((festival) => (
             <li key={festival.id}>
               <Link
                 href={`/festivals/${festival.slug}`}
-                className="group flex flex-col h-full rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#111] shadow-sm hover:shadow-md hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 overflow-hidden"
+                className="group flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-150 hover:border-blue-400 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:border-gray-700 dark:bg-[#111] dark:hover:border-blue-500"
               >
                 {/* Card body */}
-                <div className="flex flex-col flex-1 p-5 gap-3">
+                <div className="flex flex-1 flex-col gap-3 p-5">
                   {/* Status badge + name */}
                   <div>
                     <span
-                      className={`inline-block rounded-full px-2.5 py-0.5 text-xs font-semibold mb-2 ${STATUS_STYLES[festival.status]}`}
+                      className={`mb-2 inline-block rounded-full px-2.5 py-0.5 text-xs font-semibold ${STATUS_STYLES[festival.status]}`}
                     >
                       {STATUS_LABELS[festival.status]}
                     </span>
-                    <h2 className="text-base font-bold leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    <h2 className="text-base leading-snug font-bold transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">
                       {festival.name}
                     </h2>
                   </div>
@@ -261,7 +261,7 @@ export default async function FestivalsPage({
                         <dt className="sr-only">Region</dt>
                         <svg
                           aria-hidden="true"
-                          className="w-3.5 h-3.5 shrink-0"
+                          className="h-3.5 w-3.5 shrink-0"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                         >
@@ -280,7 +280,7 @@ export default async function FestivalsPage({
                         <dt className="sr-only">Genre</dt>
                         <svg
                           aria-hidden="true"
-                          className="w-3.5 h-3.5 shrink-0"
+                          className="h-3.5 w-3.5 shrink-0"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                         >
@@ -295,7 +295,7 @@ export default async function FestivalsPage({
                         <dt className="sr-only">Date</dt>
                         <svg
                           aria-hidden="true"
-                          className="w-3.5 h-3.5 shrink-0"
+                          className="h-3.5 w-3.5 shrink-0"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                         >
@@ -314,7 +314,7 @@ export default async function FestivalsPage({
                         <dt className="sr-only">Promoter</dt>
                         <svg
                           aria-hidden="true"
-                          className="w-3.5 h-3.5 shrink-0"
+                          className="h-3.5 w-3.5 shrink-0"
                           viewBox="0 0 20 20"
                           fill="currentColor"
                         >
@@ -327,10 +327,10 @@ export default async function FestivalsPage({
                 </div>
 
                 {/* Card footer arrow indicator */}
-                <div className="px-5 pb-4 flex justify-end">
+                <div className="flex justify-end px-5 pb-4">
                   <svg
                     aria-hidden="true"
-                    className="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors"
+                    className="h-4 w-4 text-gray-400 transition-colors group-hover:text-blue-500"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                   >
@@ -346,12 +346,12 @@ export default async function FestivalsPage({
           ))}
         </ul>
       ) : (
-        <div className="rounded-xl border border-dashed border-gray-300 dark:border-gray-600 p-12 text-center text-[#555] dark:text-[#aaa]">
+        <div className="rounded-xl border border-dashed border-gray-300 p-12 text-center text-[#555] dark:border-gray-600 dark:text-[#aaa]">
           <p className="text-sm">
             No festivals match your current filters.{" "}
             <Link
               href="/festivals"
-              className="text-blue-600 dark:text-blue-400 hover:underline"
+              className="text-blue-600 hover:underline dark:text-blue-400"
             >
               Clear filters
             </Link>{" "}

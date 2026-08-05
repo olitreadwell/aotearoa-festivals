@@ -133,7 +133,7 @@ export default async function FestivalDetailPage({
   }
 
   const { label: statusLabel, className: statusClass } = statusStyle(
-    festival.status
+    festival.status,
   );
 
   // Group lineup entries by year, descending
@@ -150,14 +150,14 @@ export default async function FestivalDetailPage({
       {/* Back link */}
       <Link
         href="/festivals"
-        className="inline-flex items-center gap-1 text-sm text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors mb-8"
+        className="mb-8 inline-flex items-center gap-1 text-sm text-neutral-500 transition-colors hover:text-neutral-700 dark:hover:text-neutral-300"
       >
         <span aria-hidden="true">←</span> All festivals
       </Link>
 
       {/* Header */}
-      <div className="flex flex-wrap items-start gap-3 mb-2">
-        <h1 className="text-3xl font-semibold tracking-tight leading-tight">
+      <div className="mb-2 flex flex-wrap items-start gap-3">
+        <h1 className="text-3xl leading-tight font-semibold tracking-tight">
           {festival.name}
         </h1>
         <span
@@ -168,10 +168,10 @@ export default async function FestivalDetailPage({
       </div>
 
       {/* Meta row */}
-      <dl className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 text-sm">
+      <dl className="mt-6 grid grid-cols-1 gap-x-8 gap-y-4 text-sm sm:grid-cols-2">
         {festival.region && (
           <div>
-            <dt className="text-neutral-500 dark:text-neutral-400 font-medium">
+            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
               Region
             </dt>
             <dd className="mt-0.5">{formatRegion(festival.region)}</dd>
@@ -179,7 +179,7 @@ export default async function FestivalDetailPage({
         )}
         {festival.location && (
           <div>
-            <dt className="text-neutral-500 dark:text-neutral-400 font-medium">
+            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
               Location
             </dt>
             <dd className="mt-0.5">{festival.location}</dd>
@@ -187,7 +187,7 @@ export default async function FestivalDetailPage({
         )}
         {festival.genre && (
           <div>
-            <dt className="text-neutral-500 dark:text-neutral-400 font-medium">
+            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
               Genre
             </dt>
             <dd className="mt-0.5">{festival.genre}</dd>
@@ -195,7 +195,7 @@ export default async function FestivalDetailPage({
         )}
         {festival.dateText && (
           <div>
-            <dt className="text-neutral-500 dark:text-neutral-400 font-medium">
+            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
               Dates
             </dt>
             <dd className="mt-0.5">{festival.dateText}</dd>
@@ -203,7 +203,7 @@ export default async function FestivalDetailPage({
         )}
         {festival.costText && (
           <div>
-            <dt className="text-neutral-500 dark:text-neutral-400 font-medium">
+            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
               Cost
             </dt>
             <dd className="mt-0.5">{festival.costText}</dd>
@@ -211,7 +211,7 @@ export default async function FestivalDetailPage({
         )}
         {festival.website && (
           <div>
-            <dt className="text-neutral-500 dark:text-neutral-400 font-medium">
+            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
               Website
             </dt>
             <dd className="mt-0.5">
@@ -219,7 +219,7 @@ export default async function FestivalDetailPage({
                 href={festival.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-1"
+                className="inline-flex items-center gap-1 text-blue-600 hover:underline dark:text-blue-400"
               >
                 {festival.website.replace(/^https?:\/\//, "")}
                 <span aria-hidden="true">→</span>
@@ -231,7 +231,7 @@ export default async function FestivalDetailPage({
 
       {/* Notes */}
       {festival.notes && (
-        <div className="mt-8 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900/50 px-5 py-4 text-sm leading-relaxed text-neutral-700 dark:text-neutral-300">
+        <div className="mt-8 rounded-lg border border-neutral-200 bg-neutral-50 px-5 py-4 text-sm leading-relaxed text-neutral-700 dark:border-neutral-700 dark:bg-neutral-900/50 dark:text-neutral-300">
           {festival.notes}
         </div>
       )}
@@ -239,12 +239,12 @@ export default async function FestivalDetailPage({
       {/* Promoter */}
       {festival.promoter && (
         <section className="mt-10">
-          <h2 className="text-lg font-semibold tracking-tight mb-2">
+          <h2 className="mb-2 text-lg font-semibold tracking-tight">
             Promoter
           </h2>
           <a
             href={`/promoters/${festival.promoter.slug}`}
-            className="text-blue-600 dark:text-blue-400 hover:underline text-sm"
+            className="text-sm text-blue-600 hover:underline dark:text-blue-400"
           >
             {festival.promoter.name}
           </a>
@@ -254,7 +254,7 @@ export default async function FestivalDetailPage({
       {/* Lineup */}
       {sortedYears.length > 0 && (
         <section className="mt-10">
-          <h2 className="text-lg font-semibold tracking-tight mb-5">Lineup</h2>
+          <h2 className="mb-5 text-lg font-semibold tracking-tight">Lineup</h2>
           <div className="space-y-8">
             {sortedYears.map((year) => {
               const entries = lineupByYear.get(year)!;
@@ -262,12 +262,12 @@ export default async function FestivalDetailPage({
               const others = entries.filter((e) => !e.isHeadliner);
               return (
                 <div key={year}>
-                  <h3 className="text-base font-medium text-neutral-600 dark:text-neutral-400 mb-3">
+                  <h3 className="mb-3 text-base font-medium text-neutral-600 dark:text-neutral-400">
                     {year}
                   </h3>
                   {headliners.length > 0 && (
                     <div className="mb-3">
-                      <p className="text-xs uppercase tracking-widest text-neutral-400 dark:text-neutral-500 mb-1.5">
+                      <p className="mb-1.5 text-xs tracking-widest text-neutral-400 uppercase dark:text-neutral-500">
                         Headliners
                       </p>
                       <ul className="flex flex-wrap gap-2">
@@ -275,7 +275,7 @@ export default async function FestivalDetailPage({
                           <li key={entry.id}>
                             <a
                               href={`/artists/${entry.artist.slug}`}
-                              className="inline-block rounded-full bg-neutral-900 dark:bg-neutral-100 text-neutral-100 dark:text-neutral-900 px-3 py-1 text-sm font-medium hover:opacity-80 transition-opacity"
+                              className="inline-block rounded-full bg-neutral-900 px-3 py-1 text-sm font-medium text-neutral-100 transition-opacity hover:opacity-80 dark:bg-neutral-100 dark:text-neutral-900"
                             >
                               {entry.artist.name}
                             </a>
@@ -290,7 +290,7 @@ export default async function FestivalDetailPage({
                         <li key={entry.id}>
                           <a
                             href={`/artists/${entry.artist.slug}`}
-                            className="inline-block rounded-full border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 px-3 py-1 text-sm hover:border-neutral-500 dark:hover:border-neutral-400 transition-colors"
+                            className="inline-block rounded-full border border-neutral-300 px-3 py-1 text-sm text-neutral-700 transition-colors hover:border-neutral-500 dark:border-neutral-600 dark:text-neutral-300 dark:hover:border-neutral-400"
                           >
                             {entry.artist.name}
                           </a>

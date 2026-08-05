@@ -22,7 +22,7 @@ export default async function PromotersPage() {
             <li key={promoter.id}>
               <Link
                 href={`/promoters/${promoter.slug}`}
-                className="flex items-center justify-between py-4 -mx-2 px-2 rounded hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors"
+                className="-mx-2 flex items-center justify-between rounded px-2 py-4 transition-colors hover:bg-neutral-50 dark:hover:bg-neutral-900"
               >
                 <div>
                   <span className="font-medium">{promoter.name}</span>

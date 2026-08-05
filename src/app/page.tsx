@@ -25,19 +25,19 @@ export default async function Home() {
       <nav className="mt-10 flex flex-wrap gap-4" aria-label="Browse sections">
         <Link
           href="/festivals"
-          className="rounded-lg border border-current/15 px-5 py-3 text-sm font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+          className="rounded-lg border border-current/15 px-5 py-3 text-sm font-medium transition-colors hover:bg-black/5 dark:hover:bg-white/5"
         >
           Browse Festivals →
         </Link>
         <Link
           href="/artists"
-          className="rounded-lg border border-current/15 px-5 py-3 text-sm font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+          className="rounded-lg border border-current/15 px-5 py-3 text-sm font-medium transition-colors hover:bg-black/5 dark:hover:bg-white/5"
         >
           Browse Artists →
         </Link>
         <Link
           href="/promoters"
-          className="rounded-lg border border-current/15 px-5 py-3 text-sm font-medium hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+          className="rounded-lg border border-current/15 px-5 py-3 text-sm font-medium transition-colors hover:bg-black/5 dark:hover:bg-white/5"
         >
           Browse Promoters →
         </Link>

@@ -2,8 +2,8 @@
 
 function SkeletonCard() {
   return (
-    <div className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#111] shadow-sm overflow-hidden animate-pulse">
-      <div className="p-5 flex flex-col gap-3">
+    <div className="animate-pulse overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-[#111]">
+      <div className="flex flex-col gap-3 p-5">
         {/* Status badge skeleton */}
         <div className="h-5 w-20 rounded-full bg-gray-200 dark:bg-gray-700" />
 
@@ -14,24 +14,24 @@ function SkeletonCard() {
         </div>
 
         {/* Meta rows skeleton */}
-        <div className="flex flex-col gap-2 mt-1">
+        <div className="mt-1 flex flex-col gap-2">
           <div className="flex items-center gap-1.5">
-            <div className="h-3.5 w-3.5 rounded-full bg-gray-200 dark:bg-gray-700 shrink-0" />
+            <div className="h-3.5 w-3.5 shrink-0 rounded-full bg-gray-200 dark:bg-gray-700" />
             <div className="h-3 w-28 rounded bg-gray-200 dark:bg-gray-700" />
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="h-3.5 w-3.5 rounded-full bg-gray-200 dark:bg-gray-700 shrink-0" />
+            <div className="h-3.5 w-3.5 shrink-0 rounded-full bg-gray-200 dark:bg-gray-700" />
             <div className="h-3 w-20 rounded bg-gray-200 dark:bg-gray-700" />
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="h-3.5 w-3.5 rounded-full bg-gray-200 dark:bg-gray-700 shrink-0" />
+            <div className="h-3.5 w-3.5 shrink-0 rounded-full bg-gray-200 dark:bg-gray-700" />
             <div className="h-3 w-32 rounded bg-gray-200 dark:bg-gray-700" />
           </div>
         </div>
       </div>
 
       {/* Footer skeleton */}
-      <div className="px-5 pb-4 flex justify-end">
+      <div className="flex justify-end px-5 pb-4">
         <div className="h-4 w-4 rounded-full bg-gray-200 dark:bg-gray-700" />
       </div>
     </div>
@@ -40,26 +40,26 @@ function SkeletonCard() {
 
 export default function FestivalsLoading() {
   return (
-    <main className="min-h-screen px-4 py-8 max-w-6xl mx-auto">
+    <main className="mx-auto min-h-screen max-w-6xl px-4 py-8">
       {/* Header skeleton */}
       <header className="mb-8">
-        <div className="h-8 w-56 rounded bg-gray-200 dark:bg-gray-700 animate-pulse mb-2" />
-        <div className="h-4 w-72 rounded bg-gray-200 dark:bg-gray-700 animate-pulse" />
+        <div className="mb-2 h-8 w-56 animate-pulse rounded bg-gray-200 dark:bg-gray-700" />
+        <div className="h-4 w-72 animate-pulse rounded bg-gray-200 dark:bg-gray-700" />
       </header>
 
       {/* Filter bar skeleton */}
-      <section className="mb-6 flex flex-wrap gap-4 items-end">
+      <section className="mb-6 flex flex-wrap items-end gap-4">
         <div className="flex flex-col gap-1">
-          <div className="h-3 w-16 rounded bg-gray-200 dark:bg-gray-700 animate-pulse" />
-          <div className="h-8 w-44 rounded-md bg-gray-200 dark:bg-gray-700 animate-pulse" />
+          <div className="h-3 w-16 animate-pulse rounded bg-gray-200 dark:bg-gray-700" />
+          <div className="h-8 w-44 animate-pulse rounded-md bg-gray-200 dark:bg-gray-700" />
         </div>
         <div className="flex flex-col gap-1">
-          <div className="h-3 w-12 rounded bg-gray-200 dark:bg-gray-700 animate-pulse" />
+          <div className="h-3 w-12 animate-pulse rounded bg-gray-200 dark:bg-gray-700" />
           <div className="flex gap-1.5">
             {Array.from({ length: 6 }).map((_, i) => (
               <div
                 key={i}
-                className="h-6 w-16 rounded-full bg-gray-200 dark:bg-gray-700 animate-pulse"
+                className="h-6 w-16 animate-pulse rounded-full bg-gray-200 dark:bg-gray-700"
               />
             ))}
           </div>
@@ -67,10 +67,10 @@ export default function FestivalsLoading() {
       </section>
 
       {/* Count skeleton */}
-      <div className="h-4 w-36 rounded bg-gray-200 dark:bg-gray-700 animate-pulse mb-5" />
+      <div className="mb-5 h-4 w-36 animate-pulse rounded bg-gray-200 dark:bg-gray-700" />
 
       {/* Grid skeleton */}
-      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {Array.from({ length: 9 }).map((_, i) => (
           <li key={i}>
             <SkeletonCard />

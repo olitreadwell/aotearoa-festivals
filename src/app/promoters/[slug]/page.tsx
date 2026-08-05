@@ -48,16 +48,19 @@ export default async function PromoterDetailPage({ params }: Props) {
   if (!promoter) notFound();
 
   const socialLinks: { label: string; href: string }[] = [];
-  if (promoter.website) socialLinks.push({ label: "Website", href: promoter.website });
-  if (promoter.instagram) socialLinks.push({ label: "Instagram", href: promoter.instagram });
-  if (promoter.facebook) socialLinks.push({ label: "Facebook", href: promoter.facebook });
+  if (promoter.website)
+    socialLinks.push({ label: "Website", href: promoter.website });
+  if (promoter.instagram)
+    socialLinks.push({ label: "Instagram", href: promoter.instagram });
+  if (promoter.facebook)
+    socialLinks.push({ label: "Facebook", href: promoter.facebook });
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
       <nav className="mb-8 text-sm text-neutral-500">
         <Link
           href="/promoters"
-          className="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
+          className="transition-colors hover:text-neutral-900 dark:hover:text-neutral-100"
         >
           Promoters
         </Link>
@@ -73,7 +76,7 @@ export default async function PromoterDetailPage({ params }: Props) {
         <dl className="mt-4 space-y-1.5 text-sm">
           {promoter.region && (
             <div className="flex gap-2">
-              <dt className="font-medium text-neutral-800 dark:text-neutral-200 w-16 shrink-0">
+              <dt className="w-16 shrink-0 font-medium text-neutral-800 dark:text-neutral-200">
                 Region
               </dt>
               <dd className="text-neutral-600 dark:text-neutral-400">
@@ -83,7 +86,7 @@ export default async function PromoterDetailPage({ params }: Props) {
           )}
           {promoter.genreFocus && (
             <div className="flex gap-2">
-              <dt className="font-medium text-neutral-800 dark:text-neutral-200 w-16 shrink-0">
+              <dt className="w-16 shrink-0 font-medium text-neutral-800 dark:text-neutral-200">
                 Genre
               </dt>
               <dd className="text-neutral-600 dark:text-neutral-400">
@@ -102,7 +105,7 @@ export default async function PromoterDetailPage({ params }: Props) {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-full border border-neutral-300 dark:border-neutral-700 px-4 py-1 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+              className="inline-flex items-center rounded-full border border-neutral-300 px-4 py-1 text-sm transition-colors hover:bg-neutral-100 dark:border-neutral-700 dark:hover:bg-neutral-800"
             >
               {link.label}
             </a>
@@ -126,7 +129,7 @@ export default async function PromoterDetailPage({ params }: Props) {
               <li key={festival.id}>
                 <Link
                   href={`/festivals/${festival.slug}`}
-                  className="flex items-center justify-between py-4 -mx-2 px-2 rounded hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors"
+                  className="-mx-2 flex items-center justify-between rounded px-2 py-4 transition-colors hover:bg-neutral-50 dark:hover:bg-neutral-900"
                 >
                   <div>
                     <span className="font-medium">{festival.name}</span>
@@ -137,7 +140,7 @@ export default async function PromoterDetailPage({ params }: Props) {
                     )}
                   </div>
                   <span
-                    className={`shrink-0 text-xs font-medium rounded-full px-2.5 py-0.5 ${statusStyles[festival.status]}`}
+                    className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${statusStyles[festival.status]}`}
                   >
                     {festival.status}
                   </span>

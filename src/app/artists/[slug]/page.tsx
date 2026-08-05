@@ -9,13 +9,16 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const artist = await prisma.artist.findUnique({ where: { slug } });
   if (!artist) return { title: "Artist not found" };
   return {
     title: `${artist.name} — Aotearoa Festivals`,
-    description: [artist.genre, artist.homeCity].filter(Boolean).join(" · ") || undefined,
+    description:
+      [artist.genre, artist.homeCity].filter(Boolean).join(" · ") || undefined,
   };
 }
 
@@ -48,13 +51,15 @@ export default async function ArtistDetailPage({ params }: PageProps) {
       {/* Back link */}
       <Link
         href="/artists"
-        className="text-sm text-neutral-500 dark:text-neutral-400 hover:underline"
+        className="text-sm text-neutral-500 hover:underline dark:text-neutral-400"
       >
         &larr; All artists
       </Link>
 
       {/* Header */}
-      <h1 className="mt-4 text-3xl font-semibold tracking-tight">{artist.name}</h1>
+      <h1 className="mt-4 text-3xl font-semibold tracking-tight">
+        {artist.name}
+      </h1>
 
       <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm text-neutral-500 dark:text-neutral-400">
         {artist.genre && <span>{artist.genre}</span>}
@@ -70,10 +75,12 @@ export default async function ArtistDetailPage({ params }: PageProps) {
               href={`https://instagram.com/${artist.instagram.replace(/^@/, "")}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-md border border-neutral-200 dark:border-neutral-700 px-3 py-1.5 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-md border border-neutral-200 px-3 py-1.5 text-sm transition-colors hover:bg-neutral-100 dark:border-neutral-700 dark:hover:bg-neutral-800"
             >
               <span className="font-medium text-pink-500">IG</span>
-              <span className="text-neutral-600 dark:text-neutral-300">Instagram</span>
+              <span className="text-neutral-600 dark:text-neutral-300">
+                Instagram
+              </span>
             </a>
           )}
           {artist.soundcloud && (
@@ -85,10 +92,12 @@ export default async function ArtistDetailPage({ params }: PageProps) {
               }
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-md border border-neutral-200 dark:border-neutral-700 px-3 py-1.5 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-md border border-neutral-200 px-3 py-1.5 text-sm transition-colors hover:bg-neutral-100 dark:border-neutral-700 dark:hover:bg-neutral-800"
             >
               <span className="font-medium text-orange-500">SC</span>
-              <span className="text-neutral-600 dark:text-neutral-300">SoundCloud</span>
+              <span className="text-neutral-600 dark:text-neutral-300">
+                SoundCloud
+              </span>
             </a>
           )}
           {artist.raUrl && (
@@ -100,10 +109,12 @@ export default async function ArtistDetailPage({ params }: PageProps) {
               }
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-md border border-neutral-200 dark:border-neutral-700 px-3 py-1.5 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-md border border-neutral-200 px-3 py-1.5 text-sm transition-colors hover:bg-neutral-100 dark:border-neutral-700 dark:hover:bg-neutral-800"
             >
               <span className="font-medium text-blue-500">RA</span>
-              <span className="text-neutral-600 dark:text-neutral-300">Resident Advisor</span>
+              <span className="text-neutral-600 dark:text-neutral-300">
+                Resident Advisor
+              </span>
             </a>
           )}
         </div>
@@ -113,7 +124,7 @@ export default async function ArtistDetailPage({ params }: PageProps) {
       <section className="mt-10">
         <h2 className="text-lg font-semibold">Festival history</h2>
         {years.length === 0 ? (
-          <p className="mt-3 text-neutral-500 dark:text-neutral-400 text-sm">
+          <p className="mt-3 text-sm text-neutral-500 dark:text-neutral-400">
             No festival appearances recorded yet.
           </p>
         ) : (
@@ -122,23 +133,23 @@ export default async function ArtistDetailPage({ params }: PageProps) {
               const entries = byYear.get(year) ?? [];
               return (
                 <div key={year}>
-                  <h3 className="text-sm font-semibold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider mb-2">
+                  <h3 className="mb-2 text-sm font-semibold tracking-wider text-neutral-400 uppercase dark:text-neutral-500">
                     {year}
                   </h3>
                   <ul className="space-y-2">
                     {entries.map((entry) => (
                       <li
                         key={entry.id}
-                        className="flex items-center gap-3 rounded-md border border-neutral-200 dark:border-neutral-800 px-4 py-3"
+                        className="flex items-center gap-3 rounded-md border border-neutral-200 px-4 py-3 dark:border-neutral-800"
                       >
                         <Link
                           href={`/festivals/${entry.festival.slug}`}
-                          className="font-medium hover:underline flex-1"
+                          className="flex-1 font-medium hover:underline"
                         >
                           {entry.festival.name}
                         </Link>
                         {entry.isHeadliner && (
-                          <span className="shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 px-2.5 py-0.5 text-xs font-medium">
+                          <span className="shrink-0 rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-700 dark:bg-amber-900/40 dark:text-amber-400">
                             Headliner
                           </span>
                         )}
