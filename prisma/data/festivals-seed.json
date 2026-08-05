@@ -153,7 +153,7 @@
       "location": "Cobb Valley, Upper Takaka",
       "genre": "NYE / Multi-genre, 4 stages",
       "cost": "",
-      "links": "",
+      "links": "https://www.twistedfrequency.co.nz/",
       "notes": ""
     },
     {
@@ -429,7 +429,7 @@
       "location": "Tauranga Domain (+ South Island leg from 2019)",
       "genre": "Hip hop, urban, dance",
       "cost": "",
-      "links": "",
+      "links": "https://baydreams.co.nz/",
       "notes": "Ran 2016-2024. Called for hiatus from 2025, citing costs and difficulty securing headliners. Not officially declared dead."
     },
     {
@@ -731,6 +731,66 @@
       "cost": "",
       "links": "",
       "notes": "Sub180's other flagship event series."
+    },
+    {
+      "name": "Ultra New Zealand",
+      "promoter": "Audiology Touring",
+      "status": "active",
+      "date": "10 Apr 2026",
+      "region": "Wellington",
+      "location": "Wellington Waterfront",
+      "genre": "EDM / Electronic",
+      "cost": "",
+      "links": "https://ultranewzealand.com/",
+      "notes": "Inaugural NZ edition of the global Ultra brand. One-day, 18+, 4 stages. 30+ international artists including DJ Snake, The Chainsmokers, Zedd, Pendulum."
+    },
+    {
+      "name": "Synthony",
+      "promoter": "",
+      "status": "active",
+      "date": "Mar (21 Mar 2026; 20 Mar 2027)",
+      "region": "Auckland",
+      "location": "Auckland Domain",
+      "genre": "Classical / Electronic fusion",
+      "cost": "",
+      "links": "https://synthony.com/",
+      "notes": "Annual one-day festival with claimed ~40,000+ attendance — Australasia's largest by that measure. Full live orchestra performing EDM. Two stages, food/wine villages, amusement rides."
+    },
+    {
+      "name": "Snow Machine Festival",
+      "promoter": "",
+      "status": "active",
+      "date": "8–13 Sep 2026",
+      "region": "Otago",
+      "location": "Coronet Peak / The Remarkables, Queenstown",
+      "genre": "Electronic / EDM",
+      "cost": "",
+      "links": "https://nz.snow-machine.com/",
+      "notes": "Combines world-class electronic music with snow sports. 30+ artists across 8 stages. 2026 lineup includes Chet Faker, Illy, Ninajirachi, Kanine. Annual, 5th edition in 2026."
+    },
+    {
+      "name": "Te Matatini",
+      "promoter": "",
+      "status": "active",
+      "date": "22–27 Feb 2027",
+      "region": "Taranaki",
+      "location": "Pukekura Bowl of Brooklands, New Plymouth",
+      "genre": "Māori kapa haka / Cultural performing arts",
+      "cost": "",
+      "links": "https://tematatini.co.nz/",
+      "notes": "NZ's premier national kapa haka competition and celebration. Biennial (odd years only). Draws tens of thousands. 2027 edition confirmed for New Plymouth; not held in 2026."
+    },
+    {
+      "name": "World Buskers Festival",
+      "promoter": "",
+      "status": "active",
+      "date": "23 Jan – 1 Feb 2026",
+      "region": "Canterbury",
+      "location": "Cathedral Square and street venues, Christchurch",
+      "genre": "Street performance — music, comedy, acrobatics, circus",
+      "cost": "Free",
+      "links": "https://worldbuskersfestival.co.nz/",
+      "notes": "Annual 10-day free festival since 1993. 5 city pitches and 2 pop-up locations. International and local performers. Significant live music component."
     }
   ],
   "promoters": [
