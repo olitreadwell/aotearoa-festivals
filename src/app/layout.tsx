@@ -41,6 +41,11 @@ export default function RootLayout({
                   Promoters
                 </Link>
               </li>
+              <li>
+                <Link href="/search" className="site-nav__link">
+                  Search
+                </Link>
+              </li>
             </ul>
           </nav>
         </header>
