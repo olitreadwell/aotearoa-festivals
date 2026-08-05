@@ -21,24 +21,24 @@ The Festival/Promoter shape borrows from nz-tech-events' proven model (region en
 
 ## Pages & Routes
 
-| Route                                | Description                                                            |
-| ------------------------------------- | ------------------------------------------------------------------------ |
-| `/`                                   | Home — upcoming festivals grid, live counts, region browsing links     |
-| `/festivals`                          | Browse all festivals with region/status filters and pagination         |
-| `/festivals/[slug]`                   | Festival detail — lineup, promoter info, breadcrumbs, add-to-calendar  |
-| `/festivals/[slug]/calendar.ics`      | iCal export for a festival (404s until it has a real `startDate`)      |
-| `/festivals/[slug]/opengraph-image`   | Generated Open Graph share image for a festival                        |
-| `/artists`                            | Browse all artists, paginated                                          |
-| `/artists/[slug]`                     | Artist detail — festival history across editions                      |
-| `/promoters`                          | Browse all promoters, paginated                                        |
-| `/promoters/[slug]`                   | Promoter detail — list of festivals they run                           |
-| `/regions`                            | Browse festivals by NZ region                                          |
-| `/regions/[region]`                   | Festivals in one region, with an email subscribe CTA                   |
-| `/search`                             | Client-side fuzzy search across festivals/artists/promoters (Fuse.js)  |
-| `/feed.xml`                           | RSS feed of upcoming active/TBC festivals                              |
-| `/sitemap.xml`                        | Dynamic sitemap covering all festivals, artists, and promoters         |
-| `/subscribe`, `/api/subscribe`        | Email subscription flow                                                |
-| `/unsubscribe`, `/api/unsubscribe`    | Token-based unsubscribe flow                                           |
+| Route                               | Description                                                           |
+| ----------------------------------- | --------------------------------------------------------------------- |
+| `/`                                 | Home — upcoming festivals grid, live counts, region browsing links    |
+| `/festivals`                        | Browse all festivals with region/status filters and pagination        |
+| `/festivals/[slug]`                 | Festival detail — lineup, promoter info, breadcrumbs, add-to-calendar |
+| `/festivals/[slug]/calendar.ics`    | iCal export for a festival (404s until it has a real `startDate`)     |
+| `/festivals/[slug]/opengraph-image` | Generated Open Graph share image for a festival                       |
+| `/artists`                          | Browse all artists, paginated                                         |
+| `/artists/[slug]`                   | Artist detail — festival history across editions                      |
+| `/promoters`                        | Browse all promoters, paginated                                       |
+| `/promoters/[slug]`                 | Promoter detail — list of festivals they run                          |
+| `/regions`                          | Browse festivals by NZ region                                         |
+| `/regions/[region]`                 | Festivals in one region, with an email subscribe CTA                  |
+| `/search`                           | Client-side fuzzy search across festivals/artists/promoters (Fuse.js) |
+| `/feed.xml`                         | RSS feed of upcoming active/TBC festivals                             |
+| `/sitemap.xml`                      | Dynamic sitemap covering all festivals, artists, and promoters        |
+| `/subscribe`, `/api/subscribe`      | Email subscription flow                                               |
+| `/unsubscribe`, `/api/unsubscribe`  | Token-based unsubscribe flow                                          |
 
 Detail pages (festival/artist/promoter/region) are statically generated (`generateStaticParams`, ISR with `revalidate = 3600`); listing pages stay dynamic since they read filter/pagination query params. A dark mode toggle in the nav overrides the OS-level colour scheme.
 

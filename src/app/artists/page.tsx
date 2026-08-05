@@ -68,8 +68,12 @@ export default async function ArtistsPage({ searchParams }: PageProps) {
   const requestedPage = Math.max(1, Math.floor(Number(page)) || 1);
 
   const where = {
-    genre: genre ? { contains: genre, mode: "insensitive" as const } : undefined,
-    homeCity: city ? { contains: city, mode: "insensitive" as const } : undefined,
+    genre: genre
+      ? { contains: genre, mode: "insensitive" as const }
+      : undefined,
+    homeCity: city
+      ? { contains: city, mode: "insensitive" as const }
+      : undefined,
   };
 
   const totalCount = await prisma.artist.count({ where });

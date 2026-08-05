@@ -30,43 +30,41 @@ export default async function Image({
     : "";
 
   return new ImageResponse(
-    (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "#171717",
+        color: "#f5f5f5",
+        fontFamily: "sans-serif",
+      }}
+    >
       <div
         style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "#171717",
-          color: "#f5f5f5",
-          fontFamily: "sans-serif",
+          fontSize: 72,
+          fontWeight: 700,
+          textAlign: "center",
+          padding: "0 80px",
         }}
       >
+        {name}
+      </div>
+      {subtitle && (
         <div
           style={{
-            fontSize: 72,
-            fontWeight: 700,
-            textAlign: "center",
-            padding: "0 80px",
+            marginTop: 24,
+            fontSize: 32,
+            color: "#a3a3a3",
           }}
         >
-          {name}
+          {subtitle}
         </div>
-        {subtitle && (
-          <div
-            style={{
-              marginTop: 24,
-              fontSize: 32,
-              color: "#a3a3a3",
-            }}
-          >
-            {subtitle}
-          </div>
-        )}
-      </div>
-    ),
+      )}
+    </div>,
     { ...size },
   );
 }
