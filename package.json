@@ -18,6 +18,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "e2e:install": "playwright install chromium",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "db:generate": "prisma generate",
@@ -25,6 +27,7 @@
     "db:migrate": "prisma migrate dev",
     "db:seed": "tsx prisma/seed.ts",
     "db:studio": "prisma studio",
+    "ci": "npm run format:check && npm run lint && npm run typecheck && npm run test:coverage && npm run build",
     "prepare": "husky"
   },
   "dependencies": {
@@ -40,6 +43,8 @@
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
+    "@playwright/test": "^1.60.0",
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
@@ -50,9 +55,11 @@
     "@vitest/coverage-v8": "^4.1.5",
     "eslint": "^9",
     "eslint-config-next": "^16.2.6",
+    "eslint-config-prettier": "^9.1.0",
     "husky": "^9.1.7",
     "jsdom": "^29.1.1",
     "prettier": "^3.8.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "prisma": "^6.3.0",
     "shadcn": "^4.13.1",
     "tailwindcss": "^4",

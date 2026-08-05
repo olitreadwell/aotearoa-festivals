@@ -1,0 +1,66 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":dependencyDashboard", ":semanticCommits"],
+  "timezone": "Pacific/Auckland",
+  "schedule": ["before 6am on monday"],
+  "prConcurrentLimit": 5,
+  "lockFileMaintenance": { "enabled": true },
+  "packageRules": [
+    {
+      "description": "React core must bump in lockstep",
+      "matchPackageNames": [
+        "react",
+        "react-dom",
+        "@types/react",
+        "@types/react-dom"
+      ],
+      "groupName": "react"
+    },
+    {
+      "description": "Next.js and its eslint config move together",
+      "matchPackageNames": ["next", "eslint-config-next"],
+      "groupName": "next.js"
+    },
+    {
+      "description": "Prisma client and CLI move together",
+      "matchPackageNames": ["@prisma/client", "prisma"],
+      "groupName": "prisma"
+    },
+    {
+      "description": "Test tooling",
+      "matchPackageNames": [
+        "@testing-library/**",
+        "vitest",
+        "@vitest/coverage-v8",
+        "jsdom"
+      ],
+      "groupName": "testing"
+    },
+    {
+      "description": "Playwright browser + runner + accessibility",
+      "matchPackageNames": ["@playwright/test", "@axe-core/playwright"],
+      "groupName": "playwright"
+    },
+    {
+      "description": "Lint and format tooling",
+      "matchPackageNames": ["eslint", "eslint-**", "prettier", "prettier-**"],
+      "groupName": "lint & format"
+    },
+    {
+      "description": "Tailwind CSS",
+      "matchPackageNames": ["tailwindcss", "@tailwindcss/**"],
+      "groupName": "tailwind"
+    },
+    {
+      "description": "Auto-merge low-risk devDependency updates once CI passes",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "automerge": true
+    },
+    {
+      "description": "Hold major updates for manual approval (framework majors are breaking)",
+      "matchUpdateTypes": ["major"],
+      "dependencyDashboardApproval": true
+    }
+  ]
+}

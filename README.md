@@ -41,3 +41,10 @@ npm run dev
 - All other branches don't auto-deploy
 
 See `.github/workflows/`.
+
+## Quality gates
+
+- `npm run ci` runs the full local check: format, lint, typecheck, tests with coverage, build.
+- CI (`.github/workflows/ci.yml`): format check, lint (+ advisory `npm audit`), typecheck, unit tests with coverage, build, and an E2E job (Playwright, against an ephemeral Postgres service) that also runs `@axe-core/playwright` accessibility checks.
+- Husky `pre-push` mirrors the fast local checks (lint, typecheck, format, unit tests) so broken work doesn't leave the machine.
+- Renovate (`renovate.json`) keeps dependencies current — devDependency patch/minor auto-merges once CI passes, majors need dashboard approval.
