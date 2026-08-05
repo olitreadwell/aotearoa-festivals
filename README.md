@@ -68,6 +68,20 @@ See `.github/workflows/`.
 ## Quality gates
 
 - `npm run ci` runs the full local check: format, lint, typecheck, tests with coverage, build.
-- CI (`.github/workflows/ci.yml`): format check, lint (+ advisory `npm audit`), typecheck, unit tests with coverage, build, and an E2E job (Playwright, against an ephemeral Postgres service) that also runs `@axe-core/playwright` accessibility checks.
+- CI (`.github/workflows/ci.yml`): format check, lint (+ advisory `npm audit`), typecheck, unit tests with coverage, build, and an E2E job (Playwright, against an ephemeral Postgres service) that also runs `@axe-core/playwright` accessibility checks. The `test` and `build` jobs each get their own ephemeral Postgres too, since integration tests and `generateStaticParams` both need a reachable database.
 - Husky `pre-push` mirrors the fast local checks (lint, typecheck, format, unit tests) so broken work doesn't leave the machine.
 - Renovate (`renovate.json`) keeps dependencies current — devDependency patch/minor auto-merges once CI passes, majors need dashboard approval.
+
+## Testing policy
+
+New features are built test-first (TDD): write the failing test, implement against it, then refactor. Test names read as behaviour specs (BDD-style — "given X, when Y, then Z" in spirit, `describe`/`it` in practice), not implementation-detail assertions.
+
+Every feature should have, as close to full coverage as the feature warrants:
+
+- **Unit** (Vitest, `src/**/*.test.ts(x)`) — pure logic and components with no DB/network dependency (helpers, `Breadcrumbs`, `Pagination`, `ThemeToggle`).
+- **Integration** (Vitest, against a real ephemeral Postgres) — anything touching Prisma or an API route (`/api/subscribe`, `/api/unsubscribe`, route handlers like `calendar.ics`, `opengraph-image`, `feed.xml`, `sitemap.ts`).
+- **Smoke** (Playwright, `e2e/smoke.spec.ts`) — every top-level route returns a working page with no error boundary, minimal assertions.
+- **E2E** (Playwright) — real user flows per feature: filtering, pagination, search, breadcrumb navigation, theme toggling, subscribing.
+- **A11y** (Playwright + `@axe-core/playwright`, `e2e/a11y.spec.ts`) — every route, checked against `wcag2a`/`wcag2aa`, serious/critical violations block CI.
+
+A local ephemeral Postgres (no Docker required — `initdb`/`pg_ctl` from Homebrew's `postgresql` formula) is the safe way to run integration/E2E/a11y tests locally without touching the real Neon dev database or the seed file.
