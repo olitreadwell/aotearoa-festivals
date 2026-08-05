@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import type { Festival, Artist, Promoter } from "@/generated/prisma";
-import { FestivalStatus } from "@/generated/prisma";
 import { formatRegion, formatStatus } from "@/lib/format";
 import Breadcrumbs from "@/components/Breadcrumbs";
 

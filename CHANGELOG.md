@@ -7,6 +7,17 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased] — claude/dev
 
+### Iteration 3 additions:
+
+- ISR: festival, artist, promoter, and region detail pages now use `generateStaticParams` + `revalidate = 3600` instead of `force-dynamic`
+- Pagination (24/page) on `/festivals`, `/artists`, `/promoters` listing pages, preserving existing filters
+- Breadcrumb navigation (`src/components/Breadcrumbs.tsx`) on all detail pages
+- iCal export (`/festivals/[slug]/calendar.ics`) — RFC 5545 event, 404s until a festival has a real `startDate`
+- Open Graph image per festival (`/festivals/[slug]/opengraph-image`) via `next/og`
+- Manual dark mode toggle (`src/components/ThemeToggle.tsx`), layered on top of existing OS-preference dark styling
+- Vitest unit tests for `formatRegion`, `formatStatus`, `slugify`, and a `festivals-seed.json` data validator (233 tests)
+- 7 verified festival websites added to seed data (Bay of Islands Jazz & Blues, Rhythm and Vines, Marton Country Music Festival, Electric Avenue, Tora Bombora, Southern Sounds, Parklands)
+
 ### Added
 
 - `BACKLOG.md` — living feature backlog, updated each loop iteration
