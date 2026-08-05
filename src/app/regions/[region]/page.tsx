@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -44,6 +44,10 @@ const SLUG_TO_REGION: Record<string, Region> = Object.fromEntries(
 /** Resolve a URL slug to a Region enum value, or undefined if unknown. */
 function slugToRegion(slug: string): Region | undefined {
   return SLUG_TO_REGION[slug];
+}
+
+export function generateStaticParams() {
+  return Object.keys(SLUG_TO_REGION).map((region) => ({ region }));
 }
 
 // ---------------------------------------------------------------------------
