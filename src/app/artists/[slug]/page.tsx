@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const revalidate = 3600;
 
@@ -55,13 +56,13 @@ export default async function ArtistDetailPage({ params }: PageProps) {
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-12">
-      {/* Back link */}
-      <Link
-        href="/artists"
-        className="text-sm text-neutral-500 hover:underline dark:text-neutral-400"
-      >
-        &larr; All artists
-      </Link>
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Artists", href: "/artists" },
+          { label: artist.name },
+        ]}
+      />
 
       {/* Header */}
       <h1 className="mt-4 text-3xl font-semibold tracking-tight">

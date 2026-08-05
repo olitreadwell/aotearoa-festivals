@@ -6,6 +6,7 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import type { Festival, Promoter } from "@/generated/prisma";
 import { Region, FestivalStatus } from "@/generated/prisma";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 // ---------------------------------------------------------------------------
 // Region helpers
@@ -120,13 +121,13 @@ export default async function RegionDetailPage({
 
   return (
     <main className="mx-auto min-h-screen max-w-6xl px-4 py-8">
-      {/* Back link */}
-      <Link
-        href="/regions"
-        className="mb-8 inline-flex items-center gap-1 text-sm text-neutral-500 transition-colors hover:text-neutral-700 dark:hover:text-neutral-300"
-      >
-        <span aria-hidden="true">←</span> All regions
-      </Link>
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Regions", href: "/regions" },
+          { label: regionLabel },
+        ]}
+      />
 
       {/* Header */}
       <header className="mb-8">
