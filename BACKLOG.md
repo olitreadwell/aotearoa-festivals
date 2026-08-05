@@ -17,22 +17,26 @@ _Updated automatically each loop iteration. Items move from Queued → In Progre
 
 ---
 
+## Done (Iteration 2)
+
+- [x] Region pages (`/regions/[region]`) — browse all festivals in a NZ region, with email subscribe CTA
+- [x] Search page (`/search`) — fuzzy search across festivals, artists, promoters (Fuse.js already installed)
+- [x] RSS feed route (`/feed.xml`) — upcoming festivals atom feed (`feed` package already installed)
+- [x] Email subscribe/unsubscribe pages and API routes — token-based unsubscribe flow
+- [x] Home page improved — upcoming festivals grid, stats, region browsing links
+- [x] Nav updated — Regions and Search links added; site footer added
+- [x] Sitemap (`/sitemap.xml`) — dynamic sitemap covering festivals, artists, and promoters
+- [x] Shared format helpers extracted to `src/lib/format.ts` — removed duplicate inline code
+
+---
+
 ## Queued
 
-### Pages & Routes (High Priority)
-
-- [ ] Region pages (`/regions/[region]`) — browse all festivals in a NZ region, with email subscribe CTA
-- [ ] Search page (`/search`) — fuzzy search across festivals, artists, promoters (Fuse.js already installed)
-- [ ] RSS feed route (`/feed.xml`) — upcoming festivals atom feed (`feed` package already installed)
-- [ ] Email subscription page (`/subscribe/[region]`) — subscribe/unsubscribe flow with token-based unsubscribe
-- [ ] Home page improvement — show upcoming festivals list, not just counts; featured festival hero
-
-### Pages & Routes (Lower Priority)
+### Pages & Routes
 
 - [ ] Admin dashboard (role-gated) — approve submitted festivals, manage records
 - [ ] Festival submission form — public submit with admin approval queue
 - [ ] Artist claim flow — organiser can link their artist profile
-- [ ] `sitemap.xml` route — dynamic sitemap for SEO
 
 ### Data & Seed
 
@@ -63,9 +67,3 @@ _Updated automatically each loop iteration. Items move from Queued → In Progre
 - [ ] Playwright E2E tests for listing and detail pages
 - [ ] Vitest unit tests for seed data parser/validator, slug helper, region formatter
 - [ ] Renovate dependency PRs — review queued updates
-
----
-
-## In Progress (Iteration 2 — next loop)
-
-_Planned for next loop: region pages, search, RSS feed, home page improvement._
