@@ -112,7 +112,7 @@ export default async function SubscribePage({
           </button>
         </form>
 
-        <p className="mt-6 text-xs text-[#888] dark:text-[#666]">
+        <p className="mt-6 text-xs text-[#555] dark:text-[#aaa]">
           You can unsubscribe at any time via the link in any email we send.
           View all festivals on the{" "}
           <Link

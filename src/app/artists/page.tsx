@@ -160,7 +160,7 @@ export default async function ArtistsPage({ searchParams }: PageProps) {
                 </p>
               )}
               {artist.homeCity && (
-                <p className="mt-0.5 text-xs text-neutral-400 dark:text-neutral-500">
+                <p className="mt-0.5 text-xs text-neutral-500 dark:text-neutral-400">
                   {artist.homeCity}
                 </p>
               )}
