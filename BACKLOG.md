@@ -87,7 +87,7 @@ New policy (see README.md "Testing policy"): every feature gets unit + integrati
 ### UI / UX
 
 - [ ] Festival status badge component — consistent colour system across all pages
-- [ ] Default-sort festivals by soonest upcoming date among ACTIVE festivals with a set `startDate` (nulls/other statuses after), consistently across home, `/festivals`, and `/regions/[region]`
+- [ ] Default-sort festivals by soonest upcoming date: ACTIVE (with a set `startDate`) sort first by date; TBD/TBC sort into that same list (not segregated) if active last year, positioned around their last known date rather than pushed to the end; DEFUNCT always sort last regardless of date. Consistently across home, `/festivals`, and `/regions/[region]`
 - [ ] Upcoming vs past festival split on listing page (use `startDate` field)
 - [ ] Map view of NZ festivals by region (static SVG of NZ or Leaflet)
 
