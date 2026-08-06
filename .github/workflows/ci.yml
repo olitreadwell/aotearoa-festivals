@@ -149,6 +149,7 @@ jobs:
       - run: npm ci
       - run: npm run db:generate
       - run: npm run db:push
+      - run: npm run db:seed
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
