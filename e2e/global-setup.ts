@@ -1,3 +1,5 @@
+// Explicit /index.js because this project is "type": "module" — plain Node
+// ESM (unlike Next's bundler) doesn't allow bare directory imports.
 import { PrismaClient } from "../src/generated/prisma/index.js";
 
 // The real seed data (prisma/data/festivals-seed.json) has no Artist or
