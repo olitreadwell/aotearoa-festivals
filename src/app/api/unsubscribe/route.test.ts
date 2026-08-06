@@ -3,7 +3,11 @@ import { GET } from "./route";
 import { prisma } from "@/lib/prisma";
 import { Region } from "@/generated/prisma";
 
-const TEST_EMAIL_DOMAIN = "integration-test.aotearoa-festivals.example";
+// Distinct per test file (not shared with subscribe/route.test.ts) — both
+// files run concurrently in separate Vitest workers against the same table,
+// so a shared domain would make row-count assertions race.
+const TEST_EMAIL_DOMAIN =
+  "unsubscribe-integration-test.aotearoa-festivals.example";
 
 function testEmail(label: string): string {
   return `unsubscribe-${label}-${Date.now()}-${Math.random().toString(36).slice(2)}@${TEST_EMAIL_DOMAIN}`;

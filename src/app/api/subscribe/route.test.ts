@@ -3,7 +3,11 @@ import { POST } from "./route";
 import { prisma } from "@/lib/prisma";
 import { Region } from "@/generated/prisma";
 
-const TEST_EMAIL_DOMAIN = "integration-test.aotearoa-festivals.example";
+// Distinct per test file (not shared with unsubscribe/route.test.ts) — both
+// files run concurrently in separate Vitest workers against the same table,
+// so a shared domain would make "before"/"after" row counts race.
+const TEST_EMAIL_DOMAIN =
+  "subscribe-integration-test.aotearoa-festivals.example";
 
 function testEmail(label: string): string {
   return `subscribe-${label}-${Date.now()}-${Math.random().toString(36).slice(2)}@${TEST_EMAIL_DOMAIN}`;
@@ -77,12 +81,22 @@ describe("POST /api/subscribe", () => {
   });
 
   it("returns a 400 without creating a row when the email is missing", async () => {
-    const before = await prisma.emailSubscription.count();
+    // Scoped to this file's own test-domain emails, not a global count —
+    // a global count races with other integration test files touching the
+    // same table (e.g. unsubscribe/route.test.ts's fixture rows) when
+    // Vitest runs files in parallel.
+    const before = await prisma.emailSubscription.count({
+      where: { email: { endsWith: TEST_EMAIL_DOMAIN } },
+    });
 
     const response = await POST(postRequest({ region: Region.AUCKLAND }));
 
     expect(response.status).toBe(400);
-    expect(await prisma.emailSubscription.count()).toBe(before);
+    expect(
+      await prisma.emailSubscription.count({
+        where: { email: { endsWith: TEST_EMAIL_DOMAIN } },
+      }),
+    ).toBe(before);
   });
 
   it("returns a 400 without creating a row when the region is invalid", async () => {
