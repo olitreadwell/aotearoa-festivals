@@ -24,7 +24,7 @@ export default function Pagination({
           Previous
         </Link>
       ) : (
-        <span className="rounded-md border border-neutral-200 px-3 py-1.5 text-sm text-neutral-400 dark:border-neutral-800 dark:text-neutral-600">
+        <span className="rounded-md border border-neutral-200 px-3 py-1.5 text-sm text-neutral-500 dark:border-neutral-800 dark:text-neutral-600">
           Previous
         </span>
       )}
@@ -41,7 +41,7 @@ export default function Pagination({
           Next
         </Link>
       ) : (
-        <span className="rounded-md border border-neutral-200 px-3 py-1.5 text-sm text-neutral-400 dark:border-neutral-800 dark:text-neutral-600">
+        <span className="rounded-md border border-neutral-200 px-3 py-1.5 text-sm text-neutral-500 dark:border-neutral-800 dark:text-neutral-600">
           Next
         </span>
       )}

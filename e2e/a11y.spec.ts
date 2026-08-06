@@ -1,7 +1,19 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-const PAGES = ["/"];
+const PAGES = [
+  "/",
+  "/festivals",
+  "/festivals/8th-wonder",
+  "/artists",
+  "/artists/fat-freddys-drop",
+  "/promoters",
+  "/promoters/audiology-touring",
+  "/regions",
+  "/regions/auckland",
+  "/search",
+  "/subscribe",
+];
 
 for (const path of PAGES) {
   test(`${path} has no serious accessibility violations`, async ({ page }) => {

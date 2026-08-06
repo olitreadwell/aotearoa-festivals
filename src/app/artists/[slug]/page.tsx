@@ -149,7 +149,7 @@ export default async function ArtistDetailPage({ params }: PageProps) {
               const entries = byYear.get(year) ?? [];
               return (
                 <div key={year}>
-                  <h3 className="mb-2 text-sm font-semibold tracking-wider text-neutral-400 uppercase dark:text-neutral-500">
+                  <h3 className="mb-2 text-sm font-semibold tracking-wider text-neutral-500 uppercase dark:text-neutral-400">
                     {year}
                   </h3>
                   <ul className="space-y-2">

@@ -58,7 +58,7 @@ export default async function PromotersPage({ searchParams }: PageProps) {
                     </span>
                   )}
                 </div>
-                <span className="shrink-0 text-sm text-neutral-400">
+                <span className="shrink-0 text-sm text-neutral-500">
                   {promoter._count.festivals}{" "}
                   {promoter._count.festivals === 1 ? "festival" : "festivals"}
                 </span>

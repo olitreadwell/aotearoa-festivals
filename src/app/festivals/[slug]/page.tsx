@@ -228,7 +228,7 @@ export default async function FestivalDetailPage({
                   </h3>
                   {headliners.length > 0 && (
                     <div className="mb-3">
-                      <p className="mb-1.5 text-xs tracking-widest text-neutral-400 uppercase dark:text-neutral-500">
+                      <p className="mb-1.5 text-xs tracking-widest text-neutral-500 uppercase dark:text-neutral-400">
                         Headliners
                       </p>
                       <ul className="flex flex-wrap gap-2">
