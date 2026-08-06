@@ -7,6 +7,16 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased] — claude/dev
 
+### Iteration 4 additions:
+
+- Test backfill (new TDD/BDD project policy — see README "Testing policy"): unit tests for `Breadcrumbs`, `Pagination`, `ThemeToggle`; integration tests (real Postgres) for `/api/subscribe`, `/api/unsubscribe`, `calendar.ics`, `opengraph-image`, `feed.xml`, `sitemap.ts`; E2E coverage for every page (filters, pagination, breadcrumb navigation, dark mode, search); a11y checks expanded from home-page-only to every route; smoke checks expanded to every top-level route
+- Fixed 6 real WCAG AA color-contrast violations the expanded a11y suite found (Pagination's disabled state, festival "Headliners" label, artist card home-city text, artist detail year heading, promoter festival-count text, subscribe page footer)
+- Fixed 3 pre-existing inline-link color-contrast violations (home page, festivals empty-state, subscribe footer) and a stale smoke test assertion left over from the iteration-2 home page redesign
+- CI: added a real ephemeral Postgres to the `test` and `build` jobs (both need one now — integration tests and `generateStaticParams` respectively), and `db:seed` to the `e2e` job so seeded data is actually present
+- Fixed a broken production build: `prisma generate` outputs to a custom path and nothing ran it after `npm install` on Vercel — added `postinstall: prisma generate`
+- Removed `deploy_production.yml`/`deploy_dev.yml` — redundant GitHub Actions deploy workflows gated on GitHub secrets that were never set; Vercel's native git integration was always the real deploy path
+- Configured Renovate for safe unattended updates: 3-day minimum release age, patch-level automerge for all dependencies, minor automerge for devDependencies only, majors/security handled separately
+
 ### Iteration 3 additions:
 
 - ISR: festival, artist, promoter, and region detail pages now use `generateStaticParams` + `revalidate = 3600` instead of `force-dynamic`

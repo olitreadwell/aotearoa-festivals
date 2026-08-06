@@ -10,17 +10,15 @@ test.describe("/festivals list", () => {
     await expect(page.getByRole("link", { name: /8th Wonder/ })).toBeVisible();
   });
 
-  test("filtering by region query param changes results", async ({
-    page,
-  }) => {
+  test("filtering by region query param changes results", async ({ page }) => {
     await page.goto("/festivals?region=AUCKLAND");
     await expect(page.getByRole("status")).toHaveText("20 festivals found.");
-    await expect(page.getByRole("link", { name: "Clear filters" })).toBeVisible();
+    await expect(
+      page.getByRole("link", { name: "Clear filters" }),
+    ).toBeVisible();
   });
 
-  test("filtering by status query param changes results", async ({
-    page,
-  }) => {
+  test("filtering by status query param changes results", async ({ page }) => {
     await page.goto("/festivals?status=TBC");
     await expect(page.getByRole("status")).toHaveText("15 festivals found.");
   });

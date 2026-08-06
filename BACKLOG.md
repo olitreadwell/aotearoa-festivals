@@ -44,18 +44,25 @@ _Updated automatically each loop iteration. Items move from Queued → In Progre
 
 ---
 
-## In Progress (Iteration 4 — test backfill)
+## Done (Iteration 4 — test backfill + production stability)
 
-New policy (see README.md "Testing policy"): every feature gets unit + integration + e2e + a11y + smoke coverage as close to 100% as the feature warrants, TDD/BDD workflow going forward. Backfilling the gap across iterations 1-3 before resuming new feature work.
+New policy (see README.md "Testing policy"): every feature gets unit + integration + e2e + a11y + smoke coverage as close to 100% as the feature warrants, TDD/BDD workflow going forward.
 
 ### Tests & Infrastructure
 
-- [ ] Postgres service added to CI `test` job so integration tests can run against a real DB
-- [ ] Unit tests: `Breadcrumbs`, `Pagination`, `ThemeToggle` components
-- [ ] Integration tests: `/api/subscribe`, `/api/unsubscribe`, `calendar.ics`, `opengraph-image`, `feed.xml`, `sitemap.ts`
-- [ ] E2E: every page and iteration-3 feature (filters, pagination, breadcrumbs, dark mode, search)
-- [ ] A11y: axe checks expanded from home-page-only to every route
-- [ ] Smoke: broadened from home-page-only to every top-level route
+- [x] Postgres service added to CI `test` job so integration tests can run against a real DB
+- [x] Unit tests: `Breadcrumbs`, `Pagination`, `ThemeToggle` components
+- [x] Integration tests: `/api/subscribe`, `/api/unsubscribe`, `calendar.ics`, `opengraph-image`, `feed.xml`, `sitemap.ts`
+- [x] E2E: every page and iteration-3 feature (filters, pagination, breadcrumbs, dark mode, search)
+- [x] A11y: axe checks expanded from home-page-only to every route (found + fixed 6 real contrast violations)
+- [x] Smoke: broadened from home-page-only to every top-level route
+- [x] Fixed broken production build (missing `postinstall: prisma generate`) and a follow-up lockfile drift regression from the fix
+- [x] Removed redundant, permanently-broken `deploy_production.yml`/`deploy_dev.yml` GitHub Actions workflows
+- [x] Configured Renovate for safe unattended updates (3-day release-age wait, patch automerge)
+
+### Data & Seed
+
+- Seed data still has zero Artist/LineupEntry rows — the E2E artist tests use a test-only fixture created via `e2e/global-setup.ts`, not real seed data. Real artist/lineup data is still queued below.
 
 ---
 
@@ -80,10 +87,15 @@ New policy (see README.md "Testing policy"): every feature gets unit + integrati
 ### UI / UX
 
 - [ ] Festival status badge component — consistent colour system across all pages
+- [ ] Default-sort festivals by soonest upcoming date among ACTIVE festivals with a set `startDate` (nulls/other statuses after), consistently across home, `/festivals`, and `/regions/[region]`
 - [ ] Upcoming vs past festival split on listing page (use `startDate` field)
 - [ ] Map view of NZ festivals by region (static SVG of NZ or Leaflet)
+
+### Research
+
+- [ ] User research: personas/profiles, user stories, journeys, and wants for who actually uses Aotearoa Festivals (festival-goers, promoters, artists) — document findings (e.g. `docs/user-research.md`) and feed into backlog prioritisation each loop iteration
 
 ### Performance & Infrastructure
 
 - [ ] `use cache` on Prisma queries (Next.js 16 cache components when stable)
-- [ ] Renovate dependency PRs — review queued updates
+- [ ] Renovate dependency PRs — review queued updates (once the Renovate GitHub App is installed)

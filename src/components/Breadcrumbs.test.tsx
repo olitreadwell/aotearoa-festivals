@@ -46,10 +46,7 @@ describe("Breadcrumbs", () => {
   });
 
   it("sets aria-current='page' on the last item", () => {
-    const items = [
-      { label: "Home", href: "/" },
-      { label: "Current Page" },
-    ];
+    const items = [{ label: "Home", href: "/" }, { label: "Current Page" }];
     render(<Breadcrumbs items={items} />);
 
     const lastItem = screen.getByText("Current Page");
@@ -79,10 +76,7 @@ describe("Breadcrumbs", () => {
   });
 
   it("does not render a separator before the first item", () => {
-    const items = [
-      { label: "First" },
-      { label: "Second" },
-    ];
+    const items = [{ label: "First" }, { label: "Second" }];
     render(<Breadcrumbs items={items} />);
 
     const listItems = screen.getByRole("navigation").querySelectorAll("li");

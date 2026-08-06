@@ -14,13 +14,9 @@ test.describe("/search", () => {
     );
     await expect(async () => {
       await input.fill("8th Wonder");
-      await expect(page.getByRole("status")).toContainText(
-        'for "8th Wonder"',
-      );
+      await expect(page.getByRole("status")).toContainText('for "8th Wonder"');
     }).toPass();
 
-    await expect(
-      page.getByRole("link", { name: /8th Wonder/ }),
-    ).toBeVisible();
+    await expect(page.getByRole("link", { name: /8th Wonder/ })).toBeVisible();
   });
 });

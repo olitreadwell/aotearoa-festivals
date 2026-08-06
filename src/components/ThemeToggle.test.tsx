@@ -81,7 +81,7 @@ describe("ThemeToggle", () => {
 
     window.removeEventListener(
       "aotearoa-theme-change",
-      eventListener.handleEvent
+      eventListener.handleEvent,
     );
   });
 

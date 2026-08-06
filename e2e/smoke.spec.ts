@@ -13,7 +13,13 @@ test("home page loads and shows site statistics", async ({ page }) => {
   );
 });
 
-const HTML_PAGES = ["/festivals", "/artists", "/promoters", "/regions", "/search"];
+const HTML_PAGES = [
+  "/festivals",
+  "/artists",
+  "/promoters",
+  "/regions",
+  "/search",
+];
 
 for (const path of HTML_PAGES) {
   test(`${path} responds successfully with no error boundary`, async ({

@@ -29,8 +29,6 @@ test.describe("/artists/[slug] detail", () => {
     ).toBeVisible();
     await expect(breadcrumb.getByText("Fat Freddys Drop")).toBeVisible();
 
-    await expect(
-      page.getByRole("link", { name: "8th Wonder" }),
-    ).toBeVisible();
+    await expect(page.getByRole("link", { name: "8th Wonder" })).toBeVisible();
   });
 });

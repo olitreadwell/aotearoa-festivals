@@ -6,9 +6,7 @@ test.describe("/regions list", () => {
     await expect(
       page.getByRole("heading", { name: "Browse NZ festivals by region" }),
     ).toBeVisible();
-    await expect(
-      page.getByRole("link", { name: /Auckland/ }),
-    ).toBeVisible();
+    await expect(page.getByRole("link", { name: /Auckland/ })).toBeVisible();
   });
 });
 
@@ -28,8 +26,6 @@ test.describe("/regions/[region] detail", () => {
     ).toBeVisible();
     await expect(breadcrumb.getByText("Auckland")).toBeVisible();
 
-    await expect(
-      page.getByRole("link", { name: /Shipwrecked/ }),
-    ).toBeVisible();
+    await expect(page.getByRole("link", { name: /Shipwrecked/ })).toBeVisible();
   });
 });

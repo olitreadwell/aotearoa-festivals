@@ -42,9 +42,7 @@ describe("GET /api/unsubscribe", () => {
   it("redirects to /unsubscribe/invalid without querying the DB when the token is missing", async () => {
     const response = await GET(getRequest(undefined));
 
-    expect(response.headers.get("location")).toContain(
-      "/unsubscribe/invalid",
-    );
+    expect(response.headers.get("location")).toContain("/unsubscribe/invalid");
   });
 
   it("redirects to /unsubscribe/confirmed without crashing for an unknown or expired token", async () => {

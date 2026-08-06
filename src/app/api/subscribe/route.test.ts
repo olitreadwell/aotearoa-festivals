@@ -88,9 +88,7 @@ describe("POST /api/subscribe", () => {
   it("returns a 400 without creating a row when the region is invalid", async () => {
     const email = testEmail("bad-region");
 
-    const response = await POST(
-      postRequest({ email, region: "NOT_A_REGION" }),
-    );
+    const response = await POST(postRequest({ email, region: "NOT_A_REGION" }));
 
     expect(response.status).toBe(400);
     expect(await countByEmail(email)).toBe(0);
