@@ -43,3 +43,6 @@ apps/web/screenshots/*.png
 
 # Superpowers (AI planning docs)
 docs/superpowers/
+.omo/
+.playwright-mcp/
+mobile-home.png
