@@ -1,21 +1,42 @@
-import { defineConfig } from "vitest/config";
-import { resolve } from "node:path";
+import react from '@vitejs/plugin-react';
+import path from 'node:path';
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
-  resolve: {
-    alias: {
-      "@": resolve(import.meta.dirname, "src"),
+  plugins: [react()],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./vitest.setup.ts'],
+    exclude: ['node_modules', '.next', 'e2e/**'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json-summary', 'html', 'lcov'],
+      reportsDirectory: './coverage',
+      exclude: [
+        'node_modules/',
+        '.next/',
+        'e2e/',
+        '**/*.stories.{ts,tsx}',
+        '**/*.d.ts',
+        'vitest.config.ts',
+        'vitest.setup.ts',
+        'next.config.ts',
+        'postcss.config.mjs',
+        'eslint.config.mjs',
+        'playwright.config.ts',
+      ],
+      thresholds: {
+        lines: 60,
+        functions: 60,
+        branches: 60,
+        statements: 60,
+      },
     },
   },
-  test: {
-    environment: "jsdom",
-    include: ["src/**/*.{test,spec}.{ts,tsx}"],
-    passWithNoTests: true,
-    coverage: {
-      provider: "v8",
-      include: ["src/lib/**/*.{ts,tsx}"],
-      exclude: ["**/*.d.ts", "src/generated/**"],
-      reporter: ["text", "lcov"],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
     },
   },
 });

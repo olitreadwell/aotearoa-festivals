@@ -1,8 +1,5 @@
 {
   "github": {
     "autoJobCancelation": true
-  },
-  "buildCommand": "npm run vercel-build",
-  "outputDirectory": "apps/web/.next",
-  "installCommand": "npm install"
+  }
 }

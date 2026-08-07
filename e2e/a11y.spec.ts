@@ -1,18 +1,44 @@
-import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { expect, test } from "@playwright/test";
 
-const PAGES = ["/"];
+const ROUTES = [
+  "/",
+  "/festivals",
+  "/calendar",
+  "/map",
+  "/search",
+  "/about",
+  "/contact",
+];
 
-for (const path of PAGES) {
-  test(`${path} has no serious accessibility violations`, async ({ page }) => {
-    await page.goto(path);
+test.describe("a11y — all routes", () => {
+  for (const route of ROUTES) {
+    test(`no a11y violations on ${route}`, async ({ page }) => {
+      await page.goto(route);
+      const results = await new AxeBuilder({ page })
+        .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
+        .analyze();
+      expect(results.violations).toEqual([]);
+    });
+  }
+});
+
+test.describe("a11y — dark mode", () => {
+  test("no a11y violations on home in dark mode", async ({ page }) => {
+    await page.goto("/");
+    await page.evaluate(() => document.documentElement.classList.add("dark"));
     const results = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa"])
       .analyze();
-
-    const serious = results.violations.filter((violation) =>
-      ["serious", "critical"].includes(violation.impact ?? ""),
-    );
-    expect(serious, JSON.stringify(serious, null, 2)).toEqual([]);
+    expect(results.violations).toEqual([]);
   });
-}
+});
+
+test.describe("a11y — keyboard navigation", () => {
+  test("skip link is focusable and visible", async ({ page }) => {
+    await page.goto("/");
+    await page.keyboard.press("Tab");
+    const skipLink = page.locator('a[href="#main-content"]');
+    await expect(skipLink).toBeVisible();
+  });
+});
