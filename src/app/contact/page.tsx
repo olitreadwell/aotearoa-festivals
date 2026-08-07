@@ -15,7 +15,7 @@ export default function ContactPage() {
         <p>Got a festival to add? Found an error? Have an idea? We&apos;d love to hear from you.</p>
         <div className="space-y-2">
           <p><strong className="text-black dark:text-white">GitHub</strong> — The best way to submit corrections or new festivals:{" "}
-            <a href="https://github.com/olitreadwell/aotearoa-festivals" className="text-blue-600 hover:underline dark:text-blue-400">github.com/olitreadwell/aotearoa-festivals</a>
+            <a href="https://github.com/olitreadwell/aotearoa-festivals" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline dark:text-blue-400">github.com/olitreadwell/aotearoa-festivals</a>
           </p>
           <p>Open an issue with festival details, or submit a pull request with seed data changes.</p>
           <p className="mt-6">For anything else, reach out on GitHub or email the maintainers listed in the repo.</p>
