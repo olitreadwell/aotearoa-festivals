@@ -1,5 +1,3 @@
-import { redirect } from "next/navigation";
-// All festival browsing is now on the unified home page
-export default function FestivalsPage() {
-  redirect("/");
-}
+import Dashboard from "../_components/Dashboard";
+export default Dashboard;
+export { metadata, dynamic } from "../_components/Dashboard";
