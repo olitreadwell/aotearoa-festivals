@@ -33,4 +33,4 @@ test-results/
 ruvector.db
 
 .omo/
-.codegraph/
+.codegraph/eng.traineddata
