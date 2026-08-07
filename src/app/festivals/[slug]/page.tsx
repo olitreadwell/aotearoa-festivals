@@ -2,8 +2,9 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import type { Festival, Artist, Promoter } from "@/generated/prisma";
-import { formatRegion, formatStatus } from "@/lib/format";
+import { formatRegion } from "@/lib/format";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
 
 export const revalidate = 3600;
 
@@ -83,10 +84,6 @@ export default async function FestivalDetailPage({
     notFound();
   }
 
-  const { label: statusLabel, className: statusClass } = formatStatus(
-    festival.status,
-  );
-
   // Group lineup entries by year, descending
   const lineupByYear = new Map<number, LineupEntryWithArtist[]>();
   for (const entry of festival.lineups) {
@@ -111,11 +108,7 @@ export default async function FestivalDetailPage({
         <h1 className="text-3xl leading-tight font-semibold tracking-tight">
           {festival.name}
         </h1>
-        <span
-          className={`inline-flex items-center self-center rounded-full px-2.5 py-0.5 text-xs font-medium ${statusClass}`}
-        >
-          {statusLabel}
-        </span>
+        <FestivalStatusBadge status={festival.status} />
       </div>
 
       {/* Add to calendar */}
