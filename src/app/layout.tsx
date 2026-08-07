@@ -71,6 +71,11 @@ export default function RootLayout({
                 </Link>
               </li>
               <li>
+                <Link href="/contact" className="site-nav__link">
+                  Contact
+                </Link>
+              </li>
+              <li>
                 <Link href="/search" className="site-nav__link">
                   Search
                 </Link>

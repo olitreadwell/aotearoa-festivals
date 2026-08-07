@@ -84,6 +84,21 @@ export default async function FestivalDetailPage({
     notFound();
   }
 
+  // Similar festivals: same genre or same region, excluding current
+  const similar = await prisma.festival.findMany({
+    where: {
+      approved: true,
+      id: { not: festival.id },
+      OR: [
+        ...(festival.genre ? [{ genre: { contains: festival.genre.split(",")[0]?.trim() ?? "" } }] : []),
+        ...(festival.region ? [{ region: festival.region }] : []),
+      ],
+    },
+    take: 3,
+    orderBy: [{ startDate: "desc" }],
+    select: { id: true, name: true, slug: true, genre: true, region: true },
+  });
+
   // Group lineup entries by year, descending
   const lineupByYear = new Map<number, LineupEntryWithArtist[]>();
   for (const entry of festival.lineups) {
@@ -331,6 +346,28 @@ export default async function FestivalDetailPage({
               );
             })}
           </div>
+        </section>
+      )}
+
+      {/* Similar festivals */}
+      {similar.length > 0 && (
+        <section className="mt-12 border-t pt-8 dark:border-neutral-800">
+          <h2 className="text-lg font-semibold tracking-tight">Similar festivals</h2>
+          <ul className="mt-3 space-y-2">
+            {similar.map((f) => (
+              <li key={f.id}>
+                <a
+                  href={`/festivals/${f.slug}`}
+                  className="flex items-center justify-between rounded-lg border border-neutral-200 px-4 py-2.5 text-sm transition-colors hover:bg-neutral-50 dark:border-neutral-700 dark:hover:bg-neutral-800/50"
+                >
+                  <span className="font-medium">{f.name}</span>
+                  <span className="text-xs text-neutral-400 dark:text-neutral-500">
+                    {f.genre}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
         </section>
       )}
     </main>
