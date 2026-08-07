@@ -1,22 +1,21 @@
-import Link from 'next/link';
+import Link from "next/link";
 
-import { Container, Stack } from '@numeral/ui';
-
-export default function NotFound(): React.ReactElement {
+export default function NotFound() {
   return (
-    <Container size="narrow" className="py-[var(--spacing-3xl)] text-center">
-      <Stack className="items-center gap-6">
-        <p className="numeral-text-eyebrow text-[var(--color-muted)]">Error 404</p>
-        <h1 className="numeral-heading-4xl">404</h1>
-        <h2 className="numeral-heading-xl">Page not found</h2>
-        <p className="numeral-paragraph-md text-[var(--color-muted)]">
-          The page you are looking for does not exist or has been moved. Check the URL or head back
-          to the homepage.
+    <main className="mx-auto flex min-h-screen max-w-lg items-center justify-center px-4 py-16">
+      <div className="text-center">
+        <p className="text-sm font-medium text-muted-foreground">404</p>
+        <h1 className="mt-2 text-3xl font-bold">Page not found</h1>
+        <p className="mt-2 text-muted-foreground">
+          The page you&apos;re looking for doesn&apos;t exist.
         </p>
-        <Link href="/" className="numeral-button numeral-button-primary numeral-button-lg">
+        <Link
+          href="/"
+          className="mt-6 inline-block rounded-lg bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground hover:opacity-90"
+        >
           Back to home
         </Link>
-      </Stack>
-    </Container>
+      </div>
+    </main>
   );
 }
