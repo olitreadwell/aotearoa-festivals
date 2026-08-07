@@ -6,13 +6,9 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 
 const NAV_LINKS = [
   { href: "/festivals", label: "Festivals" },
-  { href: "/artists", label: "Artists" },
-  { href: "/promoters", label: "Promoters" },
-  { href: "/regions", label: "Regions" },
   { href: "/calendar", label: "Calendar" },
   { href: "/map", label: "Map" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/search", label: "Search" },
 ];
 
 export function SiteNav() {
@@ -35,11 +31,6 @@ export function SiteNav() {
               </Link>
             </li>
           ))}
-          <li>
-            <Link href="/search" className="site-nav__link">
-              Search
-            </Link>
-          </li>
         </ul>
         </div>
 
@@ -84,15 +75,6 @@ export function SiteNav() {
                 </Link>
               </li>
             ))}
-            <li>
-              <Link
-                href="/search"
-                onClick={() => setOpen(false)}
-                className="block rounded-lg px-4 py-3 text-base font-medium hover:bg-neutral-100 dark:hover:bg-neutral-800"
-              >
-                Search
-              </Link>
-            </li>
           </ul>
         </div>
       )}

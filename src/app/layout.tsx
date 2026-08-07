@@ -64,6 +64,13 @@ export default function RootLayout({
         </a>
         <SiteNav />
         <div id="main-content" className="site-content">{children}</div>
+        <footer className="border-t border-neutral-200 px-4 py-6 text-center text-xs text-neutral-400 dark:border-neutral-700">
+          <nav aria-label="Footer" className="flex justify-center gap-4">
+            <a href="/about" className="hover:underline">About</a>
+            <a href="/contact" className="hover:underline">Contact</a>
+            <a href="https://github.com/olitreadwell/aotearoa-festivals" target="_blank" rel="noopener noreferrer" className="hover:underline">GitHub</a>
+          </nav>
+        </footer>
         <script dangerouslySetInnerHTML={{ __html: SW_REGISTER }} />
       </body>
     </html>
