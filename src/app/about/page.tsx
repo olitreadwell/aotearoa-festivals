@@ -41,6 +41,8 @@ export default function AboutPage() {
           This project is inspired by{" "}
           <a
             href="https://techevents.co.nz"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-blue-600 hover:underline dark:text-blue-400"
           >
             techevents.co.nz
@@ -80,6 +82,8 @@ export default function AboutPage() {
           This directory is open source. The code is on{" "}
           <a
             href="https://github.com/olitreadwell/aotearoa-festivals"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-blue-600 hover:underline dark:text-blue-400"
           >
             GitHub
