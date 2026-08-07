@@ -6,36 +6,7 @@ import { FestivalStatus, Region } from "@/generated/prisma";
 import type { Festival, Promoter } from "@/generated/prisma";
 import Link from "next/link";
 import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
-
-// ---------------------------------------------------------------------------
-// Region display helpers
-// ---------------------------------------------------------------------------
-
-const REGION_LABELS: Record<Region, string> = {
-  NORTHLAND: "Northland",
-  AUCKLAND: "Auckland",
-  WAIKATO: "Waikato",
-  BAY_OF_PLENTY: "Bay of Plenty",
-  GISBORNE: "Gisborne",
-  HAWKES_BAY: "Hawke's Bay",
-  TARANAKI: "Taranaki",
-  MANAWATU_WHANGANUI: "Manawatū-Whanganui",
-  WELLINGTON: "Wellington",
-  WAIRARAPA: "Wairarapa",
-  TASMAN: "Tasman",
-  NELSON: "Nelson",
-  MARLBOROUGH: "Marlborough",
-  WEST_COAST: "West Coast",
-  CANTERBURY: "Canterbury",
-  OTAGO: "Otago",
-  SOUTHLAND: "Southland",
-  ONLINE: "Online",
-};
-
-function formatRegion(region: Region | null): string {
-  if (!region) return "Unknown region";
-  return REGION_LABELS[region] ?? region;
-}
+import { REGION_LABELS, formatRegion } from "@/lib/format";
 
 // ---------------------------------------------------------------------------
 // Types
