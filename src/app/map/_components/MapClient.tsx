@@ -1,137 +1,104 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import type { Region } from "@/generated/prisma";
 import { formatRegion } from "@/lib/format";
 
-// Dynamically import Leaflet to avoid SSR window errors
-const MapContainer = dynamic(
-  () => import("react-leaflet").then((m) => m.MapContainer),
-  { ssr: false },
-);
-const TileLayer = dynamic(
-  () => import("react-leaflet").then((m) => m.TileLayer),
-  { ssr: false },
-);
-const Marker = dynamic(
-  () => import("react-leaflet").then((m) => m.Marker),
-  { ssr: false },
-);
-const Popup = dynamic(
-  () => import("react-leaflet").then((m) => m.Popup),
-  { ssr: false },
-);
+const MapContainer = dynamic(() => import("react-leaflet").then((m) => m.MapContainer), { ssr: false });
+const TileLayer = dynamic(() => import("react-leaflet").then((m) => m.TileLayer), { ssr: false });
+const Marker = dynamic(() => import("react-leaflet").then((m) => m.Marker), { ssr: false });
+const Popup = dynamic(() => import("react-leaflet").then((m) => m.Popup), { ssr: false });
 
-interface FestivalMarker {
-  id: string;
-  name: string;
-  slug: string;
-  latitude: number;
-  longitude: number;
-  genre: string | null;
-  region: Region | null;
-  status: string;
+type FestivalMarker = {
+  id: string; name: string; slug: string; latitude: number; longitude: number;
+  genre: string | null; region: Region | null; status: string;
+};
+
+const NZ_CENTER: [number, number] = [-40.9, 174.9];
+const NZ_BOUNDS: [[number, number], [number, number]] = [[-47.5, 166.0], [-34.0, 179.0]];
+
+const GENRE_COLORS: Record<string, string> = {
+  "Drum & Bass": "#a3172e", "House": "#6b0f1e", "Electronic": "#a37710",
+  "NYE": "#0a4a54", "Reggae": "#287028", "Dub": "#287028", "Jazz": "#a37710",
+  "Rock": "#6b0f1e", "Pop": "#a3172e", "Hip Hop": "#107080",
+};
+function genreColor(g: string | null): string {
+  if (!g) return "#6e747c";
+  for (const [k, v] of Object.entries(GENRE_COLORS)) if (g.includes(k)) return v;
+  return "#6e747c";
 }
 
-// NZ center: roughly Waikato
-const NZ_CENTER: [number, number] = [-40.9, 174.9];
-const NZ_ZOOM = 6;
-const NZ_BOUNDS: [[number, number], [number, number]] = [
-  [-47.5, 166.0],
-  [-34.0, 179.0],
-];
-
-export default function MapPage({
-  festivals,
-}: {
-  festivals: FestivalMarker[];
-}) {
+export default function MapPage({ festivals }: { festivals: FestivalMarker[] }) {
   const [mounted, setMounted] = useState(false);
+  const [search, setSearch] = useState("");
+  const [icons, setIcons] = useState<Record<string, unknown>>({});
 
   useEffect(() => {
     setMounted(true);
-    // Import Leaflet CSS only on client
     import("leaflet/dist/leaflet.css");
+    import("leaflet").then((L) => {
+      setIcons(
+        Object.fromEntries(
+          Object.entries(GENRE_COLORS).map(([k, v]) => [
+            k,
+            L.divIcon({
+              className: "",
+              html: `<div style="background:${v};width:14px;height:14px;border-radius:50%;border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,.3)"></div>`,
+              iconSize: [14, 14],
+              iconAnchor: [7, 7],
+            }),
+          ]),
+        ),
+      );
+    });
   }, []);
+
+  const filtered = useMemo(() => {
+    if (!search.trim()) return festivals;
+    const q = search.toLowerCase();
+    return festivals.filter(
+      (f) =>
+        f.name.toLowerCase().includes(q) ||
+        f.genre?.toLowerCase().includes(q) ||
+        (f.region && formatRegion(f.region).toLowerCase().includes(q)),
+    );
+  }, [festivals, search]);
 
   if (!mounted) {
     return (
-      <main className="mx-auto min-h-screen max-w-6xl px-4 py-8" role="main" aria-label="Festival map loading">
-        <h1 className="text-3xl font-bold">Festival Map</h1>
-        <div className="mt-8 h-96 animate-pulse rounded-xl bg-neutral-100 dark:bg-neutral-800" aria-busy="true" />
+      <main className="mx-auto min-h-screen max-w-6xl px-4 py-8" role="main" aria-label="Map loading">
+        <h1 className="text-2xl font-bold sm:text-3xl">Festival Map</h1>
+        <div className="mt-4 h-96 animate-pulse rounded-xl bg-neutral-100 dark:bg-neutral-800" aria-busy="true" />
       </main>
     );
   }
 
   return (
-    <main className="mx-auto min-h-screen max-w-full px-0 py-0 sm:px-4 sm:py-8" role="main" aria-label="Interactive festival map of New Zealand">
-      <div className="sm:mb-6 sm:px-0 px-4 py-4">
-        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
-          Festival Map
-        </h1>
-        <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
-          {festivals.length} festival{festivals.length !== 1 ? "s" : ""} mapped
-        </p>
-      </div>
-
-      <div
-        className="relative overflow-hidden rounded-none sm:rounded-xl border-0 sm:border border-neutral-200 dark:border-neutral-700"
-        style={{ height: "calc(100dvh - 8rem)" }}
-        role="application"
-        aria-label="Map showing New Zealand festival locations"
-      >
-        <MapContainer
-          center={NZ_CENTER}
-          zoom={NZ_ZOOM}
-          maxBounds={NZ_BOUNDS}
-          minZoom={5}
-          maxZoom={14}
-          className="h-full w-full"
-          zoomControl={true}
-          scrollWheelZoom={true}
-          aria-label="Interactive map"
-        >
+    <div className="flex min-h-[calc(100dvh-3.5rem)] flex-col lg:flex-row" role="main" aria-label="Interactive festival map">
+      {/* Map area */}
+      <div className="relative flex-1" style={{ minHeight: "50dvh" }} role="application" aria-label="Map">
+        <MapContainer center={NZ_CENTER} zoom={6} maxBounds={NZ_BOUNDS} minZoom={5} maxZoom={14}
+          className="h-full w-full" zoomControl={true} scrollWheelZoom={true}>
           <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://carto.com/">CARTO</a>'
+            url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
           />
-
-          {festivals.map((f) => (
+          {filtered.map((f) => (
             <Marker
               key={f.id}
               position={[f.latitude, f.longitude]}
               title={f.name}
-              alt={`${f.name} festival marker`}
+              icon={icons[f.genre ?? ""] ?? icons["Rock"]}
               keyboard={true}
             >
               <Popup>
-                <div className="min-w-[180px] text-sm" role="dialog" aria-label={f.name}>
-                  <strong className="block text-base">{f.name}</strong>
-                  {f.genre && (
-                    <span className="block text-neutral-500">{f.genre}</span>
-                  )}
-                  {f.region && (
-                    <span className="block text-neutral-400 text-xs">
-                      {formatRegion(f.region)}
-                    </span>
-                  )}
-                  <span
-                    className={`mt-1 inline-block rounded-full px-2 py-0.5 text-xs font-medium ${
-                      f.status === "ACTIVE"
-                        ? "bg-green-100 text-green-800"
-                        : f.status === "TBC"
-                          ? "bg-amber-100 text-amber-800"
-                          : "bg-neutral-100 text-neutral-700"
-                    }`}
-                  >
-                    {f.status}
-                  </span>
-                  <Link
-                    href={`/festivals/${f.slug}`}
-                    className="mt-2 block text-blue-600 hover:underline font-medium"
-                  >
+                <div className="min-w-[160px] text-sm">
+                  <strong className="block">{f.name}</strong>
+                  {f.genre && <span className="block text-xs text-neutral-500">{f.genre}</span>}
+                  {f.region && <span className="block text-xs text-neutral-400">{formatRegion(f.region)}</span>}
+                  <Link href={`/festivals/${f.slug}`} className="mt-1 block text-xs font-medium text-blue-600 hover:underline">
                     View festival →
                   </Link>
                 </div>
@@ -141,25 +108,50 @@ export default function MapPage({
         </MapContainer>
       </div>
 
-      {/* Accessible text fallback — festival list below map */}
-      <section className="mt-8 px-4 sm:px-0" aria-label="Festival list">
-        <h2 className="text-lg font-semibold">All festivals</h2>
-        <ul className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3" role="list">
-          {festivals.map((f) => (
-            <li key={f.id}>
-              <Link
-                href={`/festivals/${f.slug}`}
-                className="flex items-center justify-between rounded-lg border border-neutral-200 px-3 py-2 text-sm hover:bg-neutral-50 dark:border-neutral-700 dark:hover:bg-neutral-800/50"
-              >
-                <span>{f.name}</span>
-                {f.region && (
-                  <span className="text-xs text-neutral-400">{formatRegion(f.region)}</span>
-                )}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </main>
+      {/* Sidebar */}
+      <aside className="flex w-full shrink-0 flex-col border-t border-neutral-200 bg-white dark:border-neutral-700 dark:bg-[#0a0a0a] lg:w-80 lg:border-l lg:border-t-0" aria-label="Festival list and filters">
+        <div className="p-4">
+          <h1 className="text-xl font-bold sm:text-2xl">Festival Map</h1>
+          <p className="mt-0.5 text-sm text-neutral-500">{festivals.length} festivals mapped</p>
+          <input
+            type="search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search festivals..."
+            className="mt-4 w-full rounded-lg border border-neutral-300 bg-white px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-[#111]"
+            aria-label="Search festivals"
+          />
+          <div className="mt-3 flex flex-wrap gap-2 text-xs">
+            <span className="text-neutral-500">Genres:</span>
+            {Object.entries(GENRE_COLORS).slice(0, 8).map(([k, v]) => (
+              <span key={k} className="flex items-center gap-1">
+                <span className="inline-block h-2.5 w-2.5 rounded-full" style={{ background: v }} />
+                {k}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="flex-1 overflow-y-auto border-t border-neutral-100 dark:border-neutral-700">
+          <ul className="divide-y divide-neutral-100 dark:divide-neutral-800" role="list">
+            {filtered.map((f) => (
+              <li key={f.id}>
+                <Link href={`/festivals/${f.slug}`} className="flex items-center gap-3 px-4 py-2.5 hover:bg-neutral-50 dark:hover:bg-neutral-800/50">
+                  <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: genreColor(f.genre) }} />
+                  <div className="min-w-0 flex-1">
+                    <span className="block truncate text-sm font-medium">{f.name}</span>
+                    <span className="block truncate text-xs text-neutral-500">
+                      {[f.genre, f.region ? formatRegion(f.region) : null].filter(Boolean).join(" · ")}
+                    </span>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          {filtered.length === 0 && (
+            <p className="p-4 text-sm text-neutral-500">No festivals match.</p>
+          )}
+        </div>
+      </aside>
+    </div>
   );
 }
