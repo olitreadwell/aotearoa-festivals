@@ -67,10 +67,24 @@ New policy (see README.md "Testing policy"): every feature gets unit + integrati
 - [x] Seed data: Bay of Islands Jazz & Blues, Rhythm and Vines populated
 - [x] Detail page updated with new fields in meta grid
 - [x] Seed data validation tests for new fields
+- [x] Node engine widened to `>=22.17.1` (was blocking v24 LTS)
 
 ---
 
 ## Queued
+
+### Code Quality & Polish
+
+- [ ] Extract FestivalStatusBadge component — 3 pages duplicate STATUS_STYLES/STATUS_LABELS, promoters/[slug] has own copy (4 DRY violations)
+- [ ] Add metadata to 8 pages missing `generateMetadata`/title/description: home, festivals listing, artists listing, promoters listing, regions listing, subscribe, subscribe/confirmed, unsubscribe pages
+- [ ] Add loading.tsx for pages missing it: artists, promoters, regions, search, home
+- [ ] Add error.tsx boundaries — zero exist across entire app
+- [ ] Add not-found.tsx for artists/[slug], promoters/[slug], search
+- [ ] Add robots.ts with sitemap reference
+- [ ] Add OpenGraph images for artists, promoters, regions, and home page
+- [ ] Add JSON-LD structured data (Event schema) on festival detail pages
+- [ ] Add breadcrumb navigation to pages missing it: artists, promoters, regions, search, home
+- [ ] Add per-section layouts (e.g. festivals/layout.tsx with shared breadcrumbs + metadata)
 
 ### Pages & Routes
 
@@ -80,7 +94,7 @@ New policy (see README.md "Testing policy"): every feature gets unit + integrati
 
 ### Data & Seed
 
-- [ ] Add remaining websites for festivals still missing links (11 entries: High Tide Festival, Carlucci Carnival, 8th Wonder, Rippon Festival/Tuki Festival, Big Day Out (NZ), Raggamuffin Music Festival, Wanderlust NZ, Oasis Festival, Golden Lights Music Festival, Urban Jungle, Aum NYE Festival — no verifiable official domain found this pass)
+- [ ] Add remaining websites for festivals still missing links (11 entries)
 - [ ] Add promoter records (Fuzen NZ, Audiology Touring, Rhythm & Vines Ltd, etc.)
 - [ ] Add artist records for known headliners (Alison Wonderland, Andy C, Clean Bandit…)
 - [ ] Add lineup entries linking artists to festivals and years
@@ -90,14 +104,15 @@ New policy (see README.md "Testing policy"): every feature gets unit + integrati
 
 ### UI / UX
 
-- [ ] Festival status badge component — consistent colour system across all pages
+- [x] ETA 50% Festival status badge component — created in src/components/, needs integration into 4 pages _(in progress)_
+- [x] ETA 100% Vibe description field on festival detail page _(done — iteration 4)_
+- [x] ETA 100% Camping info on festival detail page _(done — iteration 4)_
+- [x] ETA 100% Ticket pricing on festival detail page _(done — iteration 4)_
 - [ ] Upcoming vs past festival split on listing page (use `startDate` field)
-- [ ] Map view of NZ festivals by region (static SVG of NZ or Leaflet) _(user research: coconut_s)_
-- [ ] Vibe description field on festival detail page — genre/atmosphere summary beyond just the artist lineup _(user research: coconut_s)_
-- [ ] Camping info on festival detail page — whether camping is available/included _(user research: coconut_s)_
-- [ ] Ticket pricing on festival detail page — price range or link to ticketing _(user research: coconut_s)_
+- [ ] Map view of NZ festivals by region (static SVG of NZ or Leaflet)
 
 ### Performance & Infrastructure
 
 - [ ] `use cache` on Prisma queries (Next.js 16 cache components when stable)
 - [ ] Renovate dependency PRs — review queued updates
+- [ ] Update Node engine to allow v24 LTS (currently `>=22.17.1 <23.0.0`)
