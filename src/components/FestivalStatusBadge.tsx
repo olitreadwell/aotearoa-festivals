@@ -1,10 +1,10 @@
 type FestivalStatus = "ACTIVE" | "TBC" | "HIATUS" | "DEFUNCT" | "UNCONFIRMED";
 
 const STATUS_LABELS: Record<FestivalStatus, string> = {
-  ACTIVE: "Active",
-  TBC: "TBC",
-  HIATUS: "Hiatus",
-  DEFUNCT: "Defunct",
+  ACTIVE: "Upcoming",
+  TBC: "Dates TBC",
+  HIATUS: "On break",
+  DEFUNCT: "Ended",
   UNCONFIRMED: "Unconfirmed",
 };
 
