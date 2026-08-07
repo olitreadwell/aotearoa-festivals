@@ -33,6 +33,8 @@ function genreColor(g: string | null): string {
 export default function MapPage({ festivals }: { festivals: FestivalMarker[] }) {
   const [mounted, setMounted] = useState(false);
   const [search, setSearch] = useState("");
+  const [filterRegion, setFilterRegion] = useState("");
+  const [filterStatus, setFilterStatus] = useState("");
   const [icons, setIcons] = useState<Record<string, L.DivIcon>>({} as Record<string, L.DivIcon>);
 
   useEffect(() => {
@@ -56,15 +58,21 @@ export default function MapPage({ festivals }: { festivals: FestivalMarker[] }) 
   }, []);
 
   const filtered = useMemo(() => {
-    if (!search.trim()) return festivals;
-    const q = search.toLowerCase();
-    return festivals.filter(
-      (f) =>
+    let result = festivals;
+    if (filterRegion) result = result.filter(f => f.region === filterRegion);
+    if (filterStatus) result = result.filter(f => f.status === filterStatus);
+    if (search.trim()) {
+      const q = search.toLowerCase();
+      result = result.filter(f =>
         f.name.toLowerCase().includes(q) ||
         f.genre?.toLowerCase().includes(q) ||
-        (f.region && formatRegion(f.region).toLowerCase().includes(q)),
-    );
-  }, [festivals, search]);
+        (f.region && formatRegion(f.region).toLowerCase().includes(q))
+      );
+    }
+    return result;
+  }, [festivals, search, filterRegion, filterStatus]);
+
+  const regions = useMemo(() => [...new Set(festivals.map(f => f.region).filter(Boolean))].sort(), [festivals]);
 
   if (!mounted) {
     return (
@@ -121,6 +129,21 @@ export default function MapPage({ festivals }: { festivals: FestivalMarker[] }) 
             className="mt-4 w-full rounded-lg border border-neutral-300 bg-white px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-[#111]"
             aria-label="Search festivals"
           />
+          <div className="mt-2 flex gap-2">
+            <select value={filterRegion} onChange={e => setFilterRegion(e.target.value)}
+              className="flex-1 rounded-md border border-neutral-300 bg-white px-2 py-1.5 text-xs dark:border-neutral-600 dark:bg-[#111]">
+              <option value="">All regions</option>
+              {regions.map(r => <option key={r} value={r!}>{formatRegion(r!)}</option>)}
+            </select>
+            <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)}
+              className="w-28 rounded-md border border-neutral-300 bg-white px-2 py-1.5 text-xs dark:border-neutral-600 dark:bg-[#111]">
+              <option value="">All status</option>
+              <option value="ACTIVE">Active</option>
+              <option value="TBC">TBC</option>
+              <option value="HIATUS">Hiatus</option>
+              <option value="DEFUNCT">Defunct</option>
+            </select>
+          </div>
           <div className="mt-3 flex flex-wrap gap-2 text-xs">
             <span className="text-neutral-500">Genres:</span>
             {Object.entries(GENRE_COLORS).slice(0, 8).map(([k, v]) => (
