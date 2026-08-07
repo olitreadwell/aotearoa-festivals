@@ -34,7 +34,7 @@ export default function MapPage({ festivals }: { festivals: FestivalMarker[] }) 
   const [mounted, setMounted] = useState(false);
   const [search, setSearch] = useState("");
   const [filterRegion, setFilterRegion] = useState("");
-  const [filterStatus, setFilterStatus] = useState("");
+  const [filterStatus, setFilterStatus] = useState("ACTIVE");
   const [icons, setIcons] = useState<Record<string, L.DivIcon>>({} as Record<string, L.DivIcon>);
 
   useEffect(() => {

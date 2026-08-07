@@ -135,29 +135,8 @@ export default async function CalendarPage({
         );
       })}
 
-      {noDate.length > 0 && (
-        <section className="mb-10">
-          <h2 className="mb-3 text-lg font-semibold text-neutral-500 dark:text-neutral-400">
-            Date TBC
-          </h2>
-          <ul className="space-y-1.5">
-            {noDate.map((f) => (
-              <li key={f.id}>
-                <Link
-                  href={`/festivals/${f.slug}`}
-                  className="flex items-center justify-between rounded-lg border border-neutral-200 px-4 py-2.5 text-sm transition-colors hover:bg-neutral-50 dark:border-neutral-700 dark:hover:bg-neutral-800/50"
-                >
-                  <span className="font-medium">{f.name}</span>
-                  <span className="text-xs text-neutral-400">{f.genre}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {sortedMonths.length === 0 && noDate.length === 0 && (
-        <p className="text-neutral-500 dark:text-neutral-400">No upcoming festivals scheduled.</p>
+      {sortedMonths.length === 0 && (
+        <p className="text-neutral-500 dark:text-neutral-400">No festivals match your filters.</p>
       )}
     </main>
   );
