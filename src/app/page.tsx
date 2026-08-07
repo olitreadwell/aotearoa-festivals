@@ -7,6 +7,10 @@ import type { Festival, Promoter } from "@/generated/prisma";
 import Link from "next/link";
 import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
 import { REGION_LABELS, formatRegion } from "@/lib/format";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -56,67 +60,44 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen">
-      {/* ------------------------------------------------------------------ */}
-      {/* Hero                                                                */}
-      {/* ------------------------------------------------------------------ */}
-      <section className="border-b border-gray-200 bg-gradient-to-b from-blue-50 to-white px-6 py-20 text-center dark:border-gray-800 dark:from-blue-950/30 dark:to-[#0a0a0a]">
-        <div className="mx-auto max-w-2xl">
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
-            Aotearoa Festivals
+      {/* Hero */}
+      <section className="relative overflow-hidden border-b bg-gradient-to-b from-primary/5 via-background to-background px-6 py-24 text-center">
+        <div className="mx-auto max-w-3xl">
+          <Badge variant="secondary" className="mb-4">
+            {festivalCount} New Zealand festivals
+          </Badge>
+          <h1 className="text-4xl font-extrabold tracking-tight sm:text-6xl">
+            Aotearoa<br className="sm:hidden" /> Festivals
           </h1>
-          <p className="mt-4 text-lg text-[#555] dark:text-[#aaa]">
-            Discover music, arts &amp; culture festivals across New Zealand
+          <p className="mt-4 text-lg text-muted-foreground max-w-xl mx-auto">
+            Discover music, arts &amp; culture festivals across New Zealand.
+            Browse by region, genre, or date — find your next festival.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link
-              href="/festivals"
-              className="rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
-            >
-              Browse all festivals &rarr;
-            </Link>
-            <Link
-              href="/festivals?search=1"
-              className="rounded-lg border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-[#171717] transition-colors hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:border-gray-600 dark:bg-[#111] dark:text-[#ededed] dark:hover:bg-[#1a1a1a]"
-            >
-              Search &rarr;
-            </Link>
+            <Button asChild size="lg">
+              <Link href="/festivals">Browse festivals</Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <Link href="/calendar">View calendar</Link>
+            </Button>
+          </div>
+
+          {/* Stats row */}
+          <div className="mt-12 grid grid-cols-3 gap-4 max-w-md mx-auto">
+            <div className="rounded-xl border bg-card p-4 text-center">
+              <div className="text-2xl font-bold">{festivalCount}</div>
+              <div className="text-xs text-muted-foreground">Festivals</div>
+            </div>
+            <div className="rounded-xl border bg-card p-4 text-center">
+              <div className="text-2xl font-bold">{activeCount}</div>
+              <div className="text-xs text-muted-foreground">Active</div>
+            </div>
+            <div className="rounded-xl border bg-card p-4 text-center">
+              <div className="text-2xl font-bold">{regionCount}</div>
+              <div className="text-xs text-muted-foreground">Regions</div>
+            </div>
           </div>
         </div>
-      </section>
-
-      {/* ------------------------------------------------------------------ */}
-      {/* Stats row                                                           */}
-      {/* ------------------------------------------------------------------ */}
-      <section
-        aria-label="Site statistics"
-        className="border-b border-gray-200 px-6 py-5 dark:border-gray-800"
-      >
-        <dl className="mx-auto flex max-w-3xl flex-wrap justify-center gap-x-8 gap-y-2 text-center text-sm text-[#555] dark:text-[#aaa]">
-          <div className="flex items-center gap-1.5">
-            <dt className="font-semibold text-[#171717] dark:text-[#ededed]">
-              {festivalCount}
-            </dt>
-            <dd>festivals</dd>
-          </div>
-          <span aria-hidden="true" className="text-gray-300 dark:text-gray-600">
-            &middot;
-          </span>
-          <div className="flex items-center gap-1.5">
-            <dt className="font-semibold text-[#171717] dark:text-[#ededed]">
-              {activeCount}
-            </dt>
-            <dd>active</dd>
-          </div>
-          <span aria-hidden="true" className="text-gray-300 dark:text-gray-600">
-            &middot;
-          </span>
-          <div className="flex items-center gap-1.5">
-            <dt className="font-semibold text-[#171717] dark:text-[#ededed]">
-              {regionCount}
-            </dt>
-            <dd>regions covered</dd>
-          </div>
-        </dl>
       </section>
 
       <div className="mx-auto max-w-6xl px-4 py-12">

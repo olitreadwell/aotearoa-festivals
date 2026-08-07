@@ -3,6 +3,55 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ================================================================== */
+/* Shadcn UI Theme Variables                                           */
+/* ================================================================== */
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a1c1e;
+  --card: #ffffff;
+  --card-foreground: #1a1c1e;
+  --popover: #ffffff;
+  --popover-foreground: #1a1c1e;
+  --primary: #a3172e;
+  --primary-foreground: #ffffff;
+  --secondary: #f0d8a4;
+  --secondary-foreground: #6b4e0a;
+  --muted: #f5f5f5;
+  --muted-foreground: #6e747c;
+  --accent: #e0f3f7;
+  --accent-foreground: #0a4a54;
+  --destructive: #6b0f1e;
+  --destructive-foreground: #ffffff;
+  --border: #dadddf;
+  --input: #dadddf;
+  --ring: #a3172e;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --card: #111111;
+  --card-foreground: #ededed;
+  --popover: #111111;
+  --popover-foreground: #ededed;
+  --primary: #d94a5f;
+  --primary-foreground: #ffffff;
+  --secondary: #6b4e0a;
+  --secondary-foreground: #faf0e0;
+  --muted: #1a1a1a;
+  --muted-foreground: #a4a8b0;
+  --accent: #0a4a54;
+  --accent-foreground: #e0f3f7;
+  --destructive: #f0a4b2;
+  --destructive-foreground: #6b0f1e;
+  --border: #2a2a2a;
+  --input: #2a2a2a;
+  --ring: #d94a5f;
+}
+
+/* ================================================================== */
 /* Aotearoa Festivals — Tetradic Palette (WCAG 2.2 AAA)                */
 /* Pōhutukawa Crimson × Kōwhai Gold × Tangaroa Teal × Wao Green        */
 /* ================================================================== */
@@ -33,27 +82,6 @@
   --color-kohatu-200: #6e747c;
   --color-kohatu-300: #a4a8b0;
   --color-kohatu-400: #dadddf;
-}
-
-/* ================================================================== */
-/* Base theme                                                          */
-/* ================================================================== */
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-:root.dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
 }
 
 body {
