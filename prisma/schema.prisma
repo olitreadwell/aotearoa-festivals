@@ -102,6 +102,8 @@ model Festival {
   camping       Boolean?
   ticketPrice   String?
   ticketUrl     String?
+  latitude      Float?
+  longitude     Float?
 
   promoterId    String?
   promoter      Promoter?      @relation(fields: [promoterId], references: [id])
