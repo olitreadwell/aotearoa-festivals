@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
 
 export const revalidate = 3600;
 
@@ -164,6 +165,7 @@ export default async function ArtistDetailPage({ params }: PageProps) {
                         >
                           {entry.festival.name}
                         </Link>
+                        <FestivalStatusBadge status={entry.festival.status} />
                         {entry.isHeadliner && (
                           <span className="shrink-0 rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-700 dark:bg-amber-900/40 dark:text-amber-400">
                             Headliner
