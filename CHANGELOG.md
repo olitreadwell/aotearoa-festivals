@@ -19,6 +19,19 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Add `not-found.tsx` for artists/[slug] and promoters/[slug]
 - Widen Node engine to `>=22.17.1` (unblocks v24 LTS)
 - Expand BACKLOG.md with 18 code quality audit findings
+- Add metadata (title + description) to 9 pages previously missing it
+- Add OpenGraph images for home, artist detail, promoter detail, region detail
+- Add JSON-LD Festival schema markup on festival detail pages
+- Add `robots.ts` with sitemap reference
+- Add root `error.tsx` error boundary with retry button
+- Add `not-found.tsx` for artists/[slug] and promoters/[slug]
+- Add breadcrumb navigation to all listing pages (festivals, artists, promoters, regions, search)
+- Add `/about` page with project mission and contribution guide
+- Add Regions + About links to site navigation
+- Add `FestivalStatusBadge` to artist page festival history entries
+- Deduplicate REGION_LABELS in home page (~30 lines removed)
+- Enrich Twominds Festival seed data with real RA data (2024+2025 lineups, camping, cost)
+- BACKLOG: queue poster-to-lineup AI tool, artist discovery improvements, AI/automation section
 
 ## [Unreleased] — claude/dev
 
