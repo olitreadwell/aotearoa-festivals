@@ -86,6 +86,7 @@ export default async function SearchPage() {
     name: f.name,
     slug: f.slug,
     subtitle: [f.genre, formatRegion(f.region)].filter(Boolean).join(" · "),
+    status: f.status,
   }));
 
   const artistItems: SearchItem[] = artists.map((a) => ({
