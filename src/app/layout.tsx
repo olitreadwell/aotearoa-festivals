@@ -61,6 +61,16 @@ export default function RootLayout({
                 </Link>
               </li>
               <li>
+                <Link href="/regions" className="site-nav__link">
+                  Regions
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="site-nav__link">
+                  About
+                </Link>
+              </li>
+              <li>
                 <Link href="/search" className="site-nav__link">
                   Search
                 </Link>

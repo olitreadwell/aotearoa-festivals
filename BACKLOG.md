@@ -76,17 +76,38 @@ New policy (see README.md "Testing policy"): every feature gets unit + integrati
 ### Code Quality & Polish
 
 - [x] Extract FestivalStatusBadge component — eliminated 4 DRY violations _(done)_
-- [ ] ETA 90% Add metadata to 9 pages missing `generateMetadata` _(in progress)_
-- [ ] ETA 90% Add loading.tsx for pages missing it: artists, promoters, regions, search, home, subscribe, unsubscribe _(in progress)_
+- [x] Add metadata to 9 pages missing `generateMetadata` — all routes now have titles + descriptions _(done)_
+- [ ] Add loading.tsx for pages missing it: artists, promoters, regions, search, home, subscribe, unsubscribe
 - [x] Add error.tsx boundaries — root error boundary created _(done)_
 - [x] Add not-found.tsx for artists/[slug], promoters/[slug] _(done)_
 - [x] Add robots.ts with sitemap reference _(done)_
-- [ ] ETA 90% Add OpenGraph image for home page _(in progress)_
-- [ ] Add OpenGraph images for artists, promoters, regions detail pages (blocked: needs prisma generate)
-- [ ] Add JSON-LD structured data (Event schema) on festival detail pages (blocked: needs prisma generate)
-- [ ] Replace duplicate REGION_LABELS in home page with format.ts import
-- [ ] Add breadcrumb navigation to pages missing it: artists, promoters, regions, search, home
-- [ ] Add per-section layouts (e.g. festivals/layout.tsx with shared breadcrumbs + metadata)
+- [x] Add OpenGraph image for home page _(done)_
+- [ ] Add OpenGraph images for artists, promoters, regions detail pages
+- [ ] Add JSON-LD structured data (Event schema) on festival detail pages
+- [x] Replace duplicate REGION_LABELS in home page with format.ts import _(done)_
+- [x] Add FestivalStatusBadge to artist page festival history entries _(done)_
+- [x] Add OG images for artists, promoters, regions detail pages _(done)_
+- [x] Add JSON-LD Festival schema markup on festival detail pages _(done)_
+- [ ] ETA 80% Add breadcrumb navigation to pages missing it: festivals, artists, promoters, regions, search _(in progress — agent)_
+- [ ] ETA 60% Add loading.tsx for all routes _(in progress — agent)_
+- [ ] ETA 50% Upcoming vs past festival split on listing page _(in progress — agent)_
+- [ ] ETA 50% Map view of NZ festivals by region _(in progress — agent)_
+- [ ] ETA 10% Add artist + lineup seed data for discovery feature _(in progress — agent)_
+- [ ] ETA 0% Research: more backlog improvements _(in progress — librarian)_
+
+### AI & Automation
+
+- [ ] **Poster-to-lineup tool** — AI vision reads festival posters, extracts artist names + dates + venue, cross-references against existing artists, suggests new entries. Example: Twominds Festival 2024/2025 posters from RA. Use Claude Vision / GPT-4V API. Admin review before saving. Max value because RA blocks AI agents — manual data entry via posters is the workaround.
+- [ ] RA scraper integration — import RA event data (when accessible) to supplement lineup/festival records
+- [ ] Auto-slug generation from festival/artist names during data entry
+
+### Discovery & Engagement
+
+- [ ] ETA 10% Add artist + lineup seed data — artist-to-festival discovery flow exists in UI but has no data _(in progress — agent)_
+- [ ] Add "similar festivals" cross-linking on festival detail page based on shared genres/artists
+- [ ] Add "also played with" section on artist page showing other artists at same festivals
+- [ ] Add About page explaining the project and its mission
+- [ ] Add Contact page with submission guidelines
 
 ### Pages & Routes
 

@@ -202,15 +202,18 @@
     },
     {
       "name": "Twominds Festival",
-      "promoter": "",
+      "promoter": "Twominds",
       "status": "active",
-      "date": "12–14 Mar 2027",
+      "date": "14 Mar 2025",
       "region": "Canterbury",
-      "location": "Spencer Beach, Christchurch",
-      "genre": "Boutique, multi-genre",
-      "cost": "",
+      "location": "Spencer Beach Top 10 Holiday Park, 100 Heyders Road, Christchurch",
+      "genre": "Drum & Bass, House",
+      "cost": "$150 - $270",
       "links": "https://www.twomindsfestival.co.nz/",
-      "notes": ""
+      "notes": "2024 (2nd edition): Chaos In The CBD, SHERELLE, Eden Burns + 40+ local artists. 2025 (3rd edition): 66 artists across 5 hand-built stages. 18+. On-site camping with full facilities. Campervan passes.",
+      "vibe": "Boutique DnB and house weekender among the pines",
+      "camping": true,
+      "ticketPrice": "$150–$270"
     },
     {
       "name": "Great Sounds Great",
