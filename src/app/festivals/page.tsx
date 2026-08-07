@@ -6,6 +6,7 @@ import { FestivalStatus, Region } from "@/generated/prisma";
 import type { Festival, Promoter } from "@/generated/prisma";
 import Link from "next/link";
 import Pagination from "@/components/Pagination";
+import Breadcrumbs from "@/components/Breadcrumbs";
 import {
   REGION_LABELS,
   STATUS_LABELS,
@@ -100,6 +101,13 @@ export default async function FestivalsPage({
 
   return (
     <main className="mx-auto min-h-screen max-w-6xl px-4 py-8">
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Festivals" },
+        ]}
+      />
+
       {/* ------------------------------------------------------------------ */}
       {/* Header                                                              */}
       {/* ------------------------------------------------------------------ */}

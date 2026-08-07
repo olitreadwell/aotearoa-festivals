@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import type { Artist } from "@/generated/prisma";
 import Pagination from "@/components/Pagination";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const dynamic = "force-dynamic";
 
@@ -103,6 +104,13 @@ export default async function ArtistsPage({ searchParams }: PageProps) {
 
   return (
     <main className="mx-auto max-w-5xl px-6 py-12">
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Artists" },
+        ]}
+      />
+
       <div className="mb-8">
         <h1 className="text-3xl font-semibold tracking-tight">Artists</h1>
         <p className="mt-1 text-neutral-500 dark:text-neutral-400">

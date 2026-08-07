@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Pagination from "@/components/Pagination";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const dynamic = "force-dynamic";
 
@@ -40,6 +41,13 @@ export default async function PromotersPage({ searchParams }: PageProps) {
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Promoters" },
+        ]}
+      />
+
       <h1 className="text-3xl font-semibold tracking-tight">Promoters</h1>
       <p className="mt-2 text-neutral-500">{totalCount} promoters</p>
 
