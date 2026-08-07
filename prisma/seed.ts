@@ -167,6 +167,68 @@ async function main() {
     );
   }
 
+  // Seed artists
+  if (seedData.artists && seedData.artists.length > 0) {
+    console.log(`Seeding ${seedData.artists.length} artists...`);
+    for (const a of seedData.artists) {
+      const slug = slugify(a.name);
+      await prisma.artist.upsert({
+        where: { slug },
+        update: {
+          genre: a.genre || null,
+          homeCity: a.homeCity || null,
+          instagram: a.instagram || null,
+        },
+        create: {
+          name: a.name,
+          slug,
+          genre: a.genre || null,
+          homeCity: a.homeCity || null,
+          instagram: a.instagram || null,
+        },
+      });
+    }
+  }
+
+  // Seed lineup entries
+  if (seedData.lineups && seedData.lineups.length > 0) {
+    console.log(`Seeding ${seedData.lineups.length} lineup entries...`);
+    for (const l of seedData.lineups) {
+      const festival = await prisma.festival.findUnique({
+        where: { slug: slugify(l.festival) },
+      });
+      const artist = await prisma.artist.findUnique({
+        where: { slug: slugify(l.artist) },
+      });
+      if (festival && artist) {
+        await prisma.lineupEntry.upsert({
+          where: {
+            festivalId_artistId_year: {
+              festivalId: festival.id,
+              artistId: artist.id,
+              year: l.year,
+            },
+          },
+          update: {
+            isHeadliner: l.headliner ?? false,
+            source: l.source || null,
+          },
+          create: {
+            festivalId: festival.id,
+            artistId: artist.id,
+            year: l.year,
+            isHeadliner: l.headliner ?? false,
+            source: l.source || null,
+          },
+        });
+      } else {
+        console.warn(
+          `Skipping lineup: ${l.artist} @ ${l.festival} (${l.year}) — ${!festival ? "festival" : "artist"} not found`,
+        );
+      }
+    }
+  }
+
   console.log("Seed complete.");
 }
 

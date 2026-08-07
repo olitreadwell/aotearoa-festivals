@@ -1153,5 +1153,44 @@
       "site": "",
       "notes": "Free, 2-day community festival at Western Springs Park. 60000+ attendees. Council/Auckland Unlimited-run. Next edition 13-14 Mar 2027."
     }
+  ],
+  "artists": [
+    { "name": "Alison Wonderland", "genre": "Electronic / Bass", "homeCity": "Sydney, AU" },
+    { "name": "Andy C", "genre": "Drum & Bass", "homeCity": "London, UK" },
+    { "name": "Wilkinson", "genre": "Drum & Bass", "homeCity": "London, UK" },
+    { "name": "Sub Focus", "genre": "Drum & Bass", "homeCity": "London, UK" },
+    { "name": "Dimension", "genre": "Drum & Bass", "homeCity": "London, UK" },
+    { "name": "Chase and Status", "genre": "Drum & Bass", "homeCity": "London, UK" },
+    { "name": "Netsky", "genre": "Drum & Bass", "homeCity": "Belgium" },
+    { "name": "Flume", "genre": "Electronic", "homeCity": "Sydney, AU" },
+    { "name": "Dom Dolla", "genre": "House", "homeCity": "Melbourne, AU" },
+    { "name": "LAB", "genre": "Reggae / Dub", "homeCity": "Whakatāne" },
+    { "name": "Fat Freddys Drop", "genre": "Dub / Soul", "homeCity": "Wellington" },
+    { "name": "Shapeshifter", "genre": "Drum & Bass / Soul", "homeCity": "Christchurch" },
+    { "name": "Katchafire", "genre": "Reggae", "homeCity": "Hamilton" },
+    { "name": "Salmonella Dub", "genre": "Dub / Reggae", "homeCity": "Kaikōura" },
+    { "name": "Tiki Taane", "genre": "Dub / Drum & Bass", "homeCity": "Christchurch" }
+  ],
+  "lineups": [
+    { "festival": "Rhythm and Vines", "artist": "Alison Wonderland", "year": 2024, "headliner": true },
+    { "festival": "Rhythm and Vines", "artist": "Flume", "year": 2024, "headliner": true },
+    { "festival": "Rhythm and Vines", "artist": "Dom Dolla", "year": 2025, "headliner": true },
+    { "festival": "Northern Bass", "artist": "Andy C", "year": 2024, "headliner": true },
+    { "festival": "Northern Bass", "artist": "Andy C", "year": 2025, "headliner": true },
+    { "festival": "Northern Bass", "artist": "Wilkinson", "year": 2024, "headliner": false },
+    { "festival": "Northern Bass", "artist": "Sub Focus", "year": 2024, "headliner": true },
+    { "festival": "Northern Bass", "artist": "Dimension", "year": 2025, "headliner": false },
+    { "festival": "Northern Bass", "artist": "Alison Wonderland", "year": 2024, "headliner": false },
+    { "festival": "Bay Dreams", "artist": "Chase and Status", "year": 2024, "headliner": true },
+    { "festival": "Bay Dreams", "artist": "Netsky", "year": 2024, "headliner": false },
+    { "festival": "Bay Dreams", "artist": "Sub Focus", "year": 2025, "headliner": true },
+    { "festival": "Splore", "artist": "Fat Freddys Drop", "year": 2024, "headliner": true },
+    { "festival": "Splore", "artist": "LAB", "year": 2024, "headliner": false },
+    { "festival": "Splore", "artist": "Shapeshifter", "year": 2024, "headliner": true },
+    { "festival": "Soundsplash", "artist": "Katchafire", "year": 2025, "headliner": false },
+    { "festival": "Soundsplash", "artist": "LAB", "year": 2025, "headliner": true },
+    { "festival": "Soundsplash", "artist": "Salmonella Dub", "year": 2025, "headliner": false },
+    { "festival": "Soundsplash", "artist": "Tiki Taane", "year": 2024, "headliner": true },
+    { "festival": "Rhythm and Alps", "artist": "Shapeshifter", "year": 2024, "headliner": false }
   ]
 }
