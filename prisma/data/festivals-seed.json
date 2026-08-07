@@ -9,7 +9,7 @@
       "location": "Bay of Islands",
       "genre": "Jazz / Blues",
       "cost": "",
-      "links": "",
+      "links": "https://boimusicfestivals.com/",
       "notes": "Regional jazz and blues festival."
     },
     {
@@ -21,7 +21,7 @@
       "location": "Gisborne",
       "genre": "NYE / Multi-genre",
       "cost": "",
-      "links": "",
+      "links": "https://www.rhythmandvines.co.nz/",
       "notes": "One of NZ's biggest NYE festivals, running since 2003."
     },
     {
@@ -69,7 +69,7 @@
       "location": "Marton",
       "genre": "Country",
       "cost": "",
-      "links": "",
+      "links": "https://www.martonfestival.nz/",
       "notes": ""
     },
     {
@@ -153,7 +153,7 @@
       "location": "Cobb Valley, Upper Takaka",
       "genre": "NYE / Multi-genre, 4 stages",
       "cost": "",
-      "links": "",
+      "links": "https://www.twistedfrequency.co.nz/",
       "notes": ""
     },
     {
@@ -249,7 +249,7 @@
       "location": "Hagley Park, Christchurch",
       "genre": "Multi-genre",
       "cost": "",
-      "links": "",
+      "links": "https://electricavenuefestival.co.nz/",
       "notes": ""
     },
     {
@@ -285,7 +285,7 @@
       "location": "Tora coastline",
       "genre": "Boutique, community-led",
       "cost": "",
-      "links": "",
+      "links": "https://www.torabombora.co.nz/",
       "notes": "Returning after a 4-year hiatus. Capacity expanded to 2000. Tickets on sale 10 Aug 2026."
     },
     {
@@ -297,7 +297,7 @@
       "location": "Logan Park, Dunedin",
       "genre": "Electronic",
       "cost": "",
-      "links": "",
+      "links": "https://www.audiologytouring.com/festival/southern-sounds",
       "notes": ""
     },
     {
@@ -309,7 +309,7 @@
       "location": "Albert Park, Auckland",
       "genre": "DnB / Electronic, R18",
       "cost": "",
-      "links": "",
+      "links": "https://www.audiologytouring.com/festival/parklands",
       "notes": "Headliners: Hybrid Minds, Tempza."
     },
     {
@@ -429,7 +429,7 @@
       "location": "Tauranga Domain (+ South Island leg from 2019)",
       "genre": "Hip hop, urban, dance",
       "cost": "",
-      "links": "",
+      "links": "https://baydreams.co.nz/",
       "notes": "Ran 2016-2024. Called for hiatus from 2025, citing costs and difficulty securing headliners. Not officially declared dead."
     },
     {
@@ -731,6 +731,126 @@
       "cost": "",
       "links": "",
       "notes": "Sub180's other flagship event series."
+    },
+    {
+      "name": "Ultra New Zealand",
+      "promoter": "Audiology Touring",
+      "status": "active",
+      "date": "10 Apr 2026",
+      "region": "Wellington",
+      "location": "Wellington Waterfront",
+      "genre": "EDM / Electronic",
+      "cost": "",
+      "links": "https://ultranewzealand.com/",
+      "notes": "Inaugural NZ edition of the global Ultra brand. One-day, 18+, 4 stages. 30+ international artists including DJ Snake, The Chainsmokers, Zedd, Pendulum."
+    },
+    {
+      "name": "Synthony",
+      "promoter": "",
+      "status": "active",
+      "date": "Mar (21 Mar 2026; 20 Mar 2027)",
+      "region": "Auckland",
+      "location": "Auckland Domain",
+      "genre": "Classical / Electronic fusion",
+      "cost": "",
+      "links": "https://synthony.com/",
+      "notes": "Annual one-day festival with claimed ~40,000+ attendance — Australasia's largest by that measure. Full live orchestra performing EDM. Two stages, food/wine villages, amusement rides."
+    },
+    {
+      "name": "Snow Machine Festival",
+      "promoter": "",
+      "status": "active",
+      "date": "8–13 Sep 2026",
+      "region": "Otago",
+      "location": "Coronet Peak / The Remarkables, Queenstown",
+      "genre": "Electronic / EDM",
+      "cost": "",
+      "links": "https://nz.snow-machine.com/",
+      "notes": "Combines world-class electronic music with snow sports. 30+ artists across 8 stages. 2026 lineup includes Chet Faker, Illy, Ninajirachi, Kanine. Annual, 5th edition in 2026."
+    },
+    {
+      "name": "Te Matatini",
+      "promoter": "",
+      "status": "active",
+      "date": "22–27 Feb 2027",
+      "region": "Taranaki",
+      "location": "Pukekura Bowl of Brooklands, New Plymouth",
+      "genre": "Māori kapa haka / Cultural performing arts",
+      "cost": "",
+      "links": "https://tematatini.co.nz/",
+      "notes": "NZ's premier national kapa haka competition and celebration. Biennial (odd years only). Draws tens of thousands. 2027 edition confirmed for New Plymouth; not held in 2026."
+    },
+    {
+      "name": "World Buskers Festival",
+      "promoter": "",
+      "status": "active",
+      "date": "23 Jan – 1 Feb 2026",
+      "region": "Canterbury",
+      "location": "Cathedral Square and street venues, Christchurch",
+      "genre": "Street performance — music, comedy, acrobatics, circus",
+      "cost": "Free",
+      "links": "https://worldbuskersfestival.co.nz/",
+      "notes": "Annual 10-day free festival since 1993. 5 city pitches and 2 pop-up locations. International and local performers. Significant live music component."
+    },
+    {
+      "name": "Afterglow Festival",
+      "promoter": "",
+      "status": "active",
+      "date": "Jan 2027 (2026 was 24 Jan)",
+      "region": "Auckland",
+      "location": "Aotea / Great Barrier Island",
+      "genre": "Indie / Roots / Eclectic",
+      "cost": "",
+      "links": "https://afterglowfestival.nz/",
+      "notes": "All-NZ artist lineup. Billed as NZ's most remote music festival; community-focused, supports local Aotea economy. Debut ~2025."
+    },
+    {
+      "name": "Aotearoa New Zealand Festival of the Arts",
+      "promoter": "",
+      "status": "active",
+      "date": "24 Feb – 15 Mar 2026 (biennial; next ~2028)",
+      "region": "Wellington",
+      "location": "Wellington, various venues",
+      "genre": "Multi-arts (music, theatre, dance, interdisciplinary)",
+      "cost": "",
+      "links": "https://festival.nz/",
+      "notes": "Biennial, 40th anniversary edition in 2026. Co-directed by Tama Waipara and Dolina Wehipeihana. 150,000+ attendees since 1986."
+    },
+    {
+      "name": "Waiheke Jazz & Blues Festival",
+      "promoter": "",
+      "status": "active",
+      "date": "Easter weekend (2026 was 3–6 Apr), annual",
+      "region": "Auckland",
+      "location": "Goldie Estate and Batch Winery, Waiheke Island",
+      "genre": "Jazz / Blues",
+      "cost": "",
+      "links": "https://waihekejazzfestival.co.nz/",
+      "notes": "Four curated events across two island wineries: Good Friday Groove, Blues Revue, Jazz Sundowner, Jazz Long Lunch. Sells out every year."
+    },
+    {
+      "name": "Harbour Street Jazz & Blues Festival",
+      "promoter": "",
+      "status": "active",
+      "date": "20–22 Mar 2026 (Otago Anniversary Weekend, annual)",
+      "region": "Otago",
+      "location": "Victorian Precinct, Oamaru",
+      "genre": "Jazz / Blues",
+      "cost": "Free",
+      "links": "https://harbourstreetfestival.com/",
+      "notes": "Free to attend. 40+ musicians across indoor and street stages in Oamaru's heritage Victorian precinct."
+    },
+    {
+      "name": "Aum NYE Festival",
+      "promoter": "",
+      "status": "tbc",
+      "date": "Late Dec 2026 (NYE, exact TBC)",
+      "region": "Auckland",
+      "location": "Mangawhai area",
+      "genre": "Multi-genre / Arts / Wellness (electronic, live music, performance, healing)",
+      "cost": "",
+      "links": "",
+      "notes": "Family-friendly camping festival with themed nights, wellness zones, and multiple stages. Distinct from AUM Festival (South Head) and Northern Bass (also Mangawhai area)."
     }
   ],
   "promoters": [

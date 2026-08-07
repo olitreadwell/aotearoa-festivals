@@ -1,4 +1,8 @@
-import { PrismaClient, FestivalStatus, Region } from "../src/generated/prisma/index.js";
+import {
+  PrismaClient,
+  FestivalStatus,
+  Region,
+} from "../src/generated/prisma/index.js";
 import seedData from "./data/festivals-seed.json" with { type: "json" };
 
 const prisma = new PrismaClient();
@@ -83,7 +87,9 @@ async function main() {
 
   for (const f of seedData.festivals) {
     const slug = slugify(f.name);
-    let promoterId = f.promoter ? (promoterIdByName.get(f.promoter) ?? null) : null;
+    let promoterId = f.promoter
+      ? (promoterIdByName.get(f.promoter) ?? null)
+      : null;
 
     // Some historic festivals only ever had a founder's name recorded
     // (e.g. "Andrew McManus" for Raggamuffin), not a company/collective
@@ -131,7 +137,9 @@ async function main() {
   }
 
   if (autoCreatedPromoters > 0) {
-    console.warn(`${autoCreatedPromoters} festival(s) had a promoter name not in the curated list; auto-created a minimal Promoter row for it.`);
+    console.warn(
+      `${autoCreatedPromoters} festival(s) had a promoter name not in the curated list; auto-created a minimal Promoter row for it.`,
+    );
   }
 
   console.log("Seed complete.");
