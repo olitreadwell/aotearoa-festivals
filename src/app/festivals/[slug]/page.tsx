@@ -94,7 +94,38 @@ export default async function FestivalDetailPage({
   const sortedYears = Array.from(lineupByYear.keys()).sort((a, b) => b - a);
 
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Festival",
+            name: festival.name,
+            ...(festival.startDate && {
+              startDate: festival.startDate.toISOString().split("T")[0],
+            }),
+            ...(festival.endDate && {
+              endDate: festival.endDate.toISOString().split("T")[0],
+            }),
+            ...(festival.location && {
+              location: {
+                "@type": "Place",
+                name: festival.location,
+                ...(festival.region && {
+                  address: {
+                    "@type": "PostalAddress",
+                    addressRegion: festival.region,
+                  },
+                }),
+              },
+            }),
+            ...(festival.notes && { description: festival.notes }),
+            ...(festival.website && { sameAs: festival.website }),
+          }),
+        }}
+      />
+      <main className="mx-auto max-w-3xl px-6 py-16">
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },
@@ -303,5 +334,6 @@ export default async function FestivalDetailPage({
         </section>
       )}
     </main>
+    </>
   );
 }
