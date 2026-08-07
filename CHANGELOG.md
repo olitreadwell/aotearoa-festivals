@@ -13,6 +13,12 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Festival detail page shows vibe, camping, and ticket info when populated
 - Seed data validation tests for new optional fields
 - Seed data: Bay of Islands Jazz & Blues and Rhythm and Vines populated with new fields
+- Extract `FestivalStatusBadge` component — eliminates 4 DRY violations across home, festivals/[slug], promoters/[slug], regions/[region]
+- Add `robots.ts` with sitemap reference
+- Add root `error.tsx` error boundary with retry button
+- Add `not-found.tsx` for artists/[slug] and promoters/[slug]
+- Widen Node engine to `>=22.17.1` (unblocks v24 LTS)
+- Expand BACKLOG.md with 18 code quality audit findings
 
 ## [Unreleased] — claude/dev
 

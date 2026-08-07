@@ -76,13 +76,15 @@ New policy (see README.md "Testing policy"): every feature gets unit + integrati
 ### Code Quality & Polish
 
 - [x] Extract FestivalStatusBadge component — eliminated 4 DRY violations _(done)_
-- [ ] Add metadata to 8 pages missing `generateMetadata`/title/description: home, festivals listing, artists listing, promoters listing, regions listing, subscribe, subscribe/confirmed, unsubscribe pages
-- [ ] Add loading.tsx for pages missing it: artists, promoters, regions, search, home
-- [ ] Add error.tsx boundaries — zero exist across entire app
-- [ ] Add not-found.tsx for artists/[slug], promoters/[slug], search
-- [ ] Add robots.ts with sitemap reference
-- [ ] Add OpenGraph images for artists, promoters, regions, and home page
-- [ ] Add JSON-LD structured data (Event schema) on festival detail pages
+- [ ] ETA 90% Add metadata to 9 pages missing `generateMetadata` _(in progress)_
+- [ ] ETA 90% Add loading.tsx for pages missing it: artists, promoters, regions, search, home, subscribe, unsubscribe _(in progress)_
+- [x] Add error.tsx boundaries — root error boundary created _(done)_
+- [x] Add not-found.tsx for artists/[slug], promoters/[slug] _(done)_
+- [x] Add robots.ts with sitemap reference _(done)_
+- [ ] ETA 90% Add OpenGraph image for home page _(in progress)_
+- [ ] Add OpenGraph images for artists, promoters, regions detail pages (blocked: needs prisma generate)
+- [ ] Add JSON-LD structured data (Event schema) on festival detail pages (blocked: needs prisma generate)
+- [ ] Replace duplicate REGION_LABELS in home page with format.ts import
 - [ ] Add breadcrumb navigation to pages missing it: artists, promoters, regions, search, home
 - [ ] Add per-section layouts (e.g. festivals/layout.tsx with shared breadcrumbs + metadata)
 
