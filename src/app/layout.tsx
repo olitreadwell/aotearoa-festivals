@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   description:
     "New Zealand music festivals, promoters, and the artists who play them.",
   manifest: "/manifest.json",
+  icons: {
+    icon: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 export const viewport: Viewport = {
