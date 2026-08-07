@@ -88,7 +88,9 @@
       "genre": "Country",
       "cost": "",
       "links": "https://www.martonfestival.nz/",
-      "notes": ""
+      "notes": "",
+      "startDate": "2027-01-15",
+      "endDate": "2027-01-17"
     },
     {
       "name": "New Zealand Fringe Festival",
@@ -100,7 +102,9 @@
       "genre": "Arts, open-access",
       "cost": "",
       "links": "https://www.fringe.co.nz/",
-      "notes": "NZ's largest open-access arts festival."
+      "notes": "NZ's largest open-access arts festival.",
+      "startDate": "2027-03-01",
+      "endDate": "2027-03-28"
     },
     {
       "name": "WOMAD Aotearoa",
@@ -112,7 +116,9 @@
       "genre": "World music",
       "cost": "",
       "links": "https://www.womad.co.nz/",
-      "notes": ""
+      "notes": "",
+      "startDate": "2027-03-12",
+      "endDate": "2027-03-14"
     },
     {
       "name": "CubaDupa",
@@ -124,7 +130,9 @@
       "genre": "Free street festival",
       "cost": "Free",
       "links": "https://www.cubadupa.co.nz/",
-      "notes": ""
+      "notes": "",
+      "startDate": "2027-03-20",
+      "endDate": "2027-03-21"
     },
     {
       "name": "Jim Beam Homegrown",
@@ -136,7 +144,8 @@
       "genre": "Multi-genre (dub/roots, reggae, EDM, rock, pop, hip hop)",
       "cost": "",
       "links": "https://www.homegrown.net.nz/",
-      "notes": "Moved from Wellington to Hamilton for 2027."
+      "notes": "Moved from Wellington to Hamilton for 2027.",
+      "startDate": "2027-04-03"
     },
     {
       "name": "High Tide Festival",
@@ -148,7 +157,8 @@
       "genre": "Multi-genre",
       "cost": "",
       "links": "",
-      "notes": "Presented by Audiology Touring."
+      "notes": "Presented by Audiology Touring.",
+      "startDate": "2026-11-07"
     },
     {
       "name": "Wellington Jazz Festival",
@@ -160,7 +170,9 @@
       "genre": "Jazz",
       "cost": "",
       "links": "https://www.jazzfestival.nz/",
-      "notes": ""
+      "notes": "",
+      "startDate": "2026-10-14",
+      "endDate": "2026-10-18"
     },
     {
       "name": "Twisted Frequency",
@@ -186,7 +198,9 @@
       "genre": "Burning Man regional event",
       "cost": "",
       "links": "https://kiwiburn.com/",
-      "notes": "2027 theme: Moss and Microchips."
+      "notes": "2027 theme: Moss and Microchips.",
+      "startDate": "2027-02-01",
+      "endDate": "2027-02-28"
     },
     {
       "name": "Shipwrecked",
@@ -198,7 +212,9 @@
       "genre": "Music, arts, wellness",
       "cost": "",
       "links": "https://shipwrecked.co.nz/",
-      "notes": ""
+      "notes": "",
+      "startDate": "2027-02-12",
+      "endDate": "2027-02-14"
     },
     {
       "name": "Newtown Festival",
@@ -241,7 +257,8 @@
       "genre": "Multi-genre, 40 artists",
       "cost": "$119",
       "links": "https://www.eyegum.co.nz/great-sounds-great",
-      "notes": "Lineup incl. Bic Runga, Savage, Mokotron, Silicon."
+      "notes": "Lineup incl. Bic Runga, Savage, Mokotron, Silicon.",
+      "startDate": "2026-09-05"
     },
     {
       "name": "Carlucci Carnival",
@@ -253,7 +270,9 @@
       "genre": "Electronic, multi-stage",
       "cost": "",
       "links": "",
-      "notes": "Went in 2025."
+      "notes": "Went in 2025.",
+      "startDate": "2026-10-24",
+      "endDate": "2026-10-25"
     },
     {
       "name": "Soundsplash",
@@ -293,7 +312,9 @@
       "genre": "NYE / Underground electronic (house, techno, psytrance, DnB, bass)",
       "cost": "",
       "links": "https://www.aum.co.nz/",
-      "notes": "4 stages, 200+ artists."
+      "notes": "4 stages, 200+ artists.",
+      "startDate": "2026-12-30",
+      "endDate": "2027-01-02"
     },
     {
       "name": "Camp A Low Hum",
@@ -305,7 +326,9 @@
       "genre": "Underground / DIY, lineup never revealed in advance",
       "cost": "",
       "links": "https://www.alowhum.com/",
-      "notes": "Only goes ahead if 75%+ tickets sold by a set date."
+      "notes": "Only goes ahead if 75%+ tickets sold by a set date.",
+      "startDate": "2027-02-01",
+      "endDate": "2027-02-28"
     },
     {
       "name": "Tora Bombora",
@@ -317,7 +340,9 @@
       "genre": "Boutique, community-led",
       "cost": "",
       "links": "https://www.torabombora.co.nz/",
-      "notes": "Returning after a 4-year hiatus. Capacity expanded to 2000. Tickets on sale 10 Aug 2026."
+      "notes": "Returning after a 4-year hiatus. Capacity expanded to 2000. Tickets on sale 10 Aug 2026.",
+      "startDate": "2027-01-22",
+      "endDate": "2027-01-24"
     },
     {
       "name": "Southern Sounds",
@@ -329,7 +354,8 @@
       "genre": "Electronic",
       "cost": "",
       "links": "https://www.audiologytouring.com/festival/southern-sounds",
-      "notes": ""
+      "notes": "",
+      "startDate": "2026-09-19"
     },
     {
       "name": "Parklands Festival",
@@ -341,7 +367,8 @@
       "genre": "DnB / Electronic, R18",
       "cost": "",
       "links": "https://www.audiologytouring.com/festival/parklands",
-      "notes": "Headliners: Hybrid Minds, Tempza."
+      "notes": "Headliners: Hybrid Minds, Tempza.",
+      "startDate": "2026-11-14"
     },
     {
       "name": "Matakanarama",
@@ -353,7 +380,9 @@
       "genre": "NYE / Multi-genre",
       "cost": "",
       "links": "https://events.humanitix.com/matakanarama",
-      "notes": ""
+      "notes": "",
+      "startDate": "2026-12-29",
+      "endDate": "2027-01-01"
     },
     {
       "name": "Highlife NYE",
@@ -365,7 +394,9 @@
       "genre": "NYE / Boutique, dance",
       "cost": "",
       "links": "https://highlifenye.co.nz/",
-      "notes": "Strictly 23+. Vineyard setting."
+      "notes": "Strictly 23+. Vineyard setting.",
+      "startDate": "2026-12-31",
+      "endDate": "2027-01-01"
     },
     {
       "name": "Lakes Festival",
@@ -377,7 +408,8 @@
       "genre": "Electronic",
       "cost": "",
       "links": "https://www.lakesfestival.co.nz/",
-      "notes": "10 hours, international/national/local acts."
+      "notes": "10 hours, international/national/local acts.",
+      "startDate": "2026-12-28"
     },
     {
       "name": "8th Wonder",
@@ -389,7 +421,8 @@
       "genre": "Reggae, roots, soul, dub, R&B, Indigenous",
       "cost": "",
       "links": "",
-      "notes": "Inaugural edition."
+      "notes": "Inaugural edition.",
+      "startDate": "2027-01-23"
     },
     {
       "name": "Morph Festival",
@@ -401,7 +434,9 @@
       "genre": "Wellness, art & music",
       "cost": "",
       "links": "https://www.morphfest.com/",
-      "notes": "100+ workshops."
+      "notes": "100+ workshops.",
+      "startDate": "2027-03-25",
+      "endDate": "2027-03-28"
     },
     {
       "name": "Cross St Music Festival",
@@ -561,7 +596,9 @@
       "genre": "Electronic, single-stage (Astral Arena)",
       "cost": "",
       "links": "https://www.dimension.nz/",
-      "notes": "Needs 600 tickets sold by 1 Sep 2026 to proceed, otherwise fully refunded and cancelled."
+      "notes": "Needs 600 tickets sold by 1 Sep 2026 to proceed, otherwise fully refunded and cancelled.",
+      "startDate": "2027-02-05",
+      "endDate": "2027-02-08"
     },
     {
       "name": "TAHI Festival",
@@ -573,7 +610,9 @@
       "genre": "Solo performance / theatre (not music)",
       "cost": "",
       "links": "https://bats.co.nz/whats-on/tahi-festival-2025/",
-      "notes": "NZ's festival of solo performance, storytellers from established to emerging."
+      "notes": "NZ's festival of solo performance, storytellers from established to emerging.",
+      "startDate": "2026-09-10",
+      "endDate": "2026-09-20"
     },
     {
       "name": "Resonance Festival",
@@ -633,7 +672,9 @@
       "genre": "Community festival",
       "cost": "",
       "links": "https://www.brooklynfestival.co.nz/",
-      "notes": "Wellington suburb community festival, no 2026 date confirmed yet."
+      "notes": "Wellington suburb community festival, no 2026 date confirmed yet.",
+      "startDate": "2025-11-01",
+      "endDate": "2025-11-28"
     },
     {
       "name": "Omnishakti Festival",
@@ -645,7 +686,9 @@
       "genre": "Electronic, visual art, workshops",
       "cost": "",
       "links": "https://www.omnishakti.nz/",
-      "notes": "No editions found since 2021. Likely dormant or defunct."
+      "notes": "No editions found since 2021. Likely dormant or defunct.",
+      "startDate": "2021-02-01",
+      "endDate": "2021-02-28"
     },
     {
       "name": "Auckland City Limits",
@@ -693,7 +736,9 @@
       "genre": "Electronic music and art",
       "cost": "~$375 (2025 full ticket)",
       "links": "https://taniwhasden.nz/",
-      "notes": "Annual, east of Martinborough. 3 days, 2 nights camping."
+      "notes": "Annual, east of Martinborough. 3 days, 2 nights camping.",
+      "startDate": "2027-02-06",
+      "endDate": "2027-02-08"
     },
     {
       "name": "Le Currents",
@@ -705,7 +750,9 @@
       "genre": "Music, culture and arts",
       "cost": "",
       "links": "https://lecurrents.com/",
-      "notes": "Expanded to 2 days for 2026 (first time since launching 2020). Headliners: Ocean Alley, Fat Freddy's Drop, Carl Cox."
+      "notes": "Expanded to 2 days for 2026 (first time since launching 2020). Headliners: Ocean Alley, Fat Freddy's Drop, Carl Cox.",
+      "startDate": "2026-12-27",
+      "endDate": "2026-12-28"
     },
     {
       "name": "Octoblast",
@@ -717,7 +764,9 @@
       "genre": "Psytrance, techno, bass",
       "cost": "",
       "links": "https://audio-art.7am.events/",
-      "notes": "3 stages. Opus sound system, UV dance floor, projection mapping."
+      "notes": "3 stages. Opus sound system, UV dance floor, projection mapping.",
+      "startDate": "2026-10-22",
+      "endDate": "2026-10-25"
     },
     {
       "name": "Rolling Hertz",
@@ -794,7 +843,9 @@
       "genre": "Classical / Electronic fusion",
       "cost": "",
       "links": "https://synthony.com/",
-      "notes": "Annual one-day festival with claimed ~40,000+ attendance \u2014 Australasia's largest by that measure. Full live orchestra performing EDM. Two stages, food/wine villages, amusement rides."
+      "notes": "Annual one-day festival with claimed ~40,000+ attendance \u2014 Australasia's largest by that measure. Full live orchestra performing EDM. Two stages, food/wine villages, amusement rides.",
+      "startDate": "2026-03-01",
+      "endDate": "2026-03-28"
     },
     {
       "name": "Snow Machine Festival",
@@ -806,7 +857,9 @@
       "genre": "Electronic / EDM",
       "cost": "",
       "links": "https://nz.snow-machine.com/",
-      "notes": "Combines world-class electronic music with snow sports. 30+ artists across 8 stages. 2026 lineup includes Chet Faker, Illy, Ninajirachi, Kanine. Annual, 5th edition in 2026."
+      "notes": "Combines world-class electronic music with snow sports. 30+ artists across 8 stages. 2026 lineup includes Chet Faker, Illy, Ninajirachi, Kanine. Annual, 5th edition in 2026.",
+      "startDate": "2026-09-08",
+      "endDate": "2026-09-13"
     },
     {
       "name": "Te Matatini",
@@ -818,7 +871,9 @@
       "genre": "M\u0101ori kapa haka / Cultural performing arts",
       "cost": "",
       "links": "https://tematatini.co.nz/",
-      "notes": "NZ's premier national kapa haka competition and celebration. Biennial (odd years only). Draws tens of thousands. 2027 edition confirmed for New Plymouth; not held in 2026."
+      "notes": "NZ's premier national kapa haka competition and celebration. Biennial (odd years only). Draws tens of thousands. 2027 edition confirmed for New Plymouth; not held in 2026.",
+      "startDate": "2027-02-22",
+      "endDate": "2027-02-27"
     },
     {
       "name": "World Buskers Festival",
@@ -830,7 +885,9 @@
       "genre": "Street performance \u2014 music, comedy, acrobatics, circus",
       "cost": "Free",
       "links": "https://worldbuskersfestival.co.nz/",
-      "notes": "Annual 10-day free festival since 1993. 5 city pitches and 2 pop-up locations. International and local performers. Significant live music component."
+      "notes": "Annual 10-day free festival since 1993. 5 city pitches and 2 pop-up locations. International and local performers. Significant live music component.",
+      "startDate": "2026-02-01",
+      "endDate": "2026-02-28"
     },
     {
       "name": "Afterglow Festival",
@@ -842,7 +899,9 @@
       "genre": "Indie / Roots / Eclectic",
       "cost": "",
       "links": "https://afterglowfestival.nz/",
-      "notes": "All-NZ artist lineup. Billed as NZ's most remote music festival; community-focused, supports local Aotea economy. Debut ~2025."
+      "notes": "All-NZ artist lineup. Billed as NZ's most remote music festival; community-focused, supports local Aotea economy. Debut ~2025.",
+      "startDate": "2027-01-01",
+      "endDate": "2027-01-28"
     },
     {
       "name": "Aotearoa New Zealand Festival of the Arts",
@@ -854,7 +913,9 @@
       "genre": "Multi-arts (music, theatre, dance, interdisciplinary)",
       "cost": "",
       "links": "https://festival.nz/",
-      "notes": "Biennial, 40th anniversary edition in 2026. Co-directed by Tama Waipara and Dolina Wehipeihana. 150,000+ attendees since 1986."
+      "notes": "Biennial, 40th anniversary edition in 2026. Co-directed by Tama Waipara and Dolina Wehipeihana. 150,000+ attendees since 1986.",
+      "startDate": "2026-03-01",
+      "endDate": "2026-03-28"
     },
     {
       "name": "Waiheke Jazz & Blues Festival",
@@ -878,7 +939,9 @@
       "genre": "Jazz / Blues",
       "cost": "Free",
       "links": "https://harbourstreetfestival.com/",
-      "notes": "Free to attend. 40+ musicians across indoor and street stages in Oamaru's heritage Victorian precinct."
+      "notes": "Free to attend. 40+ musicians across indoor and street stages in Oamaru's heritage Victorian precinct.",
+      "startDate": "2026-03-20",
+      "endDate": "2026-03-22"
     },
     {
       "name": "Aum NYE Festival",
@@ -890,7 +953,9 @@
       "genre": "Multi-genre / Arts / Wellness (electronic, live music, performance, healing)",
       "cost": "",
       "links": "",
-      "notes": "Family-friendly camping festival with themed nights, wellness zones, and multiple stages. Distinct from AUM Festival (South Head) and Northern Bass (also Mangawhai area)."
+      "notes": "Family-friendly camping festival with themed nights, wellness zones, and multiple stages. Distinct from AUM Festival (South Head) and Northern Bass (also Mangawhai area).",
+      "startDate": "2026-12-01",
+      "endDate": "2026-12-28"
     }
   ],
   "promoters": [

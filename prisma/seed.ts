@@ -22,6 +22,8 @@ interface SeedFestival {
   ticketUrl?: string;
   latitude?: number | null;
   longitude?: number | null;
+  startDate?: string;
+  endDate?: string;
 }
 
 interface SeedArtist {
@@ -159,6 +161,8 @@ async function main() {
         ticketUrl: f.ticketUrl || null,
         latitude: f.latitude ?? null,
         longitude: f.longitude ?? null,
+        startDate: f.startDate ? new Date(f.startDate) : null,
+        endDate: f.endDate ? new Date(f.endDate) : null,
       },
       create: {
         name: f.name,
@@ -178,6 +182,8 @@ async function main() {
         ticketUrl: f.ticketUrl || null,
         latitude: f.latitude ?? null,
         longitude: f.longitude ?? null,
+        startDate: f.startDate ? new Date(f.startDate) : null,
+        endDate: f.endDate ? new Date(f.endDate) : null,
       },
     });
   }
