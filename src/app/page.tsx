@@ -7,11 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
 import { formatRegion, REGION_LABELS, STATUS_LABELS } from "@/lib/format";
-import dynamicImport from "next/dynamic";
-
-const HomeMap = dynamicImport(() => import("./_components/HomeMap"), {
-  ssr: false,
-});
+import HomeMap from "./_components/HomeMap";
 
 export const dynamic = "force-dynamic";
 
