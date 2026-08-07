@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
-export default function Redirect() {
+// All festival browsing is now on the unified home page
+export default function FestivalsPage() {
   redirect("/");
 }
