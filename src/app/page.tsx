@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
 import { formatRegion, REGION_LABELS, STATUS_LABELS } from "@/lib/format";
+import { Music, CalendarDays, MapPin, Ticket, Tent, Search } from "lucide-react";
 import HomeMap from "./_components/HomeMap";
 
 export const dynamic = "force-dynamic";
