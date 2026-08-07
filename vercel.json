@@ -3,6 +3,6 @@
     "autoJobCancelation": true
   },
   "buildCommand": "npm run vercel-build",
-  "outputDirectory": ".next",
+  "outputDirectory": "apps/web/.next",
   "installCommand": "npm install"
 }
