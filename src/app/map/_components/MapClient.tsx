@@ -119,7 +119,7 @@ export default function MapPage({ festivals }: { festivals: FestivalMarker[] }) 
       {/* Sidebar */}
       <aside className="flex w-full shrink-0 flex-col border-t border-neutral-200 bg-white dark:border-neutral-700 dark:bg-[#0a0a0a] lg:w-80 lg:border-l lg:border-t-0" aria-label="Festival list and filters">
         <div className="p-4">
-          <h1 className="text-xl font-bold sm:text-2xl">Festival Map</h1>
+          <h2 className="text-xl font-bold sm:text-2xl">Festival Map</h2>
           <p className="mt-0.5 text-sm text-neutral-500">{festivals.length} festivals mapped</p>
           <input
             type="search"
