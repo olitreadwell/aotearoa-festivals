@@ -207,7 +207,7 @@ export default async function Home({
       {/* Map + List Dashboard */}
       <div className="mx-auto flex max-w-full flex-col lg:flex-row">
         {/* Map */}
-        <div className="h-[40dvh] lg:h-auto lg:w-1/2">
+        <div className="lg:w-1/2">
           <HomeMap
             festivals={mapFestivals.map((f) => ({
               id: f.id,
