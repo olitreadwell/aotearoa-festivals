@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npx prisma generate && next build",
     "start": "next start",
     "lint": "eslint .",
     "format": "npx prettier --write \"src/**/*.{ts,tsx}\" \"e2e/**/*.ts\"",
@@ -23,7 +23,8 @@
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
-    "db:studio": "prisma studio"
+    "db:studio": "prisma studio",
+    "postinstall": "npx prisma generate"
   },
   "lint-staged": {
     "*.{ts,tsx,js,mjs,cjs,json,md,css,scss,yml,yaml}": "prettier --write",
