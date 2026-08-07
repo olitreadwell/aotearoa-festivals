@@ -50,4 +50,27 @@ describe("prisma/data/festivals-seed.json", () => {
     const collisions = [...seen.values()].filter((names) => names.length > 1);
     expect(collisions).toEqual([]);
   });
+
+  it.each(seedData.festivals.map((f) => [f.name, f] as const))(
+    "%s camping field is boolean or missing (null/undefined handled by seed script)",
+    (_name, festival) => {
+      const f = festival as Record<string, unknown>;
+      if ("camping" in f && f.camping !== null) {
+        expect(typeof f.camping).toBe("boolean");
+      }
+    },
+  );
+
+  it("has at least some festivals with the new detail fields populated", () => {
+    const fests = seedData.festivals as Array<Record<string, unknown>>;
+    const withVibe = fests.filter((f) => typeof f.vibe === "string" && f.vibe);
+    const withCamping = fests.filter((f) => typeof f.camping === "boolean");
+    const withTicketPrice = fests.filter(
+      (f) => typeof f.ticketPrice === "string" && f.ticketPrice,
+    );
+
+    expect(withVibe.length).toBeGreaterThan(0);
+    expect(withCamping.length).toBeGreaterThan(0);
+    expect(withTicketPrice.length).toBeGreaterThan(0);
+  });
 });

@@ -5,6 +5,15 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [Unreleased] — claude/feature-backlog-de73gs
+
+### Added
+
+- New Festival fields: `vibe` (genre/atmosphere summary), `camping` (boolean), `ticketPrice` (price range text), `ticketUrl` (ticketing link)
+- Festival detail page shows vibe, camping, and ticket info when populated
+- Seed data validation tests for new optional fields
+- Seed data: Bay of Islands Jazz & Blues and Rhythm and Vines populated with new fields
+
 ## [Unreleased] — claude/dev
 
 ### Iteration 3 additions:

@@ -44,18 +44,29 @@ _Updated automatically each loop iteration. Items move from Queued → In Progre
 
 ---
 
-## In Progress (Iteration 4 — test backfill)
+## In Progress (Iteration 4 — test backfill + new fields)
 
 New policy (see README.md "Testing policy"): every feature gets unit + integration + e2e + a11y + smoke coverage as close to 100% as the feature warrants, TDD/BDD workflow going forward. Backfilling the gap across iterations 1-3 before resuming new feature work.
 
 ### Tests & Infrastructure
 
-- [ ] Postgres service added to CI `test` job so integration tests can run against a real DB
 - [ ] Unit tests: `Breadcrumbs`, `Pagination`, `ThemeToggle` components
 - [ ] Integration tests: `/api/subscribe`, `/api/unsubscribe`, `calendar.ics`, `opengraph-image`, `feed.xml`, `sitemap.ts`
 - [ ] E2E: every page and iteration-3 feature (filters, pagination, breadcrumbs, dark mode, search)
 - [ ] A11y: axe checks expanded from home-page-only to every route
 - [ ] Smoke: broadened from home-page-only to every top-level route
+
+### Done (Iteration 4 — new fields)
+
+- [x] Postgres service added to CI `test` job so integration tests can run against a real DB (pre-existing)
+- [x] `vibe` field (String?) — genre/atmosphere summary on festival detail page
+- [x] `camping` field (Boolean?) — whether camping is available
+- [x] `ticketPrice` field (String?) — price range text
+- [x] `ticketUrl` field (String?) — ticketing link
+- [x] Schema migration: `add-festival-details`
+- [x] Seed data: Bay of Islands Jazz & Blues, Rhythm and Vines populated
+- [x] Detail page updated with new fields in meta grid
+- [x] Seed data validation tests for new fields
 
 ---
 

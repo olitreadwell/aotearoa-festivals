@@ -10,7 +10,11 @@
       "genre": "Jazz / Blues",
       "cost": "",
       "links": "https://boimusicfestivals.com/",
-      "notes": "Regional jazz and blues festival."
+      "notes": "Regional jazz and blues festival.",
+      "vibe": "Relaxed seaside jazz picnic",
+      "camping": false,
+      "ticketPrice": "$25–$60 per session",
+      "ticketUrl": "https://boimusicfestivals.com/"
     },
     {
       "name": "Rhythm and Vines",
@@ -22,7 +26,11 @@
       "genre": "NYE / Multi-genre",
       "cost": "",
       "links": "https://www.rhythmandvines.co.nz/",
-      "notes": "One of NZ's biggest NYE festivals, running since 2003."
+      "notes": "One of NZ's biggest NYE festivals, running since 2003.",
+      "vibe": "Iconic NYE in the vines — multi-genre party under the Gisborne sun",
+      "camping": true,
+      "ticketPrice": "$250–$450 (multi-day)",
+      "ticketUrl": "https://www.rhythmandvines.co.nz/"
     },
     {
       "name": "Rhythm and Alps",

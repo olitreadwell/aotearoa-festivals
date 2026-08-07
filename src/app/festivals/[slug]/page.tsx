@@ -154,6 +154,22 @@ export default async function FestivalDetailPage({
             <dd className="mt-0.5">{festival.genre}</dd>
           </div>
         )}
+        {festival.vibe && (
+          <div className="sm:col-span-2">
+            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
+              Vibe
+            </dt>
+            <dd className="mt-0.5">{festival.vibe}</dd>
+          </div>
+        )}
+        {festival.camping !== null && festival.camping !== undefined && (
+          <div>
+            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
+              Camping
+            </dt>
+            <dd className="mt-0.5">{festival.camping ? "Yes" : "No"}</dd>
+          </div>
+        )}
         {festival.dateText && (
           <div>
             <dt className="font-medium text-neutral-500 dark:text-neutral-400">
@@ -183,6 +199,34 @@ export default async function FestivalDetailPage({
                 className="inline-flex items-center gap-1 text-blue-600 hover:underline dark:text-blue-400"
               >
                 {festival.website.replace(/^https?:\/\//, "")}
+                <span aria-hidden="true">→</span>
+              </a>
+            </dd>
+          </div>
+        )}
+        {festival.ticketPrice && (
+          <div>
+            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
+              Tickets
+            </dt>
+            <dd className="mt-0.5">
+              {festival.ticketPrice}
+            </dd>
+          </div>
+        )}
+        {festival.ticketUrl && !festival.ticketPrice && (
+          <div>
+            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
+              Tickets
+            </dt>
+            <dd className="mt-0.5">
+              <a
+                href={festival.ticketUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-blue-600 hover:underline dark:text-blue-400"
+              >
+                Buy tickets
                 <span aria-hidden="true">→</span>
               </a>
             </dd>
