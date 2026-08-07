@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { Music } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 const NAV_LINKS: { href: string; label: string }[] = [];
@@ -13,6 +14,7 @@ export function SiteNav() {
     <header className="site-header" role="banner">
       <nav className="site-nav" aria-label="Main navigation">
         <Link href="/" className="site-nav__brand" aria-label="Aotearoa Festivals home">
+          <Music className="mr-2 inline-block h-5 w-5 text-primary" />
           Aotearoa Festivals
         </Link>
 
