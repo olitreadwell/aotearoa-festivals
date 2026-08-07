@@ -96,7 +96,7 @@ export function SearchClient({ items }: { items: SearchItem[] }) {
                     className={`mt-0.5 shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${
                       item.status === "ACTIVE"
                         ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-                        : item.status === "TBC"
+                        : item.status === "Dates TBC"
                           ? "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200"
                           : item.status === "HIATUS"
                             ? "bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300"

@@ -35,10 +35,10 @@ export function formatRegion(r: Region | null | undefined): string {
 // ---------------------------------------------------------------------------
 
 export const STATUS_LABELS: Record<FestivalStatus, string> = {
-  ACTIVE: "Active",
-  TBC: "TBC",
-  HIATUS: "Hiatus",
-  DEFUNCT: "Defunct",
+  ACTIVE: "Upcoming",
+  TBC: "Dates TBC",
+  HIATUS: "On break",
+  DEFUNCT: "Ended",
   UNCONFIRMED: "Unconfirmed",
 };
 
