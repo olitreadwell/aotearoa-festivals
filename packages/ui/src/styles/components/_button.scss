@@ -1,0 +1,89 @@
+@use '../abstracts/mixins' as *;
+@use '../abstracts/functions' as *;
+
+// .numeral-button — the canonical example of the hybrid styling pattern.
+//
+// What lives here (SCSS): component identity + variants + complex states.
+// What lives in Button.tsx (Tailwind via `cn()`): layout, spacing, conditional state.
+//
+// Variant axis: size (default | sm | lg), tone (primary | secondary | ghost).
+// Modifier classes are flat dash, prefixed: .numeral-button-{variant}.
+
+.numeral-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: pxToRem(15);
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    background-color var(--duration-200) var(--ease-in-out),
+    color var(--duration-200) var(--ease-in-out),
+    opacity var(--duration-200) var(--ease-in-out);
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  // --- Tone variants ---
+
+  &-primary {
+    background-color: var(--color-fg);
+    color: var(--color-bg);
+
+    @include hover {
+      &:not(:disabled):hover {
+        opacity: 0.85;
+      }
+    }
+  }
+
+  &-secondary {
+    background-color: transparent;
+    color: var(--color-fg);
+    box-shadow: inset 0 0 0 1px var(--color-border);
+
+    @include hover {
+      &:not(:disabled):hover {
+        background-color: var(--color-fg);
+        color: var(--color-bg);
+      }
+    }
+  }
+
+  &-ghost {
+    background-color: transparent;
+    color: var(--color-fg);
+
+    @include hover {
+      &:not(:disabled):hover {
+        background-color: var(--color-neutral-100);
+      }
+    }
+  }
+
+  // --- Size variants ---
+
+  &-sm {
+    padding: 0.5rem 0.875rem;
+    font-size: pxToRem(13);
+    border-radius: var(--radius-sm);
+  }
+
+  &-md {
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-md);
+  }
+
+  &-lg {
+    padding: 1rem 1.75rem;
+    font-size: pxToRem(16);
+    border-radius: var(--radius-md);
+  }
+}

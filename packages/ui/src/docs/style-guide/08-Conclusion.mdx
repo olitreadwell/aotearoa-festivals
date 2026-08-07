@@ -1,0 +1,34 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Style Guide/08 Conclusion" />
+
+# What good looks like
+
+A component file you can read in one breath. SCSS for what it *is*, Tailwind for where it *sits*, tokens for everything else.
+
+## The benefits
+
+- **Readability**: JSX tells the story; styling is named.
+- **Maintainability**: change a variant in one place; all instances follow.
+- **Theme consistency**: tokens are the source of truth. Brand swap = edit `tokens.css`.
+- **Onboarding**: new contributors learn one decision framework, not two competing rulebooks.
+- **AI compatibility**: predictable structure means AI-generated components match what humans write.
+
+## Things to remember
+
+- Tokens go in `packages/ui/src/tokens/tokens.css`. Everything reads from there.
+- The `cn()` helper enforces a readable order: identity → layout → state → override.
+- All custom classes start with `numeral-`. Always.
+- Folder mirror: `Component.tsx` ↔ `_component.scss`.
+- `@include hover` instead of bare `:hover` so touch devices don't suffer stale states.
+- `@media (prefers-reduced-motion)` is already handled globally — your transitions are safe.
+- The four-question decision framework lives at section 03. Re-read it once a quarter.
+
+## Where to go from here
+
+- **For components**: copy the `Button` pattern. Repeat.
+- **For pages**: lean on Tailwind utilities directly in the JSX. Use layout primitives (`Container`, `Section`, `Stack`) from `@numeral/ui` to keep spacing consistent.
+- **For interactivity**: install Radix primitives per project (`npm i @radix-ui/react-dialog`) and style them following the Button example.
+- **For forms**: copy the `ContactForm` shape — zod schema, RHF, server route uses the same schema. The pattern works for everything from newsletter signup to a full job application.
+
+That's the system. It's small on purpose.

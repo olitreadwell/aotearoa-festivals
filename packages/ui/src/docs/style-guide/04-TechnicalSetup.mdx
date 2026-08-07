@@ -1,0 +1,99 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Style Guide/04 Technical Setup" />
+
+# Technical Setup
+
+The three things every component file touches.
+
+## 1. Design tokens (single source of truth)
+
+All design tokens live as CSS custom properties on `:root`. Two consumers read the same values:
+
+- **Tailwind** via `@theme` directive in `apps/web/src/app/globals.css` — surfaces tokens as utility classes (`bg-fg`, `text-muted`, `rounded-md`).
+- **SCSS** via `var(--token-name)` — reads the same custom property directly.
+
+```css
+:root {
+  --color-fg: oklch(0.18 0 0);
+  --color-bg: oklch(0.985 0 0);
+  --spacing-lg: 2.34375rem;
+  --duration-200: 0.2s;
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+```
+
+Adding a token: edit `packages/ui/src/tokens/tokens.css`. It's available everywhere immediately.
+
+**The exception**: component-specific values that won't be reused (e.g. `animation-delay: 0.37s` for one unique timing) can use raw values inline.
+
+## 2. The `cn()` helper
+
+Use `cn()` to combine className sources in a readable order.
+
+```tsx
+import { cn } from '@numeral/ui';
+
+const cls = cn(
+  `numeral-button numeral-button-${variant}`,  // 1. SCSS identity + variants
+  'inline-flex items-center gap-2',            // 2. Tailwind layout
+  disabled && 'cursor-not-allowed',            // 3. Conditional state
+  className,                                   // 4. Caller's override
+);
+```
+
+`cn` does two things: filter falsy values (via `clsx`) and dedupe conflicting Tailwind classes (via `tailwind-merge`).
+
+Order signals intent. Identity first, position second, state third, override last.
+
+## 3. File structure (mirror)
+
+```
+src/
+  components/
+    Button.tsx
+  styles/
+    abstracts/
+      _breakpoints.scss
+      _mixins.scss
+      _functions.scss
+      _variables.scss
+      _typography.scss
+    components/
+      _button.scss
+    global/
+      _global.scss
+    main.scss
+```
+
+Every `Component.tsx` has a matching `_component.scss`. No exceptions for components big enough to need SCSS in the first place.
+
+The `main.scss` entry `@use`s everything in order. Consumers import `'@numeral/ui/styles'` once at the app root.
+
+## 4. SCSS abstracts you'll actually use
+
+- **`_breakpoints.scss`** — `$bp-360`, `$bp-640`, `$bp-768`, `$bp-1024`, `$bp-1280`, `$bp-1440`, `$bp-1850`
+- **`_mixins.scss`** — `breakpoint-below()`, `breakpoint-above()`, `breakpoint-between()`, `touch()`, `hover()`, `reduced-motion()`, `container-query-min/max()`, `keyframes()`, `animate()`
+- **`_functions.scss`** — `pxToRem()`, `fluid-px()`
+- **`_typography.scss`** — `.numeral-heading-*`, `.numeral-paragraph-*`, `.numeral-text-*`
+
+Examples:
+
+```scss
+@use '../abstracts/mixins' as *;
+@use '../abstracts/functions' as *;
+
+.numeral-card {
+  padding: var(--spacing-md);
+  font-size: pxToRem(16);
+
+  @include breakpoint-below($bp-768) {
+    padding: var(--spacing-sm);
+    font-size: pxToRem(14);
+  }
+
+  @include hover {
+    &:hover { transform: translateY(-2px); }
+  }
+}
+```

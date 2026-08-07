@@ -1,0 +1,71 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Style Guide/05 Naming Conventions" />
+
+# Naming Conventions
+
+Predictable names so anyone (including future you) can grep for a class and find its definition.
+
+## SCSS classes: BEM-flat-dash with prefix
+
+All custom classes start with `numeral-`. After that, **dashes only** — no double-dashes, no underscores, no camelCase.
+
+```
+.numeral-{component}                       // block
+.numeral-{component}-{element}             // element
+.numeral-{component}-{modifier}            // modifier
+.numeral-{component}-{element}-{modifier}  // nested
+```
+
+✅ Good:
+
+```scss
+.numeral-button
+.numeral-button-primary
+.numeral-button-sm
+.numeral-card-title
+.numeral-section-wrapper-blur
+```
+
+❌ Avoid:
+
+```scss
+.button                  // missing prefix — collides with WordPress, Bootstrap, etc.
+.numeral-button--primary // BEM double-dash — extra syntax, not used here
+.numeralButton           // camelCase — not for CSS
+.numeral_button          // underscores — not for CSS
+```
+
+The `numeral-` prefix is the contract. Replace it project-wide via the setup script when you fork the template for a client.
+
+## File names
+
+- Components: `PascalCase.tsx` → `ButtonGroup.tsx`
+- Styles: `kebab-case.scss` → `_button-group.scss` (note the leading underscore — SCSS partial)
+- Hooks: `use-{name}.ts` or `useThing.ts` (camelCase) — pick one per project and stick to it
+- Tests: `Component.test.tsx` co-located with the component
+- Stories: `Component.stories.tsx` co-located
+
+## Folder mirror
+
+`src/components/Component.tsx` ↔ `src/styles/components/_component.scss`.
+
+Mirroring is non-negotiable for components big enough to need SCSS. It makes "where's that style defined?" trivial.
+
+## Tailwind utilities
+
+No naming rules — they're public API of Tailwind. Just use the readability test: if the className wraps, escalate.
+
+## Tokens
+
+- CSS custom properties: `--{category}-{name}` — `--color-fg`, `--spacing-lg`, `--duration-200`
+- SCSS variables: `$bp-{number}` — `$bp-640`, `$bp-1280`
+- SCSS functions: `kebab-case` — `pxToRem`, `fluid-px`
+- SCSS mixins: `kebab-case` — `breakpoint-below`, `hover`, `reduced-motion`
+
+## TypeScript
+
+- Components: `PascalCase` exports
+- Props types: `ComponentNameProps` (e.g. `ButtonProps`, `CardHeaderProps`)
+- Zod schemas: `lowerCaseSchema` ending in `Schema` (e.g. `contactSchema`)
+- Inferred types: `PascalCase` matching the schema noun (e.g. `ContactInput`)

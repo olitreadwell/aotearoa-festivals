@@ -1,0 +1,27 @@
+@use 'sass:math';
+
+// Convert px → rem. Base font-size is 16px.
+//
+// Example:
+//   font-size: pxToRem(24);  // 1.5rem
+@function pxToRem($px) {
+  $base-font-size: 16;
+  @return #{math.div($px, $base-font-size)}rem;
+}
+
+// Linear viewport-based fluid value between $min-px and $max-px,
+// driven by viewport width between $min-vw and $max-vw.
+// Returns a clamp() value safe for font-size, padding, gap, etc.
+//
+// Example:
+//   font-size: fluid-px(16, 24);            // 16px @ 820vw → 24px @ 1800vw
+//   padding-block: fluid-px(40, 120, 600, 1440);
+@function fluid-px($min-px, $max-px, $min-vw: 820, $max-vw: 1800) {
+  $slope: math.div($max-px - $min-px, $max-vw - $min-vw);
+  $intercept: $min-px - $slope * $min-vw;
+  @return clamp(
+    #{pxToRem($min-px)},
+    calc(#{$intercept}px + #{$slope * 100}vw),
+    #{pxToRem($max-px)}
+  );
+}

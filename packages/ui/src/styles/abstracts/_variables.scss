@@ -1,0 +1,59 @@
+@use 'breakpoints' as *;
+@use 'mixins' as *;
+
+// Spacing tokens — published as CSS custom properties so both Tailwind
+// utilities and SCSS rules can read them.
+//
+// Outer / inner naming maps onto Rod's section pattern:
+//   --section-outside-space  → page padding (gutters)
+//   --section-inside-space   → padding inside section wrappers
+
+:root {
+  --section-outside-space: 1.5625rem; // 25px
+  --section-inside-space: calc(var(--section-outside-space) * 3); // 75px
+  --section-horizontal-gap: calc(var(--section-outside-space) * 1.5); // 37.5px
+
+  --spacing-4xl: 4.21875rem; // 67.5px
+  --spacing-3xl: 3.75rem; //    60px
+  --spacing-2xl: 3.28125rem; // 52.5px
+  --spacing-xl: 2.8125rem; //   45px
+  --spacing-lg: 2.34375rem; //  37.5px
+  --spacing-md: 2.1875rem; //   35px
+  --spacing-sm: 1.875rem; //    30px
+  --spacing-xs: 1.5625rem; //   25px
+
+  // Layout wrappers (max-widths)
+  --layout-narrow: 37.5rem; //   600px
+  --layout-default: 75rem; //   1200px
+  --layout-wide: 90rem; //      1440px
+  --layout-full: 100rem; //     1600px
+
+  // Durations
+  --duration-150: 0.15s;
+  --duration-200: 0.2s;
+  --duration-300: 0.3s;
+  --duration-500: 0.5s;
+
+  // Easings
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  // Layout outside-space scales fluidly between 20px and 100px
+  // across viewports 400px → 1800px.
+  --layout-outside-space: clamp(1.25rem, calc(0.357rem + 2.232vw), 6.25rem);
+
+  @include breakpoint-below($bp-1850) {
+    --section-outside-space: 1.5625rem;
+    --section-inside-space: calc(var(--section-outside-space) * 2.5);
+  }
+
+  @include breakpoint-below($bp-1024) {
+    --section-outside-space: 1.25rem;
+    --section-inside-space: calc(var(--section-outside-space) * 2);
+  }
+
+  @include breakpoint-below($bp-640) {
+    --section-outside-space: 1rem;
+    --section-inside-space: calc(var(--section-outside-space) * 1.5);
+  }
+}
