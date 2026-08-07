@@ -4,7 +4,6 @@ import { prisma } from "@/lib/prisma";
 import { FestivalStatus, Region } from "@/generated/prisma";
 import { formatRegion, STATUS_LABELS } from "@/lib/format";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
 
 export const metadata: Metadata = {
   title: "Calendar — Aotearoa Festivals",
@@ -30,7 +29,7 @@ export default async function CalendarPage({
   const festivals = await prisma.festival.findMany({
     where: {
       approved: true,
-      startDate: { not: null },
+      startDate: { gte: new Date("2024-01-01") },
       ...(validRegion ? { region: validRegion } : {}),
       ...(validStatus ? { status: validStatus } : {}),
       ...(genre ? { genre: { contains: genre, mode: "insensitive" as const } } : {}),

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Offline — Aotearoa Festivals",
@@ -13,12 +14,12 @@ export default function OfflinePage() {
           Aotearoa Festivals works offline. Browse festivals you&apos;ve
           visited before, or reconnect to discover new ones.
         </p>
-        <a
+        <Link
           href="/"
-          className="rounded-lg bg-blue-600 px-5 py-2 text-sm font-medium text-white hover:bg-blue-700"
+          className="inline-block rounded-lg bg-blue-600 px-5 py-2 text-sm font-medium text-white hover:bg-blue-700"
         >
           Go home
-        </a>
+        </Link>
       </div>
     </main>
   );

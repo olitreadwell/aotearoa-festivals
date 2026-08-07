@@ -13,7 +13,7 @@ function slugify(name: string): string {
 // POST: Extract artists from poster image using Claude Vision
 export async function POST(request: Request) {
   try {
-    const { imageUrl, festival, year } = await request.json();
+    const { imageUrl, festival } = await request.json();
 
     if (!imageUrl || !festival) {
       return NextResponse.json(
