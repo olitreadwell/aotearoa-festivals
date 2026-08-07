@@ -42,9 +42,11 @@ export default async function FestivalsPage({
     region?: string;
     status?: string;
     genre?: string;
+    camping?: string;
+    location?: string;
   }>;
 }) {
-  const { region, status } = await searchParams;
+  const { region, status, genre, camping, location } = await searchParams;
 
   const validRegion =
     region && Object.values(Region).includes(region as Region)
@@ -60,6 +62,9 @@ export default async function FestivalsPage({
     approved: true,
     ...(validRegion ? { region: validRegion } : {}),
     ...(validStatus ? { status: validStatus } : {}),
+    ...(genre ? { genre: { contains: genre, mode: "insensitive" as const } } : {}),
+    ...(camping === "yes" ? { camping: true } : camping === "no" ? { camping: false } : {}),
+    ...(location ? { location: { contains: location, mode: "insensitive" as const } } : {}),
   };
 
   const now = new Date();
