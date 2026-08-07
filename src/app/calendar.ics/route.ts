@@ -14,6 +14,7 @@ export async function GET() {
     where: {
       approved: true,
       status: { in: [FestivalStatus.ACTIVE, FestivalStatus.TBC] },
+      startDate: { gte: new Date() },
     },
     orderBy: { startDate: "asc" },
     select: {
