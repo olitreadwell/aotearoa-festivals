@@ -97,6 +97,9 @@ New policy (see README.md "Testing policy"): every feature gets unit + integrati
 
 ### AI & Automation
 
+### AI & Automation
+
+- [ ] **Eventfinda API integration** — fetch NZ festival/event data from https://api.eventfinda.co.nz/v2/events.json. Basic auth via `.env` credentials. Map events to Festival model fields (name, date, venue, genre, cost). Handle pagination, rate limiting, deduplication. Requires `EVENTFINDA_USERNAME` and `EVENTFINDA_PASSWORD` in `.env`.
 - [ ] **Poster-to-lineup tool** — AI vision reads festival posters, extracts artist names + dates + venue, cross-references against existing artists, suggests new entries. Example: Twominds Festival 2024/2025 posters from RA. Use Claude Vision / GPT-4V API. Admin review before saving. Max value because RA blocks AI agents — manual data entry via posters is the workaround.
 - [ ] RA scraper integration — import RA event data (when accessible) to supplement lineup/festival records
 - [ ] Auto-slug generation from festival/artist names during data entry
