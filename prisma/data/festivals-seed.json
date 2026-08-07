@@ -4,7 +4,7 @@
       "name": "Bay of Islands Jazz & Blues Festival",
       "promoter": "",
       "status": "active",
-      "date": "7–9 Aug 2026",
+      "date": "7\u20139 Aug 2026",
       "region": "Northland",
       "location": "Bay of Islands",
       "genre": "Jazz / Blues",
@@ -13,67 +13,77 @@
       "notes": "Regional jazz and blues festival.",
       "vibe": "Relaxed seaside jazz picnic",
       "camping": false,
-      "ticketPrice": "$25–$60 per session",
-      "ticketUrl": "https://boimusicfestivals.com/"
+      "ticketPrice": "$25\u2013$60 per session",
+      "ticketUrl": "https://boimusicfestivals.com/",
+      "latitude": -35.28,
+      "longitude": 174.09
     },
     {
       "name": "Rhythm and Vines",
       "promoter": "",
       "status": "active",
-      "date": "28 Dec 2026 – 1 Jan 2027",
+      "date": "28 Dec 2026 \u2013 1 Jan 2027",
       "region": "Gisborne",
       "location": "Gisborne",
       "genre": "NYE / Multi-genre",
       "cost": "",
       "links": "https://www.rhythmandvines.co.nz/",
       "notes": "One of NZ's biggest NYE festivals, running since 2003.",
-      "vibe": "Iconic NYE in the vines — multi-genre party under the Gisborne sun",
+      "vibe": "Iconic NYE in the vines \u2014 multi-genre party under the Gisborne sun",
       "camping": true,
-      "ticketPrice": "$250–$450 (multi-day)",
-      "ticketUrl": "https://www.rhythmandvines.co.nz/"
+      "ticketPrice": "$250\u2013$450 (multi-day)",
+      "ticketUrl": "https://www.rhythmandvines.co.nz/",
+      "latitude": -38.66,
+      "longitude": 178.02
     },
     {
       "name": "Rhythm and Alps",
       "promoter": "",
       "status": "active",
-      "date": "30–31 Dec 2026",
+      "date": "30\u201331 Dec 2026",
       "region": "Otago",
-      "location": "Cardrona Valley, Wānaka",
+      "location": "Cardrona Valley, W\u0101naka",
       "genre": "NYE / Electronic, hip-hop, alt",
       "cost": "",
       "links": "https://rhythmandalps.co.nz/",
-      "notes": "At Robrosa Station."
+      "notes": "At Robrosa Station.",
+      "latitude": -44.88,
+      "longitude": 169.01
     },
     {
       "name": "Northern Bass",
       "promoter": "Fuzen NZ",
       "status": "active",
-      "date": "30–31 Dec 2026",
+      "date": "30\u201331 Dec 2026",
       "region": "Northland",
       "location": "Kaiwaka / Mangawhai",
       "genre": "NYE / DnB, dubstep, house, techno",
       "cost": "",
       "links": "https://northernbass.co.nz/",
-      "notes": "15th anniversary edition. Run by @fuzennz."
+      "notes": "15th anniversary edition. Run by @fuzennz.",
+      "latitude": -36.15,
+      "longitude": 174.43
     },
     {
       "name": "Rolling Meadows",
       "promoter": "",
       "status": "active",
-      "date": "29–31 Dec 2026",
+      "date": "29\u201331 Dec 2026",
       "region": "Canterbury",
       "location": "240 Lower Styx Road, Bottle Lake, Christchurch",
       "genre": "Multi-genre (DnB, dance, pop, hip hop)",
       "cost": "",
       "links": "https://rollingmeadows.co.nz/",
-      "notes": "6th year in Christchurch. 3 stages (Meadows, SUB180, Canopy). 2026 lineup incl. Alison Wonderland, Andy C, Clean Bandit, Example, Friction, JME."
+      "notes": "6th year in Christchurch. 3 stages (Meadows, SUB180, Canopy). 2026 lineup incl. Alison Wonderland, Andy C, Clean Bandit, Example, Friction, JME.",
+      "latitude": -43.49,
+      "longitude": 172.72
     },
     {
       "name": "Marton Country Music Festival",
       "promoter": "",
       "status": "active",
-      "date": "15–17 Jan 2027",
-      "region": "Manawatū-Whanganui",
+      "date": "15\u201317 Jan 2027",
+      "region": "Manawat\u016b-Whanganui",
       "location": "Marton",
       "genre": "Country",
       "cost": "",
@@ -84,7 +94,7 @@
       "name": "New Zealand Fringe Festival",
       "promoter": "",
       "status": "active",
-      "date": "12 Feb – 6 Mar 2027",
+      "date": "12 Feb \u2013 6 Mar 2027",
       "region": "Wellington",
       "location": "Wellington, various venues",
       "genre": "Arts, open-access",
@@ -96,7 +106,7 @@
       "name": "WOMAD Aotearoa",
       "promoter": "",
       "status": "active",
-      "date": "12–14 Mar 2027",
+      "date": "12\u201314 Mar 2027",
       "region": "Taranaki",
       "location": "Bowl of Brooklands, New Plymouth",
       "genre": "World music",
@@ -108,7 +118,7 @@
       "name": "CubaDupa",
       "promoter": "",
       "status": "active",
-      "date": "20–21 Mar 2027",
+      "date": "20\u201321 Mar 2027",
       "region": "Wellington",
       "location": "Cuba Street, Wellington",
       "genre": "Free street festival",
@@ -144,7 +154,7 @@
       "name": "Wellington Jazz Festival",
       "promoter": "",
       "status": "active",
-      "date": "14–18 Oct 2026",
+      "date": "14\u201318 Oct 2026",
       "region": "Wellington",
       "location": "Wellington, various venues",
       "genre": "Jazz",
@@ -156,20 +166,22 @@
       "name": "Twisted Frequency",
       "promoter": "",
       "status": "active",
-      "date": "30 Dec 2026 – 3 Jan 2027",
+      "date": "30 Dec 2026 \u2013 3 Jan 2027",
       "region": "Tasman",
       "location": "Cobb Valley, Upper Takaka",
       "genre": "NYE / Multi-genre, 4 stages",
       "cost": "",
       "links": "https://www.twistedfrequency.co.nz/",
-      "notes": ""
+      "notes": "",
+      "latitude": -41.12,
+      "longitude": 172.68
     },
     {
       "name": "Kiwiburn",
       "promoter": "",
       "status": "active",
-      "date": "27 Jan – 1 Feb 2027",
-      "region": "Manawatū-Whanganui",
+      "date": "27 Jan \u2013 1 Feb 2027",
+      "region": "Manawat\u016b-Whanganui",
       "location": "Hunterville",
       "genre": "Burning Man regional event",
       "cost": "",
@@ -180,7 +192,7 @@
       "name": "Shipwrecked",
       "promoter": "",
       "status": "active",
-      "date": "12–14 Feb 2027",
+      "date": "12\u201314 Feb 2027",
       "region": "Auckland",
       "location": "Te Arai",
       "genre": "Music, arts, wellness",
@@ -198,7 +210,9 @@
       "genre": "Free community street festival",
       "cost": "Free",
       "links": "https://www.newtownfestival.org.nz/",
-      "notes": ""
+      "notes": "",
+      "latitude": -41.32,
+      "longitude": 174.77
     },
     {
       "name": "Twominds Festival",
@@ -213,7 +227,9 @@
       "notes": "2024 (2nd edition): Chaos In The CBD, SHERELLE, Eden Burns + 40+ local artists. 2025 (3rd edition): 66 artists across 5 hand-built stages. 18+. On-site camping with full facilities. Campervan passes.",
       "vibe": "Boutique DnB and house weekender among the pines",
       "camping": true,
-      "ticketPrice": "$150–$270"
+      "ticketPrice": "$150\u2013$270",
+      "latitude": -43.47,
+      "longitude": 172.72
     },
     {
       "name": "Great Sounds Great",
@@ -231,7 +247,7 @@
       "name": "Carlucci Carnival",
       "promoter": "",
       "status": "active",
-      "date": "24–25 Oct 2026",
+      "date": "24\u201325 Oct 2026",
       "region": "Wellington",
       "location": "Carlucci Land, Wellington",
       "genre": "Electronic, multi-stage",
@@ -243,31 +259,35 @@
       "name": "Soundsplash",
       "promoter": "",
       "status": "active",
-      "date": "22–24 Jan 2027",
+      "date": "22\u201324 Jan 2027",
       "region": "Waikato",
       "location": "Wainui Reserve, Raglan",
       "genre": "Boutique, multi-genre",
       "cost": "",
       "links": "https://soundsplash.co.nz/",
-      "notes": "All-ages."
+      "notes": "All-ages.",
+      "latitude": -37.79,
+      "longitude": 175.28
     },
     {
       "name": "Electric Avenue Music Festival",
       "promoter": "",
       "status": "active",
-      "date": "26–27 Feb 2027",
+      "date": "26\u201327 Feb 2027",
       "region": "Canterbury",
       "location": "Hagley Park, Christchurch",
       "genre": "Multi-genre",
       "cost": "",
       "links": "https://electricavenuefestival.co.nz/",
-      "notes": ""
+      "notes": "",
+      "latitude": -43.53,
+      "longitude": 172.62
     },
     {
       "name": "AUM Festival",
       "promoter": "",
       "status": "active",
-      "date": "30 Dec 2026 – 2 Jan 2027",
+      "date": "30 Dec 2026 \u2013 2 Jan 2027",
       "region": "Auckland",
       "location": "Leighton's Farm, South Head",
       "genre": "NYE / Underground electronic (house, techno, psytrance, DnB, bass)",
@@ -279,7 +299,7 @@
       "name": "Camp A Low Hum",
       "promoter": "A Low Hum",
       "status": "active",
-      "date": "Mid–late Feb 2027 (exact TBC)",
+      "date": "Mid\u2013late Feb 2027 (exact TBC)",
       "region": "Wellington",
       "location": "Camp Wainui, Wainuiomata",
       "genre": "Underground / DIY, lineup never revealed in advance",
@@ -291,7 +311,7 @@
       "name": "Tora Bombora",
       "promoter": "",
       "status": "active",
-      "date": "22–24 Jan 2027",
+      "date": "22\u201324 Jan 2027",
       "region": "Wairarapa",
       "location": "Tora coastline",
       "genre": "Boutique, community-led",
@@ -327,7 +347,7 @@
       "name": "Matakanarama",
       "promoter": "",
       "status": "active",
-      "date": "29 Dec 2026 – 1 Jan 2027",
+      "date": "29 Dec 2026 \u2013 1 Jan 2027",
       "region": "Auckland",
       "location": "Cape Rodney Road, Leigh",
       "genre": "NYE / Multi-genre",
@@ -339,7 +359,7 @@
       "name": "Highlife NYE",
       "promoter": "",
       "status": "active",
-      "date": "31 Dec 2026 – 1 Jan 2027",
+      "date": "31 Dec 2026 \u2013 1 Jan 2027",
       "region": "Auckland",
       "location": "Waiheke Island",
       "genre": "NYE / Boutique, dance",
@@ -375,9 +395,9 @@
       "name": "Morph Festival",
       "promoter": "",
       "status": "active",
-      "date": "25–28 Mar 2027",
+      "date": "25\u201328 Mar 2027",
       "region": "Auckland",
-      "location": "Kumeū Showgrounds, Auckland (2027 venue not yet confirmed)",
+      "location": "Kume\u016b Showgrounds, Auckland (2027 venue not yet confirmed)",
       "genre": "Wellness, art & music",
       "cost": "",
       "links": "https://www.morphfest.com/",
@@ -425,11 +445,13 @@
       "status": "defunct",
       "date": "Ended Feb 2026",
       "region": "Auckland",
-      "location": "Tāpapakanga Regional Park",
+      "location": "T\u0101papakanga Regional Park",
       "genre": "Music, arts, camping",
       "cost": "~$420 adult / $220 youth / free under-12",
       "links": "https://www.splore.net/",
-      "notes": "Ran 1998-2026 (28 years), NZ's longest-running music/arts/camping festival. Ended for good after cost-of-living-driven low ticket sales."
+      "notes": "Ran 1998-2026 (28 years), NZ's longest-running music/arts/camping festival. Ended for good after cost-of-living-driven low ticket sales.",
+      "latitude": -36.79,
+      "longitude": 175.04
     },
     {
       "name": "Bay Dreams",
@@ -441,7 +463,9 @@
       "genre": "Hip hop, urban, dance",
       "cost": "",
       "links": "https://baydreams.co.nz/",
-      "notes": "Ran 2016-2024. Called for hiatus from 2025, citing costs and difficulty securing headliners. Not officially declared dead."
+      "notes": "Ran 2016-2024. Called for hiatus from 2025, citing costs and difficulty securing headliners. Not officially declared dead.",
+      "latitude": -37.68,
+      "longitude": 176.16
     },
     {
       "name": "One Love Festival",
@@ -457,11 +481,11 @@
     },
     {
       "name": "Rippon Festival / Tuki Festival",
-      "promoter": "Lake Wānaka SouNZ",
+      "promoter": "Lake W\u0101naka SouNZ",
       "status": "hiatus",
       "date": "No edition since 2020",
       "region": "Otago",
-      "location": "Rippon Vineyard / Glendhu Bay, Wānaka",
+      "location": "Rippon Vineyard / Glendhu Bay, W\u0101naka",
       "genre": "NZ homegrown showcase",
       "cost": "",
       "links": "",
@@ -497,7 +521,7 @@
       "status": "defunct",
       "date": "Ended early 2000s",
       "region": "Tasman",
-      "location": "Canaan Downs, Tākaka",
+      "location": "Canaan Downs, T\u0101kaka",
       "genre": "Early NZ electronic / goa trance",
       "cost": "",
       "links": "https://thegathering.co.nz/",
@@ -509,7 +533,7 @@
       "status": "unconfirmed",
       "date": "Last confirmed mid-2010s",
       "region": "Waikato / Northland",
-      "location": "Tapu, Coromandel (previously Tangihua Forest, Whangārei)",
+      "location": "Tapu, Coromandel (previously Tangihua Forest, Whang\u0101rei)",
       "genre": "Electronica, indie/experimental, psytrance/DIY",
       "cost": "",
       "links": "https://chronophonium.tv/",
@@ -521,7 +545,7 @@
       "status": "unconfirmed",
       "date": "Unclear, dates not recent",
       "region": "Waikato",
-      "location": "Great Lake Taupō",
+      "location": "Great Lake Taup\u014d",
       "genre": "Yoga + live music",
       "cost": "",
       "links": "",
@@ -531,7 +555,7 @@
       "name": "Dimension Festival",
       "promoter": "",
       "status": "active",
-      "date": "5–8 Feb 2027",
+      "date": "5\u20138 Feb 2027",
       "region": "Northland",
       "location": "Northland",
       "genre": "Electronic, single-stage (Astral Arena)",
@@ -543,7 +567,7 @@
       "name": "TAHI Festival",
       "promoter": "",
       "status": "active",
-      "date": "10–20 Sep 2026",
+      "date": "10\u201320 Sep 2026",
       "region": "Wellington",
       "location": "Wellington",
       "genre": "Solo performance / theatre (not music)",
@@ -677,7 +701,7 @@
       "status": "active",
       "date": "27-28 Dec 2026",
       "region": "Waikato",
-      "location": "Riverside Park, Taupō",
+      "location": "Riverside Park, Taup\u014d",
       "genre": "Music, culture and arts",
       "cost": "",
       "links": "https://lecurrents.com/",
@@ -756,7 +780,9 @@
       "notes": "Inaugural NZ edition of the global Ultra brand. One-day, 18+, 4 stages. 30+ international artists including DJ Snake, The Chainsmokers, Zedd, Pendulum.",
       "vibe": "World-class EDM spectacle on the waterfront",
       "camping": false,
-      "ticketPrice": "$180–$300"
+      "ticketPrice": "$180\u2013$300",
+      "latitude": -41.29,
+      "longitude": 174.78
     },
     {
       "name": "Synthony",
@@ -768,13 +794,13 @@
       "genre": "Classical / Electronic fusion",
       "cost": "",
       "links": "https://synthony.com/",
-      "notes": "Annual one-day festival with claimed ~40,000+ attendance — Australasia's largest by that measure. Full live orchestra performing EDM. Two stages, food/wine villages, amusement rides."
+      "notes": "Annual one-day festival with claimed ~40,000+ attendance \u2014 Australasia's largest by that measure. Full live orchestra performing EDM. Two stages, food/wine villages, amusement rides."
     },
     {
       "name": "Snow Machine Festival",
       "promoter": "",
       "status": "active",
-      "date": "8–13 Sep 2026",
+      "date": "8\u201313 Sep 2026",
       "region": "Otago",
       "location": "Coronet Peak / The Remarkables, Queenstown",
       "genre": "Electronic / EDM",
@@ -786,10 +812,10 @@
       "name": "Te Matatini",
       "promoter": "",
       "status": "active",
-      "date": "22–27 Feb 2027",
+      "date": "22\u201327 Feb 2027",
       "region": "Taranaki",
       "location": "Pukekura Bowl of Brooklands, New Plymouth",
-      "genre": "Māori kapa haka / Cultural performing arts",
+      "genre": "M\u0101ori kapa haka / Cultural performing arts",
       "cost": "",
       "links": "https://tematatini.co.nz/",
       "notes": "NZ's premier national kapa haka competition and celebration. Biennial (odd years only). Draws tens of thousands. 2027 edition confirmed for New Plymouth; not held in 2026."
@@ -798,10 +824,10 @@
       "name": "World Buskers Festival",
       "promoter": "",
       "status": "active",
-      "date": "23 Jan – 1 Feb 2026",
+      "date": "23 Jan \u2013 1 Feb 2026",
       "region": "Canterbury",
       "location": "Cathedral Square and street venues, Christchurch",
-      "genre": "Street performance — music, comedy, acrobatics, circus",
+      "genre": "Street performance \u2014 music, comedy, acrobatics, circus",
       "cost": "Free",
       "links": "https://worldbuskersfestival.co.nz/",
       "notes": "Annual 10-day free festival since 1993. 5 city pitches and 2 pop-up locations. International and local performers. Significant live music component."
@@ -822,7 +848,7 @@
       "name": "Aotearoa New Zealand Festival of the Arts",
       "promoter": "",
       "status": "active",
-      "date": "24 Feb – 15 Mar 2026 (biennial; next ~2028)",
+      "date": "24 Feb \u2013 15 Mar 2026 (biennial; next ~2028)",
       "region": "Wellington",
       "location": "Wellington, various venues",
       "genre": "Multi-arts (music, theatre, dance, interdisciplinary)",
@@ -834,7 +860,7 @@
       "name": "Waiheke Jazz & Blues Festival",
       "promoter": "",
       "status": "active",
-      "date": "Easter weekend (2026 was 3–6 Apr), annual",
+      "date": "Easter weekend (2026 was 3\u20136 Apr), annual",
       "region": "Auckland",
       "location": "Goldie Estate and Batch Winery, Waiheke Island",
       "genre": "Jazz / Blues",
@@ -846,7 +872,7 @@
       "name": "Harbour Street Jazz & Blues Festival",
       "promoter": "",
       "status": "active",
-      "date": "20–22 Mar 2026 (Otago Anniversary Weekend, annual)",
+      "date": "20\u201322 Mar 2026 (Otago Anniversary Weekend, annual)",
       "region": "Otago",
       "location": "Victorian Precinct, Oamaru",
       "genre": "Jazz / Blues",
@@ -1141,7 +1167,7 @@
     {
       "name": "ASB Polyfest",
       "region": "Auckland",
-      "genre": "Pasifika / Māori schools cultural festival, since 1976",
+      "genre": "Pasifika / M\u0101ori schools cultural festival, since 1976",
       "ig": "",
       "fb": "https://www.facebook.com/asbpolyfest",
       "site": "https://asbpolyfest.co.nz/",
@@ -1158,163 +1184,871 @@
     }
   ],
   "artists": [
-    { "name": "Alison Wonderland", "genre": "Electronic / Bass", "homeCity": "Sydney, AU" },
-    { "name": "Andy C", "genre": "Drum & Bass", "homeCity": "London, UK" },
-    { "name": "Wilkinson", "genre": "Drum & Bass", "homeCity": "London, UK" },
-    { "name": "Sub Focus", "genre": "Drum & Bass", "homeCity": "London, UK" },
-    { "name": "Dimension", "genre": "Drum & Bass", "homeCity": "London, UK" },
-    { "name": "Chase and Status", "genre": "Drum & Bass", "homeCity": "London, UK" },
-    { "name": "Netsky", "genre": "Drum & Bass", "homeCity": "Belgium" },
-    { "name": "Flume", "genre": "Electronic", "homeCity": "Sydney, AU" },
-    { "name": "Dom Dolla", "genre": "House", "homeCity": "Melbourne, AU" },
-    { "name": "LAB", "genre": "Reggae / Dub", "homeCity": "Whakatāne" },
-    { "name": "Fat Freddys Drop", "genre": "Dub / Soul", "homeCity": "Wellington" },
-    { "name": "Shapeshifter", "genre": "Drum & Bass / Soul", "homeCity": "Christchurch" },
-    { "name": "Katchafire", "genre": "Reggae", "homeCity": "Hamilton" },
-    { "name": "Salmonella Dub", "genre": "Dub / Reggae", "homeCity": "Kaikōura" },
-    { "name": "Tiki Taane", "genre": "Dub / Drum & Bass", "homeCity": "Christchurch" },
-    { "name": "Ice Spice", "genre": "Hip Hop / Rap", "homeCity": "NYC, US" },
-    { "name": "Sammy Virji", "genre": "UK Garage / Bass", "homeCity": "London, UK" },
-    { "name": "Luude", "genre": "Electronic / Drum & Bass", "homeCity": "Sydney, AU" },
-    { "name": "RL Grime", "genre": "Trap / Bass", "homeCity": "LA, US" },
-    { "name": "Meduza", "genre": "House", "homeCity": "Italy" },
-    { "name": "Koven", "genre": "Drum & Bass", "homeCity": "London, UK" },
-    { "name": "Pendulum", "genre": "Drum & Bass", "homeCity": "Perth, AU" },
-    { "name": "Shy FX", "genre": "Drum & Bass", "homeCity": "London, UK" },
-    { "name": "Peking Duk", "genre": "Electronic", "homeCity": "Canberra, AU" },
-    { "name": "Dope Lemon", "genre": "Indie", "homeCity": "Sydney, AU" },
-    { "name": "Sachi", "genre": "Electronic", "homeCity": "Auckland" },
-    { "name": "Corrella", "genre": "Roots / Reggae", "homeCity": "Auckland" },
-    { "name": "Lee Mvtthews", "genre": "Drum & Bass", "homeCity": "Auckland" },
-    { "name": "Coterie", "genre": "Roots / Reggae", "homeCity": "Perth, AU" },
-    { "name": "Sir Dave Dobbyn", "genre": "Rock / Pop", "homeCity": "Auckland" },
-    { "name": "Oppidan", "genre": "UK Garage", "homeCity": "London, UK" },
-    { "name": "Hannah Laing", "genre": "House / Techno", "homeCity": "Dundee, UK" },
-    { "name": "Grafix", "genre": "Drum & Bass", "homeCity": "London, UK" },
-    { "name": "Eloise", "genre": "Drum & Bass", "homeCity": "Wellington" },
-    { "name": "Messie", "genre": "Electronic / Pop", "homeCity": "Gisborne" },
-    { "name": "Elipsa", "genre": "Drum & Bass", "homeCity": "Bristol, UK" },
-    { "name": "Lady Shaka", "genre": "Global Club", "homeCity": "London, UK" },
-    { "name": "LSB", "genre": "Drum & Bass", "homeCity": "London, UK" },
-    { "name": "Mia Koden", "genre": "Bass / UKG", "homeCity": "London, UK" },
-    { "name": "Midland", "genre": "House / Techno", "homeCity": "London, UK" },
-    { "name": "Becky Hill", "genre": "Pop / Dance", "homeCity": "London, UK" },
-    { "name": "Basement Jaxx", "genre": "House / Electronic", "homeCity": "London, UK" },
-    { "name": "The Streets", "genre": "UK Garage / Hip Hop", "homeCity": "Birmingham, UK" },
-    { "name": "Supergroove", "genre": "Rock / Funk", "homeCity": "Auckland" },
-    { "name": "Maverick Sabre", "genre": "Soul / R&B", "homeCity": "London, UK" },
-    { "name": "Leisure", "genre": "Indie / Electronic", "homeCity": "Auckland" },
-    { "name": "Sudan Archives", "genre": "Electronic / R&B", "homeCity": "LA, US" },
-    { "name": "Kesha", "genre": "Pop", "homeCity": "LA, US" },
-    { "name": "Ocean Alley", "genre": "Indie / Rock", "homeCity": "Sydney, AU" },
-    { "name": "Leftfield", "genre": "Electronic", "homeCity": "London, UK" },
-    { "name": "Royksopp", "genre": "Electronic", "homeCity": "Norway" },
-    { "name": "Kora", "genre": "Roots / Reggae", "homeCity": "Whakatāne" },
-    { "name": "Jalen Ngonda", "genre": "Soul", "homeCity": "NYC, US" },
-    { "name": "Split Enz", "genre": "Rock / Pop", "homeCity": "Auckland" },
-    { "name": "Flux Pavilion", "genre": "Dubstep / Electronic", "homeCity": "London, UK" },
-    { "name": "Kings of the Rollers", "genre": "Drum & Bass", "homeCity": "London, UK" },
-    { "name": "A-Trak", "genre": "Hip Hop / Electronic", "homeCity": "Montreal, CA" },
-    { "name": "Degs", "genre": "Drum & Bass", "homeCity": "London, UK" },
-    { "name": "DJ Hazard", "genre": "Drum & Bass", "homeCity": "London, UK" },
-    { "name": "DJ Hype", "genre": "Drum & Bass", "homeCity": "London, UK" },
-    { "name": "Flava", "genre": "Drum & Bass", "homeCity": "Auckland" },
-    { "name": "The Upbeats", "genre": "Drum & Bass", "homeCity": "Wellington" },
-    { "name": "State of Mind", "genre": "Drum & Bass", "homeCity": "Auckland" },
-    { "name": "Turno", "genre": "Drum & Bass", "homeCity": "London, UK" },
-    { "name": "Ciko", "genre": "Drum & Bass", "homeCity": "Auckland" },
-    { "name": "Damage Control", "genre": "Drum & Bass", "homeCity": "Christchurch" },
-    { "name": "Young Franco", "genre": "House", "homeCity": "Brisbane, AU" },
-    { "name": "Cassie Henderson", "genre": "Drum & Bass", "homeCity": "Auckland" },
-    { "name": "Charlotte Plank", "genre": "Drum & Bass", "homeCity": "London, UK" },
-    { "name": "Frankie Venter", "genre": "Pop", "homeCity": "Auckland" },
-    { "name": "Frank Booker", "genre": "House / Disco", "homeCity": "Auckland" },
-    { "name": "Dick Johnson", "genre": "House / Techno", "homeCity": "Auckland" }
+    {
+      "name": "Alison Wonderland",
+      "genre": "Electronic / Bass",
+      "homeCity": "Sydney, AU"
+    },
+    {
+      "name": "Andy C",
+      "genre": "Drum & Bass",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "Wilkinson",
+      "genre": "Drum & Bass",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "Sub Focus",
+      "genre": "Drum & Bass",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "Dimension",
+      "genre": "Drum & Bass",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "Chase and Status",
+      "genre": "Drum & Bass",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "Netsky",
+      "genre": "Drum & Bass",
+      "homeCity": "Belgium"
+    },
+    {
+      "name": "Flume",
+      "genre": "Electronic",
+      "homeCity": "Sydney, AU"
+    },
+    {
+      "name": "Dom Dolla",
+      "genre": "House",
+      "homeCity": "Melbourne, AU"
+    },
+    {
+      "name": "LAB",
+      "genre": "Reggae / Dub",
+      "homeCity": "Whakat\u0101ne"
+    },
+    {
+      "name": "Fat Freddys Drop",
+      "genre": "Dub / Soul",
+      "homeCity": "Wellington"
+    },
+    {
+      "name": "Shapeshifter",
+      "genre": "Drum & Bass / Soul",
+      "homeCity": "Christchurch"
+    },
+    {
+      "name": "Katchafire",
+      "genre": "Reggae",
+      "homeCity": "Hamilton"
+    },
+    {
+      "name": "Salmonella Dub",
+      "genre": "Dub / Reggae",
+      "homeCity": "Kaik\u014dura"
+    },
+    {
+      "name": "Tiki Taane",
+      "genre": "Dub / Drum & Bass",
+      "homeCity": "Christchurch"
+    },
+    {
+      "name": "Ice Spice",
+      "genre": "Hip Hop / Rap",
+      "homeCity": "NYC, US"
+    },
+    {
+      "name": "Sammy Virji",
+      "genre": "UK Garage / Bass",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "Luude",
+      "genre": "Electronic / Drum & Bass",
+      "homeCity": "Sydney, AU"
+    },
+    {
+      "name": "RL Grime",
+      "genre": "Trap / Bass",
+      "homeCity": "LA, US"
+    },
+    {
+      "name": "Meduza",
+      "genre": "House",
+      "homeCity": "Italy"
+    },
+    {
+      "name": "Koven",
+      "genre": "Drum & Bass",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "Pendulum",
+      "genre": "Drum & Bass",
+      "homeCity": "Perth, AU"
+    },
+    {
+      "name": "Shy FX",
+      "genre": "Drum & Bass",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "Peking Duk",
+      "genre": "Electronic",
+      "homeCity": "Canberra, AU"
+    },
+    {
+      "name": "Dope Lemon",
+      "genre": "Indie",
+      "homeCity": "Sydney, AU"
+    },
+    {
+      "name": "Sachi",
+      "genre": "Electronic",
+      "homeCity": "Auckland"
+    },
+    {
+      "name": "Corrella",
+      "genre": "Roots / Reggae",
+      "homeCity": "Auckland"
+    },
+    {
+      "name": "Lee Mvtthews",
+      "genre": "Drum & Bass",
+      "homeCity": "Auckland"
+    },
+    {
+      "name": "Coterie",
+      "genre": "Roots / Reggae",
+      "homeCity": "Perth, AU"
+    },
+    {
+      "name": "Sir Dave Dobbyn",
+      "genre": "Rock / Pop",
+      "homeCity": "Auckland"
+    },
+    {
+      "name": "Oppidan",
+      "genre": "UK Garage",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "Hannah Laing",
+      "genre": "House / Techno",
+      "homeCity": "Dundee, UK"
+    },
+    {
+      "name": "Grafix",
+      "genre": "Drum & Bass",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "Eloise",
+      "genre": "Drum & Bass",
+      "homeCity": "Wellington"
+    },
+    {
+      "name": "Messie",
+      "genre": "Electronic / Pop",
+      "homeCity": "Gisborne"
+    },
+    {
+      "name": "Elipsa",
+      "genre": "Drum & Bass",
+      "homeCity": "Bristol, UK"
+    },
+    {
+      "name": "Lady Shaka",
+      "genre": "Global Club",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "LSB",
+      "genre": "Drum & Bass",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "Mia Koden",
+      "genre": "Bass / UKG",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "Midland",
+      "genre": "House / Techno",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "Becky Hill",
+      "genre": "Pop / Dance",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "Basement Jaxx",
+      "genre": "House / Electronic",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "The Streets",
+      "genre": "UK Garage / Hip Hop",
+      "homeCity": "Birmingham, UK"
+    },
+    {
+      "name": "Supergroove",
+      "genre": "Rock / Funk",
+      "homeCity": "Auckland"
+    },
+    {
+      "name": "Maverick Sabre",
+      "genre": "Soul / R&B",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "Leisure",
+      "genre": "Indie / Electronic",
+      "homeCity": "Auckland"
+    },
+    {
+      "name": "Sudan Archives",
+      "genre": "Electronic / R&B",
+      "homeCity": "LA, US"
+    },
+    {
+      "name": "Kesha",
+      "genre": "Pop",
+      "homeCity": "LA, US"
+    },
+    {
+      "name": "Ocean Alley",
+      "genre": "Indie / Rock",
+      "homeCity": "Sydney, AU"
+    },
+    {
+      "name": "Leftfield",
+      "genre": "Electronic",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "Royksopp",
+      "genre": "Electronic",
+      "homeCity": "Norway"
+    },
+    {
+      "name": "Kora",
+      "genre": "Roots / Reggae",
+      "homeCity": "Whakat\u0101ne"
+    },
+    {
+      "name": "Jalen Ngonda",
+      "genre": "Soul",
+      "homeCity": "NYC, US"
+    },
+    {
+      "name": "Split Enz",
+      "genre": "Rock / Pop",
+      "homeCity": "Auckland"
+    },
+    {
+      "name": "Flux Pavilion",
+      "genre": "Dubstep / Electronic",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "Kings of the Rollers",
+      "genre": "Drum & Bass",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "A-Trak",
+      "genre": "Hip Hop / Electronic",
+      "homeCity": "Montreal, CA"
+    },
+    {
+      "name": "Degs",
+      "genre": "Drum & Bass",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "DJ Hazard",
+      "genre": "Drum & Bass",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "DJ Hype",
+      "genre": "Drum & Bass",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "Flava",
+      "genre": "Drum & Bass",
+      "homeCity": "Auckland"
+    },
+    {
+      "name": "The Upbeats",
+      "genre": "Drum & Bass",
+      "homeCity": "Wellington"
+    },
+    {
+      "name": "State of Mind",
+      "genre": "Drum & Bass",
+      "homeCity": "Auckland"
+    },
+    {
+      "name": "Turno",
+      "genre": "Drum & Bass",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "Ciko",
+      "genre": "Drum & Bass",
+      "homeCity": "Auckland"
+    },
+    {
+      "name": "Damage Control",
+      "genre": "Drum & Bass",
+      "homeCity": "Christchurch"
+    },
+    {
+      "name": "Young Franco",
+      "genre": "House",
+      "homeCity": "Brisbane, AU"
+    },
+    {
+      "name": "Cassie Henderson",
+      "genre": "Drum & Bass",
+      "homeCity": "Auckland"
+    },
+    {
+      "name": "Charlotte Plank",
+      "genre": "Drum & Bass",
+      "homeCity": "London, UK"
+    },
+    {
+      "name": "Frankie Venter",
+      "genre": "Pop",
+      "homeCity": "Auckland"
+    },
+    {
+      "name": "Frank Booker",
+      "genre": "House / Disco",
+      "homeCity": "Auckland"
+    },
+    {
+      "name": "Dick Johnson",
+      "genre": "House / Techno",
+      "homeCity": "Auckland"
+    }
   ],
   "lineups": [
-    { "festival": "Rhythm and Vines", "artist": "Alison Wonderland", "year": 2024, "headliner": true },
-    { "festival": "Rhythm and Vines", "artist": "Flume", "year": 2024, "headliner": true },
-    { "festival": "Rhythm and Vines", "artist": "Dom Dolla", "year": 2025, "headliner": true },
-    { "festival": "Northern Bass", "artist": "Andy C", "year": 2024, "headliner": true },
-    { "festival": "Northern Bass", "artist": "Andy C", "year": 2025, "headliner": true },
-    { "festival": "Northern Bass", "artist": "Wilkinson", "year": 2024, "headliner": false },
-    { "festival": "Northern Bass", "artist": "Sub Focus", "year": 2024, "headliner": true },
-    { "festival": "Northern Bass", "artist": "Dimension", "year": 2025, "headliner": false },
-    { "festival": "Northern Bass", "artist": "Alison Wonderland", "year": 2024, "headliner": false },
-    { "festival": "Bay Dreams", "artist": "Chase and Status", "year": 2024, "headliner": true },
-    { "festival": "Bay Dreams", "artist": "Netsky", "year": 2024, "headliner": false },
-    { "festival": "Bay Dreams", "artist": "Sub Focus", "year": 2025, "headliner": true },
-    { "festival": "Splore", "artist": "Fat Freddys Drop", "year": 2024, "headliner": true },
-    { "festival": "Splore", "artist": "LAB", "year": 2024, "headliner": false },
-    { "festival": "Splore", "artist": "Shapeshifter", "year": 2024, "headliner": true },
-    { "festival": "Soundsplash", "artist": "Katchafire", "year": 2025, "headliner": false },
-    { "festival": "Soundsplash", "artist": "LAB", "year": 2025, "headliner": true },
-    { "festival": "Soundsplash", "artist": "Salmonella Dub", "year": 2025, "headliner": false },
-    { "festival": "Soundsplash", "artist": "Tiki Taane", "year": 2024, "headliner": true },
-    { "festival": "Rhythm and Alps", "artist": "Shapeshifter", "year": 2024, "headliner": false },
-    { "festival": "Rhythm and Vines", "artist": "Ice Spice", "year": 2024, "headliner": true },
-    { "festival": "Rhythm and Vines", "artist": "Sammy Virji", "year": 2024, "headliner": true },
-    { "festival": "Rhythm and Vines", "artist": "Luude", "year": 2024, "headliner": true },
-    { "festival": "Rhythm and Vines", "artist": "RL Grime", "year": 2024, "headliner": true },
-    { "festival": "Rhythm and Vines", "artist": "Meduza", "year": 2024, "headliner": true },
-    { "festival": "Rhythm and Vines", "artist": "Koven", "year": 2024, "headliner": true },
-    { "festival": "Rhythm and Vines", "artist": "Pendulum", "year": 2024, "headliner": true },
-    { "festival": "Rhythm and Vines", "artist": "Peking Duk", "year": 2024, "headliner": true },
-    { "festival": "Rhythm and Vines", "artist": "Dope Lemon", "year": 2024, "headliner": true },
-    { "festival": "Rhythm and Vines", "artist": "Shy FX", "year": 2024, "headliner": true },
-    { "festival": "Rhythm and Vines", "artist": "Sachi", "year": 2024, "headliner": false },
-    { "festival": "Rhythm and Vines", "artist": "Corrella", "year": 2024, "headliner": false },
-    { "festival": "Rhythm and Vines", "artist": "Lee Mvtthews", "year": 2024, "headliner": false },
-    { "festival": "Rhythm and Vines", "artist": "Coterie", "year": 2024, "headliner": false },
-    { "festival": "Rhythm and Vines", "artist": "Sir Dave Dobbyn", "year": 2024, "headliner": false },
-    { "festival": "Rhythm and Vines", "artist": "Oppidan", "year": 2024, "headliner": false },
-    { "festival": "Rhythm and Vines", "artist": "Hannah Laing", "year": 2024, "headliner": false },
-    { "festival": "Rhythm and Vines", "artist": "Grafix", "year": 2024, "headliner": false },
-    { "festival": "Rhythm and Vines", "artist": "Messie", "year": 2024, "headliner": false },
-    { "festival": "Twominds Festival", "artist": "Lady Shaka", "year": 2025, "headliner": true },
-    { "festival": "Twominds Festival", "artist": "LSB", "year": 2025, "headliner": true },
-    { "festival": "Twominds Festival", "artist": "Mia Koden", "year": 2025, "headliner": true },
-    { "festival": "Twominds Festival", "artist": "Midland", "year": 2025, "headliner": true },
-    { "festival": "Electric Avenue Music Festival", "artist": "Becky Hill", "year": 2026, "headliner": true },
-    { "festival": "Electric Avenue Music Festival", "artist": "Sammy Virji", "year": 2026, "headliner": true },
-    { "festival": "Electric Avenue Music Festival", "artist": "Basement Jaxx", "year": 2026, "headliner": true },
-    { "festival": "Electric Avenue Music Festival", "artist": "The Streets", "year": 2026, "headliner": true },
-    { "festival": "Electric Avenue Music Festival", "artist": "LAB", "year": 2026, "headliner": false },
-    { "festival": "Electric Avenue Music Festival", "artist": "Supergroove", "year": 2026, "headliner": false },
-    { "festival": "Electric Avenue Music Festival", "artist": "Maverick Sabre", "year": 2026, "headliner": false },
-    { "festival": "Electric Avenue Music Festival", "artist": "Leisure", "year": 2026, "headliner": false },
-    { "festival": "Electric Avenue Music Festival", "artist": "Corrella", "year": 2026, "headliner": false },
-    { "festival": "Electric Avenue Music Festival", "artist": "Frank Booker", "year": 2026, "headliner": false },
-    { "festival": "Electric Avenue Music Festival", "artist": "Dom Dolla", "year": 2026, "headliner": true },
-    { "festival": "Electric Avenue Music Festival", "artist": "Pendulum", "year": 2026, "headliner": true },
-    { "festival": "Electric Avenue Music Festival", "artist": "Kesha", "year": 2026, "headliner": true },
-    { "festival": "Electric Avenue Music Festival", "artist": "Ocean Alley", "year": 2026, "headliner": true },
-    { "festival": "Electric Avenue Music Festival", "artist": "Leftfield", "year": 2026, "headliner": true },
-    { "festival": "Electric Avenue Music Festival", "artist": "Peking Duk", "year": 2026, "headliner": true },
-    { "festival": "Electric Avenue Music Festival", "artist": "Royksopp", "year": 2026, "headliner": true },
-    { "festival": "Electric Avenue Music Festival", "artist": "Kora", "year": 2026, "headliner": false },
-    { "festival": "Electric Avenue Music Festival", "artist": "Tiki Taane", "year": 2026, "headliner": false },
-    { "festival": "Electric Avenue Music Festival", "artist": "Flava", "year": 2026, "headliner": false },
-    { "festival": "Electric Avenue Music Festival", "artist": "Split Enz", "year": 2026, "headliner": false },
-    { "festival": "Electric Avenue Music Festival", "artist": "Dick Johnson", "year": 2026, "headliner": false },
-    { "festival": "Electric Avenue Music Festival", "artist": "Sudan Archives", "year": 2026, "headliner": false },
-    { "festival": "Electric Avenue Music Festival", "artist": "Jalen Ngonda", "year": 2026, "headliner": false },
-    { "festival": "Rolling Meadows", "artist": "Flux Pavilion", "year": 2025, "headliner": true },
-    { "festival": "Rolling Meadows", "artist": "Kings of the Rollers", "year": 2025, "headliner": true },
-    { "festival": "Rolling Meadows", "artist": "A-Trak", "year": 2025, "headliner": true },
-    { "festival": "Rolling Meadows", "artist": "Degs", "year": 2025, "headliner": false },
-    { "festival": "Rolling Meadows", "artist": "DJ Hazard", "year": 2025, "headliner": false },
-    { "festival": "Rolling Meadows", "artist": "DJ Hype", "year": 2025, "headliner": false },
-    { "festival": "Rolling Meadows", "artist": "The Upbeats", "year": 2025, "headliner": true },
-    { "festival": "Rolling Meadows", "artist": "State of Mind", "year": 2025, "headliner": true },
-    { "festival": "Rolling Meadows", "artist": "Turno", "year": 2025, "headliner": false },
-    { "festival": "Rolling Meadows", "artist": "Ciko", "year": 2025, "headliner": false },
-    { "festival": "Rolling Meadows", "artist": "Damage Control", "year": 2025, "headliner": false },
-    { "festival": "Rolling Meadows", "artist": "Young Franco", "year": 2025, "headliner": true },
-    { "festival": "Rolling Meadows", "artist": "Cassie Henderson", "year": 2025, "headliner": false },
-    { "festival": "Rolling Meadows", "artist": "Charlotte Plank", "year": 2025, "headliner": false },
-    { "festival": "Rolling Meadows", "artist": "Frankie Venter", "year": 2025, "headliner": false },
-    { "festival": "Rolling Meadows", "artist": "Elipsa", "year": 2025, "headliner": false },
-    { "festival": "Rolling Meadows", "artist": "Flava", "year": 2025, "headliner": false }
+    {
+      "festival": "Rhythm and Vines",
+      "artist": "Alison Wonderland",
+      "year": 2024,
+      "headliner": true
+    },
+    {
+      "festival": "Rhythm and Vines",
+      "artist": "Flume",
+      "year": 2024,
+      "headliner": true
+    },
+    {
+      "festival": "Rhythm and Vines",
+      "artist": "Dom Dolla",
+      "year": 2025,
+      "headliner": true
+    },
+    {
+      "festival": "Northern Bass",
+      "artist": "Andy C",
+      "year": 2024,
+      "headliner": true
+    },
+    {
+      "festival": "Northern Bass",
+      "artist": "Andy C",
+      "year": 2025,
+      "headliner": true
+    },
+    {
+      "festival": "Northern Bass",
+      "artist": "Wilkinson",
+      "year": 2024,
+      "headliner": false
+    },
+    {
+      "festival": "Northern Bass",
+      "artist": "Sub Focus",
+      "year": 2024,
+      "headliner": true
+    },
+    {
+      "festival": "Northern Bass",
+      "artist": "Dimension",
+      "year": 2025,
+      "headliner": false
+    },
+    {
+      "festival": "Northern Bass",
+      "artist": "Alison Wonderland",
+      "year": 2024,
+      "headliner": false
+    },
+    {
+      "festival": "Bay Dreams",
+      "artist": "Chase and Status",
+      "year": 2024,
+      "headliner": true
+    },
+    {
+      "festival": "Bay Dreams",
+      "artist": "Netsky",
+      "year": 2024,
+      "headliner": false
+    },
+    {
+      "festival": "Bay Dreams",
+      "artist": "Sub Focus",
+      "year": 2025,
+      "headliner": true
+    },
+    {
+      "festival": "Splore",
+      "artist": "Fat Freddys Drop",
+      "year": 2024,
+      "headliner": true
+    },
+    {
+      "festival": "Splore",
+      "artist": "LAB",
+      "year": 2024,
+      "headliner": false
+    },
+    {
+      "festival": "Splore",
+      "artist": "Shapeshifter",
+      "year": 2024,
+      "headliner": true
+    },
+    {
+      "festival": "Soundsplash",
+      "artist": "Katchafire",
+      "year": 2025,
+      "headliner": false
+    },
+    {
+      "festival": "Soundsplash",
+      "artist": "LAB",
+      "year": 2025,
+      "headliner": true
+    },
+    {
+      "festival": "Soundsplash",
+      "artist": "Salmonella Dub",
+      "year": 2025,
+      "headliner": false
+    },
+    {
+      "festival": "Soundsplash",
+      "artist": "Tiki Taane",
+      "year": 2024,
+      "headliner": true
+    },
+    {
+      "festival": "Rhythm and Alps",
+      "artist": "Shapeshifter",
+      "year": 2024,
+      "headliner": false
+    },
+    {
+      "festival": "Rhythm and Vines",
+      "artist": "Ice Spice",
+      "year": 2024,
+      "headliner": true
+    },
+    {
+      "festival": "Rhythm and Vines",
+      "artist": "Sammy Virji",
+      "year": 2024,
+      "headliner": true
+    },
+    {
+      "festival": "Rhythm and Vines",
+      "artist": "Luude",
+      "year": 2024,
+      "headliner": true
+    },
+    {
+      "festival": "Rhythm and Vines",
+      "artist": "RL Grime",
+      "year": 2024,
+      "headliner": true
+    },
+    {
+      "festival": "Rhythm and Vines",
+      "artist": "Meduza",
+      "year": 2024,
+      "headliner": true
+    },
+    {
+      "festival": "Rhythm and Vines",
+      "artist": "Koven",
+      "year": 2024,
+      "headliner": true
+    },
+    {
+      "festival": "Rhythm and Vines",
+      "artist": "Pendulum",
+      "year": 2024,
+      "headliner": true
+    },
+    {
+      "festival": "Rhythm and Vines",
+      "artist": "Peking Duk",
+      "year": 2024,
+      "headliner": true
+    },
+    {
+      "festival": "Rhythm and Vines",
+      "artist": "Dope Lemon",
+      "year": 2024,
+      "headliner": true
+    },
+    {
+      "festival": "Rhythm and Vines",
+      "artist": "Shy FX",
+      "year": 2024,
+      "headliner": true
+    },
+    {
+      "festival": "Rhythm and Vines",
+      "artist": "Sachi",
+      "year": 2024,
+      "headliner": false
+    },
+    {
+      "festival": "Rhythm and Vines",
+      "artist": "Corrella",
+      "year": 2024,
+      "headliner": false
+    },
+    {
+      "festival": "Rhythm and Vines",
+      "artist": "Lee Mvtthews",
+      "year": 2024,
+      "headliner": false
+    },
+    {
+      "festival": "Rhythm and Vines",
+      "artist": "Coterie",
+      "year": 2024,
+      "headliner": false
+    },
+    {
+      "festival": "Rhythm and Vines",
+      "artist": "Sir Dave Dobbyn",
+      "year": 2024,
+      "headliner": false
+    },
+    {
+      "festival": "Rhythm and Vines",
+      "artist": "Oppidan",
+      "year": 2024,
+      "headliner": false
+    },
+    {
+      "festival": "Rhythm and Vines",
+      "artist": "Hannah Laing",
+      "year": 2024,
+      "headliner": false
+    },
+    {
+      "festival": "Rhythm and Vines",
+      "artist": "Grafix",
+      "year": 2024,
+      "headliner": false
+    },
+    {
+      "festival": "Rhythm and Vines",
+      "artist": "Messie",
+      "year": 2024,
+      "headliner": false
+    },
+    {
+      "festival": "Twominds Festival",
+      "artist": "Lady Shaka",
+      "year": 2025,
+      "headliner": true
+    },
+    {
+      "festival": "Twominds Festival",
+      "artist": "LSB",
+      "year": 2025,
+      "headliner": true
+    },
+    {
+      "festival": "Twominds Festival",
+      "artist": "Mia Koden",
+      "year": 2025,
+      "headliner": true
+    },
+    {
+      "festival": "Twominds Festival",
+      "artist": "Midland",
+      "year": 2025,
+      "headliner": true
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "Becky Hill",
+      "year": 2026,
+      "headliner": true
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "Sammy Virji",
+      "year": 2026,
+      "headliner": true
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "Basement Jaxx",
+      "year": 2026,
+      "headliner": true
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "The Streets",
+      "year": 2026,
+      "headliner": true
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "LAB",
+      "year": 2026,
+      "headliner": false
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "Supergroove",
+      "year": 2026,
+      "headliner": false
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "Maverick Sabre",
+      "year": 2026,
+      "headliner": false
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "Leisure",
+      "year": 2026,
+      "headliner": false
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "Corrella",
+      "year": 2026,
+      "headliner": false
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "Frank Booker",
+      "year": 2026,
+      "headliner": false
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "Dom Dolla",
+      "year": 2026,
+      "headliner": true
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "Pendulum",
+      "year": 2026,
+      "headliner": true
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "Kesha",
+      "year": 2026,
+      "headliner": true
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "Ocean Alley",
+      "year": 2026,
+      "headliner": true
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "Leftfield",
+      "year": 2026,
+      "headliner": true
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "Peking Duk",
+      "year": 2026,
+      "headliner": true
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "Royksopp",
+      "year": 2026,
+      "headliner": true
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "Kora",
+      "year": 2026,
+      "headliner": false
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "Tiki Taane",
+      "year": 2026,
+      "headliner": false
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "Flava",
+      "year": 2026,
+      "headliner": false
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "Split Enz",
+      "year": 2026,
+      "headliner": false
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "Dick Johnson",
+      "year": 2026,
+      "headliner": false
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "Sudan Archives",
+      "year": 2026,
+      "headliner": false
+    },
+    {
+      "festival": "Electric Avenue Music Festival",
+      "artist": "Jalen Ngonda",
+      "year": 2026,
+      "headliner": false
+    },
+    {
+      "festival": "Rolling Meadows",
+      "artist": "Flux Pavilion",
+      "year": 2025,
+      "headliner": true
+    },
+    {
+      "festival": "Rolling Meadows",
+      "artist": "Kings of the Rollers",
+      "year": 2025,
+      "headliner": true
+    },
+    {
+      "festival": "Rolling Meadows",
+      "artist": "A-Trak",
+      "year": 2025,
+      "headliner": true
+    },
+    {
+      "festival": "Rolling Meadows",
+      "artist": "Degs",
+      "year": 2025,
+      "headliner": false
+    },
+    {
+      "festival": "Rolling Meadows",
+      "artist": "DJ Hazard",
+      "year": 2025,
+      "headliner": false
+    },
+    {
+      "festival": "Rolling Meadows",
+      "artist": "DJ Hype",
+      "year": 2025,
+      "headliner": false
+    },
+    {
+      "festival": "Rolling Meadows",
+      "artist": "The Upbeats",
+      "year": 2025,
+      "headliner": true
+    },
+    {
+      "festival": "Rolling Meadows",
+      "artist": "State of Mind",
+      "year": 2025,
+      "headliner": true
+    },
+    {
+      "festival": "Rolling Meadows",
+      "artist": "Turno",
+      "year": 2025,
+      "headliner": false
+    },
+    {
+      "festival": "Rolling Meadows",
+      "artist": "Ciko",
+      "year": 2025,
+      "headliner": false
+    },
+    {
+      "festival": "Rolling Meadows",
+      "artist": "Damage Control",
+      "year": 2025,
+      "headliner": false
+    },
+    {
+      "festival": "Rolling Meadows",
+      "artist": "Young Franco",
+      "year": 2025,
+      "headliner": true
+    },
+    {
+      "festival": "Rolling Meadows",
+      "artist": "Cassie Henderson",
+      "year": 2025,
+      "headliner": false
+    },
+    {
+      "festival": "Rolling Meadows",
+      "artist": "Charlotte Plank",
+      "year": 2025,
+      "headliner": false
+    },
+    {
+      "festival": "Rolling Meadows",
+      "artist": "Frankie Venter",
+      "year": 2025,
+      "headliner": false
+    },
+    {
+      "festival": "Rolling Meadows",
+      "artist": "Elipsa",
+      "year": 2025,
+      "headliner": false
+    },
+    {
+      "festival": "Rolling Meadows",
+      "artist": "Flava",
+      "year": 2025,
+      "headliner": false
+    }
   ]
 }

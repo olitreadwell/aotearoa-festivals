@@ -20,6 +20,8 @@ interface SeedFestival {
   camping?: boolean | null;
   ticketPrice?: string;
   ticketUrl?: string;
+  latitude?: number | null;
+  longitude?: number | null;
 }
 
 interface SeedArtist {
@@ -155,6 +157,8 @@ async function main() {
         camping: f.camping ?? null,
         ticketPrice: f.ticketPrice || null,
         ticketUrl: f.ticketUrl || null,
+        latitude: f.latitude ?? null,
+        longitude: f.longitude ?? null,
       },
       create: {
         name: f.name,
@@ -172,6 +176,8 @@ async function main() {
         camping: f.camping ?? null,
         ticketPrice: f.ticketPrice || null,
         ticketUrl: f.ticketUrl || null,
+        latitude: f.latitude ?? null,
+        longitude: f.longitude ?? null,
       },
     });
   }
