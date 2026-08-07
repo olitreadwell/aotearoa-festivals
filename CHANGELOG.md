@@ -32,6 +32,8 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Deduplicate REGION_LABELS in home page (~30 lines removed)
 - Enrich Twominds Festival seed data with real RA data (2024+2025 lineups, camping, cost)
 - BACKLOG: queue poster-to-lineup AI tool, artist discovery improvements, AI/automation section
+- Add interactive SVG map of New Zealand at `/map` — color-coded by festival count per region
+- BACKLOG: queue Eventfinda API integration for NZ event data pipeline
 
 ## [Unreleased] — claude/dev
 
