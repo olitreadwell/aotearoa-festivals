@@ -7,7 +7,8 @@ export type SearchItem = {
   type: "festival" | "artist" | "promoter";
   name: string;
   slug: string;
-  subtitle: string; // genre, region, etc.
+  subtitle: string;
+  status?: string; // FestivalStatus string for festival items
 };
 
 const TYPE_BADGE_STYLES: Record<SearchItem["type"], string> = {
@@ -88,6 +89,25 @@ export function SearchClient({ items }: { items: SearchItem[] }) {
                 >
                   {item.type}
                 </span>
+
+                {/* Festival status badge */}
+                {item.status && (
+                  <span
+                    className={`mt-0.5 shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                      item.status === "ACTIVE"
+                        ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                        : item.status === "TBC"
+                          ? "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200"
+                          : item.status === "HIATUS"
+                            ? "bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300"
+                            : item.status === "DEFUNCT"
+                              ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
+                              : "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200"
+                    }`}
+                  >
+                    {item.status.charAt(0) + item.status.slice(1).toLowerCase()}
+                  </span>
+                )}
 
                 {/* Name + subtitle */}
                 <div className="min-w-0 flex-1">

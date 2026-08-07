@@ -5,6 +5,38 @@ import {
 } from "../src/generated/prisma/index.js";
 import seedData from "./data/festivals-seed.json" with { type: "json" };
 
+interface SeedFestival {
+  name: string;
+  promoter: string;
+  status: string;
+  date: string;
+  region: string;
+  location: string;
+  genre: string;
+  cost: string;
+  links: string;
+  notes: string;
+  vibe?: string;
+  camping?: boolean | null;
+  ticketPrice?: string;
+  ticketUrl?: string;
+}
+
+interface SeedArtist {
+  name: string;
+  genre?: string;
+  homeCity?: string;
+  instagram?: string;
+}
+
+interface SeedLineup {
+  festival: string;
+  artist: string;
+  year: number;
+  headliner?: boolean;
+  source?: string;
+}
+
 const prisma = new PrismaClient();
 
 function slugify(name: string): string {
@@ -85,7 +117,7 @@ async function main() {
   console.log(`Seeding ${seedData.festivals.length} festivals...`);
   let autoCreatedPromoters = 0;
 
-  for (const f of seedData.festivals) {
+  for (const f of seedData.festivals as SeedFestival[]) {
     const slug = slugify(f.name);
     let promoterId = f.promoter
       ? (promoterIdByName.get(f.promoter) ?? null)
@@ -119,6 +151,10 @@ async function main() {
         notes: f.notes || null,
         website: f.links || null,
         promoterId,
+        vibe: f.vibe || null,
+        camping: f.camping ?? null,
+        ticketPrice: f.ticketPrice || null,
+        ticketUrl: f.ticketUrl || null,
       },
       create: {
         name: f.name,
@@ -132,6 +168,10 @@ async function main() {
         notes: f.notes || null,
         website: f.links || null,
         promoterId,
+        vibe: f.vibe || null,
+        camping: f.camping ?? null,
+        ticketPrice: f.ticketPrice || null,
+        ticketUrl: f.ticketUrl || null,
       },
     });
   }
@@ -140,6 +180,68 @@ async function main() {
     console.warn(
       `${autoCreatedPromoters} festival(s) had a promoter name not in the curated list; auto-created a minimal Promoter row for it.`,
     );
+  }
+
+  // Seed artists
+  if (seedData.artists && seedData.artists.length > 0) {
+    console.log(`Seeding ${seedData.artists.length} artists...`);
+    for (const a of seedData.artists as SeedArtist[]) {
+      const slug = slugify(a.name);
+      await prisma.artist.upsert({
+        where: { slug },
+        update: {
+          genre: a.genre || null,
+          homeCity: a.homeCity || null,
+          instagram: a.instagram || null,
+        },
+        create: {
+          name: a.name,
+          slug,
+          genre: a.genre || null,
+          homeCity: a.homeCity || null,
+          instagram: a.instagram || null,
+        },
+      });
+    }
+  }
+
+  // Seed lineup entries
+  if (seedData.lineups && seedData.lineups.length > 0) {
+    console.log(`Seeding ${seedData.lineups.length} lineup entries...`);
+    for (const l of seedData.lineups as SeedLineup[]) {
+      const festival = await prisma.festival.findUnique({
+        where: { slug: slugify(l.festival) },
+      });
+      const artist = await prisma.artist.findUnique({
+        where: { slug: slugify(l.artist) },
+      });
+      if (festival && artist) {
+        await prisma.lineupEntry.upsert({
+          where: {
+            festivalId_artistId_year: {
+              festivalId: festival.id,
+              artistId: artist.id,
+              year: l.year,
+            },
+          },
+          update: {
+            isHeadliner: l.headliner ?? false,
+            source: l.source || null,
+          },
+          create: {
+            festivalId: festival.id,
+            artistId: artist.id,
+            year: l.year,
+            isHeadliner: l.headliner ?? false,
+            source: l.source || null,
+          },
+        });
+      } else {
+        console.warn(
+          `Skipping lineup: ${l.artist} @ ${l.festival} (${l.year}) — ${!festival ? "festival" : "artist"} not found`,
+        );
+      }
+    }
   }
 
   console.log("Seed complete.");

@@ -1,13 +1,19 @@
 export const dynamic = "force-dynamic";
 
+import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { Region } from "@/generated/prisma";
 import Link from "next/link";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
 
+export const metadata: Metadata = {
+  title: "Browse by Region — Aotearoa Festivals",
+  description: "Find New Zealand music festivals by region. From Northland to Southland.",
+};
 const REGION_LABELS: Record<Region, string> = {
   NORTHLAND: "Northland",
   AUCKLAND: "Auckland",
@@ -55,6 +61,13 @@ export default async function RegionsPage() {
 
   return (
     <main className="mx-auto min-h-screen max-w-6xl px-4 py-8">
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Regions" },
+        ]}
+      />
+
       {/* Hero */}
       <header className="mb-10">
         <h1 className="mb-2 text-3xl font-bold tracking-tight">

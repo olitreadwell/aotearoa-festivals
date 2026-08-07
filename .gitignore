@@ -31,3 +31,6 @@ test-results/
 .swarm/
 .agents/
 ruvector.db
+
+.omo/
+.codegraph/eng.traineddata

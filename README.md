@@ -34,8 +34,10 @@ The Festival/Promoter shape borrows from nz-tech-events' proven model (region en
 | `/promoters/[slug]`                 | Promoter detail — list of festivals they run                          |
 | `/regions`                          | Browse festivals by NZ region                                         |
 | `/regions/[region]`                 | Festivals in one region, with an email subscribe CTA                  |
-| `/search`                           | Client-side fuzzy search across festivals/artists/promoters (Fuse.js) |
-| `/feed.xml`                         | RSS feed of upcoming active/TBC festivals                             |
+| `/about`                            | About the project — mission, how it works, contribute                     |
+| `/map`                              | Interactive NZ map — festivals by region, color-coded, clickable      |
+| `/search`                           | Client-side fuzzy search across festivals/artists/promoters (Fuse.js)    |
+| `/feed.xml`                         | RSS feed of upcoming active/TBC festivals                                |
 | `/sitemap.xml`                      | Dynamic sitemap covering all festivals, artists, and promoters        |
 | `/subscribe`, `/api/subscribe`      | Email subscription flow                                               |
 | `/unsubscribe`, `/api/unsubscribe`  | Token-based unsubscribe flow                                          |

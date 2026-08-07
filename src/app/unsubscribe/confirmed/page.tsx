@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Unsubscribed — Aotearoa Festivals",
+  description: "You've been unsubscribed from festival updates.",
+};
 
 export default function UnsubscribeConfirmedPage() {
   return (

@@ -1,10 +1,16 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import type { Artist } from "@/generated/prisma";
 import Pagination from "@/components/Pagination";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const dynamic = "force-dynamic";
 
+export const metadata: Metadata = {
+  title: "All Artists — Aotearoa Festivals",
+  description: "Browse artists who have performed at New Zealand music festivals.",
+};
 const PAGE_SIZE = 24;
 
 interface PageProps {
@@ -98,6 +104,13 @@ export default async function ArtistsPage({ searchParams }: PageProps) {
 
   return (
     <main className="mx-auto max-w-5xl px-6 py-12">
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Artists" },
+        ]}
+      />
+
       <div className="mb-8">
         <h1 className="text-3xl font-semibold tracking-tight">Artists</h1>
         <p className="mt-1 text-neutral-500 dark:text-neutral-400">

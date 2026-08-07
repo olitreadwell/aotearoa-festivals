@@ -5,8 +5,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import type { Festival, Promoter } from "@/generated/prisma";
-import { Region, FestivalStatus } from "@/generated/prisma";
+import { Region } from "@/generated/prisma";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
 
 // ---------------------------------------------------------------------------
 // Region helpers
@@ -50,27 +51,6 @@ function slugToRegion(slug: string): Region | undefined {
 export function generateStaticParams() {
   return Object.keys(SLUG_TO_REGION).map((region) => ({ region }));
 }
-
-// ---------------------------------------------------------------------------
-// Status badge helpers
-// ---------------------------------------------------------------------------
-
-const STATUS_STYLES: Record<FestivalStatus, string> = {
-  ACTIVE: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
-  TBC: "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200",
-  HIATUS: "bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300",
-  DEFUNCT: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200",
-  UNCONFIRMED:
-    "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200",
-};
-
-const STATUS_LABELS: Record<FestivalStatus, string> = {
-  ACTIVE: "Active",
-  TBC: "TBC",
-  HIATUS: "Hiatus",
-  DEFUNCT: "Defunct",
-  UNCONFIRMED: "Unconfirmed",
-};
 
 // ---------------------------------------------------------------------------
 // Types
@@ -159,11 +139,7 @@ export default async function RegionDetailPage({
                 <div className="flex flex-1 flex-col gap-3 p-5">
                   {/* Status badge + name */}
                   <div>
-                    <span
-                      className={`mb-2 inline-block rounded-full px-2.5 py-0.5 text-xs font-semibold ${STATUS_STYLES[festival.status]}`}
-                    >
-                      {STATUS_LABELS[festival.status]}
-                    </span>
+                    <FestivalStatusBadge status={festival.status} className="mb-2" />
                     <h2 className="text-base leading-snug font-bold transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">
                       {festival.name}
                     </h2>

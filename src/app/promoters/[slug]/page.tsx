@@ -2,8 +2,8 @@ import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { FestivalStatus } from "@/generated/prisma";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
 
 export const revalidate = 3600;
 
@@ -21,17 +21,6 @@ export async function generateStaticParams() {
     return [];
   }
 }
-
-const statusStyles: Record<FestivalStatus, string> = {
-  ACTIVE:
-    "bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300",
-  TBC: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-300",
-  HIATUS:
-    "bg-orange-100 text-orange-800 dark:bg-orange-900/40 dark:text-orange-300",
-  DEFUNCT: "bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300",
-  UNCONFIRMED:
-    "bg-neutral-100 text-neutral-700 dark:bg-neutral-800 dark:text-neutral-300",
-};
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -150,11 +139,7 @@ export default async function PromoterDetailPage({ params }: Props) {
                       </span>
                     )}
                   </div>
-                  <span
-                    className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${statusStyles[festival.status]}`}
-                  >
-                    {festival.status}
-                  </span>
+                  <FestivalStatusBadge status={festival.status} />
                 </Link>
               </li>
             ))}

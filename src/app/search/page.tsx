@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import type { Region } from "@/generated/prisma";
 import { SearchClient } from "./_components/SearchClient";
 import type { SearchItem } from "./_components/SearchClient";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 // ---------------------------------------------------------------------------
 // Metadata
@@ -85,6 +86,7 @@ export default async function SearchPage() {
     name: f.name,
     slug: f.slug,
     subtitle: [f.genre, formatRegion(f.region)].filter(Boolean).join(" · "),
+    status: f.status,
   }));
 
   const artistItems: SearchItem[] = artists.map((a) => ({
@@ -109,6 +111,13 @@ export default async function SearchPage() {
 
   return (
     <main className="site-content">
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Search" },
+        ]}
+      />
+
       <div className="mx-auto max-w-3xl px-4 pt-10 pb-2">
         <h1 className="text-3xl font-bold tracking-tight">Search</h1>
         <p className="mt-1 text-sm text-[#555] dark:text-[#aaa]">
