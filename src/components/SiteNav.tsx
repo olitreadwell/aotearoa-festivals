@@ -26,7 +26,8 @@ export function SiteNav() {
         </Link>
 
         {/* Desktop nav */}
-        <ul className="site-nav__links hidden md:flex" role="list">
+        <div className="hidden md:block">
+        <ul className="site-nav__links" role="list">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
               <Link href={link.href} className="site-nav__link">
@@ -40,6 +41,7 @@ export function SiteNav() {
             </Link>
           </li>
         </ul>
+        </div>
 
         {/* Mobile hamburger + theme toggle */}
         <div className="flex items-center gap-1 md:hidden">
