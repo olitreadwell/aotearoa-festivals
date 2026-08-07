@@ -95,9 +95,9 @@ New policy (see README.md "Testing policy"): every feature gets unit + integrati
 - [x] Add map/loading.tsx skeleton _(done)_
 - [x] Festival status badges on search results _(done)_
 - [x] Add `/about` page with project mission _(done)_
-- [ ] ETA 70% Add loading.tsx for all remaining routes _(in progress)_
-- [ ] ETA 70% Add artist + lineup seed data _(in progress)_
-- [ ] ETA 70% Upcoming vs past festival split on listing page _(in progress)_
+- [x] Add artist + lineup seed data — 15 artists, 20 lineup entries, discovery feature now functional _(done)_
+- [x] **Poster-to-lineup AI tool** — /admin/import-poster, Claude Vision extracts artists from poster images _(done)_
+- [x] Add loading.tsx for all routes _(done)_
 - [ ] ETA 10% Add artist + lineup seed data for discovery feature _(in progress — agent)_
 - [ ] ETA 0% Research: more backlog improvements _(in progress — librarian)_
 
