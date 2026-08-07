@@ -88,9 +88,9 @@ New policy (see README.md "Testing policy"): every feature gets unit + integrati
 - [x] Add FestivalStatusBadge to artist page festival history entries _(done)_
 - [x] Add OG images for artists, promoters, regions detail pages _(done)_
 - [x] Add JSON-LD Festival schema markup on festival detail pages _(done)_
-- [ ] ETA 80% Add breadcrumb navigation to pages missing it: festivals, artists, promoters, regions, search _(in progress — agent)_
-- [ ] ETA 60% Add loading.tsx for all routes _(in progress — agent)_
-- [ ] ETA 50% Upcoming vs past festival split on listing page _(in progress — agent)_
+- [x] Add breadcrumb navigation to all listing pages _(done)_
+- [x] Add loading.tsx for all routes _(done)_
+- [x] Upcoming vs past festival split on listing page _(done)_
 - [x] Add `/map` — interactive SVG map of NZ with festival counts, color legend, clickable regions _(done)_
 - [x] Add map/loading.tsx skeleton _(done)_
 - [x] Festival status badges on search results _(done)_
@@ -98,8 +98,8 @@ New policy (see README.md "Testing policy"): every feature gets unit + integrati
 - [x] Add artist + lineup seed data — 15 artists, 20 lineup entries, discovery feature now functional _(done)_
 - [x] **Poster-to-lineup AI tool** — /admin/import-poster, Claude Vision extracts artists from poster images _(done)_
 - [x] Add loading.tsx for all routes _(done)_
-- [ ] ETA 10% Add artist + lineup seed data for discovery feature _(in progress — agent)_
-- [ ] ETA 0% Research: more backlog improvements _(in progress — librarian)_
+- [x] Add artist + lineup seed data — 72 artists, 84 entries _(done)_
+- [x] Research: 30+ backlog items from codebase audit _(done)_
 
 ### AI & Automation
 
@@ -112,7 +112,7 @@ New policy (see README.md "Testing policy"): every feature gets unit + integrati
 
 ### Discovery & Engagement
 
-- [ ] ETA 10% Add artist + lineup seed data — artist-to-festival discovery flow exists in UI but has no data _(in progress — agent)_
+- [x] Add artist + lineup seed data — 72 artists, 84 entries _(done)_
 - [ ] Add "similar festivals" cross-linking on festival detail page based on shared genres/artists
 - [ ] Add "also played with" section on artist page showing other artists at same festivals
 - [ ] Add About page explaining the project and its mission
