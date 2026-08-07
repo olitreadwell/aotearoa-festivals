@@ -75,7 +75,7 @@ New policy (see README.md "Testing policy"): every feature gets unit + integrati
 
 ### Code Quality & Polish
 
-- [ ] Extract FestivalStatusBadge component — 3 pages duplicate STATUS_STYLES/STATUS_LABELS, promoters/[slug] has own copy (4 DRY violations)
+- [x] Extract FestivalStatusBadge component — eliminated 4 DRY violations _(done)_
 - [ ] Add metadata to 8 pages missing `generateMetadata`/title/description: home, festivals listing, artists listing, promoters listing, regions listing, subscribe, subscribe/confirmed, unsubscribe pages
 - [ ] Add loading.tsx for pages missing it: artists, promoters, regions, search, home
 - [ ] Add error.tsx boundaries — zero exist across entire app
@@ -104,7 +104,7 @@ New policy (see README.md "Testing policy"): every feature gets unit + integrati
 
 ### UI / UX
 
-- [x] ETA 50% Festival status badge component — created in src/components/, needs integration into 4 pages _(in progress)_
+- [x] ETA 100% Festival status badge component — extracted, integrated into 4 pages, eliminated DRY violations _(done)_
 - [x] ETA 100% Vibe description field on festival detail page _(done — iteration 4)_
 - [x] ETA 100% Camping info on festival detail page _(done — iteration 4)_
 - [x] ETA 100% Ticket pricing on festival detail page _(done — iteration 4)_
