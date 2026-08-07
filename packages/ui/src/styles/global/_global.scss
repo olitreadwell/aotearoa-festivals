@@ -1,0 +1,74 @@
+// Global resets — applied once at the app root via main.scss.
+
+html {
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
+}
+
+// Default text wrapping for headings and body content.
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+p,
+a,
+blockquote,
+li,
+figcaption {
+  text-wrap: pretty;
+}
+
+// Focus rings — visible only on keyboard navigation. Color follows the
+// ring token so themes can override globally.
+a,
+button,
+[role='button'],
+input,
+textarea,
+select,
+summary {
+  &:focus {
+    outline: none;
+  }
+  &:focus-visible {
+    outline: 2px solid var(--color-ring, currentColor);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+// Default for inline SVGs inside flow content. Add a class to override.
+svg {
+  width: 100%;
+  height: auto;
+}
+
+// Reset form border-radius — re-add per component intentionally.
+input,
+select,
+textarea,
+button {
+  border-radius: 0;
+}
+
+// Reduced motion globally cancels long transitions.
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

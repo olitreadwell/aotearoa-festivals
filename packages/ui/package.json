@@ -1,0 +1,77 @@
+{
+  "name": "@numeral/ui",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles": "./src/styles/main.scss",
+    "./tokens.css": "./src/tokens/tokens.css"
+  },
+  "files": [
+    "src/**"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css,scss,json}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,css,scss,json}\"",
+    "type-check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest --watch",
+    "test:a11y": "vitest run --grep a11y",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "clean": "rm -rf .turbo storybook-static tsconfig.tsbuildinfo",
+    "clean:all": "rm -rf .turbo storybook-static tsconfig.tsbuildinfo node_modules"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "react-hook-form": "^7.72.0",
+    "tailwind-merge": "^2.5.4",
+    "zod": "^3.23"
+  },
+  "devDependencies": {
+    "@numeral/config-eslint": "*",
+    "@numeral/config-tailwind": "*",
+    "@numeral/config-typescript": "*",
+    "@storybook/addon-a11y": "^8.6.0",
+    "@storybook/addon-docs": "^8.6.0",
+    "@storybook/addon-essentials": "^8.6.0",
+    "@storybook/react": "^8.6.0",
+    "@storybook/react-vite": "^8.6.0",
+    "@storybook/test": "^8.6.0",
+    "@tailwindcss/postcss": "^4.0.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^4.3.0",
+    "@vitest/coverage-v8": "^3.0.0",
+    "@vitest/ui": "^3.0.0",
+    "eslint": "^9.0.0",
+    "jest-axe": "^9.0.0",
+    "jsdom": "^25.0.1",
+    "lucide-react": "^0.577",
+    "postcss": "^8.5.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "sass": "^1.86.0",
+    "storybook": "^8.6.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.0",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.0.0"
+  },
+  "peerDependencies": {
+    "lucide-react": "^0.577",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}

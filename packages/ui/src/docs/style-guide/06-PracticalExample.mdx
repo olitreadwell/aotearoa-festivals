@@ -1,0 +1,117 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Style Guide/06 Practical Example" />
+
+# Practical Example: `Button`
+
+Walking through the canonical component, line by line.
+
+## The TSX (`packages/ui/src/components/Button.tsx`)
+
+```tsx
+'use client';
+
+import { type ButtonHTMLAttributes, forwardRef } from 'react';
+
+import { cn } from '../lib/cn';
+
+type Tone = 'primary' | 'secondary' | 'ghost';
+type Size = 'sm' | 'md' | 'lg';
+
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  tone?: Tone;
+  size?: Size;
+};
+
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, tone = 'primary', size = 'md', type = 'button', ...props }, ref) => (
+    <button
+      ref={ref}
+      type={type}
+      className={cn(
+        `numeral-button numeral-button-${tone} numeral-button-${size}`,
+        className,
+      )}
+      {...props}
+    />
+  ),
+);
+Button.displayName = 'Button';
+```
+
+**Why this works**:
+
+- The variants are typed unions, not strings. TypeScript catches typos at compile time.
+- The default `type="button"` saves you a footgun (form buttons default to `submit`).
+- `forwardRef` lets parents grab the DOM node — needed for tooltips, focus managers, and animation libraries.
+- The `cn()` call has exactly two sources: the SCSS identity (with tone + size baked in) and the consumer's override. No Tailwind utilities here — the component doesn't take a position on layout.
+- `displayName` is set so React DevTools shows `Button` instead of `ForwardRef`.
+
+## The SCSS (`packages/ui/src/styles/components/_button.scss`)
+
+```scss
+@use '../abstracts/mixins' as *;
+@use '../abstracts/functions' as *;
+
+.numeral-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: pxToRem(15);
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    background-color var(--duration-200) var(--ease-in-out),
+    color var(--duration-200) var(--ease-in-out),
+    opacity var(--duration-200) var(--ease-in-out);
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  &-primary {
+    background-color: var(--color-fg);
+    color: var(--color-bg);
+    @include hover { &:not(:disabled):hover { opacity: 0.85; } }
+  }
+
+  &-secondary {
+    background-color: transparent;
+    color: var(--color-fg);
+    box-shadow: inset 0 0 0 1px var(--color-border);
+    @include hover {
+      &:not(:disabled):hover { background-color: var(--color-fg); color: var(--color-bg); }
+    }
+  }
+
+  &-sm { padding: 0.5rem 0.875rem; font-size: pxToRem(13); border-radius: var(--radius-sm); }
+  &-md { padding: 0.75rem 1.25rem; border-radius: var(--radius-md); }
+  &-lg { padding: 1rem 1.75rem; font-size: pxToRem(16); border-radius: var(--radius-md); }
+}
+```
+
+**Why this works**:
+
+- Identity at the top: every Button is `inline-flex`, transitions colors, handles disabled.
+- Variants nested via `&-` SCSS shorthand. Six classes generated from one block, all named consistently.
+- Hover wrapped in `@include hover` so it doesn't fire on touch devices (where hover is a stale tap state).
+- Colors come from tokens. Switch theme → all buttons follow automatically.
+- Sizes use `pxToRem()` so rem math stays consistent with the base 16px.
+
+## Adding a new variant
+
+1. Add it to the `Tone` union in `Button.tsx`.
+2. Add a `&-{name}` rule in `_button.scss`.
+3. Done. TypeScript and the visual change land together.
+
+## What goes elsewhere
+
+- **A Button-and-Link combo** (e.g. "Go to dashboard" rendered as `<a>`): style a `<Link>` with `className="numeral-button numeral-button-primary numeral-button-md"` directly. The SCSS doesn't care about the element.
+- **A button with an icon**: pass children. `gap: 0.5rem` on `.numeral-button` already spaces them.
+- **A button with a loading spinner**: render the spinner as a child and gate `disabled`. Don't add `numeral-button-loading` — variants describe *what kind of button*, not *what state the button is in*.

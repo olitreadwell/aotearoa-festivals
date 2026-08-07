@@ -1,0 +1,130 @@
+@use 'breakpoints' as *;
+@use 'mixins' as *;
+@use 'functions' as *;
+
+// Heading scale — semantic, responsive at 2-3 breakpoints.
+// All headings get `text-wrap: balance` for tighter line breaks.
+//
+// Use the class directly on a heading element so the size is decoupled
+// from the tag: a section sub-head can be an <h2> styled as `.numeral-heading-lg`.
+
+.numeral-heading-4xl,
+.numeral-heading-3xl,
+.numeral-heading-2xl,
+.numeral-heading-xl,
+.numeral-heading-lg,
+.numeral-heading-md,
+.numeral-heading-sm,
+.numeral-heading-xs {
+  text-wrap: balance;
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.numeral-heading-4xl {
+  font-size: pxToRem(72);
+  @include breakpoint-below($bp-1280) {
+    font-size: pxToRem(56);
+  }
+  @include breakpoint-below($bp-768) {
+    font-size: pxToRem(40);
+  }
+}
+
+.numeral-heading-3xl {
+  font-size: pxToRem(56);
+  @include breakpoint-below($bp-1280) {
+    font-size: pxToRem(44);
+  }
+  @include breakpoint-below($bp-768) {
+    font-size: pxToRem(34);
+  }
+}
+
+.numeral-heading-2xl {
+  font-size: pxToRem(44);
+  @include breakpoint-below($bp-1280) {
+    font-size: pxToRem(36);
+  }
+  @include breakpoint-below($bp-768) {
+    font-size: pxToRem(28);
+  }
+}
+
+.numeral-heading-xl {
+  font-size: pxToRem(36);
+  @include breakpoint-below($bp-1024) {
+    font-size: pxToRem(30);
+  }
+  @include breakpoint-below($bp-768) {
+    font-size: pxToRem(24);
+  }
+}
+
+.numeral-heading-lg {
+  font-size: pxToRem(28);
+  @include breakpoint-below($bp-768) {
+    font-size: pxToRem(22);
+  }
+}
+
+.numeral-heading-md {
+  font-size: pxToRem(22);
+  @include breakpoint-below($bp-768) {
+    font-size: pxToRem(18);
+  }
+}
+
+.numeral-heading-sm {
+  font-size: pxToRem(18);
+}
+
+.numeral-heading-xs {
+  font-size: pxToRem(15);
+}
+
+// Paragraph scale — body text. `text-wrap: pretty` reduces orphans.
+
+.numeral-paragraph-lg,
+.numeral-paragraph-md,
+.numeral-paragraph-sm {
+  text-wrap: pretty;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.numeral-paragraph-lg {
+  font-size: pxToRem(20);
+  @include breakpoint-below($bp-768) {
+    font-size: pxToRem(18);
+  }
+}
+
+.numeral-paragraph-md {
+  font-size: pxToRem(16);
+}
+
+.numeral-paragraph-sm {
+  font-size: pxToRem(14);
+}
+
+// Utility text styles.
+
+.numeral-text-eyebrow {
+  font-size: pxToRem(12);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.numeral-text-mono {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, monospace);
+  font-size: pxToRem(13);
+  letter-spacing: 0.04em;
+}
+
+.numeral-text-small {
+  font-size: pxToRem(13);
+  line-height: 1.4;
+}

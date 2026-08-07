@@ -1,0 +1,69 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Style Guide/02 Tailwind vs SCSS" />
+
+# Tailwind vs SCSS
+
+When to use which.
+
+## Use Tailwind for
+
+- **Layout**: `flex`, `grid`, `gap-*`, `items-*`, `justify-*`
+- **Spacing**: padding, margin, gap — `p-4`, `mt-8`, `gap-6`
+- **Static styles** that don't change across states or breakpoints
+- **One-off** tweaks: a single border-radius on a single page
+- **Token reads**: any utility that maps to a CSS var (`bg-[var(--color-fg)]`)
+
+Tailwind utilities are **atomic**. One class, one declaration. Easy to see at a glance, easy to remove.
+
+```tsx
+<div className="mt-12 flex items-center gap-6 px-6">
+  {/* layout only */}
+</div>
+```
+
+## Use SCSS for
+
+- **Component identity**: a Button is `.numeral-button`, not 14 utility classes
+- **Variants**: `.numeral-button-primary`, `.numeral-button-secondary`
+- **Complex states**: hover patterns that change multiple properties, focus rings with offsets, disabled states with cascading effects
+- **Responsive type scales**: 8 sizes that respond at 3 breakpoints
+- **Child selectors**: when hover on parent changes a nested element
+- **Anything you'd want to grep for**: BEM-flat-dash class names show up cleanly in search
+
+```scss
+.numeral-button {
+  display: inline-flex;
+  align-items: center;
+  transition: background-color var(--duration-200) var(--ease-in-out);
+
+  &-primary { background: var(--color-fg); color: var(--color-bg); }
+  &-secondary { background: transparent; box-shadow: inset 0 0 0 1px var(--color-border); }
+
+  @include hover {
+    &:not(:disabled):hover { opacity: 0.85; }
+  }
+}
+```
+
+## The readability test
+
+If your `className` line wraps past your editor's right margin, the styling has outgrown Tailwind. Move identity + variants into SCSS, keep layout in Tailwind.
+
+✅ Good:
+
+```tsx
+<button className={cn('numeral-button numeral-button-primary', className)}>
+  Save
+</button>
+```
+
+❌ Hard to read:
+
+```tsx
+<button className="inline-flex items-center justify-center gap-2 rounded-md bg-neutral-900 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">
+  Save
+</button>
+```
+
+Same button. The first one is the rule. Reach for SCSS the moment Tailwind starts to lie about being simple.

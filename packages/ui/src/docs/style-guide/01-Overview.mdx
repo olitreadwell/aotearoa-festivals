@@ -1,0 +1,39 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Style Guide/01 Overview" />
+
+# Numeral Studio Styling System
+
+A hybrid approach that mixes **Tailwind utilities** with **component-scoped SCSS**, joined by a tiny `cn()` helper.
+
+The goal: components stay readable, and we don't argue at PR time about which tool wins.
+
+## The three layers
+
+| Layer | What lives here | Example |
+|-------|-----------------|---------|
+| **Design tokens** | Colors, spacing, radius, durations, easings — published as CSS custom properties | `--color-fg`, `--spacing-lg`, `--duration-200` |
+| **Tailwind utilities** | Layout, spacing, simple states, one-off styles | `flex items-center gap-4` |
+| **SCSS classes** | Component identity, variants, complex states, responsive scaling | `.numeral-button`, `.numeral-heading-2xl` |
+
+Tailwind is for **how it sits on the page**. SCSS is for **what it is**.
+
+## Why hybrid
+
+Pure Tailwind works for prototypes. Production components accumulate variants, states, breakpoints, and child selectors that turn `className` into a wall of text. Pulling those into SCSS keeps the JSX readable and the component file traceable.
+
+Pure SCSS forces you to invent a class for every spacing tweak. Tailwind is faster for layout, padding, and one-off color swaps.
+
+The combination is more honest. Each tool does what it's best at.
+
+## What this guide covers
+
+1. **02 — Tailwind vs SCSS**: when to reach for which.
+2. **03 — Decision framework**: a four-question gut check.
+3. **04 — Technical setup**: tokens, the `cn()` helper, file structure.
+4. **05 — Naming conventions**: BEM-flat-dash with the `numeral-` prefix.
+5. **06 — Practical example**: walking through `Button` line by line.
+6. **07 — Workflow**: building a new component from scratch.
+7. **08 — Conclusion**: what good looks like.
+
+Read them in order the first time. Skim later.

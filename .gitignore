@@ -1,36 +1,45 @@
 # Dependencies
 node_modules/
 
-# Next.js
+# Foreign lockfiles (this project uses npm)
+pnpm-lock.yaml
+bun.lock
+yarn.lock
+
+# Build
+dist/
 .next/
-out/
-next-env.d.ts
+.turbo/
+storybook-static/
 *.tsbuildinfo
 
-# Env
-.env
-.env*.local
-
-# Prisma
-src/generated/
-
-# Testing
+# Coverage
 coverage/
-playwright-report/
-test-results/
 
-# Misc
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS
 .DS_Store
-*.pem
-.vercel
-.env*
+Thumbs.db
 
-# Ruflo local secrets and runtime data
-.claude-flow/
-.claude/
-.swarm/
-.agents/
-ruvector.db
+# IDE (keep .vscode committed for shared settings)
+.idea/
 
-.omo/
-.codegraph/eng.traineddata
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+playwright/.auth/
+
+# Screenshots (PNGs auto-generated, only review.yaml tracked)
+apps/web/screenshots/*.png
+
+# Rollup
+.rollup.cache/
+
+# Superpowers (AI planning docs)
+docs/superpowers/
