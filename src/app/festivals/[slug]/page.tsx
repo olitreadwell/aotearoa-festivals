@@ -2,8 +2,9 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import type { Festival, Artist, Promoter } from "@/generated/prisma";
-import { formatRegion, formatStatus } from "@/lib/format";
+import { formatRegion } from "@/lib/format";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
 
 export const revalidate = 3600;
 
@@ -83,9 +84,20 @@ export default async function FestivalDetailPage({
     notFound();
   }
 
-  const { label: statusLabel, className: statusClass } = formatStatus(
-    festival.status,
-  );
+  // Similar festivals: same genre or same region, excluding current
+  const similar = await prisma.festival.findMany({
+    where: {
+      approved: true,
+      id: { not: festival.id },
+      OR: [
+        ...(festival.genre ? [{ genre: { contains: festival.genre.split(",")[0]?.trim() ?? "" } }] : []),
+        ...(festival.region ? [{ region: festival.region }] : []),
+      ],
+    },
+    take: 3,
+    orderBy: [{ startDate: "desc" }],
+    select: { id: true, name: true, slug: true, genre: true, region: true },
+  });
 
   // Group lineup entries by year, descending
   const lineupByYear = new Map<number, LineupEntryWithArtist[]>();
@@ -97,7 +109,38 @@ export default async function FestivalDetailPage({
   const sortedYears = Array.from(lineupByYear.keys()).sort((a, b) => b - a);
 
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Festival",
+            name: festival.name,
+            ...(festival.startDate && {
+              startDate: festival.startDate.toISOString().split("T")[0],
+            }),
+            ...(festival.endDate && {
+              endDate: festival.endDate.toISOString().split("T")[0],
+            }),
+            ...(festival.location && {
+              location: {
+                "@type": "Place",
+                name: festival.location,
+                ...(festival.region && {
+                  address: {
+                    "@type": "PostalAddress",
+                    addressRegion: festival.region,
+                  },
+                }),
+              },
+            }),
+            ...(festival.notes && { description: festival.notes }),
+            ...(festival.website && { sameAs: festival.website }),
+          }),
+        }}
+      />
+      <main className="mx-auto max-w-3xl px-6 py-16">
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },
@@ -111,11 +154,7 @@ export default async function FestivalDetailPage({
         <h1 className="text-3xl leading-tight font-semibold tracking-tight">
           {festival.name}
         </h1>
-        <span
-          className={`inline-flex items-center self-center rounded-full px-2.5 py-0.5 text-xs font-medium ${statusClass}`}
-        >
-          {statusLabel}
-        </span>
+        <FestivalStatusBadge status={festival.status} />
       </div>
 
       {/* Add to calendar */}
@@ -154,6 +193,22 @@ export default async function FestivalDetailPage({
             <dd className="mt-0.5">{festival.genre}</dd>
           </div>
         )}
+        {festival.vibe && (
+          <div className="sm:col-span-2">
+            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
+              Vibe
+            </dt>
+            <dd className="mt-0.5">{festival.vibe}</dd>
+          </div>
+        )}
+        {festival.camping !== null && festival.camping !== undefined && (
+          <div>
+            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
+              Camping
+            </dt>
+            <dd className="mt-0.5">{festival.camping ? "Yes" : "No"}</dd>
+          </div>
+        )}
         {festival.dateText && (
           <div>
             <dt className="font-medium text-neutral-500 dark:text-neutral-400">
@@ -183,6 +238,34 @@ export default async function FestivalDetailPage({
                 className="inline-flex items-center gap-1 text-blue-600 hover:underline dark:text-blue-400"
               >
                 {festival.website.replace(/^https?:\/\//, "")}
+                <span aria-hidden="true">→</span>
+              </a>
+            </dd>
+          </div>
+        )}
+        {festival.ticketPrice && (
+          <div>
+            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
+              Tickets
+            </dt>
+            <dd className="mt-0.5">
+              {festival.ticketPrice}
+            </dd>
+          </div>
+        )}
+        {festival.ticketUrl && !festival.ticketPrice && (
+          <div>
+            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
+              Tickets
+            </dt>
+            <dd className="mt-0.5">
+              <a
+                href={festival.ticketUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-blue-600 hover:underline dark:text-blue-400"
+              >
+                Buy tickets
                 <span aria-hidden="true">→</span>
               </a>
             </dd>
@@ -265,6 +348,29 @@ export default async function FestivalDetailPage({
           </div>
         </section>
       )}
+
+      {/* Similar festivals */}
+      {similar.length > 0 && (
+        <section className="mt-12 border-t pt-8 dark:border-neutral-800">
+          <h2 className="text-lg font-semibold tracking-tight">Similar festivals</h2>
+          <ul className="mt-3 space-y-2">
+            {similar.map((f) => (
+              <li key={f.id}>
+                <a
+                  href={`/festivals/${f.slug}`}
+                  className="flex items-center justify-between rounded-lg border border-neutral-200 px-4 py-2.5 text-sm transition-colors hover:bg-neutral-50 dark:border-neutral-700 dark:hover:bg-neutral-800/50"
+                >
+                  <span className="font-medium">{f.name}</span>
+                  <span className="text-xs text-neutral-400 dark:text-neutral-500">
+                    {f.genre}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </main>
+    </>
   );
 }

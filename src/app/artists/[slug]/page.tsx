@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
 
 export const revalidate = 3600;
 
@@ -164,6 +165,7 @@ export default async function ArtistDetailPage({ params }: PageProps) {
                         >
                           {entry.festival.name}
                         </Link>
+                        <FestivalStatusBadge status={entry.festival.status} />
                         {entry.isHeadliner && (
                           <span className="shrink-0 rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-700 dark:bg-amber-900/40 dark:text-amber-400">
                             Headliner
@@ -178,6 +180,54 @@ export default async function ArtistDetailPage({ params }: PageProps) {
           </div>
         )}
       </section>
+
+      {/* Also played with — co-artists at same festivals */}
+      <AlsoPlayedWith artistId={artist.id} />
     </main>
+  );
+}
+
+async function AlsoPlayedWith({ artistId }: { artistId: string }) {
+  const coArtists = await prisma.artist.findMany({
+    where: {
+      id: { not: artistId },
+      lineups: {
+        some: {
+          festivalId: {
+            in: (
+              await prisma.lineupEntry.findMany({
+                where: { artistId },
+                select: { festivalId: true },
+                distinct: ["festivalId"],
+              })
+            ).map((l) => l.festivalId),
+          },
+        },
+      },
+    },
+    take: 8,
+    select: { id: true, name: true, slug: true },
+  });
+
+  if (coArtists.length === 0) return null;
+
+  return (
+    <section className="mt-10 border-t pt-8 dark:border-neutral-800">
+      <h2 className="text-lg font-semibold tracking-tight">
+        Also played with
+      </h2>
+      <ul className="mt-3 flex flex-wrap gap-2">
+        {coArtists.map((a) => (
+          <li key={a.id}>
+            <a
+              href={`/artists/${a.slug}`}
+              className="inline-block rounded-full border border-neutral-300 px-3 py-1 text-sm text-neutral-700 transition-colors hover:border-neutral-500 dark:border-neutral-600 dark:text-neutral-300 dark:hover:border-neutral-400"
+            >
+              {a.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }

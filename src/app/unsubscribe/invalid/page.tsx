@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Invalid Link — Aotearoa Festivals",
+  description: "This unsubscribe link is invalid or has expired.",
+};
 
 export default function UnsubscribeInvalidPage() {
   return (

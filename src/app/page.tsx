@@ -1,66 +1,24 @@
 export const dynamic = "force-dynamic";
 
+import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { FestivalStatus, Region } from "@/generated/prisma";
 import type { Festival, Promoter } from "@/generated/prisma";
 import Link from "next/link";
-
-// ---------------------------------------------------------------------------
-// Region display helpers
-// ---------------------------------------------------------------------------
-
-const REGION_LABELS: Record<Region, string> = {
-  NORTHLAND: "Northland",
-  AUCKLAND: "Auckland",
-  WAIKATO: "Waikato",
-  BAY_OF_PLENTY: "Bay of Plenty",
-  GISBORNE: "Gisborne",
-  HAWKES_BAY: "Hawke's Bay",
-  TARANAKI: "Taranaki",
-  MANAWATU_WHANGANUI: "Manawatū-Whanganui",
-  WELLINGTON: "Wellington",
-  WAIRARAPA: "Wairarapa",
-  TASMAN: "Tasman",
-  NELSON: "Nelson",
-  MARLBOROUGH: "Marlborough",
-  WEST_COAST: "West Coast",
-  CANTERBURY: "Canterbury",
-  OTAGO: "Otago",
-  SOUTHLAND: "Southland",
-  ONLINE: "Online",
-};
-
-function formatRegion(region: Region | null): string {
-  if (!region) return "Unknown region";
-  return REGION_LABELS[region] ?? region;
-}
-
-// ---------------------------------------------------------------------------
-// Status badge helpers
-// ---------------------------------------------------------------------------
-
-const STATUS_STYLES: Record<FestivalStatus, string> = {
-  ACTIVE: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
-  TBC: "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200",
-  HIATUS: "bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300",
-  DEFUNCT: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200",
-  UNCONFIRMED:
-    "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200",
-};
-
-const STATUS_LABELS: Record<FestivalStatus, string> = {
-  ACTIVE: "Active",
-  TBC: "TBC",
-  HIATUS: "Hiatus",
-  DEFUNCT: "Defunct",
-  UNCONFIRMED: "Unconfirmed",
-};
+import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
+import { REGION_LABELS, formatRegion } from "@/lib/format";
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
 type FestivalWithPromoter = Festival & { promoter: Promoter | null };
+
+export const metadata: Metadata = {
+  title: "Aotearoa Festivals — NZ Music Festival Directory",
+  description:
+    "Discover New Zealand music festivals, promoters, and artists. Browse by region, genre, or status.",
+};
 
 // ---------------------------------------------------------------------------
 // Page
@@ -196,11 +154,7 @@ export default async function Home() {
                     <div className="flex flex-1 flex-col gap-3 p-5">
                       {/* Status badge + name */}
                       <div>
-                        <span
-                          className={`mb-2 inline-block rounded-full px-2.5 py-0.5 text-xs font-semibold ${STATUS_STYLES[festival.status]}`}
-                        >
-                          {STATUS_LABELS[festival.status]}
-                        </span>
+                        <FestivalStatusBadge status={festival.status} className="mb-2" />
                         <h3 className="text-base leading-snug font-bold transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">
                           {festival.name}
                         </h3>

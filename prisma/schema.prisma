@@ -98,6 +98,11 @@ model Festival {
   website       String?
   approved      Boolean        @default(true)
 
+  vibe          String?
+  camping       Boolean?
+  ticketPrice   String?
+  ticketUrl     String?
+
   promoterId    String?
   promoter      Promoter?      @relation(fields: [promoterId], references: [id])
 

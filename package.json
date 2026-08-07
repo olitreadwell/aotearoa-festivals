@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": ">=22.17.1 <23.0.0"
+    "node": ">=22.17.1"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
