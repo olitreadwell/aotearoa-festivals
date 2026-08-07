@@ -81,7 +81,10 @@ New policy (see README.md "Testing policy"): every feature gets unit + integrati
 
 - [ ] Festival status badge component — consistent colour system across all pages
 - [ ] Upcoming vs past festival split on listing page (use `startDate` field)
-- [ ] Map view of NZ festivals by region (static SVG of NZ or Leaflet)
+- [ ] Map view of NZ festivals by region (static SVG of NZ or Leaflet) _(user research: coconut_s)_
+- [ ] Vibe description field on festival detail page — genre/atmosphere summary beyond just the artist lineup _(user research: coconut_s)_
+- [ ] Camping info on festival detail page — whether camping is available/included _(user research: coconut_s)_
+- [ ] Ticket pricing on festival detail page — price range or link to ticketing _(user research: coconut_s)_
 
 ### Performance & Infrastructure
 
