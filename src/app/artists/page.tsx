@@ -1,10 +1,15 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import type { Artist } from "@/generated/prisma";
 import Pagination from "@/components/Pagination";
 
 export const dynamic = "force-dynamic";
 
+export const metadata: Metadata = {
+  title: "All Artists — Aotearoa Festivals",
+  description: "Browse artists who have performed at New Zealand music festivals.",
+};
 const PAGE_SIZE = 24;
 
 interface PageProps {

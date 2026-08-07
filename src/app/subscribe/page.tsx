@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import { Region } from "@/generated/prisma";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Subscribe — Aotearoa Festivals",
+  description: "Get notified about upcoming festivals in your region.",
+};
 
 const REGION_LABELS: Record<Region, string> = {
   NORTHLAND: "Northland",

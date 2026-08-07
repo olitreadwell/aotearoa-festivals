@@ -1,5 +1,6 @@
 export const dynamic = "force-dynamic";
 
+import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { Region } from "@/generated/prisma";
 import Link from "next/link";
@@ -8,6 +9,10 @@ import Link from "next/link";
 // Helpers
 // ---------------------------------------------------------------------------
 
+export const metadata: Metadata = {
+  title: "Browse by Region — Aotearoa Festivals",
+  description: "Find New Zealand music festivals by region. From Northland to Southland.",
+};
 const REGION_LABELS: Record<Region, string> = {
   NORTHLAND: "Northland",
   AUCKLAND: "Auckland",

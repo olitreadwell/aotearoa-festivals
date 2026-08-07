@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Subscribed — Aotearoa Festivals",
+  description: "You're now subscribed to festival updates.",
+};
 
 export default function SubscribeConfirmedPage() {
   return (

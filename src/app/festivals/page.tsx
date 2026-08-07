@@ -1,5 +1,6 @@
 export const dynamic = "force-dynamic";
 
+import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { FestivalStatus, Region } from "@/generated/prisma";
 import type { Festival, Promoter } from "@/generated/prisma";
@@ -17,6 +18,12 @@ import {
 // ---------------------------------------------------------------------------
 
 type FestivalWithPromoter = Festival & { promoter: Promoter | null };
+
+export const metadata: Metadata = {
+  title: "All Festivals — Aotearoa Festivals",
+  description:
+    "Browse all New Zealand music festivals. Filter by region, genre, and status.",
+};
 
 // ---------------------------------------------------------------------------
 // Pagination
