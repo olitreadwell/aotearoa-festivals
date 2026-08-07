@@ -4,12 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
-const NAV_LINKS = [
-  { href: "/festivals", label: "Festivals" },
-  { href: "/calendar", label: "Calendar" },
-  { href: "/map", label: "Map" },
-  { href: "/search", label: "Search" },
-];
+const NAV_LINKS: { href: string; label: string }[] = [];
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);

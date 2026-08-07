@@ -1,18 +1,15 @@
-export const dynamic = "force-dynamic";
-
+import Link from "next/link";
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { FestivalStatus, Region } from "@/generated/prisma";
 import type { Festival, Promoter } from "@/generated/prisma";
-import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
-import { REGION_LABELS, formatRegion } from "@/lib/format";
+import { formatRegion, REGION_LABELS, STATUS_LABELS } from "@/lib/format";
+import HomeMap from "./_components/HomeMap";
 
-// ---------------------------------------------------------------------------
-// Types
-// ---------------------------------------------------------------------------
-
-type FestivalWithPromoter = Festival & { promoter: Promoter | null };
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Aotearoa Festivals — NZ Music Festival Directory",
@@ -20,283 +17,172 @@ export const metadata: Metadata = {
     "Discover New Zealand music festivals, promoters, and artists. Browse by region, genre, or status.",
 };
 
-// ---------------------------------------------------------------------------
-// Page
-// ---------------------------------------------------------------------------
+type FestivalWithPromoter = Festival & { promoter: Promoter | null };
 
-export default async function Home() {
-  const [festivalCount, activeCount, upcomingFestivals, regionRows] =
-    await Promise.all([
-      prisma.festival.count({ where: { approved: true } }),
-      prisma.festival.count({
-        where: { approved: true, status: FestivalStatus.ACTIVE },
-      }),
-      prisma.festival.findMany({
-        where: {
-          approved: true,
-          status: { in: [FestivalStatus.ACTIVE, FestivalStatus.TBC] },
-        },
-        orderBy: [{ startDate: "asc" }, { name: "asc" }],
-        take: 6,
-        include: { promoter: true },
-      }) as Promise<FestivalWithPromoter[]>,
-      prisma.festival.findMany({
-        where: { approved: true, region: { not: null } },
-        select: { region: true },
-        distinct: ["region"],
-      }),
-    ]);
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    region?: string;
+    status?: string;
+    genre?: string;
+    camping?: string;
+    search?: string;
+  }>;
+}) {
+  const { region, status, genre, camping, search } = await searchParams;
 
-  const regions = regionRows
-    .map((r) => r.region)
-    .filter((r): r is Region => r !== null)
-    .slice(0, 8);
+  const validRegion =
+    region && Object.values(Region).includes(region as Region)
+      ? (region as Region) : undefined;
+  const validStatus =
+    status && Object.values(FestivalStatus).includes(status as FestivalStatus)
+      ? (status as FestivalStatus) : undefined;
 
-  const regionCount = regionRows.filter((r) => r.region !== null).length;
+  const baseWhere = {
+    approved: true,
+    ...(validRegion ? { region: validRegion } : {}),
+    ...(validStatus ? { status: validStatus } : {}),
+    ...(genre ? { genre: { contains: genre, mode: "insensitive" as const } } : {}),
+    ...(camping === "yes" ? { camping: true } : camping === "no" ? { camping: false } : {}),
+    ...(search ? { name: { contains: search, mode: "insensitive" as const } } : {}),
+  };
+
+  const [festivalCount, activeCount, upcoming, mapFestivals] = await Promise.all([
+    prisma.festival.count({ where: { approved: true } }),
+    prisma.festival.count({ where: { approved: true, status: FestivalStatus.ACTIVE } }),
+    prisma.festival.findMany({
+      where: baseWhere,
+      orderBy: [{ startDate: { sort: "asc", nulls: "last" } }, { name: "asc" }],
+      include: { promoter: true },
+      take: 24,
+    }) as Promise<FestivalWithPromoter[]>,
+    prisma.festival.findMany({
+      where: { approved: true, latitude: { not: null }, longitude: { not: null } },
+      select: { id: true, name: true, slug: true, latitude: true, longitude: true, genre: true, region: true, status: true },
+      orderBy: { name: "asc" },
+    }),
+  ]);
+
+  const regionCount = await prisma.festival
+    .findMany({ where: { approved: true, region: { not: null } }, select: { region: true }, distinct: ["region"] })
+    .then((r) => r.length);
+
+  const now = new Date();
+  const upcomingCount = upcoming.filter(
+    (f) => !f.startDate || f.startDate >= now || (!f.startDate && f.status === "ACTIVE"),
+  ).length;
+  const pastCount = upcoming.length - upcomingCount;
+
+  function filterUrl(key: string, value: string | undefined): string {
+    const params = new URLSearchParams();
+    if (key !== "region" && validRegion) params.set("region", validRegion);
+    if (key !== "status" && validStatus) params.set("status", validStatus);
+    if (key !== "genre" && genre) params.set("genre", genre);
+    if (key !== "camping" && camping) params.set("camping", camping);
+    if (key !== "search" && search) params.set("search", search);
+    if (value) params.set(key, value);
+    return params.toString() ? `/?${params}` : "/";
+  }
 
   return (
     <main className="min-h-screen">
-      {/* ------------------------------------------------------------------ */}
-      {/* Hero                                                                */}
-      {/* ------------------------------------------------------------------ */}
-      <section className="border-b border-gray-200 bg-gradient-to-b from-blue-50 to-white px-6 py-20 text-center dark:border-gray-800 dark:from-blue-950/30 dark:to-[#0a0a0a]">
-        <div className="mx-auto max-w-2xl">
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
-            Aotearoa Festivals
-          </h1>
-          <p className="mt-4 text-lg text-[#555] dark:text-[#aaa]">
-            Discover music, arts &amp; culture festivals across New Zealand
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link
-              href="/festivals"
-              className="rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
-            >
-              Browse all festivals &rarr;
-            </Link>
-            <Link
-              href="/festivals?search=1"
-              className="rounded-lg border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-[#171717] transition-colors hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:border-gray-600 dark:bg-[#111] dark:text-[#ededed] dark:hover:bg-[#1a1a1a]"
-            >
-              Search &rarr;
-            </Link>
+      {/* Hero */}
+      <section className="border-b bg-gradient-to-b from-primary/5 to-background px-6 py-16 text-center">
+        <Badge variant="secondary" className="mb-4">
+          {festivalCount} festivals · {activeCount} active · {regionCount} regions
+        </Badge>
+        <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
+          Aotearoa Festivals
+        </h1>
+        <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
+          Discover music festivals across New Zealand. Browse by region, genre, or date.
+        </p>
+      </section>
+
+      {/* Advanced Filters */}
+      <section className="border-b bg-muted/30 px-4 py-3">
+        <form method="GET" className="mx-auto flex max-w-6xl flex-wrap items-center gap-2">
+          <select name="region" defaultValue={validRegion ?? ""} className="h-9 rounded-md border bg-background px-2 text-xs">
+            <option value="">All regions</option>
+            {Object.values(Region).filter(r => r !== "ONLINE").map(r => (
+              <option key={r} value={r}>{REGION_LABELS[r]}</option>
+            ))}
+          </select>
+          <select name="status" defaultValue={validStatus ?? ""} className="h-9 rounded-md border bg-background px-2 text-xs">
+            <option value="">All statuses</option>
+            {Object.values(FestivalStatus).map(s => (
+              <option key={s} value={s}>{STATUS_LABELS[s]}</option>
+            ))}
+          </select>
+          <input type="text" name="genre" defaultValue={genre ?? ""} placeholder="Genre..." className="h-9 w-24 rounded-md border bg-background px-2 text-xs" />
+          <select name="camping" defaultValue={camping ?? ""} className="h-9 rounded-md border bg-background px-2 text-xs">
+            <option value="">Camping: any</option>
+            <option value="yes">Camping: yes</option>
+            <option value="no">Camping: no</option>
+          </select>
+          <input type="search" name="search" defaultValue={search ?? ""} placeholder="Search..." className="h-9 w-32 rounded-md border bg-background px-2 text-xs" />
+          <Button type="submit" size="sm" variant="secondary">Filter</Button>
+          {(validRegion || validStatus || genre || camping || search) && (
+            <Link href="/" className="text-xs text-primary hover:underline">Clear</Link>
+          )}
+        </form>
+      </section>
+
+      {/* Map + List Dashboard */}
+      <div className="mx-auto flex max-w-full flex-col lg:flex-row">
+        {/* Map */}
+        <div className="lg:w-1/2" style={{ minHeight: "50dvh" }}>
+          <HomeMap festivals={mapFestivals.map(f => ({
+            id: f.id, name: f.name, slug: f.slug,
+            latitude: f.latitude!, longitude: f.longitude!,
+            genre: f.genre, region: f.region, status: f.status,
+          }))} />
+        </div>
+
+        {/* Sorted festival list */}
+        <div className="lg:w-1/2 border-t lg:border-l lg:border-t-0">
+          <div className="flex items-center justify-between border-b px-4 py-3">
+            <h2 className="text-sm font-semibold">
+              {upcoming.length} festival{upcoming.length !== 1 ? "s" : ""}
+              <span className="ml-2 text-xs font-normal text-muted-foreground">
+                {upcomingCount} upcoming{upcomingCount !== upcoming.length ? ` · ${upcoming.length - upcomingCount} past` : ""}
+              </span>
+            </h2>
+            <Button asChild variant="ghost" size="sm">
+              <Link href="/calendar">Calendar view →</Link>
+            </Button>
+          </div>
+          <div className="divide-y max-h-[70dvh] overflow-y-auto">
+            {upcoming.map((f) => (
+              <Link
+                key={f.id}
+                href={`/festivals/${f.slug}`}
+                className="flex items-start gap-3 px-4 py-3 transition-colors hover:bg-muted/50"
+              >
+                <FestivalStatusBadge status={f.status} />
+                <div className="min-w-0 flex-1">
+                  <span className="block truncate text-sm font-medium">{f.name}</span>
+                  <span className="block truncate text-xs text-muted-foreground">
+                    {[f.genre, f.region ? formatRegion(f.region) : null, f.dateText]
+                      .filter(Boolean).join(" · ")}
+                  </span>
+                  {f.camping && (
+                    <span className="mt-0.5 inline-block rounded bg-secondary px-1.5 py-px text-[10px] font-medium text-secondary-foreground">
+                      🏕 Camping
+                    </span>
+                  )}
+                </div>
+                {f.ticketPrice && (
+                  <span className="shrink-0 text-xs font-medium text-muted-foreground">{f.ticketPrice}</span>
+                )}
+              </Link>
+            ))}
+            {upcoming.length === 0 && (
+              <p className="px-4 py-8 text-center text-sm text-muted-foreground">No festivals match your filters.</p>
+            )}
           </div>
         </div>
-      </section>
-
-      {/* ------------------------------------------------------------------ */}
-      {/* Stats row                                                           */}
-      {/* ------------------------------------------------------------------ */}
-      <section
-        aria-label="Site statistics"
-        className="border-b border-gray-200 px-6 py-5 dark:border-gray-800"
-      >
-        <dl className="mx-auto flex max-w-3xl flex-wrap justify-center gap-x-8 gap-y-2 text-center text-sm text-[#555] dark:text-[#aaa]">
-          <div className="flex items-center gap-1.5">
-            <dt className="font-semibold text-[#171717] dark:text-[#ededed]">
-              {festivalCount}
-            </dt>
-            <dd>festivals</dd>
-          </div>
-          <span aria-hidden="true" className="text-gray-300 dark:text-gray-600">
-            &middot;
-          </span>
-          <div className="flex items-center gap-1.5">
-            <dt className="font-semibold text-[#171717] dark:text-[#ededed]">
-              {activeCount}
-            </dt>
-            <dd>active</dd>
-          </div>
-          <span aria-hidden="true" className="text-gray-300 dark:text-gray-600">
-            &middot;
-          </span>
-          <div className="flex items-center gap-1.5">
-            <dt className="font-semibold text-[#171717] dark:text-[#ededed]">
-              {regionCount}
-            </dt>
-            <dd>regions covered</dd>
-          </div>
-        </dl>
-      </section>
-
-      <div className="mx-auto max-w-6xl px-4 py-12">
-        {/* ---------------------------------------------------------------- */}
-        {/* Upcoming festivals                                               */}
-        {/* ---------------------------------------------------------------- */}
-        <section aria-labelledby="upcoming-heading" className="mb-14">
-          <div className="mb-6 flex items-baseline justify-between gap-4">
-            <h2
-              id="upcoming-heading"
-              className="text-xl font-bold tracking-tight"
-            >
-              Upcoming festivals
-            </h2>
-            <Link
-              href="/festivals"
-              className="shrink-0 text-sm text-blue-600 hover:underline dark:text-blue-400"
-            >
-              View all &rarr;
-            </Link>
-          </div>
-
-          {upcomingFestivals.length > 0 ? (
-            <ul
-              className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
-              role="list"
-            >
-              {upcomingFestivals.map((festival) => (
-                <li key={festival.id}>
-                  <Link
-                    href={`/festivals/${festival.slug}`}
-                    className="group flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-150 hover:border-blue-400 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:border-gray-700 dark:bg-[#111] dark:hover:border-blue-500"
-                  >
-                    {/* Card body */}
-                    <div className="flex flex-1 flex-col gap-3 p-5">
-                      {/* Status badge + name */}
-                      <div>
-                        <FestivalStatusBadge status={festival.status} className="mb-2" />
-                        <h3 className="text-base leading-snug font-bold transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                          {festival.name}
-                        </h3>
-                      </div>
-
-                      {/* Meta rows */}
-                      <dl className="flex flex-col gap-1 text-sm text-[#555] dark:text-[#aaa]">
-                        {festival.region && (
-                          <div className="flex items-center gap-1.5">
-                            <dt className="sr-only">Region</dt>
-                            <svg
-                              aria-hidden="true"
-                              className="h-3.5 w-3.5 shrink-0"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                            <dd>{formatRegion(festival.region)}</dd>
-                          </div>
-                        )}
-
-                        {festival.genre && (
-                          <div className="flex items-center gap-1.5">
-                            <dt className="sr-only">Genre</dt>
-                            <svg
-                              aria-hidden="true"
-                              className="h-3.5 w-3.5 shrink-0"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
-                              <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z" />
-                            </svg>
-                            <dd>{festival.genre}</dd>
-                          </div>
-                        )}
-
-                        {festival.dateText && (
-                          <div className="flex items-center gap-1.5">
-                            <dt className="sr-only">Date</dt>
-                            <svg
-                              aria-hidden="true"
-                              className="h-3.5 w-3.5 shrink-0"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                            <dd>{festival.dateText}</dd>
-                          </div>
-                        )}
-                      </dl>
-                    </div>
-
-                    {/* Card footer arrow */}
-                    <div className="flex justify-end px-5 pb-4">
-                      <svg
-                        aria-hidden="true"
-                        className="h-4 w-4 text-gray-400 transition-colors group-hover:text-blue-500"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div className="rounded-xl border border-dashed border-gray-300 p-12 text-center text-sm text-[#555] dark:border-gray-600 dark:text-[#aaa]">
-              No upcoming festivals at the moment.{" "}
-              <Link
-                href="/festivals"
-                className="text-blue-600 underline dark:text-blue-400"
-              >
-                Browse all festivals
-              </Link>
-              .
-            </div>
-          )}
-        </section>
-
-        {/* ---------------------------------------------------------------- */}
-        {/* Browse by region                                                 */}
-        {/* ---------------------------------------------------------------- */}
-        {regions.length > 0 && (
-          <section aria-labelledby="regions-heading" className="mb-14">
-            <h2
-              id="regions-heading"
-              className="mb-5 text-xl font-bold tracking-tight"
-            >
-              Browse by region
-            </h2>
-            <div className="flex flex-wrap gap-2.5" role="list">
-              {regions.map((region) => (
-                <Link
-                  key={region}
-                  href={`/regions/${region.toLowerCase()}`}
-                  role="listitem"
-                  className="rounded-full border border-gray-300 bg-white px-4 py-1.5 text-sm font-medium text-[#333] transition-colors hover:border-blue-400 hover:bg-blue-50 hover:text-blue-700 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:border-gray-600 dark:bg-[#111] dark:text-[#ccc] dark:hover:border-blue-500 dark:hover:bg-blue-950/40 dark:hover:text-blue-300"
-                >
-                  {REGION_LABELS[region]}
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* ---------------------------------------------------------------- */}
-        {/* Footer CTA                                                       */}
-        {/* ---------------------------------------------------------------- */}
-        <section
-          aria-label="Submit a festival"
-          className="rounded-xl border border-dashed border-gray-300 px-8 py-10 text-center dark:border-gray-700"
-        >
-          <h2 className="mb-2 text-lg font-semibold">
-            Know a festival we&apos;re missing?
-          </h2>
-          <p className="mb-5 text-sm text-[#555] dark:text-[#aaa]">
-            Help us keep the directory complete — submissions are reviewed and
-            published within a few days.
-          </p>
-          <Link
-            href="/submit"
-            className="inline-block rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-semibold text-[#171717] transition-colors hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:border-gray-600 dark:bg-[#111] dark:text-[#ededed] dark:hover:bg-[#1a1a1a]"
-          >
-            Submit a festival &rarr;
-          </Link>
-        </section>
       </div>
     </main>
   );
