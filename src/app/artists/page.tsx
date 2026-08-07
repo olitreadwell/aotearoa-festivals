@@ -22,13 +22,13 @@ function SocialIcons({ artist }: { artist: Artist }) {
   return (
     <div className="flex gap-2">
       {artist.instagram && (
-        <a href={`https://instagram.com/${artist.instagram.replace(/^@/, "")}`} target="_blank" rel="noopener noreferrer" className="text-xs text-neutral-400 hover:text-pink-500" title="Instagram">IG</a>
+        <a href={`https://instagram.com/${artist.instagram.replace(/^@/, "")}`} target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-400 hover:text-pink-500" title="Instagram">IG</a>
       )}
       {artist.soundcloud && (
-        <a href={artist.soundcloud.startsWith("http") ? artist.soundcloud : `https://soundcloud.com/${artist.soundcloud}`} target="_blank" rel="noopener noreferrer" className="text-xs text-neutral-400 hover:text-orange-500" title="SoundCloud">SC</a>
+        <a href={artist.soundcloud.startsWith("http") ? artist.soundcloud : `https://soundcloud.com/${artist.soundcloud}`} target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-400 hover:text-orange-500" title="SoundCloud">SC</a>
       )}
       {artist.raUrl && (
-        <a href={artist.raUrl.startsWith("http") ? artist.raUrl : `https://ra.co/${artist.raUrl}`} target="_blank" rel="noopener noreferrer" className="text-xs text-neutral-400 hover:text-blue-500" title="Resident Advisor">RA</a>
+        <a href={artist.raUrl.startsWith("http") ? artist.raUrl : `https://ra.co/${artist.raUrl}`} target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-400 hover:text-blue-500" title="Resident Advisor">RA</a>
       )}
     </div>
   );

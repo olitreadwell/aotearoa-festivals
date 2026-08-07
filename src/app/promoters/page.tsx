@@ -86,9 +86,9 @@ export default async function PromotersPage({
                   <td className="py-2.5 pr-4">{p._count.festivals}</td>
                   <td className="py-2.5">
                     <div className="flex gap-2">
-                      {p.website && <a href={p.website} target="_blank" rel="noopener noreferrer" className="text-xs text-neutral-400 hover:text-blue-500" title="Website">WEB</a>}
-                      {p.instagram && <a href={`https://instagram.com/${p.instagram.replace(/^@/, "")}`} target="_blank" rel="noopener noreferrer" className="text-xs text-neutral-400 hover:text-pink-500" title="Instagram">IG</a>}
-                      {p.facebook && <a href={p.facebook.startsWith("http") ? p.facebook : `https://facebook.com/${p.facebook}`} target="_blank" rel="noopener noreferrer" className="text-xs text-neutral-400 hover:text-blue-600" title="Facebook">FB</a>}
+                      {p.website && <a href={p.website} target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-400 hover:text-blue-500" title="Website">WEB</a>}
+                      {p.instagram && <a href={`https://instagram.com/${p.instagram.replace(/^@/, "")}`} target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-400 hover:text-pink-500" title="Instagram">IG</a>}
+                      {p.facebook && <a href={p.facebook.startsWith("http") ? p.facebook : `https://facebook.com/${p.facebook}`} target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-400 hover:text-blue-600" title="Facebook">FB</a>}
                     </div>
                   </td>
                 </tr>

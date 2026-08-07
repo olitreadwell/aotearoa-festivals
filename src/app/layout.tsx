@@ -1,12 +1,21 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { SiteNav } from "@/components/SiteNav";
 
 export const metadata: Metadata = {
   title: "Aotearoa Festivals",
   description:
     "New Zealand music festivals, promoters, and the artists who play them.",
+  manifest: "/manifest.json",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
 };
 
 const THEME_INIT_SCRIPT = `
@@ -24,6 +33,14 @@ const THEME_INIT_SCRIPT = `
 })();
 `;
 
+const SW_REGISTER = `
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function() {
+    navigator.serviceWorker.register("/sw.js");
+  });
+}
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -34,64 +51,16 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
       </head>
-      <body>
-        <header className="site-header" role="banner">
-          <nav className="site-nav" aria-label="Main navigation">
-            <Link
-              href="/"
-              className="site-nav__brand"
-              aria-label="Aotearoa Festivals home"
-            >
-              Aotearoa Festivals
-            </Link>
-            <ul className="site-nav__links" role="list">
-              <li>
-                <Link href="/festivals" className="site-nav__link">
-                  Festivals
-                </Link>
-              </li>
-              <li>
-                <Link href="/artists" className="site-nav__link">
-                  Artists
-                </Link>
-              </li>
-              <li>
-                <Link href="/promoters" className="site-nav__link">
-                  Promoters
-                </Link>
-              </li>
-              <li>
-                <Link href="/regions" className="site-nav__link">
-                  Regions
-                </Link>
-              </li>
-              <li>
-                <Link href="/calendar" className="site-nav__link">
-                  Calendar
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="site-nav__link">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="site-nav__link">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link href="/search" className="site-nav__link">
-                  Search
-                </Link>
-              </li>
-              <li>
-                <ThemeToggle />
-              </li>
-            </ul>
-          </nav>
-        </header>
-        <div className="site-content">{children}</div>
+      <body className="pb-[env(safe-area-inset-bottom,0px)]">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-3 focus:text-base focus:font-medium focus:shadow-lg focus:outline-2 focus:outline-blue-600 dark:focus:bg-neutral-900 dark:focus:text-white"
+        >
+          Skip to content
+        </a>
+        <SiteNav />
+        <div id="main-content" className="site-content">{children}</div>
+        <script dangerouslySetInnerHTML={{ __html: SW_REGISTER }} />
       </body>
     </html>
   );
