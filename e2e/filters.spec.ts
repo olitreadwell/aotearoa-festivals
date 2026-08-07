@@ -35,12 +35,16 @@ test.describe("home page filters", () => {
 test.describe("festival detail", () => {
   test("shows festival info", async ({ page }) => {
     await page.goto("/festivals/rhythm-and-vines");
-    await expect(page.getByRole("heading", { level: 1 })).toContainText("Rhythm");
+    await expect(page.getByRole("heading", { level: 1 })).toContainText(
+      "Rhythm",
+    );
   });
 
   test("has breadcrumbs", async ({ page }) => {
     await page.goto("/festivals/northern-bass");
-    await expect(page.getByRole("navigation", { name: "Breadcrumb" })).toBeVisible();
+    await expect(
+      page.getByRole("navigation", { name: "Breadcrumb" }),
+    ).toBeVisible();
   });
 
   test("404 for unknown festival", async ({ page }) => {

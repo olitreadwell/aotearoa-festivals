@@ -33,41 +33,43 @@ export async function POST(request: Request) {
 
     const imageBuffer = await imageResponse.arrayBuffer();
     const base64Image = Buffer.from(imageBuffer).toString("base64");
-    const mediaType =
-      imageResponse.headers.get("content-type") ?? "image/jpeg";
+    const mediaType = imageResponse.headers.get("content-type") ?? "image/jpeg";
 
     // Call Claude Vision API
-    const anthropicResponse = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": process.env.ANTHROPIC_API_KEY!,
-        "anthropic-version": "2023-06-01",
-      },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-6",
-        max_tokens: 1024,
-        messages: [
-          {
-            role: "user",
-            content: [
-              {
-                type: "image",
-                source: {
-                  type: "base64",
-                  media_type: mediaType,
-                  data: base64Image,
+    const anthropicResponse = await fetch(
+      "https://api.anthropic.com/v1/messages",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": process.env.ANTHROPIC_API_KEY!,
+          "anthropic-version": "2023-06-01",
+        },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-6",
+          max_tokens: 1024,
+          messages: [
+            {
+              role: "user",
+              content: [
+                {
+                  type: "image",
+                  source: {
+                    type: "base64",
+                    media_type: mediaType,
+                    data: base64Image,
+                  },
                 },
-              },
-              {
-                type: "text",
-                text: `Extract all artist and DJ names from this festival poster. Return ONLY a JSON array of strings with the artist names. Example: ["Artist Name 1", "DJ Name 2"]. Remove any duplicates. Do not include stage names, collectives, or non-artist text.`,
-              },
-            ],
-          },
-        ],
-      }),
-    });
+                {
+                  type: "text",
+                  text: `Extract all artist and DJ names from this festival poster. Return ONLY a JSON array of strings with the artist names. Example: ["Artist Name 1", "DJ Name 2"]. Remove any duplicates. Do not include stage names, collectives, or non-artist text.`,
+                },
+              ],
+            },
+          ],
+        }),
+      },
+    );
 
     if (!anthropicResponse.ok) {
       const err = await anthropicResponse.text();
