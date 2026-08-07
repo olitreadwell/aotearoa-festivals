@@ -26,7 +26,7 @@ describe("Pagination", () => {
   });
 
   it("renders previous link except on first page", () => {
-    const { container } = render(<Pagination currentPage={2} totalPages={3} buildHref={buildHref} />);
+    const { } = render(<Pagination currentPage={2} totalPages={3} buildHref={buildHref} />);
     expect(screen.getByLabelText("Previous page")).toBeTruthy();
     const first = render(<Pagination currentPage={1} totalPages={3} buildHref={buildHref} />);
     expect(first.container.querySelector('[aria-label="Previous page"]')).toBeNull();

@@ -10,13 +10,15 @@
       "genre": "Jazz / Blues",
       "cost": "",
       "links": "https://boimusicfestivals.com/",
-      "notes": "Regional jazz and blues festival.",
+      "notes": "Regional jazz and blues festival \u00b7 All ages, 3-day",
       "vibe": "Relaxed seaside jazz picnic",
       "camping": false,
       "ticketPrice": "$25\u2013$60 per session",
       "ticketUrl": "https://boimusicfestivals.com/",
       "latitude": -35.28,
-      "longitude": 174.09
+      "longitude": 174.09,
+      "startDate": "2026-08-07",
+      "endDate": "2026-08-09"
     },
     {
       "name": "Rhythm and Vines",
@@ -28,13 +30,15 @@
       "genre": "NYE / Multi-genre",
       "cost": "",
       "links": "https://www.rhythmandvines.co.nz/",
-      "notes": "One of NZ's biggest NYE festivals, running since 2003.",
+      "notes": "One of NZ's biggest NYE festivals, running since 2003 \u00b7 18+, 3-day",
       "vibe": "Iconic NYE in the vines \u2014 multi-genre party under the Gisborne sun",
       "camping": true,
       "ticketPrice": "$250\u2013$450 (multi-day)",
       "ticketUrl": "https://www.rhythmandvines.co.nz/",
       "latitude": -38.66,
-      "longitude": 178.02
+      "longitude": 178.02,
+      "startDate": "2026-12-28",
+      "endDate": "2027-01-01"
     },
     {
       "name": "Rhythm and Alps",
@@ -46,9 +50,12 @@
       "genre": "NYE / Electronic, hip-hop, alt",
       "cost": "",
       "links": "https://rhythmandalps.co.nz/",
-      "notes": "At Robrosa Station.",
+      "notes": "At Robrosa Station \u00b7 18+, 2-day",
       "latitude": -44.88,
-      "longitude": 169.01
+      "longitude": 169.01,
+      "startDate": "2026-12-30",
+      "endDate": "2026-12-31",
+      "camping": false
     },
     {
       "name": "Northern Bass",
@@ -60,9 +67,12 @@
       "genre": "NYE / DnB, dubstep, house, techno",
       "cost": "",
       "links": "https://northernbass.co.nz/",
-      "notes": "15th anniversary edition. Run by @fuzennz.",
+      "notes": "15th anniversary edition. Run by @fuzennz \u00b7 18+, 3-day",
       "latitude": -36.15,
-      "longitude": 174.43
+      "longitude": 174.43,
+      "startDate": "2026-12-30",
+      "endDate": "2026-12-31",
+      "camping": true
     },
     {
       "name": "Rolling Meadows",
@@ -76,7 +86,10 @@
       "links": "https://rollingmeadows.co.nz/",
       "notes": "6th year in Christchurch. 3 stages (Meadows, SUB180, Canopy). 2026 lineup incl. Alison Wonderland, Andy C, Clean Bandit, Example, Friction, JME.",
       "latitude": -43.49,
-      "longitude": 172.72
+      "longitude": 172.72,
+      "startDate": "2026-12-29",
+      "endDate": "2026-12-31",
+      "camping": false
     },
     {
       "name": "Marton Country Music Festival",
@@ -184,9 +197,12 @@
       "genre": "NYE / Multi-genre, 4 stages",
       "cost": "",
       "links": "https://www.twistedfrequency.co.nz/",
-      "notes": "",
+      "notes": "18+, 5-day",
       "latitude": -41.12,
-      "longitude": 172.68
+      "longitude": 172.68,
+      "startDate": "2026-12-30",
+      "endDate": "2027-01-03",
+      "camping": true
     },
     {
       "name": "Kiwiburn",
@@ -228,7 +244,8 @@
       "links": "https://www.newtownfestival.org.nz/",
       "notes": "",
       "latitude": -41.32,
-      "longitude": 174.77
+      "longitude": 174.77,
+      "startDate": "2027-03-07"
     },
     {
       "name": "Twominds Festival",
@@ -245,7 +262,8 @@
       "camping": true,
       "ticketPrice": "$150\u2013$270",
       "latitude": -43.47,
-      "longitude": 172.72
+      "longitude": 172.72,
+      "startDate": "2025-03-14"
     },
     {
       "name": "Great Sounds Great",
@@ -286,7 +304,10 @@
       "links": "https://soundsplash.co.nz/",
       "notes": "All-ages.",
       "latitude": -37.79,
-      "longitude": 175.28
+      "longitude": 175.28,
+      "startDate": "2027-01-22",
+      "endDate": "2027-01-24",
+      "camping": true
     },
     {
       "name": "Electric Avenue Music Festival",
@@ -298,9 +319,12 @@
       "genre": "Multi-genre",
       "cost": "",
       "links": "https://electricavenuefestival.co.nz/",
-      "notes": "",
+      "notes": "18+, 2-day",
       "latitude": -43.53,
-      "longitude": 172.62
+      "longitude": 172.62,
+      "startDate": "2027-02-26",
+      "endDate": "2027-02-27",
+      "camping": false
     },
     {
       "name": "AUM Festival",
@@ -441,7 +465,7 @@
     {
       "name": "Cross St Music Festival",
       "promoter": "",
-      "status": "tbc",
+      "status": "active",
       "date": "Date TBC",
       "region": "Auckland",
       "location": "K Road area, Auckland",
@@ -453,7 +477,7 @@
     {
       "name": "Outfield Music, Food & Arts Festival",
       "promoter": "",
-      "status": "tbc",
+      "status": "active",
       "date": "2027, date TBC",
       "region": "Hawke's Bay",
       "location": "Te Awanga Downs, Hastings District",
@@ -465,7 +489,7 @@
     {
       "name": "Yatra Festival",
       "promoter": "",
-      "status": "tbc",
+      "status": "active",
       "date": "2027 date TBC (2026 ran 27 Feb - 2 Mar)",
       "region": "Tasman",
       "location": "Golden Bay",
@@ -484,9 +508,10 @@
       "genre": "Music, arts, camping",
       "cost": "~$420 adult / $220 youth / free under-12",
       "links": "https://www.splore.net/",
-      "notes": "Ran 1998-2026 (28 years), NZ's longest-running music/arts/camping festival. Ended for good after cost-of-living-driven low ticket sales.",
+      "notes": "Ran 1998-2026 (28 years), NZ's longest-running music/arts/camping festival. Ended for good after cost-of-living-driven low ticket sales \u00b7 All ages, 3-day",
       "latitude": -36.79,
-      "longitude": 175.04
+      "longitude": 175.04,
+      "camping": true
     },
     {
       "name": "Bay Dreams",
@@ -498,9 +523,10 @@
       "genre": "Hip hop, urban, dance",
       "cost": "",
       "links": "https://baydreams.co.nz/",
-      "notes": "Ran 2016-2024. Called for hiatus from 2025, citing costs and difficulty securing headliners. Not officially declared dead.",
+      "notes": "Ran 2016-2024. Called for hiatus from 2025, citing costs and difficulty securing headliners. Not officially declared dead \u00b7 18+, 2-day",
       "latitude": -37.68,
-      "longitude": 176.16
+      "longitude": 176.16,
+      "camping": false
     },
     {
       "name": "One Love Festival",
@@ -617,7 +643,7 @@
     {
       "name": "Resonance Festival",
       "promoter": "",
-      "status": "tbc",
+      "status": "active",
       "date": "2027 date TBC (2026 ran 20-22 Mar)",
       "region": "Auckland",
       "location": "North Auckland / South Head",
@@ -629,7 +655,7 @@
     {
       "name": "Laneway Festival NZ",
       "promoter": "St Jerome's Laneway NZ Limited",
-      "status": "tbc",
+      "status": "active",
       "date": "2027 date TBC (predicted ~Feb, 2026 was 5 Feb)",
       "region": "Auckland",
       "location": "Western Springs Stadium, Auckland",
@@ -641,7 +667,7 @@
     {
       "name": "Ecstatic Paradise Festival",
       "promoter": "",
-      "status": "tbc",
+      "status": "active",
       "date": "Date TBC",
       "region": "Northland",
       "location": "Mid-North, near Kerikeri / Matauri Bay",
@@ -653,7 +679,7 @@
     {
       "name": "In Bloom Festival",
       "promoter": "",
-      "status": "tbc",
+      "status": "active",
       "date": "\"Returning soon\", no date given",
       "region": "Auckland",
       "location": "Waterfront, Auckland",
@@ -665,7 +691,7 @@
     {
       "name": "Brooklyn Twilight Festival",
       "promoter": "",
-      "status": "tbc",
+      "status": "active",
       "date": "Annual, last held 15 Nov 2025",
       "region": "Wellington",
       "location": "Harrison Street, Brooklyn, Wellington",
@@ -705,7 +731,7 @@
     {
       "name": "Oasis Festival",
       "promoter": "",
-      "status": "tbc",
+      "status": "active",
       "date": "Labour Weekend pattern (2025 was 24-27 Oct), 2026 date TBC",
       "region": "Unknown",
       "location": "Unknown",
@@ -717,7 +743,7 @@
     {
       "name": "Golden Lights Music Festival",
       "promoter": "",
-      "status": "tbc",
+      "status": "active",
       "date": "January pattern (2025 was 10 Jan), 2026/2027 date TBC",
       "region": "Auckland",
       "location": "Trusts Arena, Henderson, Auckland",
@@ -771,7 +797,7 @@
     {
       "name": "Rolling Hertz",
       "promoter": "Sound Delinquents",
-      "status": "tbc",
+      "status": "active",
       "date": "2027 date TBC (2026 5-year anniversary was 6-9 Feb, Waitangi Weekend)",
       "region": "Tasman",
       "location": "Cobb Valley, Upper Takaka",
@@ -783,7 +809,7 @@
     {
       "name": "Mystic Realms",
       "promoter": "Audio Art",
-      "status": "tbc",
+      "status": "active",
       "date": "2027 date TBC (2026 was 17-19 Apr)",
       "region": "Auckland",
       "location": "Te Arai (186 Atkins Rd)",
@@ -795,7 +821,7 @@
     {
       "name": "Mayhem",
       "promoter": "Sub180 Entertainment",
-      "status": "tbc",
+      "status": "active",
       "date": "2026 Auckland ~Sep (exact date unclear), Christchurch edition already ran earlier 2026",
       "region": "Auckland / Canterbury",
       "location": "Auckland and Christchurch",
@@ -807,7 +833,7 @@
     {
       "name": "Urban Jungle",
       "promoter": "Sub180 Entertainment",
-      "status": "tbc",
+      "status": "active",
       "date": "2026 Christchurch edition was 21 Mar (already passed), Auckland (Vic Park) date unclear, 2027 TBC",
       "region": "Auckland / Canterbury",
       "location": "Auckland (Vic Park) and Christchurch (Burwood)",
@@ -831,7 +857,8 @@
       "camping": false,
       "ticketPrice": "$180\u2013$300",
       "latitude": -41.29,
-      "longitude": 174.78
+      "longitude": 174.78,
+      "startDate": "2026-04-10"
     },
     {
       "name": "Synthony",
@@ -946,7 +973,7 @@
     {
       "name": "Aum NYE Festival",
       "promoter": "",
-      "status": "tbc",
+      "status": "active",
       "date": "Late Dec 2026 (NYE, exact TBC)",
       "region": "Auckland",
       "location": "Mangawhai area",

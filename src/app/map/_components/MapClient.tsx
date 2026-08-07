@@ -38,9 +38,9 @@ export default function MapPage({ festivals }: { festivals: FestivalMarker[] }) 
   const [icons, setIcons] = useState<Record<string, L.DivIcon>>({} as Record<string, L.DivIcon>);
 
   useEffect(() => {
-    setMounted(true);
     import("leaflet/dist/leaflet.css");
     import("leaflet").then((L) => {
+      setMounted(true);
       setIcons(
         Object.fromEntries(
           Object.entries(GENRE_COLORS).map(([k, v]) => [
@@ -98,7 +98,7 @@ export default function MapPage({ festivals }: { festivals: FestivalMarker[] }) 
               key={f.id}
               position={[f.latitude, f.longitude]}
               title={f.name}
-              icon={(icons[f.genre ?? ""] ?? icons["Rock"]) as any}
+              icon={(icons[f.genre ?? ""] ?? icons["Rock"])!}
               keyboard={true}
             >
               <Popup>
