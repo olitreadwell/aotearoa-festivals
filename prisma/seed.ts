@@ -22,6 +22,21 @@ interface SeedFestival {
   ticketUrl?: string;
 }
 
+interface SeedArtist {
+  name: string;
+  genre?: string;
+  homeCity?: string;
+  instagram?: string;
+}
+
+interface SeedLineup {
+  festival: string;
+  artist: string;
+  year: number;
+  headliner?: boolean;
+  source?: string;
+}
+
 const prisma = new PrismaClient();
 
 function slugify(name: string): string {
@@ -170,7 +185,7 @@ async function main() {
   // Seed artists
   if (seedData.artists && seedData.artists.length > 0) {
     console.log(`Seeding ${seedData.artists.length} artists...`);
-    for (const a of seedData.artists) {
+    for (const a of seedData.artists as SeedArtist[]) {
       const slug = slugify(a.name);
       await prisma.artist.upsert({
         where: { slug },
@@ -193,7 +208,7 @@ async function main() {
   // Seed lineup entries
   if (seedData.lineups && seedData.lineups.length > 0) {
     console.log(`Seeding ${seedData.lineups.length} lineup entries...`);
-    for (const l of seedData.lineups) {
+    for (const l of seedData.lineups as SeedLineup[]) {
       const festival = await prisma.festival.findUnique({
         where: { slug: slugify(l.festival) },
       });
