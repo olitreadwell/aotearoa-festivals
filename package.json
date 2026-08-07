@@ -1,6 +1,6 @@
 {
-  "name": "@numeral/root",
-  "version": "0.0.0",
+  "name": "aotearoa-festivals",
+  "version": "0.1.0",
   "private": true,
   "packageManager": "npm@10.9.2",
   "engines": {
@@ -67,5 +67,10 @@
     "next": "^16.3.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
+  },
+  "description": "New Zealand music festivals, promoters, and the artists who play them",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/olitreadwell/aotearoa-festivals"
   }
 }
