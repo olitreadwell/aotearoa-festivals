@@ -92,7 +92,7 @@ body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg);
 .dark .swatch { border-color: #3d4146; }
 </style>
 </head>
-<body data-palette="pohutukawa">
+<body>
 
 <div class="container">
   <div class="header">
@@ -196,12 +196,9 @@ body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg);
 </div>
 
 <script>
+const PALETTES = ['pohutukawa', 'ocean', 'forest', 'twilight'];
 function switchPalette(name) {
   document.body.dataset.palette = name;
-  document.querySelectorAll('.controls button').forEach(b => {
-    b.classList.toggle('active', b.textContent.trim().toLowerCase().includes(name.substring(0,4)));
-  });
-  // Fix active state for non-matching buttons
   document.querySelectorAll('.controls button:not([onclick*="toggleDark"])').forEach(b => {
     const pal = b.getAttribute('onclick').match(/'([^']+)'/)?.[1];
     b.classList.toggle('active', pal === name);
@@ -210,6 +207,10 @@ function switchPalette(name) {
 function toggleDark() {
   document.documentElement.classList.toggle('dark');
 }
+// Random palette on every load
+const idx = Math.floor(Math.random() * PALETTES.length);
+document.body.dataset.palette = PALETTES[idx];
+switchPalette(PALETTES[idx]);
 </script>
 </body>
 </html>
