@@ -107,13 +107,21 @@ export default async function FestivalsPage({
       {/* ------------------------------------------------------------------ */}
       {/* Header                                                              */}
       {/* ------------------------------------------------------------------ */}
-      <header className="mb-8">
-        <h1 className="mb-1 text-3xl font-bold tracking-tight">
-          Aotearoa Festivals
-        </h1>
-        <p className="text-sm text-[#555] dark:text-[#aaa]">
-          Discover music, arts, and culture festivals across New Zealand.
-        </p>
+      <header className="mb-8 flex items-start justify-between">
+        <div>
+          <h1 className="mb-1 text-3xl font-bold tracking-tight">
+            Aotearoa Festivals
+          </h1>
+          <p className="text-sm text-[#555] dark:text-[#aaa]">
+            Discover music, arts, and culture festivals across New Zealand.
+          </p>
+        </div>
+        <a
+          href="/calendar.ics"
+          className="shrink-0 rounded-lg border border-blue-600 px-4 py-2 text-sm font-medium text-blue-600 hover:bg-blue-50 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-900/20"
+        >
+          Subscribe to calendar
+        </a>
       </header>
 
       {/* ------------------------------------------------------------------ */}
