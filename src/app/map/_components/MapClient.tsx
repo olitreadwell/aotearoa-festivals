@@ -33,7 +33,7 @@ function genreColor(g: string | null): string {
 export default function MapPage({ festivals }: { festivals: FestivalMarker[] }) {
   const [mounted, setMounted] = useState(false);
   const [search, setSearch] = useState("");
-  const [icons, setIcons] = useState<Record<string, unknown>>({});
+  const [icons, setIcons] = useState<Record<string, L.DivIcon>>({} as Record<string, L.DivIcon>);
 
   useEffect(() => {
     setMounted(true);
@@ -90,7 +90,7 @@ export default function MapPage({ festivals }: { festivals: FestivalMarker[] }) 
               key={f.id}
               position={[f.latitude, f.longitude]}
               title={f.name}
-              icon={icons[f.genre ?? ""] ?? icons["Rock"]}
+              icon={(icons[f.genre ?? ""] ?? icons["Rock"]) as any}
               keyboard={true}
             >
               <Popup>
