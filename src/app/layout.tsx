@@ -66,6 +66,11 @@ export default function RootLayout({
                 </Link>
               </li>
               <li>
+                <Link href="/calendar" className="site-nav__link">
+                  Calendar
+                </Link>
+              </li>
+              <li>
                 <Link href="/about" className="site-nav__link">
                   About
                 </Link>

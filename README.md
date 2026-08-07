@@ -26,8 +26,8 @@ The Festival/Promoter shape borrows from nz-tech-events' proven model (region en
 | `/`                                 | Home — upcoming festivals grid, live counts, region browsing links    |
 | `/festivals`                        | Browse all festivals with region/status filters and pagination        |
 | `/festivals/[slug]`                 | Festival detail — lineup, promoter info, breadcrumbs, add-to-calendar |
-| `/festivals/[slug]/calendar.ics`    | iCal export for a festival (404s until it has a real `startDate`)     |
-| `/festivals/[slug]/opengraph-image` | Generated Open Graph share image for a festival                       |
+| `/calendar`                         | Monthly festival calendar view with subscribe link                       |
+| `/calendar.ics`                     | All upcoming festivals iCal feed                                         |
 | `/artists`                          | Browse all artists, paginated                                         |
 | `/artists/[slug]`                   | Artist detail — festival history across editions                      |
 | `/promoters`                        | Browse all promoters, paginated                                       |
