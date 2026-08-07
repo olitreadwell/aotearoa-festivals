@@ -91,7 +91,13 @@ New policy (see README.md "Testing policy"): every feature gets unit + integrati
 - [ ] ETA 80% Add breadcrumb navigation to pages missing it: festivals, artists, promoters, regions, search _(in progress — agent)_
 - [ ] ETA 60% Add loading.tsx for all routes _(in progress — agent)_
 - [ ] ETA 50% Upcoming vs past festival split on listing page _(in progress — agent)_
-- [ ] ETA 50% Map view of NZ festivals by region _(in progress — agent)_
+- [x] Add `/map` — interactive SVG map of NZ with festival counts, color legend, clickable regions _(done)_
+- [x] Add map/loading.tsx skeleton _(done)_
+- [x] Festival status badges on search results _(done)_
+- [x] Add `/about` page with project mission _(done)_
+- [ ] ETA 70% Add loading.tsx for all remaining routes _(in progress)_
+- [ ] ETA 70% Add artist + lineup seed data _(in progress)_
+- [ ] ETA 70% Upcoming vs past festival split on listing page _(in progress)_
 - [ ] ETA 10% Add artist + lineup seed data for discovery feature _(in progress — agent)_
 - [ ] ETA 0% Research: more backlog improvements _(in progress — librarian)_
 
