@@ -172,6 +172,7 @@ exports.Prisma.FestivalScalarFieldEnum = {
   camping: 'camping',
   ticketPrice: 'ticketPrice',
   ticketUrl: 'ticketUrl',
+  attendance: 'attendance',
   latitude: 'latitude',
   longitude: 'longitude',
   promoterId: 'promoterId',

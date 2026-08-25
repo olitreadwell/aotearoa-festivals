@@ -32,11 +32,16 @@ export default async function PlanPage() {
       name: true,
       region: true,
       genre: true,
+      camping: true,
+      ticketPrice: true,
+      attendance: true,
       startDate: true,
       endDate: true,
       dateText: true,
       status: true,
-      _count: { select: { lineups: true } },
+      lineups: {
+        select: { artist: { select: { genre: true } } },
+      },
     },
     orderBy: [{ startDate: { sort: "asc", nulls: "last" } }, { name: "asc" }],
   });
@@ -46,9 +51,18 @@ export default async function PlanPage() {
     name: f.name,
     region: f.region,
     genre: f.genre,
+    camping: f.camping,
+    ticketPrice: f.ticketPrice,
+    attendance: f.attendance,
+    lineupGenres: [
+      ...new Set(
+        f.lineups
+          .map((l) => l.artist.genre)
+          .filter((g): g is string => typeof g === "string" && g.length > 0),
+      ),
+    ],
     startDate: f.startDate,
     endDate: f.endDate,
-    lineupCount: f._count.lineups,
     dateText: f.dateText,
     status: f.status,
   }));

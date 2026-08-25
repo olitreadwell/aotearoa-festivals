@@ -102,6 +102,7 @@ model Festival {
   camping       Boolean?
   ticketPrice   String?
   ticketUrl     String?
+  attendance    Int?      // approximate crowd size; null = unknown
   latitude      Float?
   longitude     Float?
 

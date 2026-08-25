@@ -77,12 +77,44 @@ New policy (see README.md "Testing policy"): every feature gets unit + integrati
 
 - [x] `/plan` page — upcoming festivals grouped by NZ season (Summer/Autumn/Winter/Spring) _(done)_
 - [x] Two-tier plan status — Interested vs Planned, with "My plan" and "Interested" sections _(done)_
-- [x] **Build your season** tool — non-overlapping itinerary by strategy/region/genre/max count, add-all-to-plan _(done)_
+- [x] **Build your season** tool — live non-overlapping itinerary by strategy (radio cards)/region/genre (incl. lineup artist genres)/camping/2+ days/max count, add-all-to-plan _(done)_
 - [x] Plan status picker on dashboard, detail pages, and plan page _(done)_
 - [x] Nav "Plan" link with saved count badge _(done)_
 - [x] Season grouping helpers (`getSeasonForDate`, `groupFestivalsBySeason`) with unit tests _(done)_
 - [x] Itinerary optimizer (`buildFestivalItinerary`) with unit tests _(done)_
 - [x] E2E + a11y coverage for the plan flow _(done)_
+- [ ] **Ticket prices on itinerary rows** — show `ticketPrice` in builder results and plan rows when populated _(display done, data thin)_
+- [x] Strategies redefined — **biggest = most attendees**, **indie = small & intimate** (inverse of attendance) _(done)_
+- [x] `attendance` field (estimated crowd size) added to schema + seed (27 festivals), powers biggest/indie strategies _(done)_
+- [x] Min-days filter (number input, not fixed 2+ days) _(done)_
+
+### Data enrichment (needed to make planning filters meaningful)
+
+- [ ] **Camping data** — 56 of 71 festivals have `camping` null; research and fill (websites/Eventfinda)
+- [ ] **Lineup + artist genres** — many festivals have 0 lineup entries; fills "genres you could see", "biggest", "indie" strategies
+- [ ] **Ticket prices** — only 4/71 festivals have `ticketPrice`; gather price ranges + URLs
+- [ ] **endDate coverage** — 34 festivals missing `endDate`, which powers the "2+ days" filter
+- [ ] **Venue/event venue capacity** — real "biggest" signal beyond lineup count
+
+### Friend votes / group decision (spec)
+
+**Problem:** Planning a festival season is a group decision — the itinerary builder optimises for one person, but mates need to agree on which festivals to hit.
+
+**MVP:** Share a draft plan with friends; each friend votes "keen" / "pass" / "maybe" on each festival; the plan page shows vote counts and sorts/ranks by consensus.
+
+- Share: `/plan?share=<id>` — a read-only snapshot of the saved plan (server-stored, no account needed for voters, creator gets a token)
+- Votes: one vote per person per festival, no login (anonymous, deduped by browser id or email optional)
+- Result: consensus ranking — "everyone keen" badge on festival rows, sort itinerary by group score
+- Not built yet — agree the sharing model (server storage vs URL-encoded plan) before implementing
+
+### Ticket price feature (spec)
+
+**Problem:** can't compare festivals by cost, so budget planning is guesswork.
+
+- **Display:** show `ticketPrice` (text) on festival rows in the builder and `/plan` — done
+- **Filter:** once structured price data exists (price band enum or numeric from/to), add a "price range" filter to the builder
+- **Data:** gather ticket prices for all upcoming festivals (Eventfinda API + websites); store structured numeric bands rather than free text
+- **Out of scope:** purchases — link out to `ticketUrl` only
 
 ### Code Quality & Polish
 

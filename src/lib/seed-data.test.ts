@@ -61,6 +61,17 @@ describe("prisma/data/festivals-seed.json", () => {
     },
   );
 
+  it.each(seedData.festivals.map((f) => [f.name, f] as const))(
+    "%s attendance field is a positive integer or missing",
+    (_name, festival) => {
+      const f = festival as Record<string, unknown>;
+      if ("attendance" in f && f.attendance !== null) {
+        expect(typeof f.attendance).toBe("number");
+        expect(f.attendance as number).toBeGreaterThan(0);
+      }
+    },
+  );
+
   it("has at least some festivals with the new detail fields populated", () => {
     const fests = seedData.festivals as Array<Record<string, unknown>>;
     const withVibe = fests.filter((f) => typeof f.vibe === "string" && f.vibe);
@@ -68,9 +79,13 @@ describe("prisma/data/festivals-seed.json", () => {
     const withTicketPrice = fests.filter(
       (f) => typeof f.ticketPrice === "string" && f.ticketPrice,
     );
+    const withAttendance = fests.filter(
+      (f) => typeof f.attendance === "number",
+    );
 
     expect(withVibe.length).toBeGreaterThan(0);
     expect(withCamping.length).toBeGreaterThan(0);
     expect(withTicketPrice.length).toBeGreaterThan(0);
+    expect(withAttendance.length).toBeGreaterThan(0);
   });
 });

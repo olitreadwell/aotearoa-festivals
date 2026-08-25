@@ -55,9 +55,8 @@ test.describe("festival season plan", () => {
     page,
   }) => {
     await page.goto("/plan");
-    await page.getByLabel("Strategy").selectOption("most");
+    await page.locator('input[name="strategy"][value="most"]').check();
     await page.getByLabel("Region").selectOption("north");
-    await page.getByRole("button", { name: "Build itinerary" }).click();
 
     await expect(
       page.getByRole("button", { name: "Add all to my plan" }),

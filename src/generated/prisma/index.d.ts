@@ -4752,11 +4752,13 @@ export namespace Prisma {
   }
 
   export type FestivalAvgAggregateOutputType = {
+    attendance: number | null
     latitude: number | null
     longitude: number | null
   }
 
   export type FestivalSumAggregateOutputType = {
+    attendance: number | null
     latitude: number | null
     longitude: number | null
   }
@@ -4780,6 +4782,7 @@ export namespace Prisma {
     camping: boolean | null
     ticketPrice: string | null
     ticketUrl: string | null
+    attendance: number | null
     latitude: number | null
     longitude: number | null
     promoterId: string | null
@@ -4807,6 +4810,7 @@ export namespace Prisma {
     camping: boolean | null
     ticketPrice: string | null
     ticketUrl: string | null
+    attendance: number | null
     latitude: number | null
     longitude: number | null
     promoterId: string | null
@@ -4834,6 +4838,7 @@ export namespace Prisma {
     camping: number
     ticketPrice: number
     ticketUrl: number
+    attendance: number
     latitude: number
     longitude: number
     promoterId: number
@@ -4845,11 +4850,13 @@ export namespace Prisma {
 
 
   export type FestivalAvgAggregateInputType = {
+    attendance?: true
     latitude?: true
     longitude?: true
   }
 
   export type FestivalSumAggregateInputType = {
+    attendance?: true
     latitude?: true
     longitude?: true
   }
@@ -4873,6 +4880,7 @@ export namespace Prisma {
     camping?: true
     ticketPrice?: true
     ticketUrl?: true
+    attendance?: true
     latitude?: true
     longitude?: true
     promoterId?: true
@@ -4900,6 +4908,7 @@ export namespace Prisma {
     camping?: true
     ticketPrice?: true
     ticketUrl?: true
+    attendance?: true
     latitude?: true
     longitude?: true
     promoterId?: true
@@ -4927,6 +4936,7 @@ export namespace Prisma {
     camping?: true
     ticketPrice?: true
     ticketUrl?: true
+    attendance?: true
     latitude?: true
     longitude?: true
     promoterId?: true
@@ -5041,6 +5051,7 @@ export namespace Prisma {
     camping: boolean | null
     ticketPrice: string | null
     ticketUrl: string | null
+    attendance: number | null
     latitude: number | null
     longitude: number | null
     promoterId: string | null
@@ -5087,6 +5098,7 @@ export namespace Prisma {
     camping?: boolean
     ticketPrice?: boolean
     ticketUrl?: boolean
+    attendance?: boolean
     latitude?: boolean
     longitude?: boolean
     promoterId?: boolean
@@ -5118,6 +5130,7 @@ export namespace Prisma {
     camping?: boolean
     ticketPrice?: boolean
     ticketUrl?: boolean
+    attendance?: boolean
     latitude?: boolean
     longitude?: boolean
     promoterId?: boolean
@@ -5147,6 +5160,7 @@ export namespace Prisma {
     camping?: boolean
     ticketPrice?: boolean
     ticketUrl?: boolean
+    attendance?: boolean
     latitude?: boolean
     longitude?: boolean
     promoterId?: boolean
@@ -5176,6 +5190,7 @@ export namespace Prisma {
     camping?: boolean
     ticketPrice?: boolean
     ticketUrl?: boolean
+    attendance?: boolean
     latitude?: boolean
     longitude?: boolean
     promoterId?: boolean
@@ -5184,7 +5199,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type FestivalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "status" | "region" | "location" | "genre" | "costText" | "dateText" | "startDate" | "endDate" | "notes" | "website" | "approved" | "vibe" | "camping" | "ticketPrice" | "ticketUrl" | "latitude" | "longitude" | "promoterId" | "submittedById" | "createdAt" | "updatedAt", ExtArgs["result"]["festival"]>
+  export type FestivalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "status" | "region" | "location" | "genre" | "costText" | "dateText" | "startDate" | "endDate" | "notes" | "website" | "approved" | "vibe" | "camping" | "ticketPrice" | "ticketUrl" | "attendance" | "latitude" | "longitude" | "promoterId" | "submittedById" | "createdAt" | "updatedAt", ExtArgs["result"]["festival"]>
   export type FestivalInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     promoter?: boolean | Festival$promoterArgs<ExtArgs>
     submittedBy?: boolean | Festival$submittedByArgs<ExtArgs>
@@ -5226,6 +5241,7 @@ export namespace Prisma {
       camping: boolean | null
       ticketPrice: string | null
       ticketUrl: string | null
+      attendance: number | null
       latitude: number | null
       longitude: number | null
       promoterId: string | null
@@ -5676,6 +5692,7 @@ export namespace Prisma {
     readonly camping: FieldRef<"Festival", 'Boolean'>
     readonly ticketPrice: FieldRef<"Festival", 'String'>
     readonly ticketUrl: FieldRef<"Festival", 'String'>
+    readonly attendance: FieldRef<"Festival", 'Int'>
     readonly latitude: FieldRef<"Festival", 'Float'>
     readonly longitude: FieldRef<"Festival", 'Float'>
     readonly promoterId: FieldRef<"Festival", 'String'>
@@ -8519,6 +8536,7 @@ export namespace Prisma {
     camping: 'camping',
     ticketPrice: 'ticketPrice',
     ticketUrl: 'ticketUrl',
+    attendance: 'attendance',
     latitude: 'latitude',
     longitude: 'longitude',
     promoterId: 'promoterId',
@@ -8668,20 +8686,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Float'
-   */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float[]'
-   */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
-
-
-  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -8692,6 +8696,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -8923,6 +8941,7 @@ export namespace Prisma {
     camping?: BoolNullableFilter<"Festival"> | boolean | null
     ticketPrice?: StringNullableFilter<"Festival"> | string | null
     ticketUrl?: StringNullableFilter<"Festival"> | string | null
+    attendance?: IntNullableFilter<"Festival"> | number | null
     latitude?: FloatNullableFilter<"Festival"> | number | null
     longitude?: FloatNullableFilter<"Festival"> | number | null
     promoterId?: StringNullableFilter<"Festival"> | string | null
@@ -8953,6 +8972,7 @@ export namespace Prisma {
     camping?: SortOrderInput | SortOrder
     ticketPrice?: SortOrderInput | SortOrder
     ticketUrl?: SortOrderInput | SortOrder
+    attendance?: SortOrderInput | SortOrder
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
     promoterId?: SortOrderInput | SortOrder
@@ -8986,6 +9006,7 @@ export namespace Prisma {
     camping?: BoolNullableFilter<"Festival"> | boolean | null
     ticketPrice?: StringNullableFilter<"Festival"> | string | null
     ticketUrl?: StringNullableFilter<"Festival"> | string | null
+    attendance?: IntNullableFilter<"Festival"> | number | null
     latitude?: FloatNullableFilter<"Festival"> | number | null
     longitude?: FloatNullableFilter<"Festival"> | number | null
     promoterId?: StringNullableFilter<"Festival"> | string | null
@@ -9016,6 +9037,7 @@ export namespace Prisma {
     camping?: SortOrderInput | SortOrder
     ticketPrice?: SortOrderInput | SortOrder
     ticketUrl?: SortOrderInput | SortOrder
+    attendance?: SortOrderInput | SortOrder
     latitude?: SortOrderInput | SortOrder
     longitude?: SortOrderInput | SortOrder
     promoterId?: SortOrderInput | SortOrder
@@ -9051,6 +9073,7 @@ export namespace Prisma {
     camping?: BoolNullableWithAggregatesFilter<"Festival"> | boolean | null
     ticketPrice?: StringNullableWithAggregatesFilter<"Festival"> | string | null
     ticketUrl?: StringNullableWithAggregatesFilter<"Festival"> | string | null
+    attendance?: IntNullableWithAggregatesFilter<"Festival"> | number | null
     latitude?: FloatNullableWithAggregatesFilter<"Festival"> | number | null
     longitude?: FloatNullableWithAggregatesFilter<"Festival"> | number | null
     promoterId?: StringNullableWithAggregatesFilter<"Festival"> | string | null
@@ -9471,6 +9494,7 @@ export namespace Prisma {
     camping?: boolean | null
     ticketPrice?: string | null
     ticketUrl?: string | null
+    attendance?: number | null
     latitude?: number | null
     longitude?: number | null
     createdAt?: Date | string
@@ -9499,6 +9523,7 @@ export namespace Prisma {
     camping?: boolean | null
     ticketPrice?: string | null
     ticketUrl?: string | null
+    attendance?: number | null
     latitude?: number | null
     longitude?: number | null
     promoterId?: string | null
@@ -9527,6 +9552,7 @@ export namespace Prisma {
     camping?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ticketPrice?: NullableStringFieldUpdateOperationsInput | string | null
     ticketUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    attendance?: NullableIntFieldUpdateOperationsInput | number | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9555,6 +9581,7 @@ export namespace Prisma {
     camping?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ticketPrice?: NullableStringFieldUpdateOperationsInput | string | null
     ticketUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    attendance?: NullableIntFieldUpdateOperationsInput | number | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     promoterId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -9583,6 +9610,7 @@ export namespace Prisma {
     camping?: boolean | null
     ticketPrice?: string | null
     ticketUrl?: string | null
+    attendance?: number | null
     latitude?: number | null
     longitude?: number | null
     promoterId?: string | null
@@ -9610,6 +9638,7 @@ export namespace Prisma {
     camping?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ticketPrice?: NullableStringFieldUpdateOperationsInput | string | null
     ticketUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    attendance?: NullableIntFieldUpdateOperationsInput | number | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9635,6 +9664,7 @@ export namespace Prisma {
     camping?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ticketPrice?: NullableStringFieldUpdateOperationsInput | string | null
     ticketUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    attendance?: NullableIntFieldUpdateOperationsInput | number | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     promoterId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10096,6 +10126,17 @@ export namespace Prisma {
     not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type FloatNullableFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
@@ -10146,6 +10187,7 @@ export namespace Prisma {
     camping?: SortOrder
     ticketPrice?: SortOrder
     ticketUrl?: SortOrder
+    attendance?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
     promoterId?: SortOrder
@@ -10155,6 +10197,7 @@ export namespace Prisma {
   }
 
   export type FestivalAvgOrderByAggregateInput = {
+    attendance?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
   }
@@ -10178,6 +10221,7 @@ export namespace Prisma {
     camping?: SortOrder
     ticketPrice?: SortOrder
     ticketUrl?: SortOrder
+    attendance?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
     promoterId?: SortOrder
@@ -10205,6 +10249,7 @@ export namespace Prisma {
     camping?: SortOrder
     ticketPrice?: SortOrder
     ticketUrl?: SortOrder
+    attendance?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
     promoterId?: SortOrder
@@ -10214,6 +10259,7 @@ export namespace Prisma {
   }
 
   export type FestivalSumOrderByAggregateInput = {
+    attendance?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
   }
@@ -10266,6 +10312,22 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedBoolNullableFilter<$PrismaModel>
     _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -10558,6 +10620,14 @@ export namespace Prisma {
 
   export type NullableBoolFieldUpdateOperationsInput = {
     set?: boolean | null
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type NullableFloatFieldUpdateOperationsInput = {
@@ -10933,6 +11003,22 @@ export namespace Prisma {
     _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
   export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
@@ -10995,6 +11081,7 @@ export namespace Prisma {
     camping?: boolean | null
     ticketPrice?: string | null
     ticketUrl?: string | null
+    attendance?: number | null
     latitude?: number | null
     longitude?: number | null
     createdAt?: Date | string
@@ -11022,6 +11109,7 @@ export namespace Prisma {
     camping?: boolean | null
     ticketPrice?: string | null
     ticketUrl?: string | null
+    attendance?: number | null
     latitude?: number | null
     longitude?: number | null
     promoterId?: string | null
@@ -11078,6 +11166,7 @@ export namespace Prisma {
     camping?: BoolNullableFilter<"Festival"> | boolean | null
     ticketPrice?: StringNullableFilter<"Festival"> | string | null
     ticketUrl?: StringNullableFilter<"Festival"> | string | null
+    attendance?: IntNullableFilter<"Festival"> | number | null
     latitude?: FloatNullableFilter<"Festival"> | number | null
     longitude?: FloatNullableFilter<"Festival"> | number | null
     promoterId?: StringNullableFilter<"Festival"> | string | null
@@ -11105,6 +11194,7 @@ export namespace Prisma {
     camping?: boolean | null
     ticketPrice?: string | null
     ticketUrl?: string | null
+    attendance?: number | null
     latitude?: number | null
     longitude?: number | null
     createdAt?: Date | string
@@ -11132,6 +11222,7 @@ export namespace Prisma {
     camping?: boolean | null
     ticketPrice?: string | null
     ticketUrl?: string | null
+    attendance?: number | null
     latitude?: number | null
     longitude?: number | null
     submittedById?: string | null
@@ -11414,6 +11505,7 @@ export namespace Prisma {
     camping?: boolean | null
     ticketPrice?: string | null
     ticketUrl?: string | null
+    attendance?: number | null
     latitude?: number | null
     longitude?: number | null
     createdAt?: Date | string
@@ -11441,6 +11533,7 @@ export namespace Prisma {
     camping?: boolean | null
     ticketPrice?: string | null
     ticketUrl?: string | null
+    attendance?: number | null
     latitude?: number | null
     longitude?: number | null
     promoterId?: string | null
@@ -11519,6 +11612,7 @@ export namespace Prisma {
     camping?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ticketPrice?: NullableStringFieldUpdateOperationsInput | string | null
     ticketUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    attendance?: NullableIntFieldUpdateOperationsInput | number | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11546,6 +11640,7 @@ export namespace Prisma {
     camping?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ticketPrice?: NullableStringFieldUpdateOperationsInput | string | null
     ticketUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    attendance?: NullableIntFieldUpdateOperationsInput | number | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     promoterId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11614,6 +11709,7 @@ export namespace Prisma {
     camping?: boolean | null
     ticketPrice?: string | null
     ticketUrl?: string | null
+    attendance?: number | null
     latitude?: number | null
     longitude?: number | null
     promoterId?: string | null
@@ -11640,6 +11736,7 @@ export namespace Prisma {
     camping?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ticketPrice?: NullableStringFieldUpdateOperationsInput | string | null
     ticketUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    attendance?: NullableIntFieldUpdateOperationsInput | number | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11667,6 +11764,7 @@ export namespace Prisma {
     camping?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ticketPrice?: NullableStringFieldUpdateOperationsInput | string | null
     ticketUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    attendance?: NullableIntFieldUpdateOperationsInput | number | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     promoterId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11694,6 +11792,7 @@ export namespace Prisma {
     camping?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ticketPrice?: NullableStringFieldUpdateOperationsInput | string | null
     ticketUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    attendance?: NullableIntFieldUpdateOperationsInput | number | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     promoterId?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11720,6 +11819,7 @@ export namespace Prisma {
     camping?: boolean | null
     ticketPrice?: string | null
     ticketUrl?: string | null
+    attendance?: number | null
     latitude?: number | null
     longitude?: number | null
     submittedById?: string | null
@@ -11746,6 +11846,7 @@ export namespace Prisma {
     camping?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ticketPrice?: NullableStringFieldUpdateOperationsInput | string | null
     ticketUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    attendance?: NullableIntFieldUpdateOperationsInput | number | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11773,6 +11874,7 @@ export namespace Prisma {
     camping?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ticketPrice?: NullableStringFieldUpdateOperationsInput | string | null
     ticketUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    attendance?: NullableIntFieldUpdateOperationsInput | number | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     submittedById?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11800,6 +11902,7 @@ export namespace Prisma {
     camping?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ticketPrice?: NullableStringFieldUpdateOperationsInput | string | null
     ticketUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    attendance?: NullableIntFieldUpdateOperationsInput | number | null
     latitude?: NullableFloatFieldUpdateOperationsInput | number | null
     longitude?: NullableFloatFieldUpdateOperationsInput | number | null
     submittedById?: NullableStringFieldUpdateOperationsInput | string | null
