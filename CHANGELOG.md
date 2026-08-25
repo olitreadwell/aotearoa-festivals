@@ -7,6 +7,13 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased] — claude/feature-backlog-de73gs
 
+### Festival season planning
+
+- `/plan` — upcoming festivals grouped by NZ season (Summer/Autumn/Winter/Spring), with a "Dates TBC" section for unconfirmed dates
+- Save-to-plan watchlist — localStorage-backed toggle on the home dashboard, festival detail pages, and the plan page; nav shows a saved count badge
+- `getSeasonForDate`/`groupFestivalsBySeason` helpers with NZ summer spanning the year boundary (e.g. "Summer 25/26")
+- `formatDateRange` helper for "28–30 Dec 2026" style date ranges
+
 ### Added
 
 - New Festival fields: `vibe` (genre/atmosphere summary), `camping` (boolean), `ticketPrice` (price range text), `ticketUrl` (ticketing link)

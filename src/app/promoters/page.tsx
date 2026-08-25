@@ -10,7 +10,8 @@ const PAGE_SIZE = 24;
 
 export const metadata: Metadata = {
   title: "All Promoters — Aotearoa Festivals",
-  description: "Browse promoters and production companies behind New Zealand music festivals.",
+  description:
+    "Browse promoters and production companies behind New Zealand music festivals.",
 };
 
 export default async function PromotersPage({
@@ -50,14 +51,28 @@ export default async function PromotersPage({
 
   return (
     <main className="mx-auto max-w-5xl px-6 py-16">
-      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Promoters" }]} />
+      <Breadcrumbs
+        items={[{ label: "Home", href: "/" }, { label: "Promoters" }]}
+      />
       <h1 className="mt-4 text-3xl font-semibold tracking-tight">Promoters</h1>
-      <p className="mt-1 text-neutral-500 dark:text-neutral-400">{totalCount} promoters</p>
+      <p className="mt-1 text-neutral-500 dark:text-neutral-400">
+        {totalCount} promoters
+      </p>
 
       <div className="mt-6 mb-4 flex items-center gap-1 text-xs">
         <span className="text-neutral-500">Sort:</span>
-        {[{ label: "Name", field: "name" }, { label: "Region", field: "region" }, { label: "Genre", field: "genre" }].map((s) => (
-          <Link key={s.field} href={sortUrl(s.field)} className={`rounded px-2 py-0.5 ${sortField === s.field ? "bg-neutral-200 font-medium dark:bg-neutral-700" : "hover:underline"}`}>{s.label}</Link>
+        {[
+          { label: "Name", field: "name" },
+          { label: "Region", field: "region" },
+          { label: "Genre", field: "genre" },
+        ].map((s) => (
+          <Link
+            key={s.field}
+            href={sortUrl(s.field)}
+            className={`rounded px-2 py-0.5 ${sortField === s.field ? "bg-neutral-200 font-medium dark:bg-neutral-700" : "hover:underline"}`}
+          >
+            {s.label}
+          </Link>
         ))}
       </div>
 
@@ -77,18 +92,64 @@ export default async function PromotersPage({
             </thead>
             <tbody>
               {promoters.map((p) => (
-                <tr key={p.id} className="border-b border-neutral-100 transition-colors hover:bg-neutral-50 dark:border-neutral-800 dark:hover:bg-neutral-900/50">
+                <tr
+                  key={p.id}
+                  className="border-b border-neutral-100 transition-colors hover:bg-neutral-50 dark:border-neutral-800 dark:hover:bg-neutral-900/50"
+                >
                   <td className="py-2.5 pr-4">
-                    <Link href={`/promoters/${p.slug}`} className="font-medium hover:underline">{p.name}</Link>
+                    <Link
+                      href={`/promoters/${p.slug}`}
+                      className="font-medium hover:underline"
+                    >
+                      {p.name}
+                    </Link>
                   </td>
-                  <td className="py-2.5 pr-4 text-neutral-500 dark:text-neutral-400">{p.region || "—"}</td>
-                  <td className="py-2.5 pr-4 text-neutral-500 dark:text-neutral-400">{p.genreFocus || "—"}</td>
+                  <td className="py-2.5 pr-4 text-neutral-500 dark:text-neutral-400">
+                    {p.region || "—"}
+                  </td>
+                  <td className="py-2.5 pr-4 text-neutral-500 dark:text-neutral-400">
+                    {p.genreFocus || "—"}
+                  </td>
                   <td className="py-2.5 pr-4">{p._count.festivals}</td>
                   <td className="py-2.5">
                     <div className="flex gap-2">
-                      {p.website && <a href={p.website} target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-400 hover:text-blue-500" title="Website">WEB</a>}
-                      {p.instagram && <a href={`https://instagram.com/${p.instagram.replace(/^@/, "")}`} target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-400 hover:text-pink-500" title="Instagram">IG</a>}
-                      {p.facebook && <a href={p.facebook.startsWith("http") ? p.facebook : `https://facebook.com/${p.facebook}`} target="_blank" rel="noopener noreferrer" className="text-sm text-neutral-400 hover:text-blue-600" title="Facebook">FB</a>}
+                      {p.website && (
+                        <a
+                          href={p.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-neutral-400 hover:text-blue-500"
+                          title="Website"
+                        >
+                          WEB
+                        </a>
+                      )}
+                      {p.instagram && (
+                        <a
+                          href={`https://instagram.com/${p.instagram.replace(/^@/, "")}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-neutral-400 hover:text-pink-500"
+                          title="Instagram"
+                        >
+                          IG
+                        </a>
+                      )}
+                      {p.facebook && (
+                        <a
+                          href={
+                            p.facebook.startsWith("http")
+                              ? p.facebook
+                              : `https://facebook.com/${p.facebook}`
+                          }
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm text-neutral-400 hover:text-blue-600"
+                          title="Facebook"
+                        >
+                          FB
+                        </a>
+                      )}
                     </div>
                   </td>
                 </tr>
@@ -98,7 +159,11 @@ export default async function PromotersPage({
         </div>
       )}
 
-      <Pagination currentPage={currentPage} totalPages={totalPages} buildHref={pageUrl} />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        buildHref={pageUrl}
+      />
     </main>
   );
 }

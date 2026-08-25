@@ -28,6 +28,7 @@ The Festival/Promoter shape borrows from nz-tech-events' proven model (region en
 | `/festivals/[slug]`                 | Festival detail — lineup, promoter info, breadcrumbs, add-to-calendar |
 | `/calendar`                         | Monthly festival calendar view with subscribe link                       |
 | `/calendar.ics`                     | All upcoming festivals iCal feed                                         |
+| `/plan`                             | Plan your festival season — upcoming festivals grouped by NZ season, save the ones you want to catch |
 | `/artists`                          | Browse all artists, paginated                                         |
 | `/artists/[slug]`                   | Artist detail — festival history across editions                      |
 | `/promoters`                        | Browse all promoters, paginated                                       |
@@ -43,6 +44,10 @@ The Festival/Promoter shape borrows from nz-tech-events' proven model (region en
 | `/unsubscribe`, `/api/unsubscribe`  | Token-based unsubscribe flow                                          |
 
 Detail pages (festival/artist/promoter/region) are statically generated (`generateStaticParams`, ISR with `revalidate = 3600`); listing pages stay dynamic since they read filter/pagination query params. A dark mode toggle in the nav overrides the OS-level colour scheme.
+
+## Festival season planning
+
+`/plan` groups upcoming festivals into NZ seasons (Summer spans the calendar-year boundary, so it reads "Summer 25/26"). Each festival has a "Save to plan" toggle — saved festivals are stored in `localStorage` (no account needed) and the nav shows a count badge. The same toggle appears on the home dashboard and festival detail pages.
 
 ## Setup
 

@@ -213,9 +213,7 @@ async function AlsoPlayedWith({ artistId }: { artistId: string }) {
 
   return (
     <section className="mt-10 border-t pt-8 dark:border-neutral-800">
-      <h2 className="text-lg font-semibold tracking-tight">
-        Also played with
-      </h2>
+      <h2 className="text-lg font-semibold tracking-tight">Also played with</h2>
       <ul className="mt-3 flex flex-wrap gap-2">
         {coArtists.map((a) => (
           <li key={a.id}>

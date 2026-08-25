@@ -1,6 +1,12 @@
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-function Badge({ className, variant = "default", ...props }: React.HTMLAttributes<HTMLDivElement> & { variant?: "default" | "secondary" | "outline" }) {
+function Badge({
+  className,
+  variant = "default",
+  ...props
+}: React.HTMLAttributes<HTMLDivElement> & {
+  variant?: "default" | "secondary" | "outline";
+}) {
   return (
     <div
       className={cn(
@@ -12,6 +18,6 @@ function Badge({ className, variant = "default", ...props }: React.HTMLAttribute
       )}
       {...props}
     />
-  )
+  );
 }
-export { Badge }
+export { Badge };

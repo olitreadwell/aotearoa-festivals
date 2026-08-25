@@ -8,7 +8,9 @@ function buildHref(page: number): string {
 
 describe("Pagination", () => {
   it("renders nothing when totalPages is 1", () => {
-    const { container } = render(<Pagination currentPage={1} totalPages={1} buildHref={buildHref} />);
+    const { container } = render(
+      <Pagination currentPage={1} totalPages={1} buildHref={buildHref} />,
+    );
     expect(container.firstChild).toBeNull();
   });
 
@@ -26,16 +28,24 @@ describe("Pagination", () => {
   });
 
   it("renders previous link except on first page", () => {
-    const { } = render(<Pagination currentPage={2} totalPages={3} buildHref={buildHref} />);
+    const {} = render(
+      <Pagination currentPage={2} totalPages={3} buildHref={buildHref} />,
+    );
     expect(screen.getByLabelText("Previous page")).toBeTruthy();
-    const first = render(<Pagination currentPage={1} totalPages={3} buildHref={buildHref} />);
-    expect(first.container.querySelector('[aria-label="Previous page"]')).toBeNull();
+    const first = render(
+      <Pagination currentPage={1} totalPages={3} buildHref={buildHref} />,
+    );
+    expect(
+      first.container.querySelector('[aria-label="Previous page"]'),
+    ).toBeNull();
   });
 
   it("renders next link except on last page", () => {
     render(<Pagination currentPage={1} totalPages={3} buildHref={buildHref} />);
     expect(screen.getByLabelText("Next page")).toBeTruthy();
-    const last = render(<Pagination currentPage={3} totalPages={3} buildHref={buildHref} />);
+    const last = render(
+      <Pagination currentPage={3} totalPages={3} buildHref={buildHref} />,
+    );
     expect(last.container.querySelector('[aria-label="Next page"]')).toBeNull();
   });
 });

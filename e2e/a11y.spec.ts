@@ -9,6 +9,7 @@ const ROUTES = [
   "/search",
   "/about",
   "/contact",
+  "/plan",
 ];
 
 test.describe("a11y — all routes", () => {

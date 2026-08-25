@@ -4,6 +4,5 @@
   "printWidth": 80,
   "tabWidth": 2,
   "semi": true,
-  "arrowParens": "always",
-  "plugins": ["prettier-plugin-tailwindcss"]
+  "arrowParens": "always"
 }

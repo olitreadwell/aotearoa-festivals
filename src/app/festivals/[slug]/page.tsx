@@ -5,6 +5,7 @@ import type { Festival, Artist, Promoter } from "@/generated/prisma";
 import { formatRegion } from "@/lib/format";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
+import { PlanToggle } from "@/components/PlanToggle";
 
 export const revalidate = 3600;
 
@@ -90,7 +91,13 @@ export default async function FestivalDetailPage({
       approved: true,
       id: { not: festival.id },
       OR: [
-        ...(festival.genre ? [{ genre: { contains: festival.genre.split(",")[0]?.trim() ?? "" } }] : []),
+        ...(festival.genre
+          ? [
+              {
+                genre: { contains: festival.genre.split(",")[0]?.trim() ?? "" },
+              },
+            ]
+          : []),
         ...(festival.region ? [{ region: festival.region }] : []),
       ],
     },
@@ -141,236 +148,241 @@ export default async function FestivalDetailPage({
         }}
       />
       <main className="mx-auto max-w-3xl px-6 py-16">
-      <Breadcrumbs
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Festivals", href: "/festivals" },
-          { label: festival.name },
-        ]}
-      />
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Festivals", href: "/festivals" },
+            { label: festival.name },
+          ]}
+        />
 
-      {/* Header */}
-      <div className="mb-2 flex flex-wrap items-start gap-3">
-        <h1 className="text-3xl leading-tight font-semibold tracking-tight">
-          {festival.name}
-        </h1>
-        <FestivalStatusBadge status={festival.status} />
-      </div>
-
-      {/* Add to calendar */}
-      {festival.startDate && (
-        <a
-          href="./calendar.ics"
-          className="mt-4 inline-flex items-center gap-1 text-sm text-blue-600 hover:underline dark:text-blue-400"
-        >
-          Add to calendar <span aria-hidden="true">↓</span>
-        </a>
-      )}
-
-      {/* Meta row */}
-      <dl className="mt-6 grid grid-cols-1 gap-x-8 gap-y-4 text-sm sm:grid-cols-2">
-        {festival.region && (
-          <div>
-            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
-              Region
-            </dt>
-            <dd className="mt-0.5">{formatRegion(festival.region)}</dd>
-          </div>
-        )}
-        {festival.location && (
-          <div>
-            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
-              Location
-            </dt>
-            <dd className="mt-0.5">{festival.location}</dd>
-          </div>
-        )}
-        {festival.genre && (
-          <div>
-            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
-              Genre
-            </dt>
-            <dd className="mt-0.5">{festival.genre}</dd>
-          </div>
-        )}
-        {festival.vibe && (
-          <div className="sm:col-span-2">
-            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
-              Vibe
-            </dt>
-            <dd className="mt-0.5">{festival.vibe}</dd>
-          </div>
-        )}
-        {festival.camping !== null && festival.camping !== undefined && (
-          <div>
-            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
-              Camping
-            </dt>
-            <dd className="mt-0.5">{festival.camping ? "Yes" : "No"}</dd>
-          </div>
-        )}
-        {festival.dateText && (
-          <div>
-            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
-              Dates
-            </dt>
-            <dd className="mt-0.5">{festival.dateText}</dd>
-          </div>
-        )}
-        {festival.costText && (
-          <div>
-            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
-              Cost
-            </dt>
-            <dd className="mt-0.5">{festival.costText}</dd>
-          </div>
-        )}
-        {festival.website && (
-          <div>
-            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
-              Website
-            </dt>
-            <dd className="mt-0.5">
-              <a
-                href={festival.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-blue-600 hover:underline dark:text-blue-400"
-              >
-                {festival.website.replace(/^https?:\/\//, "")}
-                <span aria-hidden="true">→</span>
-              </a>
-            </dd>
-          </div>
-        )}
-        {festival.ticketPrice && (
-          <div>
-            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
-              Tickets
-            </dt>
-            <dd className="mt-0.5">
-              {festival.ticketPrice}
-            </dd>
-          </div>
-        )}
-        {festival.ticketUrl && !festival.ticketPrice && (
-          <div>
-            <dt className="font-medium text-neutral-500 dark:text-neutral-400">
-              Tickets
-            </dt>
-            <dd className="mt-0.5">
-              <a
-                href={festival.ticketUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-blue-600 hover:underline dark:text-blue-400"
-              >
-                Buy tickets
-                <span aria-hidden="true">→</span>
-              </a>
-            </dd>
-          </div>
-        )}
-      </dl>
-
-      {/* Notes */}
-      {festival.notes && (
-        <div className="mt-8 rounded-lg border border-neutral-200 bg-neutral-50 px-5 py-4 text-sm leading-relaxed text-neutral-700 dark:border-neutral-700 dark:bg-neutral-900/50 dark:text-neutral-300">
-          {festival.notes}
+        {/* Header */}
+        <div className="mb-2 flex flex-wrap items-start gap-3">
+          <h1 className="text-3xl leading-tight font-semibold tracking-tight">
+            {festival.name}
+          </h1>
+          <FestivalStatusBadge status={festival.status} />
         </div>
-      )}
 
-      {/* Promoter */}
-      {festival.promoter && (
-        <section className="mt-10">
-          <h2 className="mb-2 text-lg font-semibold tracking-tight">
-            Promoter
-          </h2>
-          <a
-            href={`/promoters/${festival.promoter.slug}`}
-            className="text-sm text-blue-600 hover:underline dark:text-blue-400"
-          >
-            {festival.promoter.name}
-          </a>
-        </section>
-      )}
+        {/* Add to calendar */}
+        <div className="mt-4 flex flex-wrap items-center gap-4">
+          <PlanToggle slug={festival.slug} name={festival.name} />
+          {festival.startDate && (
+            <a
+              href="./calendar.ics"
+              className="inline-flex items-center gap-1 text-sm text-blue-600 hover:underline dark:text-blue-400"
+            >
+              Add to calendar <span aria-hidden="true">↓</span>
+            </a>
+          )}
+        </div>
 
-      {/* Lineup */}
-      {sortedYears.length > 0 && (
-        <section className="mt-10">
-          <h2 className="mb-5 text-lg font-semibold tracking-tight">Lineup</h2>
-          <div className="space-y-8">
-            {sortedYears.map((year) => {
-              const entries = lineupByYear.get(year)!;
-              const headliners = entries.filter((e) => e.isHeadliner);
-              const others = entries.filter((e) => !e.isHeadliner);
-              return (
-                <div key={year}>
-                  <h3 className="mb-3 text-base font-medium text-neutral-600 dark:text-neutral-400">
-                    {year}
-                  </h3>
-                  {headliners.length > 0 && (
-                    <div className="mb-3">
-                      <p className="mb-1.5 text-xs tracking-widest text-neutral-400 uppercase dark:text-neutral-500">
-                        Headliners
-                      </p>
+        {/* Meta row */}
+        <dl className="mt-6 grid grid-cols-1 gap-x-8 gap-y-4 text-sm sm:grid-cols-2">
+          {festival.region && (
+            <div>
+              <dt className="font-medium text-neutral-500 dark:text-neutral-400">
+                Region
+              </dt>
+              <dd className="mt-0.5">{formatRegion(festival.region)}</dd>
+            </div>
+          )}
+          {festival.location && (
+            <div>
+              <dt className="font-medium text-neutral-500 dark:text-neutral-400">
+                Location
+              </dt>
+              <dd className="mt-0.5">{festival.location}</dd>
+            </div>
+          )}
+          {festival.genre && (
+            <div>
+              <dt className="font-medium text-neutral-500 dark:text-neutral-400">
+                Genre
+              </dt>
+              <dd className="mt-0.5">{festival.genre}</dd>
+            </div>
+          )}
+          {festival.vibe && (
+            <div className="sm:col-span-2">
+              <dt className="font-medium text-neutral-500 dark:text-neutral-400">
+                Vibe
+              </dt>
+              <dd className="mt-0.5">{festival.vibe}</dd>
+            </div>
+          )}
+          {festival.camping !== null && festival.camping !== undefined && (
+            <div>
+              <dt className="font-medium text-neutral-500 dark:text-neutral-400">
+                Camping
+              </dt>
+              <dd className="mt-0.5">{festival.camping ? "Yes" : "No"}</dd>
+            </div>
+          )}
+          {festival.dateText && (
+            <div>
+              <dt className="font-medium text-neutral-500 dark:text-neutral-400">
+                Dates
+              </dt>
+              <dd className="mt-0.5">{festival.dateText}</dd>
+            </div>
+          )}
+          {festival.costText && (
+            <div>
+              <dt className="font-medium text-neutral-500 dark:text-neutral-400">
+                Cost
+              </dt>
+              <dd className="mt-0.5">{festival.costText}</dd>
+            </div>
+          )}
+          {festival.website && (
+            <div>
+              <dt className="font-medium text-neutral-500 dark:text-neutral-400">
+                Website
+              </dt>
+              <dd className="mt-0.5">
+                <a
+                  href={festival.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-blue-600 hover:underline dark:text-blue-400"
+                >
+                  {festival.website.replace(/^https?:\/\//, "")}
+                  <span aria-hidden="true">→</span>
+                </a>
+              </dd>
+            </div>
+          )}
+          {festival.ticketPrice && (
+            <div>
+              <dt className="font-medium text-neutral-500 dark:text-neutral-400">
+                Tickets
+              </dt>
+              <dd className="mt-0.5">{festival.ticketPrice}</dd>
+            </div>
+          )}
+          {festival.ticketUrl && !festival.ticketPrice && (
+            <div>
+              <dt className="font-medium text-neutral-500 dark:text-neutral-400">
+                Tickets
+              </dt>
+              <dd className="mt-0.5">
+                <a
+                  href={festival.ticketUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-blue-600 hover:underline dark:text-blue-400"
+                >
+                  Buy tickets
+                  <span aria-hidden="true">→</span>
+                </a>
+              </dd>
+            </div>
+          )}
+        </dl>
+
+        {/* Notes */}
+        {festival.notes && (
+          <div className="mt-8 rounded-lg border border-neutral-200 bg-neutral-50 px-5 py-4 text-sm leading-relaxed text-neutral-700 dark:border-neutral-700 dark:bg-neutral-900/50 dark:text-neutral-300">
+            {festival.notes}
+          </div>
+        )}
+
+        {/* Promoter */}
+        {festival.promoter && (
+          <section className="mt-10">
+            <h2 className="mb-2 text-lg font-semibold tracking-tight">
+              Promoter
+            </h2>
+            <a
+              href={`/promoters/${festival.promoter.slug}`}
+              className="text-sm text-blue-600 hover:underline dark:text-blue-400"
+            >
+              {festival.promoter.name}
+            </a>
+          </section>
+        )}
+
+        {/* Lineup */}
+        {sortedYears.length > 0 && (
+          <section className="mt-10">
+            <h2 className="mb-5 text-lg font-semibold tracking-tight">
+              Lineup
+            </h2>
+            <div className="space-y-8">
+              {sortedYears.map((year) => {
+                const entries = lineupByYear.get(year)!;
+                const headliners = entries.filter((e) => e.isHeadliner);
+                const others = entries.filter((e) => !e.isHeadliner);
+                return (
+                  <div key={year}>
+                    <h3 className="mb-3 text-base font-medium text-neutral-600 dark:text-neutral-400">
+                      {year}
+                    </h3>
+                    {headliners.length > 0 && (
+                      <div className="mb-3">
+                        <p className="mb-1.5 text-xs tracking-widest text-neutral-400 uppercase dark:text-neutral-500">
+                          Headliners
+                        </p>
+                        <ul className="flex flex-wrap gap-2">
+                          {headliners.map((entry) => (
+                            <li key={entry.id}>
+                              <a
+                                href={`/artists/${entry.artist.slug}`}
+                                className="inline-block rounded-full bg-neutral-900 px-3 py-1 text-sm font-medium text-neutral-100 transition-opacity hover:opacity-80 dark:bg-neutral-100 dark:text-neutral-900"
+                              >
+                                {entry.artist.name}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {others.length > 0 && (
                       <ul className="flex flex-wrap gap-2">
-                        {headliners.map((entry) => (
+                        {others.map((entry) => (
                           <li key={entry.id}>
                             <a
                               href={`/artists/${entry.artist.slug}`}
-                              className="inline-block rounded-full bg-neutral-900 px-3 py-1 text-sm font-medium text-neutral-100 transition-opacity hover:opacity-80 dark:bg-neutral-100 dark:text-neutral-900"
+                              className="inline-block rounded-full border border-neutral-300 px-3 py-1 text-sm text-neutral-700 transition-colors hover:border-neutral-500 dark:border-neutral-600 dark:text-neutral-300 dark:hover:border-neutral-400"
                             >
                               {entry.artist.name}
                             </a>
                           </li>
                         ))}
                       </ul>
-                    </div>
-                  )}
-                  {others.length > 0 && (
-                    <ul className="flex flex-wrap gap-2">
-                      {others.map((entry) => (
-                        <li key={entry.id}>
-                          <a
-                            href={`/artists/${entry.artist.slug}`}
-                            className="inline-block rounded-full border border-neutral-300 px-3 py-1 text-sm text-neutral-700 transition-colors hover:border-neutral-500 dark:border-neutral-600 dark:text-neutral-300 dark:hover:border-neutral-400"
-                          >
-                            {entry.artist.name}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </section>
-      )}
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
 
-      {/* Similar festivals */}
-      {similar.length > 0 && (
-        <section className="mt-12 border-t pt-8 dark:border-neutral-800">
-          <h2 className="text-lg font-semibold tracking-tight">Similar festivals</h2>
-          <ul className="mt-3 space-y-2">
-            {similar.map((f) => (
-              <li key={f.id}>
-                <a
-                  href={`/festivals/${f.slug}`}
-                  className="flex items-center justify-between rounded-lg border border-neutral-200 px-4 py-2.5 text-sm transition-colors hover:bg-neutral-50 dark:border-neutral-700 dark:hover:bg-neutral-800/50"
-                >
-                  <span className="font-medium">{f.name}</span>
-                  <span className="text-xs text-neutral-400 dark:text-neutral-500">
-                    {f.genre}
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-    </main>
+        {/* Similar festivals */}
+        {similar.length > 0 && (
+          <section className="mt-12 border-t pt-8 dark:border-neutral-800">
+            <h2 className="text-lg font-semibold tracking-tight">
+              Similar festivals
+            </h2>
+            <ul className="mt-3 space-y-2">
+              {similar.map((f) => (
+                <li key={f.id}>
+                  <a
+                    href={`/festivals/${f.slug}`}
+                    className="flex items-center justify-between rounded-lg border border-neutral-200 px-4 py-2.5 text-sm transition-colors hover:bg-neutral-50 dark:border-neutral-700 dark:hover:bg-neutral-800/50"
+                  >
+                    <span className="font-medium">{f.name}</span>
+                    <span className="text-xs text-neutral-400 dark:text-neutral-500">
+                      {f.genre}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </main>
     </>
   );
 }

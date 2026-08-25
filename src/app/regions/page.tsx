@@ -12,7 +12,8 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Browse by Region — Aotearoa Festivals",
-  description: "Find New Zealand music festivals by region. From Northland to Southland.",
+  description:
+    "Find New Zealand music festivals by region. From Northland to Southland.",
 };
 const REGION_LABELS: Record<Region, string> = {
   NORTHLAND: "Northland",
@@ -62,10 +63,7 @@ export default async function RegionsPage() {
   return (
     <main className="mx-auto min-h-screen max-w-6xl px-4 py-8">
       <Breadcrumbs
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Regions" },
-        ]}
+        items={[{ label: "Home", href: "/" }, { label: "Regions" }]}
       />
 
       {/* Hero */}

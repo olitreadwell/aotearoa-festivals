@@ -11,8 +11,8 @@ export default function OfflinePage() {
       <div className="rounded-2xl border border-neutral-200 bg-white p-10 text-center shadow-sm dark:border-neutral-700 dark:bg-[#111]">
         <h1 className="mb-3 text-xl font-semibold">You&apos;re offline</h1>
         <p className="mb-6 text-sm text-neutral-600 dark:text-neutral-400">
-          Aotearoa Festivals works offline. Browse festivals you&apos;ve
-          visited before, or reconnect to discover new ones.
+          Aotearoa Festivals works offline. Browse festivals you&apos;ve visited
+          before, or reconnect to discover new ones.
         </p>
         <Link
           href="/"

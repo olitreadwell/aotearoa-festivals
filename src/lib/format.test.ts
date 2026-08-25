@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { formatRegion, formatStatus, slugify } from "@/lib/format";
+import {
+  formatDateRange,
+  formatRegion,
+  formatStatus,
+  slugify,
+} from "@/lib/format";
 import type { FestivalStatus } from "@/generated/prisma";
 
 describe("formatRegion", () => {
@@ -26,10 +31,10 @@ describe("formatRegion", () => {
 
 describe("formatStatus", () => {
   const cases: Array<[FestivalStatus, string]> = [
-    ["ACTIVE", "Active"],
-    ["TBC", "TBC"],
-    ["HIATUS", "Hiatus"],
-    ["DEFUNCT", "Defunct"],
+    ["ACTIVE", "Upcoming"],
+    ["TBC", "Dates TBC"],
+    ["HIATUS", "On break"],
+    ["DEFUNCT", "Ended"],
     ["UNCONFIRMED", "Unconfirmed"],
   ];
 
@@ -43,6 +48,41 @@ describe("formatStatus", () => {
   it("gives each status a distinct className", () => {
     const classNames = cases.map(([status]) => formatStatus(status).className);
     expect(new Set(classNames).size).toBe(classNames.length);
+  });
+});
+
+describe("formatDateRange", () => {
+  it("returns null when there is no start date", () => {
+    expect(formatDateRange(null, null)).toBeNull();
+  });
+
+  it("formats a single day", () => {
+    expect(formatDateRange(new Date("2026-12-28T00:00:00.000Z"), null)).toBe(
+      "28 Dec 2026",
+    );
+  });
+
+  it("formats a same-month range with a single year suffix", () => {
+    expect(
+      formatDateRange(
+        new Date("2026-12-28T00:00:00.000Z"),
+        new Date("2026-12-30T00:00:00.000Z"),
+      ),
+    ).toBe("28–30 Dec 2026");
+  });
+
+  it("formats a cross-month range with both dates", () => {
+    expect(
+      formatDateRange(
+        new Date("2026-12-28T00:00:00.000Z"),
+        new Date("2027-01-02T00:00:00.000Z"),
+      ),
+    ).toBe("28 Dec 2026 – 2 Jan 2027");
+  });
+
+  it("collapses identical start and end dates to one day", () => {
+    const d = new Date("2026-06-01T00:00:00.000Z");
+    expect(formatDateRange(d, d)).toBe("1 Jun 2026");
   });
 });
 

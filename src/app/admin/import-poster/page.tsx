@@ -33,7 +33,11 @@ export default function ImportPosterPage() {
         const res = await fetch("/api/import-poster", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ imageUrl: url, festival: festivalName, year: parseInt(festivalYear) }),
+          body: JSON.stringify({
+            imageUrl: url,
+            festival: festivalName,
+            year: parseInt(festivalYear),
+          }),
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || "Extraction failed");
@@ -162,7 +166,9 @@ export default function ImportPosterPage() {
               disabled={isPending}
               className="rounded-lg bg-emerald-600 px-6 py-2.5 text-sm font-medium text-white hover:bg-emerald-700 disabled:opacity-50"
             >
-              {isPending ? "Saving..." : `Save ${result.artists.length} Lineup Entries`}
+              {isPending
+                ? "Saving..."
+                : `Save ${result.artists.length} Lineup Entries`}
             </button>
           </div>
         )}

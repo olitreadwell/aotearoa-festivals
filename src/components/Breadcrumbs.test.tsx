@@ -4,7 +4,15 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 
 describe("Breadcrumbs", () => {
   it("renders all items in order", () => {
-    render(<Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Festivals", href: "/festivals" }, { label: "Rhythm and Vines" }]} />);
+    render(
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Festivals", href: "/festivals" },
+          { label: "Rhythm and Vines" },
+        ]}
+      />,
+    );
     const nav = screen.getByRole("navigation", { name: "Breadcrumb" });
     expect(nav).toBeTruthy();
     expect(screen.getByText("Home")).toBeTruthy();
@@ -13,14 +21,26 @@ describe("Breadcrumbs", () => {
   });
 
   it("renders last item without link and with aria-current=page", () => {
-    render(<Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About" }]} />);
+    render(
+      <Breadcrumbs
+        items={[{ label: "Home", href: "/" }, { label: "About" }]}
+      />,
+    );
     const last = screen.getByText("About");
     expect(last.tagName).toBe("SPAN");
     expect(last.getAttribute("aria-current")).toBe("page");
   });
 
   it("renders middle items as links", () => {
-    render(<Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Festivals", href: "/festivals" }, { label: "Detail" }]} />);
+    render(
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Festivals", href: "/festivals" },
+          { label: "Detail" },
+        ]}
+      />,
+    );
     const link = screen.getByText("Festivals");
     expect(link.tagName).toBe("A");
     expect(link.getAttribute("href")).toBe("/festivals");

@@ -3,8 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { PlanNavLink } from "@/components/PlanNavLink";
 
-const NAV_LINKS: { href: string; label: string }[] = [];
+const NAV_LINKS: { href: string; label: string }[] = [
+  { href: "/plan", label: "Plan" },
+];
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
@@ -12,21 +15,29 @@ export function SiteNav() {
   return (
     <header className="site-header" role="banner">
       <nav className="site-nav" aria-label="Main navigation">
-        <Link href="/" className="site-nav__brand" aria-label="Aotearoa Festivals home">
+        <Link
+          href="/"
+          className="site-nav__brand"
+          aria-label="Aotearoa Festivals home"
+        >
           Aotearoa Festivals
         </Link>
 
         {/* Desktop nav */}
         <div className="hidden md:block">
-        <ul className="site-nav__links" role="list">
-          {NAV_LINKS.map((link) => (
-            <li key={link.href}>
-              <Link href={link.href} className="site-nav__link">
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+          <ul className="site-nav__links" role="list">
+            {NAV_LINKS.map((link) => (
+              <li key={link.href}>
+                {link.href === "/plan" ? (
+                  <PlanNavLink className="site-nav__link" />
+                ) : (
+                  <Link href={link.href} className="site-nav__link">
+                    {link.label}
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* Mobile hamburger + theme toggle */}
@@ -39,11 +50,26 @@ export function SiteNav() {
             aria-controls="mobile-menu"
             aria-label={open ? "Close menu" : "Open menu"}
           >
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              aria-hidden="true"
+            >
               {open ? (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
               )}
             </svg>
           </button>
@@ -57,17 +83,29 @@ export function SiteNav() {
 
       {/* Mobile menu drawer */}
       {open && (
-        <div id="mobile-menu" className="border-t border-neutral-200 bg-white px-4 py-3 dark:border-neutral-700 dark:bg-[#0a0a0a] md:hidden" role="navigation" aria-label="Mobile navigation">
+        <div
+          id="mobile-menu"
+          className="border-t border-neutral-200 bg-white px-4 py-3 dark:border-neutral-700 dark:bg-[#0a0a0a] md:hidden"
+          role="navigation"
+          aria-label="Mobile navigation"
+        >
           <ul className="flex flex-col gap-1" role="list">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-lg px-4 py-3 text-base font-medium hover:bg-neutral-100 dark:hover:bg-neutral-800"
-                >
-                  {link.label}
-                </Link>
+                {link.href === "/plan" ? (
+                  <PlanNavLink
+                    className="block rounded-lg px-4 py-3 text-base font-medium hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                    onClick={() => setOpen(false)}
+                  />
+                ) : (
+                  <Link
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="block rounded-lg px-4 py-3 text-base font-medium hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                  >
+                    {link.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

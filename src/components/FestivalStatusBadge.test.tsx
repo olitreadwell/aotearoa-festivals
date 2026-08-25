@@ -37,9 +37,7 @@ describe("FestivalStatusBadge", () => {
   });
 
   it("merges additional className prop", () => {
-    render(
-      <FestivalStatusBadge status="ACTIVE" className="my-custom-class" />,
-    );
+    render(<FestivalStatusBadge status="ACTIVE" className="my-custom-class" />);
     const badge = screen.getByTestId("festival-status-badge");
     expect(badge.className).toContain("my-custom-class");
   });

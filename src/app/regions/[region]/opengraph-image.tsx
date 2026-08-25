@@ -25,9 +25,7 @@ export default async function Image({
 
   const label = formatRegion(regionEnum);
   const subtitle =
-    count > 0
-      ? `${count} festival${count !== 1 ? "s" : ""}`
-      : "";
+    count > 0 ? `${count} festival${count !== 1 ? "s" : ""}` : "";
 
   return new ImageResponse(
     <div

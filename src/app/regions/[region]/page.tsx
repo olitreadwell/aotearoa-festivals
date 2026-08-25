@@ -139,7 +139,10 @@ export default async function RegionDetailPage({
                 <div className="flex flex-1 flex-col gap-3 p-5">
                   {/* Status badge + name */}
                   <div>
-                    <FestivalStatusBadge status={festival.status} className="mb-2" />
+                    <FestivalStatusBadge
+                      status={festival.status}
+                      className="mb-2"
+                    />
                     <h2 className="text-base leading-snug font-bold transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">
                       {festival.name}
                     </h2>

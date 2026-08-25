@@ -10,12 +10,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
-      <Breadcrumbs
-        items={[
-          { label: "Home", href: "/" },
-          { label: "About" },
-        ]}
-      />
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "About" }]} />
 
       <h1 className="mt-4 text-3xl font-semibold tracking-tight">
         About Aotearoa Festivals
