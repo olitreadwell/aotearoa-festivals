@@ -37,7 +37,10 @@ export default function HomeMap({ festivals }: { festivals: Fest[] }) {
     setMounted(true);
   }, []);
 
-  if (!mounted) return <div className="h-64 w-full animate-pulse rounded-xl bg-muted lg:h-full" />;
+  if (!mounted)
+    return (
+      <div className="h-64 w-full animate-pulse rounded-xl bg-muted lg:h-full" />
+    );
 
   return (
     <MapContainer

@@ -5,6 +5,7 @@ import type { Festival, Artist, Promoter } from "@/generated/prisma";
 import { formatRegion } from "@/lib/format";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
+import { PlanToggle } from "@/components/PlanToggle";
 
 export const revalidate = 3600;
 
@@ -164,14 +165,17 @@ export default async function FestivalDetailPage({
         </div>
 
         {/* Add to calendar */}
-        {festival.startDate && (
-          <a
-            href="./calendar.ics"
-            className="mt-4 inline-flex items-center gap-1 text-sm text-blue-600 hover:underline dark:text-blue-400"
-          >
-            Add to calendar <span aria-hidden="true">↓</span>
-          </a>
-        )}
+        <div className="mt-4 flex flex-wrap items-center gap-4">
+          <PlanToggle slug={festival.slug} name={festival.name} />
+          {festival.startDate && (
+            <a
+              href="./calendar.ics"
+              className="inline-flex items-center gap-1 text-sm text-blue-600 hover:underline dark:text-blue-400"
+            >
+              Add to calendar <span aria-hidden="true">↓</span>
+            </a>
+          )}
+        </div>
 
         {/* Meta row */}
         <dl className="mt-6 grid grid-cols-1 gap-x-8 gap-y-4 text-sm sm:grid-cols-2">

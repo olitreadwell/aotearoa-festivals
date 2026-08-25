@@ -3,8 +3,11 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { PlanNavLink } from "@/components/PlanNavLink";
 
-const NAV_LINKS: { href: string; label: string }[] = [];
+const NAV_LINKS: { href: string; label: string }[] = [
+  { href: "/plan", label: "Plan" },
+];
 
 export function SiteNav() {
   const [open, setOpen] = useState(false);
@@ -25,9 +28,13 @@ export function SiteNav() {
           <ul className="site-nav__links" role="list">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="site-nav__link">
-                  {link.label}
-                </Link>
+                {link.href === "/plan" ? (
+                  <PlanNavLink className="site-nav__link" />
+                ) : (
+                  <Link href={link.href} className="site-nav__link">
+                    {link.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
@@ -85,13 +92,20 @@ export function SiteNav() {
           <ul className="flex flex-col gap-1" role="list">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-lg px-4 py-3 text-base font-medium hover:bg-neutral-100 dark:hover:bg-neutral-800"
-                >
-                  {link.label}
-                </Link>
+                {link.href === "/plan" ? (
+                  <PlanNavLink
+                    className="block rounded-lg px-4 py-3 text-base font-medium hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                    onClick={() => setOpen(false)}
+                  />
+                ) : (
+                  <Link
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="block rounded-lg px-4 py-3 text-base font-medium hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                  >
+                    {link.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

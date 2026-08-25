@@ -59,6 +59,31 @@ export function formatStatus(s: FestivalStatus): {
 }
 
 // ---------------------------------------------------------------------------
+// Date range formatting — "28 Dec 2026" or "28–30 Dec 2026"
+// ---------------------------------------------------------------------------
+
+export function formatDateRange(
+  start: Date | null,
+  end: Date | null,
+): string | null {
+  if (!start) return null;
+  const full = (d: Date) =>
+    d.toLocaleDateString("en-NZ", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      timeZone: "UTC",
+    });
+  const startStr = full(start);
+  if (!end || end.getTime() === start.getTime()) return startStr;
+  const sameMonth =
+    start.getUTCMonth() === end.getUTCMonth() &&
+    start.getUTCFullYear() === end.getUTCFullYear();
+  if (sameMonth) return `${start.getUTCDate()}–${full(end)}`;
+  return `${startStr} – ${full(end)}`;
+}
+
+// ---------------------------------------------------------------------------
 // Slug generation — matches the formula used in prisma/seed.ts
 // ---------------------------------------------------------------------------
 

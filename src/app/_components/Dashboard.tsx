@@ -6,6 +6,7 @@ import type { Festival, Promoter } from "@/generated/prisma";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
+import { PlanToggle } from "@/components/PlanToggle";
 import { formatRegion, REGION_LABELS, STATUS_LABELS } from "@/lib/format";
 import HomeMap from "./HomeMap";
 
@@ -240,37 +241,42 @@ export default async function Home({
           </div>
           <div className="divide-y max-h-[70dvh] overflow-y-auto">
             {upcoming.map((f) => (
-              <Link
+              <div
                 key={f.id}
-                href={`/festivals/${f.slug}`}
-                className="flex items-start gap-3 px-4 py-3 transition-colors hover:bg-muted/50"
+                className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-muted/50"
               >
-                <FestivalStatusBadge status={f.status} />
-                <div className="min-w-0 flex-1">
-                  <span className="block truncate text-sm font-medium">
-                    {f.name}
-                  </span>
-                  <span className="block truncate text-xs text-muted-foreground">
-                    {[
-                      f.genre,
-                      f.region ? formatRegion(f.region) : null,
-                      f.dateText,
-                    ]
-                      .filter(Boolean)
-                      .join(" · ")}
-                  </span>
-                  {f.camping && (
-                    <span className="mt-0.5 inline-block rounded bg-secondary px-1.5 py-px text-[10px] font-medium text-secondary-foreground">
-                      🏕 Camping
+                <Link
+                  href={`/festivals/${f.slug}`}
+                  className="flex min-w-0 flex-1 items-start gap-3"
+                >
+                  <FestivalStatusBadge status={f.status} />
+                  <div className="min-w-0 flex-1">
+                    <span className="block truncate text-sm font-medium">
+                      {f.name}
+                    </span>
+                    <span className="block truncate text-xs text-muted-foreground">
+                      {[
+                        f.genre,
+                        f.region ? formatRegion(f.region) : null,
+                        f.dateText,
+                      ]
+                        .filter(Boolean)
+                        .join(" · ")}
+                    </span>
+                    {f.camping && (
+                      <span className="mt-0.5 inline-block rounded bg-secondary px-1.5 py-px text-[10px] font-medium text-secondary-foreground">
+                        🏕 Camping
+                      </span>
+                    )}
+                  </div>
+                  {f.ticketPrice && (
+                    <span className="shrink-0 text-xs font-medium text-muted-foreground">
+                      {f.ticketPrice}
                     </span>
                   )}
-                </div>
-                {f.ticketPrice && (
-                  <span className="shrink-0 text-xs font-medium text-muted-foreground">
-                    {f.ticketPrice}
-                  </span>
-                )}
-              </Link>
+                </Link>
+                <PlanToggle slug={f.slug} name={f.name} />
+              </div>
             ))}
             {upcoming.length === 0 && (
               <p className="px-4 py-8 text-center text-sm text-muted-foreground">
