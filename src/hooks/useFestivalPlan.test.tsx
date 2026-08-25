@@ -39,27 +39,38 @@ describe("useFestivalPlan", () => {
     });
   });
 
-  it("loads saved slugs on mount", () => {
-    window.localStorage.setItem(PLAN_STORAGE_KEY, JSON.stringify(["splore"]));
+  it("loads saved statuses on mount", () => {
+    window.localStorage.setItem(
+      PLAN_STORAGE_KEY,
+      JSON.stringify({ splore: "planned" }),
+    );
     const { result } = renderHook(() => useFestivalPlan());
-    expect(result.current.slugs).toEqual(["splore"]);
-    expect(result.current.isSaved("splore")).toBe(true);
-    expect(result.current.isSaved("other")).toBe(false);
+    expect(result.current.statusOf("splore")).toBe("planned");
+    expect(result.current.statusOf("other")).toBeNull();
+    expect(result.current.savedCount).toBe(1);
   });
 
-  it("toggles a slug in and out of the plan", () => {
+  it("sets and changes a festival status", () => {
     const { result } = renderHook(() => useFestivalPlan());
-    act(() => result.current.toggle("rhythm-and-vines"));
-    expect(result.current.isSaved("rhythm-and-vines")).toBe(true);
-    act(() => result.current.toggle("rhythm-and-vines"));
-    expect(result.current.isSaved("rhythm-and-vines")).toBe(false);
+    act(() => result.current.setStatus("rhythm-and-vines", "interested"));
+    expect(result.current.statusOf("rhythm-and-vines")).toBe("interested");
+    act(() => result.current.setStatus("rhythm-and-vines", "planned"));
+    expect(result.current.statusOf("rhythm-and-vines")).toBe("planned");
   });
 
-  it("persists toggles to localStorage", () => {
+  it("removes a festival when status is null", () => {
     const { result } = renderHook(() => useFestivalPlan());
-    act(() => result.current.toggle("northern-bass"));
+    act(() => result.current.setStatus("northern-bass", "planned"));
+    act(() => result.current.setStatus("northern-bass", null));
+    expect(result.current.statusOf("northern-bass")).toBeNull();
+    expect(result.current.savedCount).toBe(0);
+  });
+
+  it("persists status changes to localStorage", () => {
+    const { result } = renderHook(() => useFestivalPlan());
+    act(() => result.current.setStatus("northern-bass", "interested"));
     expect(
-      JSON.parse(window.localStorage.getItem(PLAN_STORAGE_KEY) ?? "[]"),
-    ).toEqual(["northern-bass"]);
+      JSON.parse(window.localStorage.getItem(PLAN_STORAGE_KEY) ?? "{}"),
+    ).toEqual({ "northern-bass": "interested" });
   });
 });

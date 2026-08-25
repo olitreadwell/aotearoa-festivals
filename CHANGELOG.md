@@ -10,8 +10,11 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Festival season planning
 
 - `/plan` — upcoming festivals grouped by NZ season (Summer/Autumn/Winter/Spring), with a "Dates TBC" section for unconfirmed dates
-- Save-to-plan watchlist — localStorage-backed toggle on the home dashboard, festival detail pages, and the plan page; nav shows a saved count badge
+- Two-tier plan status — each festival can be marked **Interested** or **Planned**; "My plan" and "Interested" sections on `/plan` line them up by date
+- **Build your season** tool — generates a non-overlapping itinerary by strategy (most festivals, biggest lineups, indie/undiscovered), region (North/South/all NZ), genre, and max count; one-click "Add all to my plan"
+- Plan status picker on the home dashboard, festival detail pages, and the plan page; nav shows a saved count badge
 - `getSeasonForDate`/`groupFestivalsBySeason` helpers with NZ summer spanning the year boundary (e.g. "Summer 25/26")
+- `buildFestivalItinerary`/`filterFestivalsForPlanner` weighted interval-scheduling helpers with unit tests
 - `formatDateRange` helper for "28–30 Dec 2026" style date ranges
 
 ### Added
