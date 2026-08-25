@@ -49,7 +49,7 @@ Detail pages (festival/artist/promoter/region) are statically generated (`genera
 
 `/plan` groups upcoming festivals into NZ seasons (Summer spans the calendar-year boundary, so it reads "Summer 25/26"). Each festival has a status picker — **Interested** (maybe) or **Planned** (going) — stored in `localStorage` (no account needed); the nav shows a count badge. The same picker appears on the home dashboard and festival detail pages.
 
-The **Build your season** tool generates a non-overlapping itinerary from your choices: strategy (most festivals, biggest lineups, or indie/undiscovered picks), region (North Island, South Island, all NZ), genre, and a max count. Itinerary picks can be added to the plan in one click.
+The **Build your season** tool generates a non-overlapping itinerary live as you change controls: strategy (most festivals, biggest lineups, indie/undiscovered picks — shown as selectable cards), region (North Island, South Island, all NZ), genre (matches the festival tag or the genres of artists in its lineup), camping availability, 2+ days, and a max count. Itinerary rows show dates, region, camping, and ticket price where known; picks can be added to the plan in one click.
 
 ## Setup
 

@@ -16,6 +16,9 @@ function festival(
     name: slug,
     region: "AUCKLAND",
     genre: "EDM",
+    lineupGenres: ["EDM"],
+    camping: null,
+    ticketPrice: null,
     startDate: new Date(start),
     endDate: end ? new Date(end) : null,
     lineupCount: 0,
@@ -70,6 +73,65 @@ describe("filterFestivalsForPlanner", () => {
     });
     expect(result.map((f) => f.slug)).toEqual(["south-jazz"]);
   });
+
+  it("matches genre against lineup artist genres", () => {
+    const festivals = [
+      festival("own-tag", "2026-12-28T00:00:00.000Z", null, {
+        genre: "Electronic",
+      }),
+      festival("lineup-only", "2026-12-29T00:00:00.000Z", null, {
+        genre: null,
+        lineupGenres: ["Hip hop", "Drum & Bass"],
+      }),
+    ];
+    const result = filterFestivalsForPlanner(festivals, {
+      strategy: "most",
+      region: "all",
+      genre: "hip hop",
+    });
+    expect(result.map((f) => f.slug)).toEqual(["lineup-only"]);
+  });
+
+  it("filters by camping availability", () => {
+    const festivals = [
+      festival("camps", "2026-12-28T00:00:00.000Z", null, { camping: true }),
+      festival("no-camps", "2026-12-29T00:00:00.000Z", null, {
+        camping: false,
+      }),
+      festival("unknown", "2026-12-30T00:00:00.000Z", null, { camping: null }),
+    ];
+    expect(
+      filterFestivalsForPlanner(festivals, {
+        strategy: "most",
+        region: "all",
+        camping: "yes",
+      }).map((f) => f.slug),
+    ).toEqual(["camps"]);
+    expect(
+      filterFestivalsForPlanner(festivals, {
+        strategy: "most",
+        region: "all",
+        camping: "no",
+      }).map((f) => f.slug),
+    ).toEqual(["no-camps"]);
+  });
+
+  it("filters to festivals of at least a given duration", () => {
+    const festivals = [
+      festival("one-day", "2026-12-28T00:00:00.000Z", null),
+      festival(
+        "two-days",
+        "2026-12-29T00:00:00.000Z",
+        "2026-12-30T00:00:00.000Z",
+      ),
+    ];
+    const result = filterFestivalsForPlanner(festivals, {
+      strategy: "most",
+      region: "all",
+      minDays: 2,
+    });
+    expect(result.map((f) => f.slug)).toEqual(["two-days"]);
+  });
 });
 
 describe("buildFestivalItinerary", () => {
@@ -84,7 +146,9 @@ describe("buildFestivalItinerary", () => {
       strategy: "most",
       region: "all",
     });
-    expect(result.map((f) => f.slug)).toEqual(["a", "b", "c"]);
+    // b (29–30) overlaps a's final day (29) and c's first day (30);
+    // the max non-overlapping run is a (28–29) then c (30–31).
+    expect(result.map((f) => f.slug)).toEqual(["a", "c"]);
   });
 
   it("treats a missing end date as a single day", () => {

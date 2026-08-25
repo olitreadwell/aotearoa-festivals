@@ -10,6 +10,9 @@ export interface PlanFestival {
   name: string;
   region: Region | null;
   genre: string | null;
+  lineupGenres: string[];
+  camping: boolean | null;
+  ticketPrice: string | null;
   startDate: Date | null;
   endDate: Date | null;
   lineupCount: number;
@@ -19,6 +22,8 @@ export interface PlannerOptions {
   strategy: PlanStrategy;
   region: "all" | "north" | "south";
   genre?: string;
+  camping?: "any" | "yes" | "no";
+  minDays?: number;
   maxCount?: number;
 }
 
@@ -64,7 +69,26 @@ export function filterFestivalsForPlanner<T extends PlanFestival>(
     (f) =>
       f.startDate !== null &&
       regionMatches(f.region, options.region) &&
-      (!genre || (f.genre ?? "").toLowerCase().includes(genre)),
+      (!genre ||
+        (f.genre ?? "").toLowerCase().includes(genre) ||
+        f.lineupGenres.some((g) => g.toLowerCase().includes(genre))) &&
+      (options.camping === undefined ||
+        options.camping === "any" ||
+        (options.camping === "yes" && f.camping === true) ||
+        (options.camping === "no" && f.camping === false)) &&
+      (options.minDays === undefined ||
+        festivalDurationDays(f) >= options.minDays),
+  );
+}
+
+export function festivalDurationDays(festival: PlanFestival): number {
+  if (!festival.startDate) return 0;
+  if (!festival.endDate) return 1;
+  const msPerDay = 24 * 60 * 60 * 1000;
+  return (
+    Math.round(
+      (festival.endDate.getTime() - festival.startDate.getTime()) / msPerDay,
+    ) + 1
   );
 }
 
@@ -82,11 +106,12 @@ function festivalWeight(
   }
 }
 
-function festivalEnd(festival: PlanFestival): number {
-  const start = festival.startDate!.getTime();
+// endDate is the inclusive last day (matching the per-festival iCal feed).
+// A festival with no endDate occupies only its start date.
+function festivalLastDay(festival: PlanFestival): number {
   return festival.endDate
     ? festival.endDate.getTime()
-    : start + 24 * 60 * 60 * 1000;
+    : festival.startDate!.getTime();
 }
 
 export function buildFestivalItinerary<T extends PlanFestival>(
@@ -97,16 +122,16 @@ export function buildFestivalItinerary<T extends PlanFestival>(
   if (candidates.length === 0) return [];
 
   const sorted = [...candidates].sort(
-    (a, b) => festivalEnd(a) - festivalEnd(b),
+    (a, b) => festivalLastDay(a) - festivalLastDay(b),
   );
   const n = sorted.length;
 
-  // p(i): last festival that ends before festival i starts.
+  // p(i): last festival whose final day is before festival i starts.
   const p = new Array<number>(n).fill(-1);
   for (let i = 0; i < n; i++) {
     const start = sorted[i].startDate!.getTime();
     for (let j = i - 1; j >= 0; j--) {
-      if (festivalEnd(sorted[j]) <= start) {
+      if (festivalLastDay(sorted[j]) < start) {
         p[i] = j;
         break;
       }
