@@ -13,9 +13,9 @@ export interface PlanFestival {
   lineupGenres: string[];
   camping: boolean | null;
   ticketPrice: string | null;
+  attendance: number | null;
   startDate: Date | null;
   endDate: Date | null;
-  lineupCount: number;
 }
 
 export interface PlannerOptions {
@@ -100,9 +100,9 @@ function festivalWeight(
     case "most":
       return 1;
     case "biggest":
-      return festival.lineupCount + 1;
+      return (festival.attendance ?? 0) + 1;
     case "indie":
-      return 1 / (1 + festival.lineupCount);
+      return 1 / ((festival.attendance ?? 0) + 1);
   }
 }
 

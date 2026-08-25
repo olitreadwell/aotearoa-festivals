@@ -19,9 +19,9 @@ function festival(
     lineupGenres: ["EDM"],
     camping: null,
     ticketPrice: null,
+    attendance: null,
     startDate: new Date(start),
     endDate: end ? new Date(end) : null,
-    lineupCount: 0,
     ...overrides,
   };
 }
@@ -163,18 +163,18 @@ describe("buildFestivalItinerary", () => {
     expect(result.map((f) => f.slug)).toEqual(["one-day", "next-day"]);
   });
 
-  it("prefers the bigger lineup when festivals overlap", () => {
+  it("prefers the bigger crowd when festivals overlap", () => {
     const festivals = [
       festival(
         "small",
         "2026-12-28T00:00:00.000Z",
         "2026-12-30T00:00:00.000Z",
         {
-          lineupCount: 2,
+          attendance: 2000,
         },
       ),
       festival("big", "2026-12-28T00:00:00.000Z", "2026-12-30T00:00:00.000Z", {
-        lineupCount: 40,
+        attendance: 25000,
       }),
     ];
     const result = buildFestivalItinerary(festivals, {
@@ -184,22 +184,22 @@ describe("buildFestivalItinerary", () => {
     expect(result.map((f) => f.slug)).toEqual(["big"]);
   });
 
-  it("prefers the indie pick when festivals overlap", () => {
+  it("prefers the small intimate festival when festivals overlap", () => {
     const festivals = [
       festival(
         "mainstream",
         "2026-12-28T00:00:00.000Z",
         "2026-12-30T00:00:00.000Z",
         {
-          lineupCount: 40,
+          attendance: 25000,
         },
       ),
       festival(
-        "undiscovered",
+        "boutique",
         "2026-12-28T00:00:00.000Z",
         "2026-12-30T00:00:00.000Z",
         {
-          lineupCount: 1,
+          attendance: 500,
         },
       ),
     ];
@@ -207,7 +207,7 @@ describe("buildFestivalItinerary", () => {
       strategy: "indie",
       region: "all",
     });
-    expect(result.map((f) => f.slug)).toEqual(["undiscovered"]);
+    expect(result.map((f) => f.slug)).toEqual(["boutique"]);
   });
 
   it("caps the itinerary at maxCount", () => {

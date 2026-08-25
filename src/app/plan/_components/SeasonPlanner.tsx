@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { PlanFestivalWithStatus } from "../page";
 import {
   buildFestivalItinerary,
+  festivalDurationDays,
   type PlanStrategy,
 } from "@/lib/plan-optimizer";
 import { formatDateRange, formatRegion } from "@/lib/format";
@@ -24,13 +25,13 @@ const STRATEGIES: Array<{
   },
   {
     value: "biggest",
-    label: "Biggest lineups",
-    description: "Prioritise the biggest names",
+    label: "Biggest crowds",
+    description: "The big ones — most attendees",
   },
   {
     value: "indie",
-    label: "Indie & undiscovered",
-    description: "Fewer known artists, more hidden gems",
+    label: "Small & intimate",
+    description: "Boutique festivals, tight-knit crowds",
   },
 ];
 
@@ -43,6 +44,11 @@ const REGION_LABELS: Record<"all" | "north" | "south", string> = {
 const inputClass =
   "h-9 rounded-md border border-neutral-300 bg-background px-2 text-xs text-foreground dark:border-neutral-700";
 
+function parsedMinDays(value: string): number | undefined {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : undefined;
+}
+
 export default function SeasonPlanner({
   festivals,
 }: {
@@ -52,7 +58,7 @@ export default function SeasonPlanner({
   const [region, setRegion] = useState<"all" | "north" | "south">("all");
   const [genre, setGenre] = useState("");
   const [camping, setCamping] = useState<"any" | "yes" | "no">("any");
-  const [minTwoDays, setMinTwoDays] = useState(false);
+  const [minDays, setMinDays] = useState("");
   const [maxCount, setMaxCount] = useState("");
   const { setStatus } = useFestivalPlan();
 
@@ -63,10 +69,10 @@ export default function SeasonPlanner({
       region,
       genre: genre || undefined,
       camping,
-      minDays: minTwoDays ? 2 : undefined,
+      minDays: parsedMinDays(minDays),
       maxCount: parsedMax && parsedMax > 0 ? parsedMax : undefined,
     });
-  }, [festivals, strategy, region, genre, camping, minTwoDays, maxCount]);
+  }, [festivals, strategy, region, genre, camping, minDays, maxCount]);
 
   function addAllToPlan() {
     for (const festival of itinerary) {
@@ -166,13 +172,15 @@ export default function SeasonPlanner({
         </label>
 
         <label className="flex items-center gap-2 pb-2 text-xs font-medium">
+          Min days
           <input
-            type="checkbox"
-            checked={minTwoDays}
-            onChange={(e) => setMinTwoDays(e.target.checked)}
-            className="h-4 w-4"
+            type="number"
+            min={1}
+            value={minDays}
+            onChange={(e) => setMinDays(e.target.value)}
+            placeholder="Any"
+            className={`${inputClass} w-16`}
           />
-          2+ days
         </label>
 
         <label className="flex flex-col gap-1 text-xs font-medium">
@@ -229,6 +237,12 @@ export default function SeasonPlanner({
                       festival.region ? formatRegion(festival.region) : null,
                       festival.genre,
                       festival.camping ? "🏕 Camping" : null,
+                      festival.attendance
+                        ? `~${festival.attendance.toLocaleString("en-NZ")} attendees`
+                        : null,
+                      festivalDurationDays(festival) >= 2
+                        ? `${festivalDurationDays(festival)} days`
+                        : null,
                       festival.ticketPrice,
                     ]
                       .filter(Boolean)

@@ -11,7 +11,8 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - `/plan` — upcoming festivals grouped by NZ season (Summer/Autumn/Winter/Spring), with a "Dates TBC" section for unconfirmed dates
 - Two-tier plan status — each festival can be marked **Interested** or **Planned**; "My plan" and "Interested" sections on `/plan` line them up by date
-- **Build your season** tool — live non-overlapping itinerary; strategy shown as selectable cards (most festivals, biggest lineups, indie/undiscovered), filters for region (North/South/all NZ), genre (festival tag or lineup artist genres), camping, 2+ days, and max count; rows show camping + ticket price where known; one-click "Add all to my plan"
+- **Build your season** tool — live non-overlapping itinerary; strategy shown as selectable cards (**most festivals** / **biggest crowds** by attendance / **small & intimate**), filters for region (North/South/all NZ), genre (festival tag or lineup artist genres), camping, minimum days, and max count; rows show camping, estimated attendance, duration, and ticket price where known; one-click "Add all to my plan"
+- New `attendance` field (estimated crowd size) — powers the biggest/small-intimate strategies; 27 festivals seeded with estimates, null = unknown
 - Plan status picker on the home dashboard, festival detail pages, and the plan page; nav shows a saved count badge
 - `getSeasonForDate`/`groupFestivalsBySeason` helpers with NZ summer spanning the year boundary (e.g. "Summer 25/26")
 - `buildFestivalItinerary`/`filterFestivalsForPlanner` weighted interval-scheduling helpers with unit tests

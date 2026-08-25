@@ -38,7 +38,8 @@
       "latitude": -38.66,
       "longitude": 178.02,
       "startDate": "2026-12-28",
-      "endDate": "2027-01-01"
+      "endDate": "2027-01-01",
+      "attendance": 25000
     },
     {
       "name": "Rhythm and Alps",
@@ -55,7 +56,8 @@
       "longitude": 169.01,
       "startDate": "2026-12-30",
       "endDate": "2026-12-31",
-      "camping": false
+      "camping": false,
+      "attendance": 15000
     },
     {
       "name": "Northern Bass",
@@ -72,7 +74,8 @@
       "longitude": 174.43,
       "startDate": "2026-12-30",
       "endDate": "2026-12-31",
-      "camping": true
+      "camping": true,
+      "attendance": 10000
     },
     {
       "name": "Rolling Meadows",
@@ -89,7 +92,8 @@
       "longitude": 172.72,
       "startDate": "2026-12-29",
       "endDate": "2026-12-31",
-      "camping": false
+      "camping": false,
+      "attendance": 3000
     },
     {
       "name": "Marton Country Music Festival",
@@ -103,7 +107,8 @@
       "links": "https://www.martonfestival.nz/",
       "notes": "'Marton Country Music Festival' Facebook page, ~750 followers",
       "startDate": "2027-01-15",
-      "endDate": "2027-01-17"
+      "endDate": "2027-01-17",
+      "attendance": 4000
     },
     {
       "name": "New Zealand Fringe Festival",
@@ -131,7 +136,8 @@
       "links": "https://www.womad.co.nz/",
       "notes": "https://www.facebook.com/womadnz/ · https://www.instagram.com/womadnz/?hl=en",
       "startDate": "2027-03-12",
-      "endDate": "2027-03-14"
+      "endDate": "2027-03-14",
+      "attendance": 20000
     },
     {
       "name": "CubaDupa",
@@ -145,7 +151,8 @@
       "links": "https://www.cubadupa.co.nz/",
       "notes": "https://www.facebook.com/cubadupa · https://instagram.com/cubadupa",
       "startDate": "2027-03-20",
-      "endDate": "2027-03-21"
+      "endDate": "2027-03-21",
+      "attendance": 50000
     },
     {
       "name": "Jim Beam Homegrown",
@@ -158,7 +165,8 @@
       "cost": "",
       "links": "https://www.homegrown.net.nz/",
       "notes": "Moved from Wellington to Hamilton for 2027. | https://www.facebook.com/HomegrownOfficial · https://www.instagram.com/jimbeamhomegrown/",
-      "startDate": "2027-04-03"
+      "startDate": "2027-04-03",
+      "attendance": 30000
     },
     {
       "name": "High Tide Festival",
@@ -185,7 +193,8 @@
       "links": "https://www.jazzfestival.nz/",
       "notes": "https://www.facebook.com/welljazzfest/ · https://www.instagram.com/welljazzfest/",
       "startDate": "2026-10-14",
-      "endDate": "2026-10-18"
+      "endDate": "2026-10-18",
+      "attendance": 20000
     },
     {
       "name": "Twisted Frequency",
@@ -202,7 +211,8 @@
       "longitude": 172.68,
       "startDate": "2026-12-30",
       "endDate": "2027-01-03",
-      "camping": true
+      "camping": true,
+      "attendance": 1500
     },
     {
       "name": "Kiwiburn",
@@ -216,7 +226,9 @@
       "links": "https://kiwiburn.com/",
       "notes": "2027 theme: Moss and Microchips. | https://www.facebook.com/Kiwiburn · https://instagram.com/kiwiburn/",
       "startDate": "2027-02-01",
-      "endDate": "2027-02-28"
+      "endDate": "2027-02-28",
+      "camping": true,
+      "attendance": 4000
     },
     {
       "name": "Shipwrecked",
@@ -245,7 +257,8 @@
       "notes": "http://www.facebook.com/pages/Newtown-Festival/46143023618",
       "latitude": -41.32,
       "longitude": 174.77,
-      "startDate": "2027-03-07"
+      "startDate": "2027-03-07",
+      "attendance": 40000
     },
     {
       "name": "Twominds Festival",
@@ -276,7 +289,8 @@
       "cost": "$119",
       "links": "https://www.eyegum.co.nz/great-sounds-great",
       "notes": "Lineup incl. Bic Runga, Savage, Mokotron, Silicon. | https://www.facebook.com/eyegumevents/ · https://www.instagram.com/eyegum/",
-      "startDate": "2026-09-05"
+      "startDate": "2026-09-05",
+      "attendance": 3000
     },
     {
       "name": "Carlucci Carnival",
@@ -307,7 +321,8 @@
       "longitude": 175.28,
       "startDate": "2027-01-22",
       "endDate": "2027-01-24",
-      "camping": true
+      "camping": true,
+      "attendance": 8000
     },
     {
       "name": "Electric Avenue Music Festival",
@@ -324,7 +339,8 @@
       "longitude": 172.62,
       "startDate": "2027-02-26",
       "endDate": "2027-02-27",
-      "camping": false
+      "camping": false,
+      "attendance": 20000
     },
     {
       "name": "AUM Festival",
@@ -339,7 +355,8 @@
       "notes": "4 stages, 200+ artists. | https://www.facebook.com/AUMFestivalNZ · https://www.instagram.com/aum.new.years.eve/",
       "startDate": "2026-12-30",
       "endDate": "2027-01-02",
-      "camping": true
+      "camping": true,
+      "attendance": 3000
     },
     {
       "name": "Camp A Low Hum",
@@ -353,7 +370,8 @@
       "links": "https://www.alowhum.com/",
       "notes": "Only goes ahead if 75%+ tickets sold by a set date. | https://www.facebook.com/groups/campalh/ · https://www.instagram.com/alowhum/",
       "startDate": "2027-02-01",
-      "endDate": "2027-02-28"
+      "endDate": "2027-02-28",
+      "camping": true
     },
     {
       "name": "Tora Bombora",
@@ -380,7 +398,8 @@
       "cost": "",
       "links": "https://www.audiologytouring.com/festival/southern-sounds",
       "notes": "",
-      "startDate": "2026-09-19"
+      "startDate": "2026-09-19",
+      "attendance": 3000
     },
     {
       "name": "Parklands Festival",
@@ -393,7 +412,8 @@
       "cost": "",
       "links": "https://www.audiologytouring.com/festival/parklands",
       "notes": "Headliners: Hybrid Minds, Tempza.",
-      "startDate": "2026-11-14"
+      "startDate": "2026-11-14",
+      "attendance": 5000
     },
     {
       "name": "Matakanarama",
@@ -421,7 +441,8 @@
       "links": "https://highlifenye.co.nz/",
       "notes": "Strictly 23+. Vineyard setting.",
       "startDate": "2026-12-31",
-      "endDate": "2027-01-01"
+      "endDate": "2027-01-01",
+      "attendance": 4000
     },
     {
       "name": "Lakes Festival",
@@ -447,7 +468,8 @@
       "cost": "",
       "links": "",
       "notes": "Inaugural edition. | '8th Wonder' (@8thwonder.live), ~990 followers",
-      "startDate": "2027-01-23"
+      "startDate": "2027-01-23",
+      "attendance": 5000
     },
     {
       "name": "Morph Festival",
@@ -512,7 +534,8 @@
       "notes": "Ran 1998-2026 (28 years), NZ's longest-running music/arts/camping festival. Ended for good after cost-of-living-driven low ticket sales · All ages, 3-day | https://www.facebook.com/splore/ · https://www.instagram.com/splorefestival/",
       "latitude": -36.79,
       "longitude": 175.04,
-      "camping": true
+      "camping": true,
+      "attendance": 25000
     },
     {
       "name": "Bay Dreams",
@@ -527,7 +550,8 @@
       "notes": "Ran 2016-2024. Called for hiatus from 2025, citing costs and difficulty securing headliners. Not officially declared dead · 18+, 2-day | https://www.facebook.com/baydreamsnorth · https://www.instagram.com/baydreams_nz/",
       "latitude": -37.68,
       "longitude": 176.16,
-      "camping": false
+      "camping": false,
+      "attendance": 20000
     },
     {
       "name": "One Love Festival",
@@ -663,7 +687,8 @@
       "genre": "Multi-genre, indie/alt",
       "cost": "",
       "links": "https://www.lanewayfestival.com/auckland/",
-      "notes": "Confirmed returning 2027 after a record-breaking 2026 year. Co-founders Danny Rogers and Jerome Borazio. | https://www.facebook.com/lanewayfestival · https://www.instagram.com/lanewayfest/?hl=en"
+      "notes": "Confirmed returning 2027 after a record-breaking 2026 year. Co-founders Danny Rogers and Jerome Borazio. | https://www.facebook.com/lanewayfestival · https://www.instagram.com/lanewayfest/?hl=en",
+      "attendance": 15000
     },
     {
       "name": "Ecstatic Paradise Festival",
@@ -727,7 +752,8 @@
       "genre": "Multi-genre, 4 stages",
       "cost": "",
       "links": "http://www.aucklandcitylimits.com/",
-      "notes": "Official site frozen since thanking fans for 2017. Likely dormant or defunct."
+      "notes": "Official site frozen since thanking fans for 2017. Likely dormant or defunct.",
+      "attendance": 20000
     },
     {
       "name": "Oasis Festival",
@@ -780,7 +806,8 @@
       "links": "https://lecurrents.com/",
       "notes": "Expanded to 2 days for 2026 (first time since launching 2020). Headliners: Ocean Alley, Fat Freddy's Drop, Carl Cox. | https://www.facebook.com/lecurrents · https://www.instagram.com/lecurrents_nz/",
       "startDate": "2026-12-27",
-      "endDate": "2026-12-28"
+      "endDate": "2026-12-28",
+      "attendance": 3000
     },
     {
       "name": "Octoblast",
@@ -902,7 +929,8 @@
       "links": "https://tematatini.co.nz/",
       "notes": "NZ's premier national kapa haka competition and celebration. Biennial (odd years only). Draws tens of thousands. 2027 edition confirmed for New Plymouth; not held in 2026. | Te Matatini Society Incorporated (~478K followers) - 'The Olympics of Māori Performing Arts' · https://www.instagram.com/te_matatini",
       "startDate": "2027-02-22",
-      "endDate": "2027-02-27"
+      "endDate": "2027-02-27",
+      "attendance": 40000
     },
     {
       "name": "World Buskers Festival",
@@ -985,7 +1013,8 @@
       "notes": "Family-friendly camping festival with themed nights, wellness zones, and multiple stages. Distinct from AUM Festival (South Head) and Northern Bass (also Mangawhai area).",
       "startDate": "2026-12-01",
       "endDate": "2026-12-28",
-      "camping": true
+      "camping": true,
+      "attendance": 3000
     }
   ],
   "promoters": [

@@ -34,11 +34,11 @@ export default async function PlanPage() {
       genre: true,
       camping: true,
       ticketPrice: true,
+      attendance: true,
       startDate: true,
       endDate: true,
       dateText: true,
       status: true,
-      _count: { select: { lineups: true } },
       lineups: {
         select: { artist: { select: { genre: true } } },
       },
@@ -53,6 +53,7 @@ export default async function PlanPage() {
     genre: f.genre,
     camping: f.camping,
     ticketPrice: f.ticketPrice,
+    attendance: f.attendance,
     lineupGenres: [
       ...new Set(
         f.lineups
@@ -62,7 +63,6 @@ export default async function PlanPage() {
     ],
     startDate: f.startDate,
     endDate: f.endDate,
-    lineupCount: f._count.lineups,
     dateText: f.dateText,
     status: f.status,
   }));

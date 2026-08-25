@@ -18,6 +18,7 @@ interface SeedFestival {
   notes: string;
   vibe?: string;
   camping?: boolean | null;
+  attendance?: number | null;
   ticketPrice?: string;
   ticketUrl?: string;
   latitude?: number | null;
@@ -157,6 +158,7 @@ async function main() {
         promoterId,
         vibe: f.vibe || null,
         camping: f.camping ?? null,
+        attendance: f.attendance ?? null,
         ticketPrice: f.ticketPrice || null,
         ticketUrl: f.ticketUrl || null,
         latitude: f.latitude ?? null,
@@ -178,6 +180,7 @@ async function main() {
         promoterId,
         vibe: f.vibe || null,
         camping: f.camping ?? null,
+        attendance: f.attendance ?? null,
         ticketPrice: f.ticketPrice || null,
         ticketUrl: f.ticketUrl || null,
         latitude: f.latitude ?? null,

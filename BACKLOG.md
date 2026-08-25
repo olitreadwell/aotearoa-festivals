@@ -84,6 +84,9 @@ New policy (see README.md "Testing policy"): every feature gets unit + integrati
 - [x] Itinerary optimizer (`buildFestivalItinerary`) with unit tests _(done)_
 - [x] E2E + a11y coverage for the plan flow _(done)_
 - [ ] **Ticket prices on itinerary rows** — show `ticketPrice` in builder results and plan rows when populated _(display done, data thin)_
+- [x] Strategies redefined — **biggest = most attendees**, **indie = small & intimate** (inverse of attendance) _(done)_
+- [x] `attendance` field (estimated crowd size) added to schema + seed (27 festivals), powers biggest/indie strategies _(done)_
+- [x] Min-days filter (number input, not fixed 2+ days) _(done)_
 
 ### Data enrichment (needed to make planning filters meaningful)
 
