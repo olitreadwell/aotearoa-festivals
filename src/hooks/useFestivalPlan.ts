@@ -2,27 +2,34 @@
 
 import { useCallback, useEffect, useState } from "react";
 import {
-  readPlanSlugs,
-  togglePlanSlug,
-  writePlanSlugs,
+  readFestivalPlan,
+  setPlanStatus,
+  writeFestivalPlan,
+  type FestivalPlan,
+  type PlanStatus,
 } from "@/lib/plan-storage";
 
 export function useFestivalPlan() {
-  const [slugs, setSlugs] = useState<string[]>([]);
+  const [plan, setPlan] = useState<FestivalPlan>({});
 
   useEffect(() => {
-    setSlugs(readPlanSlugs());
+    setPlan(readFestivalPlan());
   }, []);
 
-  const toggle = useCallback((slug: string) => {
-    setSlugs((prev) => {
-      const next = togglePlanSlug(prev, slug);
-      writePlanSlugs(next);
+  const setStatus = useCallback((slug: string, status: PlanStatus | null) => {
+    setPlan((prev) => {
+      const next = setPlanStatus(prev, slug, status);
+      writeFestivalPlan(next);
       return next;
     });
   }, []);
 
-  const isSaved = useCallback((slug: string) => slugs.includes(slug), [slugs]);
+  const statusOf = useCallback((slug: string) => plan[slug] ?? null, [plan]);
 
-  return { slugs, isSaved, toggle };
+  return {
+    plan,
+    statusOf,
+    setStatus,
+    savedCount: Object.keys(plan).length,
+  };
 }

@@ -76,9 +76,12 @@ New policy (see README.md "Testing policy"): every feature gets unit + integrati
 ### Festival Season Planning
 
 - [x] `/plan` page — upcoming festivals grouped by NZ season (Summer/Autumn/Winter/Spring) _(done)_
-- [x] Save-to-plan watchlist — localStorage toggle on dashboard, detail pages, and plan page _(done)_
+- [x] Two-tier plan status — Interested vs Planned, with "My plan" and "Interested" sections _(done)_
+- [x] **Build your season** tool — non-overlapping itinerary by strategy/region/genre/max count, add-all-to-plan _(done)_
+- [x] Plan status picker on dashboard, detail pages, and plan page _(done)_
 - [x] Nav "Plan" link with saved count badge _(done)_
 - [x] Season grouping helpers (`getSeasonForDate`, `groupFestivalsBySeason`) with unit tests _(done)_
+- [x] Itinerary optimizer (`buildFestivalItinerary`) with unit tests _(done)_
 - [x] E2E + a11y coverage for the plan flow _(done)_
 
 ### Code Quality & Polish

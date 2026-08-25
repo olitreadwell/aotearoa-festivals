@@ -1,53 +1,71 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("festival season plan", () => {
-  test("plan page loads and groups festivals by season", async ({ page }) => {
+  test("plan page loads with season groups and the builder", async ({
+    page,
+  }) => {
     await page.goto("/plan");
     await expect(
       page.getByRole("heading", { name: "Plan your festival season" }),
     ).toBeVisible();
     await expect(page.getByRole("heading", { name: /Summer/ })).toBeVisible();
     await expect(
-      page.getByRole("button", { name: /to my plan/ }).first(),
+      page.getByRole("heading", { name: "Build your season" }),
     ).toBeVisible();
   });
 
-  test("saving a festival on the dashboard persists to the plan page", async ({
+  test("marking a festival interested on the dashboard shows in Interested", async ({
     page,
   }) => {
     await page.goto("/");
     await page
-      .getByRole("button", { name: "Add Rhythm and Vines to my plan" })
-      .click();
-    await expect(
-      page.getByRole("button", {
-        name: "Remove Rhythm and Vines from my plan",
-      }),
-    ).toBeVisible();
-
+      .getByLabel("Plan status for Rhythm and Vines")
+      .selectOption("interested");
     await page.goto("/plan");
     await expect(
-      page.getByRole("button", {
-        name: "Remove Rhythm and Vines from my plan",
-      }),
+      page.locator("#interested").getByText("Rhythm and Vines"),
     ).toBeVisible();
-  });
-
-  test("removing a festival from the plan clears the saved state", async ({
-    page,
-  }) => {
-    await page.goto("/");
-    await page
-      .getByRole("button", { name: "Add Rhythm and Vines to my plan" })
-      .click();
-    await page.goto("/plan");
-    await page
-      .getByRole("button", { name: "Remove Rhythm and Vines from my plan" })
-      .click();
     await expect(
-      page.getByRole("button", {
-        name: "Remove Rhythm and Vines from my plan",
-      }),
+      page.locator("#my-plan").getByText("Rhythm and Vines"),
     ).toHaveCount(0);
+  });
+
+  test("marking planned shows in My plan and can be removed", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    await page
+      .getByLabel("Plan status for Rhythm and Vines")
+      .selectOption("planned");
+    await page.goto("/plan");
+    await expect(
+      page.locator("#my-plan").getByText("Rhythm and Vines"),
+    ).toBeVisible();
+
+    await page
+      .locator("#my-plan")
+      .getByLabel("Plan status for Rhythm and Vines")
+      .selectOption("");
+    await expect(
+      page.locator("#my-plan").getByText("Rhythm and Vines"),
+    ).toHaveCount(0);
+  });
+
+  test("season builder returns an itinerary and adds it to the plan", async ({
+    page,
+  }) => {
+    await page.goto("/plan");
+    await page.getByLabel("Strategy").selectOption("most");
+    await page.getByLabel("Region").selectOption("north");
+    await page.getByRole("button", { name: "Build itinerary" }).click();
+
+    await expect(
+      page.getByRole("button", { name: "Add all to my plan" }),
+    ).toBeVisible();
+
+    await page.getByRole("button", { name: "Add all to my plan" }).click();
+    await expect(page.locator("#my-plan")).not.toHaveText(
+      "Nothing planned yet",
+    );
   });
 });

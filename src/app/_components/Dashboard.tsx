@@ -6,7 +6,7 @@ import type { Festival, Promoter } from "@/generated/prisma";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
-import { PlanToggle } from "@/components/PlanToggle";
+import { PlanStatusSelect } from "@/components/PlanStatusSelect";
 import { formatRegion, REGION_LABELS, STATUS_LABELS } from "@/lib/format";
 import HomeMap from "./HomeMap";
 
@@ -275,7 +275,7 @@ export default async function Home({
                     </span>
                   )}
                 </Link>
-                <PlanToggle slug={f.slug} name={f.name} />
+                <PlanStatusSelect slug={f.slug} name={f.name} />
               </div>
             ))}
             {upcoming.length === 0 && (
