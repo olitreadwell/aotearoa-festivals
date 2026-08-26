@@ -76,20 +76,20 @@ export default async function PromoterDetailPage({ params }: Props) {
         <dl className="mt-4 space-y-1.5 text-sm">
           {promoter.region && (
             <div className="flex gap-2">
-              <dt className="w-16 shrink-0 font-medium text-neutral-800 dark:text-neutral-200">
+              <dt className="w-16 shrink-0 font-medium text-foreground dark:text-foreground">
                 Region
               </dt>
-              <dd className="text-neutral-600 dark:text-neutral-400">
+              <dd className="text-muted-foreground dark:text-muted-foreground">
                 {promoter.region}
               </dd>
             </div>
           )}
           {promoter.genreFocus && (
             <div className="flex gap-2">
-              <dt className="w-16 shrink-0 font-medium text-neutral-800 dark:text-neutral-200">
+              <dt className="w-16 shrink-0 font-medium text-foreground dark:text-foreground">
                 Genre
               </dt>
-              <dd className="text-neutral-600 dark:text-neutral-400">
+              <dd className="text-muted-foreground dark:text-muted-foreground">
                 {promoter.genreFocus}
               </dd>
             </div>
@@ -105,7 +105,7 @@ export default async function PromoterDetailPage({ params }: Props) {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center rounded-full border border-neutral-300 px-4 py-1 text-sm transition-colors hover:bg-neutral-100 dark:border-neutral-700 dark:hover:bg-neutral-800"
+              className="inline-flex items-center rounded-full border border-border px-4 py-1 text-sm transition-colors hover:bg-muted dark:border-border dark:hover:bg-muted"
             >
               {link.label}
             </a>
@@ -116,25 +116,27 @@ export default async function PromoterDetailPage({ params }: Props) {
       <section className="mt-12">
         <h2 className="text-xl font-semibold tracking-tight">
           Festivals{" "}
-          <span className="text-base font-normal text-neutral-500">
+          <span className="text-base font-normal text-muted-foreground">
             ({promoter.festivals.length})
           </span>
         </h2>
 
         {promoter.festivals.length === 0 ? (
-          <p className="mt-4 text-neutral-500">No festivals on record yet.</p>
+          <p className="mt-4 text-muted-foreground">
+            No festivals on record yet.
+          </p>
         ) : (
-          <ul className="mt-4 divide-y divide-neutral-200 dark:divide-neutral-800">
+          <ul className="mt-4 divide-y divide-border dark:divide-border">
             {promoter.festivals.map((festival) => (
               <li key={festival.id}>
                 <Link
                   href={`/festivals/${festival.slug}`}
-                  className="-mx-2 flex items-center justify-between rounded px-2 py-4 transition-colors hover:bg-neutral-50 dark:hover:bg-neutral-900"
+                  className="-mx-2 flex items-center justify-between rounded px-2 py-4 transition-colors hover:bg-muted/50 dark:hover:bg-muted"
                 >
                   <div>
                     <span className="font-medium">{festival.name}</span>
                     {festival.dateText && (
-                      <span className="ml-2 text-sm text-neutral-500">
+                      <span className="ml-2 text-sm text-muted-foreground">
                         {festival.dateText}
                       </span>
                     )}

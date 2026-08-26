@@ -16,7 +16,7 @@ export default function AboutPage() {
         About Aotearoa Festivals
       </h1>
 
-      <div className="mt-8 space-y-6 text-base leading-relaxed text-neutral-700 dark:text-neutral-300">
+      <div className="mt-8 space-y-6 text-base leading-relaxed text-muted-foreground dark:text-muted-foreground">
         <p>
           Aotearoa Festivals is a community-driven directory of New Zealand
           music festivals. We track active, upcoming, and historical festivals
@@ -38,7 +38,7 @@ export default function AboutPage() {
             href="https://techevents.co.nz"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 hover:underline dark:text-blue-400"
+            className="text-primary hover:underline dark:text-primary"
           >
             techevents.co.nz
           </a>
@@ -48,28 +48,35 @@ export default function AboutPage() {
           favourite festival.
         </p>
 
-        <h2 className="mt-10 text-xl font-semibold text-black dark:text-white">
+        <h2 className="mt-10 text-xl font-semibold text-black dark:text-primary-foreground">
           How it works
         </h2>
 
         <ul className="list-disc space-y-3 pl-5">
           <li>
-            <strong className="text-black dark:text-white">Browse</strong> —
-            explore festivals by region, genre, or status. Filter to find what
+            <strong className="text-black dark:text-primary-foreground">
+              Browse
+            </strong>{" "}
+            — explore festivals by region, genre, or status. Filter to find what
             you&apos;re into.
           </li>
           <li>
-            <strong className="text-black dark:text-white">Discover</strong> —
-            click an artist to see every festival they&apos;ve played. Find
+            <strong className="text-black dark:text-primary-foreground">
+              Discover
+            </strong>{" "}
+            — click an artist to see every festival they&apos;ve played. Find
             similar events through shared lineups.
           </li>
           <li>
-            <strong className="text-black dark:text-white">Subscribe</strong> —
-            get notified when new festivals are added to regions you care about.
+            <strong className="text-black dark:text-primary-foreground">
+              Subscribe
+            </strong>{" "}
+            — get notified when new festivals are added to regions you care
+            about.
           </li>
         </ul>
 
-        <h2 className="mt-10 text-xl font-semibold text-black dark:text-white">
+        <h2 className="mt-10 text-xl font-semibold text-black dark:text-primary-foreground">
           Contribute
         </h2>
 
@@ -79,7 +86,7 @@ export default function AboutPage() {
             href="https://github.com/olitreadwell/aotearoa-festivals"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 hover:underline dark:text-blue-400"
+            className="text-primary hover:underline dark:text-primary"
           >
             GitHub
           </a>
@@ -88,7 +95,7 @@ export default function AboutPage() {
           additions, and ideas.
         </p>
 
-        <h2 className="mt-10 text-xl font-semibold text-black dark:text-white">
+        <h2 className="mt-10 text-xl font-semibold text-black dark:text-primary-foreground">
           Stack
         </h2>
 

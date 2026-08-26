@@ -73,7 +73,7 @@ export default function ImportPosterPage() {
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
       <h1 className="text-3xl font-bold tracking-tight">Import Poster</h1>
-      <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
+      <p className="mt-1 text-sm text-muted-foreground dark:text-muted-foreground">
         Paste a festival poster image URL. AI extracts the lineup.
       </p>
 
@@ -85,7 +85,7 @@ export default function ImportPosterPage() {
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             placeholder="https://example.com/poster.jpg"
-            className="mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 dark:border-gray-600 dark:bg-[#111]"
+            className="mt-1 w-full rounded-lg border border-border px-4 py-2 dark:border-border dark:bg-card"
           />
         </div>
         <div className="flex gap-4">
@@ -96,7 +96,7 @@ export default function ImportPosterPage() {
               value={festivalName}
               onChange={(e) => setFestivalName(e.target.value)}
               placeholder="e.g. Twominds Festival"
-              className="mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 dark:border-gray-600 dark:bg-[#111]"
+              className="mt-1 w-full rounded-lg border border-border px-4 py-2 dark:border-border dark:bg-card"
             />
           </div>
           <div className="w-32">
@@ -105,13 +105,13 @@ export default function ImportPosterPage() {
               type="number"
               value={festivalYear}
               onChange={(e) => setFestivalYear(e.target.value)}
-              className="mt-1 w-full rounded-lg border border-gray-300 px-4 py-2 dark:border-gray-600 dark:bg-[#111]"
+              className="mt-1 w-full rounded-lg border border-border px-4 py-2 dark:border-border dark:bg-card"
             />
           </div>
         </div>
 
         {url && (
-          <div className="rounded-lg border p-2 dark:border-gray-700">
+          <div className="rounded-lg border p-2 dark:border-border">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={url}
@@ -127,7 +127,7 @@ export default function ImportPosterPage() {
         <button
           onClick={handleExtract}
           disabled={isPending || !url || !festivalName}
-          className="rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+          className="rounded-lg bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary disabled:opacity-50"
         >
           {isPending ? "Extracting..." : "Extract Lineup"}
         </button>
@@ -164,7 +164,7 @@ export default function ImportPosterPage() {
             <button
               onClick={handleSave}
               disabled={isPending}
-              className="rounded-lg bg-emerald-600 px-6 py-2.5 text-sm font-medium text-white hover:bg-emerald-700 disabled:opacity-50"
+              className="rounded-lg bg-emerald-600 px-6 py-2.5 text-sm font-medium text-primary-foreground hover:bg-emerald-700 disabled:opacity-50"
             >
               {isPending
                 ? "Saving..."

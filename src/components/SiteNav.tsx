@@ -23,8 +23,8 @@ export function SiteNav() {
           Aotearoa Festivals
         </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden md:block">
+        {/* Desktop links + theme */}
+        <div className="hidden items-center gap-1 md:flex">
           <ul className="site-nav__links" role="list">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
@@ -38,76 +38,83 @@ export function SiteNav() {
               </li>
             ))}
           </ul>
+          <ThemeToggle />
         </div>
 
-        {/* Mobile hamburger + theme toggle */}
+        {/* Mobile: theme + hamburger */}
         <div className="flex items-center gap-1 md:hidden">
           <ThemeToggle />
           <button
             onClick={() => setOpen(!open)}
-            className="flex h-11 w-11 items-center justify-center rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800"
+            className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-muted dark:hover:bg-muted"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? "Close menu" : "Open menu"}
           >
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              {open ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                />
-              )}
-            </svg>
+            <span className="relative block h-3.5 w-5" aria-hidden="true">
+              <span
+                className={`absolute left-0 top-0 h-0.5 w-5 rounded-full bg-current transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                  open ? "top-1/2 -translate-y-1/2 rotate-45" : ""
+                }`}
+              />
+              <span
+                className={`absolute left-0 top-1/2 h-0.5 w-5 -translate-y-1/2 rounded-full bg-current transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                  open ? "opacity-0" : ""
+                }`}
+              />
+              <span
+                className={`absolute bottom-0 left-0 h-0.5 w-5 rounded-full bg-current transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                  open ? "bottom-1/2 translate-y-1/2 -rotate-45" : ""
+                }`}
+              />
+            </span>
           </button>
-        </div>
-
-        {/* Desktop theme toggle */}
-        <div className="hidden md:block">
-          <ThemeToggle />
         </div>
       </nav>
 
-      {/* Mobile menu drawer */}
+      {/* Mobile full-screen glass overlay */}
       {open && (
         <div
           id="mobile-menu"
-          className="border-t border-neutral-200 bg-white px-4 py-3 dark:border-neutral-700 dark:bg-[#0a0a0a] md:hidden"
+          className="site-nav__mobile-menu flex flex-col items-center justify-center"
           role="navigation"
           aria-label="Mobile navigation"
         >
-          <ul className="flex flex-col gap-1" role="list">
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
+          <ul className="flex flex-col items-center gap-2" role="list">
+            {NAV_LINKS.map((link, index) => (
+              <li
+                key={link.href}
+                className="menu-link-in"
+                style={{ animationDelay: `${index * 70 + 60}ms` }}
+              >
                 {link.href === "/plan" ? (
                   <PlanNavLink
-                    className="block rounded-lg px-4 py-3 text-base font-medium hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                    className="block px-6 py-3 text-2xl font-semibold tracking-tight"
                     onClick={() => setOpen(false)}
                   />
                 ) : (
                   <Link
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="block rounded-lg px-4 py-3 text-base font-medium hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                    className="block px-6 py-3 text-2xl font-semibold tracking-tight"
                   >
                     {link.label}
                   </Link>
                 )}
               </li>
             ))}
+            <li
+              className="menu-link-in"
+              style={{ animationDelay: `${NAV_LINKS.length * 70 + 60}ms` }}
+            >
+              <Link
+                href="/"
+                onClick={() => setOpen(false)}
+                className="block px-6 py-3 text-lg text-muted-foreground"
+              >
+                Home
+              </Link>
+            </li>
           </ul>
         </div>
       )}

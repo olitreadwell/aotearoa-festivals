@@ -12,11 +12,12 @@ export type SearchItem = {
 };
 
 const TYPE_BADGE_STYLES: Record<SearchItem["type"], string> = {
-  festival: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
+  festival:
+    "bg-tangaroa-300/30 text-tangaroa-0 dark:bg-tangaroa-100/70 dark:text-tangaroa-300",
   artist:
-    "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200",
+    "bg-pohutukawa-300/40 text-pohutukawa-0 dark:bg-pohutukawa-200/20 dark:text-pohutukawa-300",
   promoter:
-    "bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200",
+    "bg-kowhai-300/40 text-kowhai-0 dark:bg-kowhai-100/70 dark:text-kowhai-300",
 };
 
 export function SearchClient({ items }: { items: SearchItem[] }) {
@@ -43,7 +44,7 @@ export function SearchClient({ items }: { items: SearchItem[] }) {
       <div className="relative mb-4">
         <svg
           aria-hidden="true"
-          className="pointer-events-none absolute top-1/2 left-3.5 h-5 w-5 -translate-y-1/2 text-gray-400 dark:text-gray-500"
+          className="pointer-events-none absolute top-1/2 left-3.5 h-5 w-5 -translate-y-1/2 text-muted-foreground dark:text-muted-foreground"
           viewBox="0 0 20 20"
           fill="currentColor"
         >
@@ -59,13 +60,13 @@ export function SearchClient({ items }: { items: SearchItem[] }) {
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search festivals, artists, promoters..."
           autoFocus
-          className="w-full rounded-xl border border-gray-300 bg-white py-3 pr-4 pl-11 text-base shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-[#111] dark:text-[#ededed] dark:placeholder-gray-500 dark:focus:border-blue-400 dark:focus:ring-blue-400"
+          className="w-full rounded-xl border border-border bg-card py-3 pr-4 pl-11 text-base shadow-[0_1px_2px_rgba(28,25,23,0.04)] focus:border-primary/50 focus:ring-2 focus:ring-primary/25 focus:outline-none dark:border-border dark:bg-card dark:text-foreground dark:placeholder:text-muted-foreground dark:focus:border-primary/40 dark:focus:ring-primary/30"
         />
       </div>
 
       {/* Result count */}
       <p
-        className="mb-5 text-sm text-[#555] dark:text-[#aaa]"
+        className="mb-5 text-sm text-muted-foreground dark:text-muted-foreground"
         role="status"
         aria-live="polite"
       >
@@ -81,7 +82,7 @@ export function SearchClient({ items }: { items: SearchItem[] }) {
             <li key={`${item.type}-${item.slug}`}>
               <Link
                 href={`/${item.type}s/${item.slug}`}
-                className="group flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-4 shadow-sm transition-all duration-150 hover:border-blue-400 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:border-gray-700 dark:bg-[#111] dark:hover:border-blue-500"
+                className="group flex items-start gap-3 rounded-xl border border-border bg-card p-4 shadow-[0_1px_2px_rgba(28,25,23,0.04)] transition-all duration-300 ease-out-expo hover:border-primary/40 hover:shadow-[0_12px_28px_-16px_rgba(28,25,23,0.25)] focus-visible:ring-2 focus-visible:ring-primary/25 focus-visible:outline-none dark:border-border dark:bg-card dark:hover:border-primary/40"
               >
                 {/* Type badge */}
                 <span
@@ -95,14 +96,14 @@ export function SearchClient({ items }: { items: SearchItem[] }) {
                   <span
                     className={`mt-0.5 shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${
                       item.status === "ACTIVE"
-                        ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                        ? "bg-wao-300/30 text-wao-0 dark:bg-wao-100/70 dark:text-wao-400"
                         : item.status === "Dates TBC"
-                          ? "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200"
+                          ? "bg-kowhai-300/40 text-kowhai-0 dark:bg-kowhai-100/70 dark:text-kowhai-300"
                           : item.status === "HIATUS"
-                            ? "bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300"
+                            ? "bg-muted text-muted-foreground dark:bg-muted dark:text-muted-foreground"
                             : item.status === "DEFUNCT"
-                              ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
-                              : "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200"
+                              ? "bg-pohutukawa-300/40 text-pohutukawa-0 dark:bg-pohutukawa-200/20 dark:text-pohutukawa-300"
+                              : "bg-tangaroa-300/30 text-tangaroa-0 dark:bg-tangaroa-100/70 dark:text-tangaroa-300"
                     }`}
                   >
                     {item.status.charAt(0) + item.status.slice(1).toLowerCase()}
@@ -111,11 +112,11 @@ export function SearchClient({ items }: { items: SearchItem[] }) {
 
                 {/* Name + subtitle */}
                 <div className="min-w-0 flex-1">
-                  <strong className="block leading-snug font-semibold transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                  <strong className="block leading-snug font-semibold transition-colors group-hover:text-primary dark:group-hover:text-primary">
                     {item.name}
                   </strong>
                   {item.subtitle && (
-                    <span className="mt-0.5 block text-sm text-[#555] dark:text-[#aaa]">
+                    <span className="mt-0.5 block text-sm text-muted-foreground dark:text-muted-foreground">
                       {item.subtitle}
                     </span>
                   )}
@@ -124,7 +125,7 @@ export function SearchClient({ items }: { items: SearchItem[] }) {
                 {/* Arrow */}
                 <svg
                   aria-hidden="true"
-                  className="mt-1 h-4 w-4 shrink-0 text-gray-400 transition-colors group-hover:text-blue-500"
+                  className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-primary"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
@@ -139,7 +140,7 @@ export function SearchClient({ items }: { items: SearchItem[] }) {
           ))}
         </ul>
       ) : (
-        <div className="rounded-xl border border-dashed border-gray-300 p-12 text-center text-[#555] dark:border-gray-600 dark:text-[#aaa]">
+        <div className="rounded-xl border border-dashed border-border p-12 text-center text-muted-foreground dark:border-border dark:text-muted-foreground">
           <p className="text-sm">
             No results for &ldquo;{query}&rdquo;. Try a different search term.
           </p>

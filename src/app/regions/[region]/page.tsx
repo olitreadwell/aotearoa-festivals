@@ -114,7 +114,7 @@ export default async function RegionDetailPage({
         <h1 className="mb-1 text-3xl font-bold tracking-tight">
           {regionLabel}
         </h1>
-        <p className="text-sm text-[#555] dark:text-[#aaa]">
+        <p className="text-sm text-muted-foreground dark:text-muted-foreground">
           {festivals.length === 0
             ? "No approved festivals in this region yet."
             : festivals.length === 1
@@ -133,7 +133,7 @@ export default async function RegionDetailPage({
             <li key={festival.id}>
               <Link
                 href={`/festivals/${festival.slug}`}
-                className="group flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-150 hover:border-blue-400 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:border-gray-700 dark:bg-[#111] dark:hover:border-blue-500"
+                className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card shadow-[0_1px_2px_rgba(28,25,23,0.04)] transition-all duration-300 ease-out-expo hover:border-primary/40 hover:shadow-[0_12px_28px_-16px_rgba(28,25,23,0.25)] focus-visible:ring-2 focus-visible:ring-primary/25 focus-visible:outline-none dark:border-border dark:bg-card dark:hover:border-primary/40"
               >
                 {/* Card body */}
                 <div className="flex flex-1 flex-col gap-3 p-5">
@@ -143,13 +143,13 @@ export default async function RegionDetailPage({
                       status={festival.status}
                       className="mb-2"
                     />
-                    <h2 className="text-base leading-snug font-bold transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                    <h2 className="text-base leading-snug font-bold transition-colors group-hover:text-primary dark:group-hover:text-primary">
                       {festival.name}
                     </h2>
                   </div>
 
                   {/* Meta rows */}
-                  <dl className="flex flex-col gap-1 text-sm text-[#555] dark:text-[#aaa]">
+                  <dl className="flex flex-col gap-1 text-sm text-muted-foreground dark:text-muted-foreground">
                     {festival.genre && (
                       <div className="flex items-center gap-1.5">
                         <dt className="sr-only">Genre</dt>
@@ -205,7 +205,7 @@ export default async function RegionDetailPage({
                 <div className="flex justify-end px-5 pb-4">
                   <svg
                     aria-hidden="true"
-                    className="h-4 w-4 text-gray-400 transition-colors group-hover:text-blue-500"
+                    className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                   >
@@ -221,7 +221,7 @@ export default async function RegionDetailPage({
           ))}
         </ul>
       ) : (
-        <div className="mb-12 rounded-xl border border-dashed border-gray-300 p-12 text-center text-[#555] dark:border-gray-600 dark:text-[#aaa]">
+        <div className="mb-12 rounded-xl border border-dashed border-border p-12 text-center text-muted-foreground dark:border-border dark:text-muted-foreground">
           <p className="text-sm">No approved festivals in {regionLabel} yet.</p>
         </div>
       )}
@@ -229,7 +229,7 @@ export default async function RegionDetailPage({
       {/* Subscribe CTA */}
       <section
         aria-labelledby="subscribe-heading"
-        className="rounded-xl border border-blue-200 bg-blue-50 px-6 py-8 dark:border-blue-900 dark:bg-blue-950/40"
+        className="rounded-xl border border-tangaroa-300/60 bg-tangaroa-400/50 px-6 py-8 dark:border-tangaroa-100/30 dark:bg-tangaroa-100/20"
       >
         <h2
           id="subscribe-heading"
@@ -237,7 +237,7 @@ export default async function RegionDetailPage({
         >
           Get notified about {regionLabel} festivals
         </h2>
-        <p className="mb-5 text-sm text-[#555] dark:text-[#aaa]">
+        <p className="mb-5 text-sm text-muted-foreground dark:text-muted-foreground">
           Be the first to hear about new and upcoming festivals in {regionLabel}
           . No spam — unsubscribe any time.
         </p>
@@ -256,11 +256,11 @@ export default async function RegionDetailPage({
             name="email"
             required
             placeholder="you@example.com"
-            className="flex-1 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-[#1a1a1a]"
+            className="flex-1 rounded-lg border border-border bg-card px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/25 focus:outline-none dark:border-border dark:bg-card"
           />
           <button
             type="submit"
-            className="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary focus:ring-2 focus:ring-primary/25 focus:outline-none"
           >
             Subscribe
           </button>

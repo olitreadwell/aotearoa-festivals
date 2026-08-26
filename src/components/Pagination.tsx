@@ -19,29 +19,29 @@ export default function Pagination({
       {currentPage > 1 ? (
         <Link
           href={buildHref(currentPage - 1)}
-          className="rounded-md border border-neutral-300 px-3 py-1.5 text-sm hover:border-neutral-500 dark:border-neutral-700"
+          className="rounded-full border border-border bg-background px-4 py-2 text-sm transition-all duration-300 ease-out-expo hover:border-foreground/25 hover:bg-muted/60 active:scale-[0.98]"
         >
           Previous
         </Link>
       ) : (
-        <span className="rounded-md border border-neutral-200 px-3 py-1.5 text-sm text-neutral-400 dark:border-neutral-800 dark:text-neutral-600">
+        <span className="rounded-full border border-border/60 px-4 py-2 text-sm text-muted-foreground/60">
           Previous
         </span>
       )}
 
-      <span className="text-sm text-neutral-500 dark:text-neutral-400">
+      <span className="tabular text-sm text-muted-foreground">
         Page {currentPage} of {totalPages}
       </span>
 
       {currentPage < totalPages ? (
         <Link
           href={buildHref(currentPage + 1)}
-          className="rounded-md border border-neutral-300 px-3 py-1.5 text-sm hover:border-neutral-500 dark:border-neutral-700"
+          className="rounded-full border border-border bg-background px-4 py-2 text-sm transition-all duration-300 ease-out-expo hover:border-foreground/25 hover:bg-muted/60 active:scale-[0.98]"
         >
           Next
         </Link>
       ) : (
-        <span className="rounded-md border border-neutral-200 px-3 py-1.5 text-sm text-neutral-400 dark:border-neutral-800 dark:text-neutral-600">
+        <span className="rounded-full border border-border/60 px-4 py-2 text-sm text-muted-foreground/60">
           Next
         </span>
       )}

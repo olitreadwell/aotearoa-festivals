@@ -78,7 +78,7 @@ export default async function ArtistDetailPage({ params }: PageProps) {
         {artist.name}
       </h1>
 
-      <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm text-neutral-500 dark:text-neutral-400">
+      <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground dark:text-muted-foreground">
         {artist.genre && <span>{artist.genre}</span>}
         {artist.homeCity && <span>{artist.homeCity}</span>}
         {artist.crew && <span>Crew: {artist.crew}</span>}
@@ -92,10 +92,10 @@ export default async function ArtistDetailPage({ params }: PageProps) {
               href={`https://instagram.com/${artist.instagram.replace(/^@/, "")}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-md border border-neutral-200 px-3 py-1.5 text-sm transition-colors hover:bg-neutral-100 dark:border-neutral-700 dark:hover:bg-neutral-800"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm transition-colors hover:bg-muted dark:border-border dark:hover:bg-muted"
             >
               <span className="font-medium text-pink-500">IG</span>
-              <span className="text-neutral-600 dark:text-neutral-300">
+              <span className="text-muted-foreground dark:text-muted-foreground">
                 Instagram
               </span>
             </a>
@@ -109,10 +109,10 @@ export default async function ArtistDetailPage({ params }: PageProps) {
               }
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-md border border-neutral-200 px-3 py-1.5 text-sm transition-colors hover:bg-neutral-100 dark:border-neutral-700 dark:hover:bg-neutral-800"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm transition-colors hover:bg-muted dark:border-border dark:hover:bg-muted"
             >
               <span className="font-medium text-orange-500">SC</span>
-              <span className="text-neutral-600 dark:text-neutral-300">
+              <span className="text-muted-foreground dark:text-muted-foreground">
                 SoundCloud
               </span>
             </a>
@@ -126,10 +126,10 @@ export default async function ArtistDetailPage({ params }: PageProps) {
               }
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-md border border-neutral-200 px-3 py-1.5 text-sm transition-colors hover:bg-neutral-100 dark:border-neutral-700 dark:hover:bg-neutral-800"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm transition-colors hover:bg-muted dark:border-border dark:hover:bg-muted"
             >
-              <span className="font-medium text-blue-500">RA</span>
-              <span className="text-neutral-600 dark:text-neutral-300">
+              <span className="font-medium text-primary">RA</span>
+              <span className="text-muted-foreground dark:text-muted-foreground">
                 Resident Advisor
               </span>
             </a>
@@ -141,7 +141,7 @@ export default async function ArtistDetailPage({ params }: PageProps) {
       <section className="mt-10">
         <h2 className="text-lg font-semibold">Festival history</h2>
         {years.length === 0 ? (
-          <p className="mt-3 text-sm text-neutral-500 dark:text-neutral-400">
+          <p className="mt-3 text-sm text-muted-foreground dark:text-muted-foreground">
             No festival appearances recorded yet.
           </p>
         ) : (
@@ -150,14 +150,14 @@ export default async function ArtistDetailPage({ params }: PageProps) {
               const entries = byYear.get(year) ?? [];
               return (
                 <div key={year}>
-                  <h3 className="mb-2 text-sm font-semibold tracking-wider text-neutral-400 uppercase dark:text-neutral-500">
+                  <h3 className="mb-2 text-sm font-semibold tracking-wider text-muted-foreground uppercase dark:text-muted-foreground">
                     {year}
                   </h3>
                   <ul className="space-y-2">
                     {entries.map((entry) => (
                       <li
                         key={entry.id}
-                        className="flex items-center gap-3 rounded-md border border-neutral-200 px-4 py-3 dark:border-neutral-800"
+                        className="flex items-center gap-3 rounded-lg border border-border px-4 py-3 dark:border-border"
                       >
                         <Link
                           href={`/festivals/${entry.festival.slug}`}
@@ -167,7 +167,7 @@ export default async function ArtistDetailPage({ params }: PageProps) {
                         </Link>
                         <FestivalStatusBadge status={entry.festival.status} />
                         {entry.isHeadliner && (
-                          <span className="shrink-0 rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-700 dark:bg-amber-900/40 dark:text-amber-400">
+                          <span className="shrink-0 rounded-full bg-kowhai-300/40 px-2.5 py-0.5 text-xs font-medium text-kowhai-0 dark:bg-kowhai-100/70 dark:text-kowhai-300">
                             Headliner
                           </span>
                         )}
@@ -212,14 +212,14 @@ async function AlsoPlayedWith({ artistId }: { artistId: string }) {
   if (coArtists.length === 0) return null;
 
   return (
-    <section className="mt-10 border-t pt-8 dark:border-neutral-800">
+    <section className="mt-10 border-t pt-8 dark:border-border">
       <h2 className="text-lg font-semibold tracking-tight">Also played with</h2>
       <ul className="mt-3 flex flex-wrap gap-2">
         {coArtists.map((a) => (
           <li key={a.id}>
             <a
               href={`/artists/${a.slug}`}
-              className="inline-block rounded-full border border-neutral-300 px-3 py-1 text-sm text-neutral-700 transition-colors hover:border-neutral-500 dark:border-neutral-600 dark:text-neutral-300 dark:hover:border-neutral-400"
+              className="inline-block rounded-full border border-border px-3 py-1 text-sm text-muted-foreground transition-colors hover:border-foreground/30 dark:border-border dark:text-muted-foreground dark:hover:border-foreground/30"
             >
               {a.name}
             </a>

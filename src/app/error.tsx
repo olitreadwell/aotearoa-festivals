@@ -8,10 +8,10 @@ export default function ErrorPage({
 }) {
   return (
     <main className="mx-auto flex min-h-screen max-w-lg items-center justify-center px-4 py-16">
-      <div className="rounded-2xl border border-gray-200 bg-white p-10 text-center shadow-sm dark:border-gray-700 dark:bg-[#111]">
+      <div className="rounded-2xl border border-border bg-card p-10 text-center shadow-[0_1px_2px_rgba(28,25,23,0.04)] dark:border-border dark:bg-card">
         <div className="mb-6 flex justify-center">
           <svg
-            className="h-12 w-12 text-red-500"
+            className="h-12 w-12 text-destructive"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
@@ -25,15 +25,15 @@ export default function ErrorPage({
             />
           </svg>
         </div>
-        <h1 className="mb-3 text-xl font-semibold tracking-tight text-black dark:text-white">
+        <h1 className="mb-3 text-xl font-semibold tracking-tight text-black dark:text-primary-foreground">
           Something went wrong
         </h1>
-        <p className="mb-6 text-sm text-neutral-600 dark:text-neutral-400">
+        <p className="mb-6 text-sm text-muted-foreground dark:text-muted-foreground">
           An unexpected error occurred. Please try again.
         </p>
         <button
           onClick={reset}
-          className="rounded-lg bg-blue-600 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+          className="rounded-lg bg-primary px-5 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary"
         >
           Try again
         </button>

@@ -14,20 +14,22 @@ export default function ContactPage() {
         items={[{ label: "Home", href: "/" }, { label: "Contact" }]}
       />
       <h1 className="mt-4 text-3xl font-semibold tracking-tight">Contact</h1>
-      <div className="mt-8 space-y-4 text-base leading-relaxed text-neutral-700 dark:text-neutral-300">
+      <div className="mt-8 space-y-4 text-base leading-relaxed text-muted-foreground dark:text-muted-foreground">
         <p>
           Got a festival to add? Found an error? Have an idea? We&apos;d love to
           hear from you.
         </p>
         <div className="space-y-2">
           <p>
-            <strong className="text-black dark:text-white">GitHub</strong> — The
-            best way to submit corrections or new festivals:{" "}
+            <strong className="text-black dark:text-primary-foreground">
+              GitHub
+            </strong>{" "}
+            — The best way to submit corrections or new festivals:{" "}
             <a
               href="https://github.com/olitreadwell/aotearoa-festivals"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 hover:underline dark:text-blue-400"
+              className="text-primary hover:underline dark:text-primary"
             >
               github.com/olitreadwell/aotearoa-festivals
             </a>

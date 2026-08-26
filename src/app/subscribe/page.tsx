@@ -42,12 +42,12 @@ export default async function SubscribePage({
 
   return (
     <main className="mx-auto min-h-screen max-w-lg px-4 py-16">
-      <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm dark:border-gray-700 dark:bg-[#111]">
+      <div className="rounded-2xl border border-border bg-card p-8 shadow-[0_1px_2px_rgba(28,25,23,0.04)] dark:border-border dark:bg-card">
         <header className="mb-8">
           <h1 className="mb-2 text-2xl font-bold tracking-tight">
             Subscribe to Festival Updates
           </h1>
-          <p className="text-sm text-[#555] dark:text-[#aaa]">
+          <p className="text-sm text-muted-foreground dark:text-muted-foreground">
             Get notified about upcoming festivals in your region. We&apos;ll
             only email you with relevant updates — no spam.
           </p>
@@ -62,10 +62,10 @@ export default async function SubscribePage({
           <div className="flex flex-col gap-1.5">
             <label
               htmlFor="email"
-              className="text-sm font-semibold text-[#333] dark:text-[#ddd]"
+              className="text-sm font-semibold text-foreground dark:text-foreground"
             >
               Email address{" "}
-              <span className="text-red-500" aria-hidden="true">
+              <span className="text-destructive" aria-hidden="true">
                 *
               </span>
             </label>
@@ -76,7 +76,7 @@ export default async function SubscribePage({
               required
               autoComplete="email"
               placeholder="you@example.com"
-              className="rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-[#1a1a1a] dark:placeholder-gray-500"
+              className="rounded-lg border border-border bg-card px-4 py-2.5 text-sm placeholder:text-muted-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/25 focus:outline-none dark:border-border dark:bg-card dark:placeholder:text-muted-foreground"
             />
           </div>
 
@@ -84,10 +84,10 @@ export default async function SubscribePage({
           <div className="flex flex-col gap-1.5">
             <label
               htmlFor="region"
-              className="text-sm font-semibold text-[#333] dark:text-[#ddd]"
+              className="text-sm font-semibold text-foreground dark:text-foreground"
             >
               Region{" "}
-              <span className="text-red-500" aria-hidden="true">
+              <span className="text-destructive" aria-hidden="true">
                 *
               </span>
             </label>
@@ -96,7 +96,7 @@ export default async function SubscribePage({
               name="region"
               required
               defaultValue={preselectedRegion ?? ""}
-              className="rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-[#1a1a1a]"
+              className="rounded-lg border border-border bg-card px-4 py-2.5 text-sm focus:border-primary/50 focus:ring-2 focus:ring-primary/25 focus:outline-none dark:border-border dark:bg-card"
             >
               <option value="" disabled>
                 Select a region…
@@ -112,7 +112,7 @@ export default async function SubscribePage({
           {/* Submit */}
           <button
             type="submit"
-            className="mt-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
+            className="mt-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary focus:ring-2 focus:ring-primary/25 focus:ring-offset-2 focus:outline-none"
           >
             Subscribe
           </button>
@@ -123,7 +123,7 @@ export default async function SubscribePage({
           View all festivals on the{" "}
           <Link
             href="/festivals"
-            className="text-blue-600 underline dark:text-blue-400"
+            className="text-primary underline dark:text-primary"
           >
             festivals page
           </Link>

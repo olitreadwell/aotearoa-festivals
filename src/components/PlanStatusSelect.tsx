@@ -21,7 +21,7 @@ export function PlanStatusSelect({
         setStatus(slug, value === "" ? null : (value as PlanStatus));
       }}
       aria-label={`Plan status for ${name}`}
-      className="h-8 shrink-0 rounded-md border border-neutral-300 bg-background px-2 text-xs text-foreground dark:border-neutral-700"
+      className="h-8 shrink-0 cursor-pointer rounded-full border border-border bg-background px-3 text-xs font-medium text-foreground shadow-[inset_0_1px_0_0_color-mix(in_srgb,var(--foreground)_3%,transparent)] transition-all duration-300 ease-out-expo hover:border-foreground/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/25"
     >
       <option value="">Not saved</option>
       <option value="interested">Interested</option>
