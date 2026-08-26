@@ -1,0 +1,37 @@
+name: Quality Gates
+
+on:
+  push:
+    # Lighthouse is a stable-build gate; don't burn minutes on docs-only pushes.
+    paths-ignore:
+      - 'docs/**'
+      - '*.md'
+      - 'AGENTS.md'
+      - 'CLAUDE.md'
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lighthouse:
+    name: Lighthouse (perf, a11y, SEO budgets)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: ./lighthouserc.cjs
