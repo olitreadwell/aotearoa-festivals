@@ -1,15 +1,12 @@
-# Build output & generated
-.next/
-out/
-build/
-coverage/
+node_modules
+.next
+dist
+coverage
+playwright-report
+test-results
+pnpm-lock.yaml
+public
+*.md
 next-env.d.ts
-src/generated/
-
-# Dependencies & lockfiles
-node_modules/
-package-lock.json
-
-# Playwright artifacts
-test-results/
-playwright-report/
+*.yml
+*.yaml

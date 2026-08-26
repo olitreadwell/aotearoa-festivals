@@ -1,19 +1,10 @@
-#!/usr/bin/env sh
-
-# Mirrors the GitHub Actions CI jobs — fail fast locally so broken work
-# never leaves the machine. `npm run build` is intentionally not run here
-# because it's slow; CI still runs it on every push.
-
+#!/usr/bin/env bash
+# Pre-push gate: the full contract. CI runs the exact same thing.
 set -e
 
-echo "npm run lint"
-npm run lint
+echo "=== Pre-push: npm run check ==="
+npm run check
 
-echo "npm run typecheck"
-npm run typecheck
-
-echo "npm run format:check"
-npm run format:check
-
-echo "npm test"
-npm test
+# Shift the security gate left too: fail before the push, not in CI.
+echo "=== Pre-push: dependency audit ==="
+pnpm audit --audit-level=high
