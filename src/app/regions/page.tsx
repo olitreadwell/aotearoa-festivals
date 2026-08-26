@@ -71,13 +71,13 @@ export default async function RegionsPage() {
         <h1 className="mb-2 text-3xl font-bold tracking-tight">
           Browse NZ festivals by region
         </h1>
-        <p className="text-sm text-[#555] dark:text-[#aaa]">
+        <p className="text-sm text-muted-foreground dark:text-muted-foreground">
           Explore approved festivals organised by New Zealand region.
         </p>
       </header>
 
       {rows.length === 0 ? (
-        <p className="text-sm text-[#555] dark:text-[#aaa]">
+        <p className="text-sm text-muted-foreground dark:text-muted-foreground">
           No regions with approved festivals found.
         </p>
       ) : (
@@ -89,19 +89,19 @@ export default async function RegionsPage() {
             <li key={region}>
               <Link
                 href={`/regions/${regionToSlug(region)}`}
-                className="group flex h-full items-center justify-between overflow-hidden rounded-xl border border-gray-200 bg-white px-6 py-5 shadow-sm transition-all duration-150 hover:border-blue-400 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none dark:border-gray-700 dark:bg-[#111] dark:hover:border-blue-500"
+                className="group flex h-full items-center justify-between overflow-hidden rounded-xl border border-border bg-card px-6 py-5 shadow-[0_1px_2px_rgba(28,25,23,0.04)] transition-all duration-300 ease-out-expo hover:border-primary/40 hover:shadow-[0_12px_28px_-16px_rgba(28,25,23,0.25)] focus-visible:ring-2 focus-visible:ring-primary/25 focus-visible:outline-none dark:border-border dark:bg-card dark:hover:border-primary/40"
               >
                 <div>
-                  <p className="text-base leading-snug font-semibold transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                  <p className="text-base leading-snug font-semibold transition-colors group-hover:text-primary dark:group-hover:text-primary">
                     {REGION_LABELS[region]}
                   </p>
-                  <p className="mt-0.5 text-sm text-[#555] dark:text-[#aaa]">
+                  <p className="mt-0.5 text-sm text-muted-foreground dark:text-muted-foreground">
                     {_count.id === 1 ? "1 festival" : `${_count.id} festivals`}
                   </p>
                 </div>
                 <svg
                   aria-hidden="true"
-                  className="h-4 w-4 shrink-0 text-gray-400 transition-colors group-hover:text-blue-500"
+                  className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-primary"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >

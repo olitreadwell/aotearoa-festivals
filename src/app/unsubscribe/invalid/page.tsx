@@ -9,13 +9,13 @@ export const metadata: Metadata = {
 export default function UnsubscribeInvalidPage() {
   return (
     <main className="mx-auto flex min-h-screen max-w-lg items-center justify-center px-4 py-16">
-      <div className="rounded-2xl border border-gray-200 bg-white p-10 text-center shadow-sm dark:border-gray-700 dark:bg-[#111]">
+      <div className="rounded-2xl border border-border bg-card p-10 text-center shadow-[0_1px_2px_rgba(28,25,23,0.04)] dark:border-border dark:bg-card">
         {/* Icon */}
         <div className="mb-6 flex justify-center">
-          <span className="flex h-16 w-16 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-900">
+          <span className="flex h-16 w-16 items-center justify-center rounded-full bg-kowhai-300/40 dark:bg-kowhai-100/70">
             <svg
               aria-hidden="true"
-              className="h-8 w-8 text-amber-600 dark:text-amber-300"
+              className="h-8 w-8 text-kowhai-0 dark:text-kowhai-300"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -31,7 +31,7 @@ export default function UnsubscribeInvalidPage() {
         <h1 className="mb-3 text-2xl font-bold tracking-tight">
           Invalid or expired unsubscribe link
         </h1>
-        <p className="mb-8 text-sm text-[#555] dark:text-[#aaa]">
+        <p className="mb-8 text-sm text-muted-foreground dark:text-muted-foreground">
           This unsubscribe link is invalid or has already been used. If
           you&apos;re still receiving emails, please contact us or try
           subscribing again and using the new unsubscribe link.
@@ -40,13 +40,13 @@ export default function UnsubscribeInvalidPage() {
         <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
           <Link
             href="/festivals"
-            className="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
+            className="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary focus:ring-2 focus:ring-primary/25 focus:ring-offset-2 focus:outline-none"
           >
             Browse festivals
           </Link>
           <Link
             href="/"
-            className="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-semibold text-[#333] transition-colors hover:border-gray-400 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none dark:border-gray-600 dark:text-[#ddd] dark:hover:border-gray-500"
+            className="rounded-lg border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-foreground/30 focus:ring-2 focus:ring-primary/25 focus:ring-offset-2 focus:outline-none dark:border-border dark:text-foreground dark:hover:border-foreground/30"
           >
             Go home
           </Link>

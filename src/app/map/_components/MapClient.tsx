@@ -120,7 +120,7 @@ export default function MapPage({
       >
         <h1 className="text-2xl font-bold sm:text-3xl">Festival Map</h1>
         <div
-          className="mt-4 h-96 animate-pulse rounded-xl bg-neutral-100 dark:bg-neutral-800"
+          className="mt-4 h-96 animate-pulse rounded-xl bg-muted dark:bg-muted"
           aria-busy="true"
         />
       </main>
@@ -166,18 +166,18 @@ export default function MapPage({
                 <div className="min-w-[160px] text-sm">
                   <strong className="block">{f.name}</strong>
                   {f.genre && (
-                    <span className="block text-xs text-neutral-500">
+                    <span className="block text-xs text-muted-foreground">
                       {f.genre}
                     </span>
                   )}
                   {f.region && (
-                    <span className="block text-xs text-neutral-400">
+                    <span className="block text-xs text-muted-foreground">
                       {formatRegion(f.region)}
                     </span>
                   )}
                   <Link
                     href={`/festivals/${f.slug}`}
-                    className="mt-1 block text-xs font-medium text-blue-600 hover:underline"
+                    className="mt-1 block text-xs font-medium text-primary hover:underline"
                   >
                     View festival →
                   </Link>
@@ -190,12 +190,12 @@ export default function MapPage({
 
       {/* Sidebar */}
       <aside
-        className="flex w-full shrink-0 flex-col border-t border-neutral-200 bg-white dark:border-neutral-700 dark:bg-[#0a0a0a] lg:w-80 lg:border-l lg:border-t-0"
+        className="flex w-full shrink-0 flex-col border-t border-border bg-card dark:border-border dark:bg-card lg:w-80 lg:border-l lg:border-t-0"
         aria-label="Festival list and filters"
       >
         <div className="p-4">
           <h2 className="text-xl font-bold sm:text-2xl">Festival Map</h2>
-          <p className="mt-0.5 text-sm text-neutral-500">
+          <p className="mt-0.5 text-sm text-muted-foreground">
             {festivals.length} festivals mapped
           </p>
           <input
@@ -203,14 +203,14 @@ export default function MapPage({
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search festivals..."
-            className="mt-4 w-full rounded-lg border border-neutral-300 bg-white px-3 py-2.5 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-neutral-600 dark:bg-[#111]"
+            className="mt-4 w-full rounded-lg border border-border bg-card px-3 py-2.5 text-sm focus:border-primary/50 focus:ring-2 focus:ring-primary/25 focus:outline-none dark:border-border dark:bg-card"
             aria-label="Search festivals"
           />
           <div className="mt-2 flex gap-2">
             <select
               value={filterRegion}
               onChange={(e) => setFilterRegion(e.target.value)}
-              className="flex-1 rounded-md border border-neutral-300 bg-white px-2 py-1.5 text-xs dark:border-neutral-600 dark:bg-[#111]"
+              className="flex-1 rounded-lg border border-border bg-card px-2 py-1.5 text-xs dark:border-border dark:bg-card"
             >
               <option value="">All regions</option>
               {regions.map((r) => (
@@ -222,7 +222,7 @@ export default function MapPage({
             <select
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
-              className="w-28 rounded-md border border-neutral-300 bg-white px-2 py-1.5 text-xs dark:border-neutral-600 dark:bg-[#111]"
+              className="w-28 rounded-lg border border-border bg-card px-2 py-1.5 text-xs dark:border-border dark:bg-card"
             >
               <option value="">All status</option>
               <option value="ACTIVE">Active</option>
@@ -232,7 +232,7 @@ export default function MapPage({
             </select>
           </div>
           <div className="mt-3 flex flex-wrap gap-2 text-xs">
-            <span className="text-neutral-500">Genres:</span>
+            <span className="text-muted-foreground">Genres:</span>
             {Object.entries(GENRE_COLORS)
               .slice(0, 8)
               .map(([k, v]) => (
@@ -246,16 +246,13 @@ export default function MapPage({
               ))}
           </div>
         </div>
-        <div className="flex-1 overflow-y-auto border-t border-neutral-100 dark:border-neutral-700">
-          <ul
-            className="divide-y divide-neutral-100 dark:divide-neutral-800"
-            role="list"
-          >
+        <div className="flex-1 overflow-y-auto border-t border-border dark:border-border">
+          <ul className="divide-y divide-border dark:divide-border" role="list">
             {filtered.map((f) => (
               <li key={f.id}>
                 <Link
                   href={`/festivals/${f.slug}`}
-                  className="flex items-center gap-3 px-4 py-2.5 hover:bg-neutral-50 dark:hover:bg-neutral-800/50"
+                  className="flex items-center gap-3 px-4 py-2.5 hover:bg-muted/50 dark:hover:bg-muted/50"
                 >
                   <span
                     className="h-2.5 w-2.5 shrink-0 rounded-full"
@@ -265,7 +262,7 @@ export default function MapPage({
                     <span className="block truncate text-sm font-medium">
                       {f.name}
                     </span>
-                    <span className="block truncate text-xs text-neutral-500">
+                    <span className="block truncate text-xs text-muted-foreground">
                       {[f.genre, f.region ? formatRegion(f.region) : null]
                         .filter(Boolean)
                         .join(" · ")}
@@ -276,7 +273,9 @@ export default function MapPage({
             ))}
           </ul>
           {filtered.length === 0 && (
-            <p className="p-4 text-sm text-neutral-500">No festivals match.</p>
+            <p className="p-4 text-sm text-muted-foreground">
+              No festivals match.
+            </p>
           )}
         </div>
       </aside>

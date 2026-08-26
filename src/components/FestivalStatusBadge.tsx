@@ -9,12 +9,14 @@ const STATUS_LABELS: Record<FestivalStatus, string> = {
 };
 
 const STATUS_CLASSES: Record<FestivalStatus, string> = {
-  ACTIVE: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
-  TBC: "bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200",
-  HIATUS: "bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300",
-  DEFUNCT: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200",
+  ACTIVE: "bg-wao-300/30 text-wao-0 dark:bg-wao-100/70 dark:text-wao-400",
+  TBC: "bg-kowhai-300/40 text-kowhai-0 dark:bg-kowhai-100/70 dark:text-kowhai-300",
+  HIATUS:
+    "bg-kohatu-300/30 text-kohatu-0 dark:bg-kohatu-100/70 dark:text-kohatu-300",
+  DEFUNCT:
+    "bg-pohutukawa-300/40 text-pohutukawa-0 dark:bg-pohutukawa-200/20 dark:text-pohutukawa-300",
   UNCONFIRMED:
-    "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200",
+    "bg-tangaroa-300/30 text-tangaroa-0 dark:bg-tangaroa-100/70 dark:text-tangaroa-300",
 };
 
 export interface FestivalStatusBadgeProps {
@@ -27,7 +29,7 @@ export function FestivalStatusBadge({
   className = "",
 }: FestivalStatusBadgeProps) {
   const baseClasses =
-    "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium";
+    "inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold tracking-tight";
   const colorClasses = STATUS_CLASSES[status];
 
   return (

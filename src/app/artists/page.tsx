@@ -32,7 +32,7 @@ function SocialIcons({ artist }: { artist: Artist }) {
           href={`https://instagram.com/${artist.instagram.replace(/^@/, "")}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm text-neutral-400 hover:text-pink-500"
+          className="text-sm text-muted-foreground hover:text-primary"
           title="Instagram"
         >
           IG
@@ -47,7 +47,7 @@ function SocialIcons({ artist }: { artist: Artist }) {
           }
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm text-neutral-400 hover:text-orange-500"
+          className="text-sm text-muted-foreground hover:text-primary"
           title="SoundCloud"
         >
           SC
@@ -62,7 +62,7 @@ function SocialIcons({ artist }: { artist: Artist }) {
           }
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm text-neutral-400 hover:text-blue-500"
+          className="text-sm text-muted-foreground hover:text-primary"
           title="Resident Advisor"
         >
           RA
@@ -124,7 +124,7 @@ export default async function ArtistsPage({ searchParams }: PageProps) {
         items={[{ label: "Home", href: "/" }, { label: "Artists" }]}
       />
       <h1 className="mt-4 text-3xl font-semibold tracking-tight">Artists</h1>
-      <p className="mt-1 text-neutral-500 dark:text-neutral-400">
+      <p className="mt-1 text-muted-foreground dark:text-muted-foreground">
         {totalCount} artists
       </p>
 
@@ -136,18 +136,18 @@ export default async function ArtistsPage({ searchParams }: PageProps) {
             name="genre"
             defaultValue={genre ?? ""}
             placeholder="Genre..."
-            className="rounded-md border border-neutral-300 bg-white px-3 py-1.5 text-sm dark:border-neutral-700 dark:bg-neutral-900"
+            className="rounded-lg border border-border bg-card px-3 py-1.5 text-sm dark:border-border dark:bg-foreground"
           />
           <input
             type="text"
             name="city"
             defaultValue={city ?? ""}
             placeholder="City..."
-            className="rounded-md border border-neutral-300 bg-white px-3 py-1.5 text-sm dark:border-neutral-700 dark:bg-neutral-900"
+            className="rounded-lg border border-border bg-card px-3 py-1.5 text-sm dark:border-border dark:bg-foreground"
           />
           <button
             type="submit"
-            className="rounded-md bg-neutral-900 px-4 py-1.5 text-sm font-medium text-white dark:bg-neutral-100 dark:text-neutral-900"
+            className="rounded-lg bg-foreground px-4 py-1.5 text-sm font-medium text-primary-foreground dark:bg-muted dark:text-foreground"
           >
             Filter
           </button>
@@ -155,13 +155,13 @@ export default async function ArtistsPage({ searchParams }: PageProps) {
         {(genre || city) && (
           <Link
             href="/artists"
-            className="text-sm text-blue-600 hover:underline dark:text-blue-400"
+            className="text-sm text-primary hover:underline dark:text-primary"
           >
             Clear
           </Link>
         )}
         <div className="ml-auto flex items-center gap-1 text-xs">
-          <span className="text-neutral-500">Sort:</span>
+          <span className="text-muted-foreground">Sort:</span>
           {[
             { label: "Name", field: "name" },
             { label: "Genre", field: "genre" },
@@ -170,7 +170,7 @@ export default async function ArtistsPage({ searchParams }: PageProps) {
             <Link
               key={s.field}
               href={sortUrl(s.field)}
-              className={`rounded px-2 py-0.5 ${sortField === s.field ? "bg-neutral-200 font-medium dark:bg-neutral-700" : "hover:underline"}`}
+              className={`rounded px-2 py-0.5 ${sortField === s.field ? "bg-muted font-medium dark:bg-muted" : "hover:underline"}`}
             >
               {s.label}
             </Link>
@@ -179,14 +179,14 @@ export default async function ArtistsPage({ searchParams }: PageProps) {
       </div>
 
       {artists.length === 0 ? (
-        <p className="text-neutral-500 dark:text-neutral-400">
+        <p className="text-muted-foreground dark:text-muted-foreground">
           No artists found.
         </p>
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
             <thead>
-              <tr className="border-b border-neutral-200 dark:border-neutral-700">
+              <tr className="border-b border-border dark:border-border">
                 <th className="py-2 pr-4 font-semibold">Name</th>
                 <th className="py-2 pr-4 font-semibold">Genre</th>
                 <th className="py-2 pr-4 font-semibold">City</th>
@@ -197,7 +197,7 @@ export default async function ArtistsPage({ searchParams }: PageProps) {
               {artists.map((a) => (
                 <tr
                   key={a.id}
-                  className="border-b border-neutral-100 transition-colors hover:bg-neutral-50 dark:border-neutral-800 dark:hover:bg-neutral-900/50"
+                  className="border-b border-border transition-colors hover:bg-muted/50 dark:border-border dark:hover:bg-muted/50"
                 >
                   <td className="py-2.5 pr-4">
                     <Link
@@ -207,10 +207,10 @@ export default async function ArtistsPage({ searchParams }: PageProps) {
                       {a.name}
                     </Link>
                   </td>
-                  <td className="py-2.5 pr-4 text-neutral-500 dark:text-neutral-400">
+                  <td className="py-2.5 pr-4 text-muted-foreground dark:text-muted-foreground">
                     {a.genre || "—"}
                   </td>
-                  <td className="py-2.5 pr-4 text-neutral-500 dark:text-neutral-400">
+                  <td className="py-2.5 pr-4 text-muted-foreground dark:text-muted-foreground">
                     {a.homeCity || "—"}
                   </td>
                   <td className="py-2.5">

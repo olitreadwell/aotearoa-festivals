@@ -55,12 +55,12 @@ export default async function PromotersPage({
         items={[{ label: "Home", href: "/" }, { label: "Promoters" }]}
       />
       <h1 className="mt-4 text-3xl font-semibold tracking-tight">Promoters</h1>
-      <p className="mt-1 text-neutral-500 dark:text-neutral-400">
+      <p className="mt-1 text-muted-foreground dark:text-muted-foreground">
         {totalCount} promoters
       </p>
 
       <div className="mt-6 mb-4 flex items-center gap-1 text-xs">
-        <span className="text-neutral-500">Sort:</span>
+        <span className="text-muted-foreground">Sort:</span>
         {[
           { label: "Name", field: "name" },
           { label: "Region", field: "region" },
@@ -69,7 +69,7 @@ export default async function PromotersPage({
           <Link
             key={s.field}
             href={sortUrl(s.field)}
-            className={`rounded px-2 py-0.5 ${sortField === s.field ? "bg-neutral-200 font-medium dark:bg-neutral-700" : "hover:underline"}`}
+            className={`rounded px-2 py-0.5 ${sortField === s.field ? "bg-muted font-medium dark:bg-muted" : "hover:underline"}`}
           >
             {s.label}
           </Link>
@@ -77,12 +77,12 @@ export default async function PromotersPage({
       </div>
 
       {promoters.length === 0 ? (
-        <p className="text-neutral-500">No promoters on record yet.</p>
+        <p className="text-muted-foreground">No promoters on record yet.</p>
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
             <thead>
-              <tr className="border-b border-neutral-200 dark:border-neutral-700">
+              <tr className="border-b border-border dark:border-border">
                 <th className="py-2 pr-4 font-semibold">Name</th>
                 <th className="py-2 pr-4 font-semibold">Region</th>
                 <th className="py-2 pr-4 font-semibold">Genre</th>
@@ -94,7 +94,7 @@ export default async function PromotersPage({
               {promoters.map((p) => (
                 <tr
                   key={p.id}
-                  className="border-b border-neutral-100 transition-colors hover:bg-neutral-50 dark:border-neutral-800 dark:hover:bg-neutral-900/50"
+                  className="border-b border-border transition-colors hover:bg-muted/50 dark:border-border dark:hover:bg-muted/50"
                 >
                   <td className="py-2.5 pr-4">
                     <Link
@@ -104,10 +104,10 @@ export default async function PromotersPage({
                       {p.name}
                     </Link>
                   </td>
-                  <td className="py-2.5 pr-4 text-neutral-500 dark:text-neutral-400">
+                  <td className="py-2.5 pr-4 text-muted-foreground dark:text-muted-foreground">
                     {p.region || "—"}
                   </td>
-                  <td className="py-2.5 pr-4 text-neutral-500 dark:text-neutral-400">
+                  <td className="py-2.5 pr-4 text-muted-foreground dark:text-muted-foreground">
                     {p.genreFocus || "—"}
                   </td>
                   <td className="py-2.5 pr-4">{p._count.festivals}</td>
@@ -118,7 +118,7 @@ export default async function PromotersPage({
                           href={p.website}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-neutral-400 hover:text-blue-500"
+                          className="text-sm text-muted-foreground hover:text-primary"
                           title="Website"
                         >
                           WEB
@@ -129,7 +129,7 @@ export default async function PromotersPage({
                           href={`https://instagram.com/${p.instagram.replace(/^@/, "")}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-neutral-400 hover:text-pink-500"
+                          className="text-sm text-muted-foreground hover:text-primary"
                           title="Instagram"
                         >
                           IG
@@ -144,7 +144,7 @@ export default async function PromotersPage({
                           }
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-neutral-400 hover:text-blue-600"
+                          className="text-sm text-muted-foreground hover:text-primary"
                           title="Facebook"
                         >
                           FB

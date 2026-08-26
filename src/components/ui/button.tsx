@@ -18,17 +18,17 @@ function Button({
   return (
     <Comp
       className={cn(
-        "inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50",
+        "inline-flex select-none items-center justify-center rounded-full font-medium tracking-tight transition-all duration-300 ease-out-expo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98]",
         variant === "default" &&
-          "bg-primary text-primary-foreground hover:bg-primary/90",
+          "bg-primary text-primary-foreground shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18),0_8px_20px_-12px_rgba(163,23,46,0.5)] hover:bg-primary/90 hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18),0_10px_24px_-10px_rgba(163,23,46,0.55)]",
         variant === "outline" &&
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+          "border border-border bg-background shadow-[inset_0_1px_0_0_color-mix(in_srgb,var(--foreground)_4%,transparent)] hover:border-foreground/20 hover:bg-muted/60",
         variant === "secondary" &&
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        variant === "ghost" && "hover:bg-accent hover:text-accent-foreground",
-        size === "sm" && "h-8 px-3 text-xs",
-        size === "default" && "h-10 px-4 py-2",
-        size === "lg" && "h-11 px-8",
+          "bg-secondary text-secondary-foreground shadow-[inset_0_1px_0_0_rgba(255,255,255,0.4)] hover:bg-secondary/75",
+        variant === "ghost" && "hover:bg-muted/70",
+        size === "sm" && "h-8 px-4 text-xs",
+        size === "default" && "h-10 px-5 text-sm",
+        size === "lg" && "h-12 px-8 text-base",
         className,
       )}
       {...props}
