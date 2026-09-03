@@ -6,15 +6,11 @@
   "engines": {
     "node": ">=22.17.1"
   },
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "scripts": {
     "dev": "next dev",
     "build": "npx prisma generate && next build",
     "start": "next start",
-    "setup": "node scripts/setup.mjs",
+    "setup": "echo 'kiwi-fests: prepare local data with db:push and db:seed'",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "format": "npx prettier --write \"src/**/*.{ts,tsx}\" \"e2e/**/*.ts\"",
@@ -29,8 +25,8 @@
     "check:links": "node scripts/check-internal-links.mjs",
     "check:external-links": "node scripts/check-external-links.mjs",
     "audit": "pnpm audit",
-    "test:setup": "node --test scripts/setup.test.mjs",
-    "check": "npm run format:check && npm run lint && npm run typecheck && npm run test:coverage && npm run test:setup && npm run build && npm run smoke && npm run test:e2e && npm run check:links",
+    "test:setup": "echo 'kiwi-fests: no scaffolder; nothing to test'",
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm run test:coverage && npm run build && npm run smoke && npm run test:e2e && npm run check:links",
     "prepare": "husky",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
