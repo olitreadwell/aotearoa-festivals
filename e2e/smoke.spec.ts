@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('home page loads and shows site statistics', async ({ page }) => {
+test.skip(!process.env.DATABASE_URL, 'home page loads and shows site statistics', async ({ page }) => {
   await page.goto('/');
   await expect(page).toHaveTitle('Aotearoa Festivals');
   await expect(page.getByRole('heading', { name: 'Aotearoa Festivals' })).toBeVisible();
