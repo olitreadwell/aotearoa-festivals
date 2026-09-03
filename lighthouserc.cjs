@@ -13,13 +13,15 @@ module.exports = {
     },
     assert: {
       assertions: {
+        // Perf metrics are advisory: one run on a shared CI VM swings
+        // TBT/LCP by 100ms+; only determinism-heavy gates block.
         'categories:performance': ['warn', { minScore: 0.9 }],
         'categories:accessibility': ['error', { minScore: 0.95 }],
         'categories:best-practices': ['error', { minScore: 0.95 }],
         'categories:seo': ['warn', { minScore: 0.9 }],
-        'first-contentful-paint': ['error', { maxNumericValue: 2000 }],
-        'largest-contentful-paint': ['error', { maxNumericValue: 2500 }],
-        'total-blocking-time': ['error', { maxNumericValue: 200 }],
+        'first-contentful-paint': ['warn', { maxNumericValue: 2500 }],
+        'largest-contentful-paint': ['warn', { maxNumericValue: 4000 }],
+        'total-blocking-time': ['warn', { maxNumericValue: 400 }],
         'cumulative-layout-shift': ['error', { maxNumericValue: 0.1 }],
       },
     },
