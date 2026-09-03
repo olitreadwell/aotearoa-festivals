@@ -90,11 +90,18 @@ export default async function RegionDetailPage({
 
   const regionLabel = REGION_LABELS[enumVal];
 
-  const festivals: FestivalWithPromoter[] = await prisma.festival.findMany({
-    where: { region: enumVal, approved: true },
-    orderBy: [{ startDate: 'asc' }, { name: 'asc' }],
-    include: { promoter: true },
-  });
+  let festivals: FestivalWithPromoter[] = [];
+  try {
+    festivals = await prisma.festival.findMany({
+      where: { region: enumVal, approved: true },
+      orderBy: [{ startDate: 'asc' }, { name: 'asc' }],
+      include: { promoter: true },
+    });
+  } catch (error) {
+    // No database during static export: render the empty state; ISR re-runs
+    // this with real data once DATABASE_URL is set.
+    console.warn('regions/[region]: database unavailable, rendering empty region', error);
+  }
 
   return (
     <main className="mx-auto min-h-screen max-w-6xl px-4 py-8">
