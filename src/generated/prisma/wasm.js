@@ -246,7 +246,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/olitreadwell/code/aotearoa-festivals/src/generated/prisma",
+      "value": "/Users/oli/code/kiwi-fests/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -255,17 +255,16 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin",
+        "value": "darwin-arm64",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/olitreadwell/code/aotearoa-festivals/prisma/schema.prisma",
+    "sourceFilePath": "/Users/oli/code/kiwi-fests/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../../../prisma",
   "clientVersion": "6.19.3",
@@ -274,6 +273,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
