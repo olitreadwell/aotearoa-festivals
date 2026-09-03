@@ -7,7 +7,7 @@ module.exports = {
         'http://127.0.0.1:3000/feedback',
         'http://127.0.0.1:3000/help',
       ],
-      startServerCommand: 'pnpm start',
+      startServerCommand: 'if [ -f pnpm-lock.yaml ]; then pnpm start; else npm start; fi',
       numberOfRuns: 1,
       settings: { chromeFlags: '--no-sandbox' },
     },

@@ -31,8 +31,7 @@
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:seed": "tsx prisma/seed.ts",
-    "db:studio": "prisma studio",
-    "postinstall": "npx prisma generate"
+    "db:studio": "prisma studio"
   },
   "lint-staged": {
     "*.{ts,tsx,js,mjs,cjs,json,md,css,scss,yml,yaml}": "prettier --write",
