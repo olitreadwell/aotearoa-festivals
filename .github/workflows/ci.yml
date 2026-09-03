@@ -38,7 +38,7 @@ jobs:
           fi
 
   check:
-    name: Check (mirrors pnpm run check)
+    name: Check (mirrors npm run check)
     runs-on: ubuntu-latest
     timeout-minutes: 20
     needs: preflight
@@ -49,8 +49,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-          cache: 'pnpm'
-      - run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: |
+          if [ -f pnpm-lock.yaml ]; then
+            pnpm install --frozen-lockfile
+          else
+            npm ci
+          fi
       # Fail fast: cheap checks first, heavy work only after they pass.
       - run: npm run format:check
       - run: npm run lint
@@ -71,10 +76,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-          cache: 'pnpm'
-      - run: pnpm install --frozen-lockfile
-      # Advisory: report high and critical without blocking.
-      - run: pnpm audit --audit-level=high || true
+      - name: Install dependencies and audit
+        run: |
+          if [ -f pnpm-lock.yaml ]; then
+            pnpm install --frozen-lockfile
+            pnpm audit --audit-level=high || true
+          else
+            npm ci
+            npm audit --audit-level=high || true
+          fi
 
   e2e:
     name: E2E (shard ${{ matrix.shard }}/2)
@@ -92,8 +102,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
-          cache: 'pnpm'
-      - run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        run: |
+          if [ -f pnpm-lock.yaml ]; then
+            pnpm install --frozen-lockfile
+          else
+            npm ci
+          fi
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
       - run: npx playwright test --shard=${{ matrix.shard }}/2

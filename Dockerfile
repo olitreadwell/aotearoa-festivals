@@ -3,9 +3,12 @@ FROM node:22-alpine AS deps
 WORKDIR /app
 # Native modules (better-sqlite3) need a compiler toolchain on Alpine.
 RUN apk add --no-cache python3 make g++
-COPY package.json pnpm-lock.yaml ./
-RUN corepack enable && corepack prepare pnpm@10.33.0 --activate
-RUN pnpm install --frozen-lockfile
+COPY package.json pnpm-lock.yaml* package-lock.json* ./
+RUN if [ -f pnpm-lock.yaml ]; then \
+      corepack enable && corepack prepare pnpm@10.33.0 --activate && pnpm install --frozen-lockfile; \
+    else \
+      npm ci; \
+    fi
 
 FROM node:22-alpine AS build
 WORKDIR /app
