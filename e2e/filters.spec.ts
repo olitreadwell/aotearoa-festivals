@@ -66,9 +66,13 @@ test.describe('smoke — all routes return 200', () => {
 
   const dbRoutes = ['/calendar.ics', '/feed.xml', '/sitemap.xml', '/api/subscribe'];
   for (const route of routes) {
-    test.skip(!process.env.DATABASE_URL && dbRoutes.includes(route), `${route} returns 200`, async ({ request }) => {
-      const res = await request.get(route);
-      expect(res.status()).toBe(200);
-    });
+    test.skip(
+      !process.env.DATABASE_URL && dbRoutes.includes(route),
+      `${route} returns 200`,
+      async ({ request }) => {
+        const res = await request.get(route);
+        expect(res.status()).toBe(200);
+      }
+    );
   }
 });
