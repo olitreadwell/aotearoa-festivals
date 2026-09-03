@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 
-test.describe.skip(!process.env.DATABASE_URL, 'festival season plan', () => {
+test.describe('festival season plan', () => {
+  test.skip(!process.env.DATABASE_URL, 'requires a database');
   test('plan page loads with season groups and the builder', async ({ page }) => {
     await page.goto('/plan');
     await expect(page.getByRole('heading', { name: 'Plan your festival season' })).toBeVisible();

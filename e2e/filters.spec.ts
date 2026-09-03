@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 
-test.describe.skip(!process.env.DATABASE_URL, 'home page filters', () => {
+test.describe('home page filters', () => {
+  test.skip(!process.env.DATABASE_URL, 'requires a database');
   test('region filter narrows results', async ({ page }) => {
     await page.goto('/');
     await page.selectOption('select[name="region"]', 'AUCKLAND');
@@ -32,7 +33,8 @@ test.describe.skip(!process.env.DATABASE_URL, 'home page filters', () => {
   });
 });
 
-test.describe.skip(!process.env.DATABASE_URL, 'festival detail', () => {
+test.describe('festival detail', () => {
+  test.skip(!process.env.DATABASE_URL, 'requires a database');
   test('shows festival info', async ({ page }) => {
     await page.goto('/festivals/rhythm-and-vines');
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Rhythm');
