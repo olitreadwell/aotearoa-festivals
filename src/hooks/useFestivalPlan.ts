@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
 import {
   readFestivalPlan,
   setPlanStatus,
   writeFestivalPlan,
   type FestivalPlan,
   type PlanStatus,
-} from "@/lib/plan-storage";
+} from '@/lib/plan-storage';
 
 export function useFestivalPlan() {
   const [plan, setPlan] = useState<FestivalPlan>({});

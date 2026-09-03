@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: "Unsubscribed — Aotearoa Festivals",
+  title: 'Unsubscribed — Aotearoa Festivals',
   description: "You've been unsubscribed from festival updates.",
 };
 
@@ -25,12 +25,10 @@ export default function UnsubscribeConfirmedPage() {
           </span>
         </div>
 
-        <h1 className="mb-3 text-2xl font-bold tracking-tight">
-          You&apos;ve unsubscribed
-        </h1>
+        <h1 className="mb-3 text-2xl font-bold tracking-tight">You&apos;ve unsubscribed</h1>
         <p className="mb-8 text-sm text-muted-foreground dark:text-muted-foreground">
-          You&apos;ve been successfully removed from our mailing list. You
-          won&apos;t receive any more festival update emails.
+          You&apos;ve been successfully removed from our mailing list. You won&apos;t receive any
+          more festival update emails.
         </p>
 
         <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">

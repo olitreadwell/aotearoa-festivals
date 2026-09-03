@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 type BreadcrumbItem = {
   label: string;
@@ -27,7 +27,7 @@ export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
                 </Link>
               ) : (
                 <span
-                  aria-current={isLast ? "page" : undefined}
+                  aria-current={isLast ? 'page' : undefined}
                   className="font-medium text-foreground"
                 >
                   {item.label}

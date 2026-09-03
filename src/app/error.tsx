@@ -1,11 +1,6 @@
-"use client";
+'use client';
 
-export default function ErrorPage({
-  reset,
-}: {
-  error: Error;
-  reset: () => void;
-}) {
+export default function ErrorPage({ reset }: { error: Error; reset: () => void }) {
   return (
     <main className="mx-auto flex min-h-screen max-w-lg items-center justify-center px-4 py-16">
       <div className="rounded-2xl border border-border bg-card p-10 text-center shadow-[0_1px_2px_rgba(28,25,23,0.04)] dark:border-border dark:bg-card">

@@ -171,7 +171,9 @@ async function main() {
     const branch = 'chore/template-sync';
     try {
       run(['git', 'branch', '-D', branch]);
-    } catch {}
+    } catch {
+      // Branch does not exist locally yet; nothing to delete.
+    }
     run(['git', 'checkout', '-q', '-b', branch]);
     run(['git', 'add', '-A']);
     run(['git', 'commit', '-q', '-m', 'chore: sync files from template', '--allow-empty']);

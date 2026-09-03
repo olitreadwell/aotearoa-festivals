@@ -2,18 +2,18 @@
 // navigation without an account. Each festival slug maps to a status:
 // "interested" (maybe) or "planned" (definitely going).
 
-export type PlanStatus = "interested" | "planned";
+export type PlanStatus = 'interested' | 'planned';
 
 export type FestivalPlan = Record<string, PlanStatus>;
 
-export const PLAN_STORAGE_KEY = "aotearoa-festivals:plan";
+export const PLAN_STORAGE_KEY = 'aotearoa-festivals:plan';
 
 function isPlanStatus(value: unknown): value is PlanStatus {
-  return value === "interested" || value === "planned";
+  return value === 'interested' || value === 'planned';
 }
 
 export function readFestivalPlan(): FestivalPlan {
-  if (typeof window === "undefined") return {};
+  if (typeof window === 'undefined') return {};
   try {
     const raw = window.localStorage.getItem(PLAN_STORAGE_KEY);
     if (!raw) return {};
@@ -22,11 +22,11 @@ export function readFestivalPlan(): FestivalPlan {
       // Legacy format: a plain slug list, all treated as planned.
       const plan: FestivalPlan = {};
       for (const slug of parsed) {
-        if (typeof slug === "string") plan[slug] = "planned";
+        if (typeof slug === 'string') plan[slug] = 'planned';
       }
       return plan;
     }
-    if (parsed && typeof parsed === "object") {
+    if (parsed && typeof parsed === 'object') {
       const plan: FestivalPlan = {};
       for (const [slug, status] of Object.entries(parsed)) {
         if (isPlanStatus(status)) plan[slug] = status;
@@ -40,14 +40,14 @@ export function readFestivalPlan(): FestivalPlan {
 }
 
 export function writeFestivalPlan(plan: FestivalPlan): void {
-  if (typeof window === "undefined") return;
+  if (typeof window === 'undefined') return;
   window.localStorage.setItem(PLAN_STORAGE_KEY, JSON.stringify(plan));
 }
 
 export function setPlanStatus(
   plan: FestivalPlan,
   slug: string,
-  status: PlanStatus | null,
+  status: PlanStatus | null
 ): FestivalPlan {
   const next = { ...plan };
   if (status === null) delete next[slug];

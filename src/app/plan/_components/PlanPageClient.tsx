@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useMemo } from "react";
-import type { PlanFestivalWithStatus } from "../page";
-import { formatDateRange, formatRegion } from "@/lib/format";
-import { groupFestivalsBySeason } from "@/lib/season";
-import { useFestivalPlan } from "@/hooks/useFestivalPlan";
-import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
-import { PlanStatusSelect } from "@/components/PlanStatusSelect";
-import { Reveal } from "@/components/Reveal";
-import SeasonPlanner from "./SeasonPlanner";
+import Link from 'next/link';
+import { useMemo } from 'react';
+import type { PlanFestivalWithStatus } from '../page';
+import { formatDateRange, formatRegion } from '@/lib/format';
+import { groupFestivalsBySeason } from '@/lib/season';
+import { useFestivalPlan } from '@/hooks/useFestivalPlan';
+import { FestivalStatusBadge } from '@/components/FestivalStatusBadge';
+import { PlanStatusSelect } from '@/components/PlanStatusSelect';
+import { Reveal } from '@/components/Reveal';
+import SeasonPlanner from './SeasonPlanner';
 
 function FestivalRow({ festival }: { festival: PlanFestivalWithStatus }) {
   return (
@@ -23,13 +23,12 @@ function FestivalRow({ festival }: { festival: PlanFestivalWithStatus }) {
         </Link>
         <p className="mt-0.5 truncate text-xs text-muted-foreground">
           {[
-            formatDateRange(festival.startDate, festival.endDate) ??
-              festival.dateText,
+            formatDateRange(festival.startDate, festival.endDate) ?? festival.dateText,
             festival.region ? formatRegion(festival.region) : null,
             festival.genre,
           ]
             .filter(Boolean)
-            .join(" · ")}
+            .join(' · ')}
         </p>
       </div>
       <FestivalStatusBadge status={festival.status} />
@@ -61,9 +60,7 @@ function FestivalListSection({
           <span className="tabular text-xs text-muted-foreground">{count}</span>
         </div>
         {festivals.length === 0 && emptyText ? (
-          <p className="max-w-prose py-4 text-sm text-muted-foreground">
-            {emptyText}
-          </p>
+          <p className="max-w-prose py-4 text-sm text-muted-foreground">{emptyText}</p>
         ) : (
           <ul className="flex flex-col gap-1">
             {festivals.map((festival) => (
@@ -83,21 +80,13 @@ function byStartDate(a: PlanFestivalWithStatus, b: PlanFestivalWithStatus) {
   );
 }
 
-export default function PlanPageClient({
-  festivals,
-}: {
-  festivals: PlanFestivalWithStatus[];
-}) {
+export default function PlanPageClient({ festivals }: { festivals: PlanFestivalWithStatus[] }) {
   const { statusOf } = useFestivalPlan();
   const seasons = useMemo(() => groupFestivalsBySeason(festivals), [festivals]);
   const tbc = festivals.filter((f) => !f.startDate);
 
-  const planned = festivals
-    .filter((f) => statusOf(f.slug) === "planned")
-    .sort(byStartDate);
-  const interested = festivals
-    .filter((f) => statusOf(f.slug) === "interested")
-    .sort(byStartDate);
+  const planned = festivals.filter((f) => statusOf(f.slug) === 'planned').sort(byStartDate);
+  const interested = festivals.filter((f) => statusOf(f.slug) === 'interested').sort(byStartDate);
 
   return (
     <main className="mx-auto min-h-screen max-w-5xl px-4 py-16 sm:px-6 sm:py-24">
@@ -109,11 +98,10 @@ export default function PlanPageClient({
           Plan your festival season
         </h1>
         <p className="mt-4 max-w-prose text-pretty text-base leading-relaxed text-muted-foreground">
-          Mark festivals{" "}
-          <strong className="font-semibold text-foreground">interested</strong>{" "}
-          or <strong className="font-semibold text-foreground">planned</strong>,
-          then use the season builder to generate a non-overlapping run that
-          fits your strategy. Your plan is stored in this browser.
+          Mark festivals <strong className="font-semibold text-foreground">interested</strong> or{' '}
+          <strong className="font-semibold text-foreground">planned</strong>, then use the season
+          builder to generate a non-overlapping run that fits your strategy. Your plan is stored in
+          this browser.
         </p>
       </header>
 
@@ -138,7 +126,7 @@ export default function PlanPageClient({
       {seasons.map(({ season, festivals: group }) => (
         <FestivalListSection
           key={season.label}
-          id={`season-${season.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+          id={`season-${season.label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
           title={season.label}
           count={group.length}
           festivals={group}

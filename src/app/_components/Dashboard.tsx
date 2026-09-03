@@ -1,24 +1,24 @@
-import Link from "next/link";
-import type { Metadata } from "next";
-import { prisma } from "@/lib/prisma";
-import { FestivalStatus, Region } from "@/generated/prisma";
-import type { Festival, Promoter } from "@/generated/prisma";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
-import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
-import { PlanStatusSelect } from "@/components/PlanStatusSelect";
-import { formatRegion, REGION_LABELS, STATUS_LABELS } from "@/lib/format";
-import { Reveal } from "@/components/Reveal";
-import HomeMap from "./HomeMap";
+import Link from 'next/link';
+import type { Metadata } from 'next';
+import { prisma } from '@/lib/prisma';
+import { FestivalStatus, Region } from '@/generated/prisma';
+import type { Festival, Promoter } from '@/generated/prisma';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { Select } from '@/components/ui/select';
+import { FestivalStatusBadge } from '@/components/FestivalStatusBadge';
+import { PlanStatusSelect } from '@/components/PlanStatusSelect';
+import { formatRegion, REGION_LABELS, STATUS_LABELS } from '@/lib/format';
+import { Reveal } from '@/components/Reveal';
+import HomeMap from './HomeMap';
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: "Aotearoa Festivals — NZ Music Festival Directory",
+  title: 'Aotearoa Festivals — NZ Music Festival Directory',
   description:
-    "Discover New Zealand music festivals, promoters, and artists. Browse by region, genre, or status.",
+    'Discover New Zealand music festivals, promoters, and artists. Browse by region, genre, or status.',
 };
 
 type FestivalWithPromoter = Festival & { promoter: Promoter | null };
@@ -29,9 +29,7 @@ function Stat({ label, value }: { label: string; value: number }) {
       <dt className="text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
         {label}
       </dt>
-      <dd className="tabular mt-1 text-2xl font-semibold tracking-tight">
-        {value}
-      </dd>
+      <dd className="tabular mt-1 text-2xl font-semibold tracking-tight">{value}</dd>
     </div>
   );
 }
@@ -50,9 +48,7 @@ export default async function Home({
   const { region, status, genre, camping, search } = await searchParams;
 
   const validRegion =
-    region && Object.values(Region).includes(region as Region)
-      ? (region as Region)
-      : undefined;
+    region && Object.values(Region).includes(region as Region) ? (region as Region) : undefined;
   const validStatus =
     status && Object.values(FestivalStatus).includes(status as FestivalStatus)
       ? (status as FestivalStatus)
@@ -62,82 +58,62 @@ export default async function Home({
     approved: true,
     ...(validRegion ? { region: validRegion } : {}),
     ...(validStatus ? { status: validStatus } : {}),
-    ...(genre
-      ? { genre: { contains: genre, mode: "insensitive" as const } }
-      : {}),
-    ...(camping === "yes"
-      ? { camping: true }
-      : camping === "no"
-        ? { camping: false }
-        : {}),
-    ...(search
-      ? { name: { contains: search, mode: "insensitive" as const } }
-      : {}),
+    ...(genre ? { genre: { contains: genre, mode: 'insensitive' as const } } : {}),
+    ...(camping === 'yes' ? { camping: true } : camping === 'no' ? { camping: false } : {}),
+    ...(search ? { name: { contains: search, mode: 'insensitive' as const } } : {}),
   };
 
-  const [festivalCount, activeCount, upcoming, mapFestivals] =
-    await Promise.all([
-      prisma.festival.count({ where: { approved: true } }),
-      prisma.festival.count({
-        where: { approved: true, status: FestivalStatus.ACTIVE },
-      }),
-      prisma.festival.findMany({
-        where: baseWhere,
-        orderBy: [
-          { startDate: { sort: "asc", nulls: "last" } },
-          { name: "asc" },
-        ],
-        include: { promoter: true },
-        take: 24,
-      }) as Promise<FestivalWithPromoter[]>,
-      prisma.festival.findMany({
-        where: {
-          approved: true,
-          latitude: { not: null },
-          longitude: { not: null },
-        },
-        select: {
-          id: true,
-          name: true,
-          slug: true,
-          latitude: true,
-          longitude: true,
-          genre: true,
-          region: true,
-          status: true,
-        },
-        orderBy: { name: "asc" },
-      }),
-    ]);
+  const [festivalCount, activeCount, upcoming, mapFestivals] = await Promise.all([
+    prisma.festival.count({ where: { approved: true } }),
+    prisma.festival.count({
+      where: { approved: true, status: FestivalStatus.ACTIVE },
+    }),
+    prisma.festival.findMany({
+      where: baseWhere,
+      orderBy: [{ startDate: { sort: 'asc', nulls: 'last' } }, { name: 'asc' }],
+      include: { promoter: true },
+      take: 24,
+    }) as Promise<FestivalWithPromoter[]>,
+    prisma.festival.findMany({
+      where: {
+        approved: true,
+        latitude: { not: null },
+        longitude: { not: null },
+      },
+      select: {
+        id: true,
+        name: true,
+        slug: true,
+        latitude: true,
+        longitude: true,
+        genre: true,
+        region: true,
+        status: true,
+      },
+      orderBy: { name: 'asc' },
+    }),
+  ]);
 
   const regionCount = await prisma.festival
     .findMany({
       where: { approved: true, region: { not: null } },
       select: { region: true },
-      distinct: ["region"],
+      distinct: ['region'],
     })
     .then((r) => r.length);
 
   const now = new Date();
   const upcomingCount = upcoming.filter(
-    (f) =>
-      !f.startDate ||
-      f.startDate >= now ||
-      (!f.startDate && f.status === "ACTIVE"),
+    (f) => !f.startDate || f.startDate >= now || (!f.startDate && f.status === 'ACTIVE')
   ).length;
   const pastCount = upcoming.length - upcomingCount;
-  const hasFilters = Boolean(
-    validRegion || validStatus || genre || camping || search,
-  );
+  const hasFilters = Boolean(validRegion || validStatus || genre || camping || search);
 
   return (
     <main className="min-h-screen">
       {/* Hero */}
       <section className="relative overflow-hidden px-4 pb-12 pt-16 sm:px-6 sm:pb-16 sm:pt-24">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0"
-        >
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
           <div className="absolute -top-36 left-1/2 h-[30rem] w-[46rem] -translate-x-1/2 rounded-full bg-primary/[0.07] blur-3xl" />
           <div className="absolute -right-24 top-24 h-72 w-72 rounded-full bg-kowhai-200/30 blur-3xl" />
           <div className="absolute -left-24 bottom-0 h-64 w-64 rounded-full bg-tangaroa-200/20 blur-3xl" />
@@ -145,13 +121,9 @@ export default async function Home({
 
         <div className="relative mx-auto max-w-6xl">
           <Reveal>
-            <Badge
-              variant="outline"
-              className="gap-2 px-3 text-xs normal-case tracking-normal"
-            >
+            <Badge variant="outline" className="gap-2 px-3 text-xs normal-case tracking-normal">
               <span className="h-1.5 w-1.5 rounded-full bg-wao-200" />
-              {festivalCount} festivals · {regionCount} regions · NZ music
-              directory
+              {festivalCount} festivals · {regionCount} regions · NZ music directory
             </Badge>
           </Reveal>
 
@@ -163,8 +135,8 @@ export default async function Home({
 
           <Reveal delay={160}>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Discover music festivals across New Zealand — browse by region,
-              genre, or date, then plan a season that fits.
+              Discover music festivals across New Zealand — browse by region, genre, or date, then
+              plan a season that fits.
             </p>
           </Reveal>
 
@@ -188,13 +160,13 @@ export default async function Home({
             <div className="flex flex-wrap items-center gap-2">
               <Select
                 name="region"
-                defaultValue={validRegion ?? ""}
+                defaultValue={validRegion ?? ''}
                 className="min-w-36 flex-1 sm:w-auto sm:flex-none"
                 aria-label="Filter by region"
               >
                 <option value="">All regions</option>
                 {Object.values(Region)
-                  .filter((r) => r !== "ONLINE")
+                  .filter((r) => r !== 'ONLINE')
                   .map((r) => (
                     <option key={r} value={r}>
                       {REGION_LABELS[r]}
@@ -203,7 +175,7 @@ export default async function Home({
               </Select>
               <Select
                 name="status"
-                defaultValue={validStatus ?? ""}
+                defaultValue={validStatus ?? ''}
                 className="min-w-32 flex-1 sm:w-auto sm:flex-none"
                 aria-label="Filter by status"
               >
@@ -217,14 +189,14 @@ export default async function Home({
               <Input
                 type="text"
                 name="genre"
-                defaultValue={genre ?? ""}
+                defaultValue={genre ?? ''}
                 placeholder="Genre…"
                 className="min-w-28 flex-1 sm:w-auto sm:flex-none"
                 aria-label="Filter by genre"
               />
               <Select
                 name="camping"
-                defaultValue={camping ?? ""}
+                defaultValue={camping ?? ''}
                 className="min-w-32 flex-1 sm:w-auto sm:flex-none"
                 aria-label="Filter by camping"
               >
@@ -235,7 +207,7 @@ export default async function Home({
               <Input
                 type="search"
                 name="search"
-                defaultValue={search ?? ""}
+                defaultValue={search ?? ''}
                 placeholder="Search…"
                 className="min-w-36 flex-1 sm:w-auto sm:flex-none"
                 aria-label="Search festivals"
@@ -279,12 +251,12 @@ export default async function Home({
               <div className="flex items-center justify-between border-b border-border px-4 py-3">
                 <h2 className="text-sm font-semibold tracking-tight">
                   <span className="tabular">{upcoming.length}</span> festival
-                  {upcoming.length !== 1 ? "s" : ""}
+                  {upcoming.length !== 1 ? 's' : ''}
                   <span className="ml-2 text-xs font-normal text-muted-foreground">
                     <span className="tabular">{upcomingCount}</span> upcoming
                     {pastCount > 0 && (
                       <>
-                        {" "}
+                        {' '}
                         · <span className="tabular">{pastCount}</span> past
                       </>
                     )}
@@ -311,13 +283,9 @@ export default async function Home({
                           {f.name}
                         </span>
                         <span className="block truncate text-xs text-muted-foreground">
-                          {[
-                            f.genre,
-                            f.region ? formatRegion(f.region) : null,
-                            f.dateText,
-                          ]
+                          {[f.genre, f.region ? formatRegion(f.region) : null, f.dateText]
                             .filter(Boolean)
-                            .join(" · ")}
+                            .join(' · ')}
                         </span>
                         {f.camping && (
                           <span className="mt-1 inline-block rounded-full bg-muted px-2 py-px text-[10px] font-semibold text-muted-foreground">

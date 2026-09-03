@@ -1,26 +1,25 @@
-import type { Metadata, Viewport } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
-import "./globals.css";
-import { SiteNav } from "@/components/SiteNav";
+import type { Metadata, Viewport } from 'next';
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
+import './globals.css';
+import { SiteNav } from '@/components/SiteNav';
 
 export const metadata: Metadata = {
-  title: "Aotearoa Festivals",
-  description:
-    "New Zealand music festivals, promoters, and the artists who play them.",
-  manifest: "/manifest.json",
+  title: 'Aotearoa Festivals',
+  description: 'New Zealand music festivals, promoters, and the artists who play them.',
+  manifest: '/manifest.json',
   icons: {
-    icon: "/favicon.svg",
-    apple: "/favicon.svg",
+    icon: '/favicon.svg',
+    apple: '/favicon.svg',
   },
 };
 
 export const viewport: Viewport = {
-  width: "device-width",
+  width: 'device-width',
   initialScale: 1,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
   ],
 };
 
@@ -75,13 +74,9 @@ export default function RootLayout({
         <footer className="border-t border-border bg-muted/30">
           <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-10 text-center sm:flex-row sm:text-left">
             <p className="text-xs text-muted-foreground">
-              Aotearoa Festivals — the NZ music festival directory. Made in
-              Aotearoa.
+              Aotearoa Festivals — the NZ music festival directory. Made in Aotearoa.
             </p>
-            <nav
-              aria-label="Footer"
-              className="flex flex-wrap items-center justify-center gap-6"
-            >
+            <nav aria-label="Footer" className="flex flex-wrap items-center justify-center gap-6">
               <a
                 href="/about"
                 className="text-xs font-medium text-muted-foreground transition-colors duration-300 ease-out-expo hover:text-foreground"

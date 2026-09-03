@@ -1,7 +1,7 @@
-import { act, cleanup, renderHook } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { PLAN_STORAGE_KEY } from "@/lib/plan-storage";
-import { useFestivalPlan } from "./useFestivalPlan";
+import { act, cleanup, renderHook } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { PLAN_STORAGE_KEY } from '@/lib/plan-storage';
+import { useFestivalPlan } from './useFestivalPlan';
 
 function createStorageMock(): Storage {
   let store = new Map<string, string>();
@@ -23,9 +23,9 @@ function createStorageMock(): Storage {
   };
 }
 
-describe("useFestivalPlan", () => {
+describe('useFestivalPlan', () => {
   beforeEach(() => {
-    Object.defineProperty(globalThis, "window", {
+    Object.defineProperty(globalThis, 'window', {
       value: { localStorage: createStorageMock() },
       configurable: true,
     });
@@ -33,44 +33,41 @@ describe("useFestivalPlan", () => {
 
   afterEach(() => {
     cleanup();
-    Object.defineProperty(globalThis, "window", {
+    Object.defineProperty(globalThis, 'window', {
       value: { localStorage: createStorageMock() },
       configurable: true,
     });
   });
 
-  it("loads saved statuses on mount", () => {
-    window.localStorage.setItem(
-      PLAN_STORAGE_KEY,
-      JSON.stringify({ splore: "planned" }),
-    );
+  it('loads saved statuses on mount', () => {
+    window.localStorage.setItem(PLAN_STORAGE_KEY, JSON.stringify({ splore: 'planned' }));
     const { result } = renderHook(() => useFestivalPlan());
-    expect(result.current.statusOf("splore")).toBe("planned");
-    expect(result.current.statusOf("other")).toBeNull();
+    expect(result.current.statusOf('splore')).toBe('planned');
+    expect(result.current.statusOf('other')).toBeNull();
     expect(result.current.savedCount).toBe(1);
   });
 
-  it("sets and changes a festival status", () => {
+  it('sets and changes a festival status', () => {
     const { result } = renderHook(() => useFestivalPlan());
-    act(() => result.current.setStatus("rhythm-and-vines", "interested"));
-    expect(result.current.statusOf("rhythm-and-vines")).toBe("interested");
-    act(() => result.current.setStatus("rhythm-and-vines", "planned"));
-    expect(result.current.statusOf("rhythm-and-vines")).toBe("planned");
+    act(() => result.current.setStatus('rhythm-and-vines', 'interested'));
+    expect(result.current.statusOf('rhythm-and-vines')).toBe('interested');
+    act(() => result.current.setStatus('rhythm-and-vines', 'planned'));
+    expect(result.current.statusOf('rhythm-and-vines')).toBe('planned');
   });
 
-  it("removes a festival when status is null", () => {
+  it('removes a festival when status is null', () => {
     const { result } = renderHook(() => useFestivalPlan());
-    act(() => result.current.setStatus("northern-bass", "planned"));
-    act(() => result.current.setStatus("northern-bass", null));
-    expect(result.current.statusOf("northern-bass")).toBeNull();
+    act(() => result.current.setStatus('northern-bass', 'planned'));
+    act(() => result.current.setStatus('northern-bass', null));
+    expect(result.current.statusOf('northern-bass')).toBeNull();
     expect(result.current.savedCount).toBe(0);
   });
 
-  it("persists status changes to localStorage", () => {
+  it('persists status changes to localStorage', () => {
     const { result } = renderHook(() => useFestivalPlan());
-    act(() => result.current.setStatus("northern-bass", "interested"));
-    expect(
-      JSON.parse(window.localStorage.getItem(PLAN_STORAGE_KEY) ?? "{}"),
-    ).toEqual({ "northern-bass": "interested" });
+    act(() => result.current.setStatus('northern-bass', 'interested'));
+    expect(JSON.parse(window.localStorage.getItem(PLAN_STORAGE_KEY) ?? '{}')).toEqual({
+      'northern-bass': 'interested',
+    });
   });
 });

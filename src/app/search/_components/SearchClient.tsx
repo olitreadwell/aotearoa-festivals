@@ -1,42 +1,37 @@
-"use client";
-import { useState, useMemo } from "react";
-import Fuse from "fuse.js";
-import Link from "next/link";
+'use client';
+import { useState, useMemo } from 'react';
+import Fuse from 'fuse.js';
+import Link from 'next/link';
 
 export type SearchItem = {
-  type: "festival" | "artist" | "promoter";
+  type: 'festival' | 'artist' | 'promoter';
   name: string;
   slug: string;
   subtitle: string;
   status?: string; // FestivalStatus string for festival items
 };
 
-const TYPE_BADGE_STYLES: Record<SearchItem["type"], string> = {
-  festival:
-    "bg-tangaroa-300/30 text-tangaroa-0 dark:bg-tangaroa-100/70 dark:text-tangaroa-300",
+const TYPE_BADGE_STYLES: Record<SearchItem['type'], string> = {
+  festival: 'bg-tangaroa-300/30 text-tangaroa-0 dark:bg-tangaroa-100/70 dark:text-tangaroa-300',
   artist:
-    "bg-pohutukawa-300/40 text-pohutukawa-0 dark:bg-pohutukawa-200/20 dark:text-pohutukawa-300",
-  promoter:
-    "bg-kowhai-300/40 text-kowhai-0 dark:bg-kowhai-100/70 dark:text-kowhai-300",
+    'bg-pohutukawa-300/40 text-pohutukawa-0 dark:bg-pohutukawa-200/20 dark:text-pohutukawa-300',
+  promoter: 'bg-kowhai-300/40 text-kowhai-0 dark:bg-kowhai-100/70 dark:text-kowhai-300',
 };
 
 export function SearchClient({ items }: { items: SearchItem[] }) {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
 
   const fuse = useMemo(
     () =>
       new Fuse(items, {
-        keys: ["name", "subtitle"],
+        keys: ['name', 'subtitle'],
         threshold: 0.3,
         includeScore: true,
       }),
-    [items],
+    [items]
   );
 
-  const results =
-    query.length > 0
-      ? fuse.search(query).map((r) => r.item)
-      : items.slice(0, 20);
+  const results = query.length > 0 ? fuse.search(query).map((r) => r.item) : items.slice(0, 20);
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10">
@@ -71,7 +66,7 @@ export function SearchClient({ items }: { items: SearchItem[] }) {
         aria-live="polite"
       >
         {query
-          ? `${results.length} result${results.length !== 1 ? "s" : ""} for "${query}"`
+          ? `${results.length} result${results.length !== 1 ? 's' : ''} for "${query}"`
           : `${items.length} total — showing first 20`}
       </p>
 
@@ -95,15 +90,15 @@ export function SearchClient({ items }: { items: SearchItem[] }) {
                 {item.status && (
                   <span
                     className={`mt-0.5 shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                      item.status === "ACTIVE"
-                        ? "bg-wao-300/30 text-wao-0 dark:bg-wao-100/70 dark:text-wao-400"
-                        : item.status === "Dates TBC"
-                          ? "bg-kowhai-300/40 text-kowhai-0 dark:bg-kowhai-100/70 dark:text-kowhai-300"
-                          : item.status === "HIATUS"
-                            ? "bg-muted text-muted-foreground dark:bg-muted dark:text-muted-foreground"
-                            : item.status === "DEFUNCT"
-                              ? "bg-pohutukawa-300/40 text-pohutukawa-0 dark:bg-pohutukawa-200/20 dark:text-pohutukawa-300"
-                              : "bg-tangaroa-300/30 text-tangaroa-0 dark:bg-tangaroa-100/70 dark:text-tangaroa-300"
+                      item.status === 'ACTIVE'
+                        ? 'bg-wao-300/30 text-wao-0 dark:bg-wao-100/70 dark:text-wao-400'
+                        : item.status === 'Dates TBC'
+                          ? 'bg-kowhai-300/40 text-kowhai-0 dark:bg-kowhai-100/70 dark:text-kowhai-300'
+                          : item.status === 'HIATUS'
+                            ? 'bg-muted text-muted-foreground dark:bg-muted dark:text-muted-foreground'
+                            : item.status === 'DEFUNCT'
+                              ? 'bg-pohutukawa-300/40 text-pohutukawa-0 dark:bg-pohutukawa-200/20 dark:text-pohutukawa-300'
+                              : 'bg-tangaroa-300/30 text-tangaroa-0 dark:bg-tangaroa-100/70 dark:text-tangaroa-300'
                     }`}
                   >
                     {item.status.charAt(0) + item.status.slice(1).toLowerCase()}

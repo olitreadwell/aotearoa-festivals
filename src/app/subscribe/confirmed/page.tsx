@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: "Subscribed — Aotearoa Festivals",
+  title: 'Subscribed — Aotearoa Festivals',
   description: "You're now subscribed to festival updates.",
 };
 
@@ -28,12 +28,9 @@ export default function SubscribeConfirmedPage() {
           </span>
         </div>
 
-        <h1 className="mb-3 text-2xl font-bold tracking-tight">
-          You&apos;re subscribed!
-        </h1>
+        <h1 className="mb-3 text-2xl font-bold tracking-tight">You&apos;re subscribed!</h1>
         <p className="mb-8 text-sm text-muted-foreground dark:text-muted-foreground">
-          Thanks for subscribing. We&apos;ll let you know about upcoming
-          festivals in your region.
+          Thanks for subscribing. We&apos;ll let you know about upcoming festivals in your region.
         </p>
 
         <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">

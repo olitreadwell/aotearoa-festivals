@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useFestivalPlan } from "@/hooks/useFestivalPlan";
+import Link from 'next/link';
+import { useFestivalPlan } from '@/hooks/useFestivalPlan';
 
 export function PlanNavLink({
-  className = "",
+  className = '',
   onClick,
 }: {
   className?: string;

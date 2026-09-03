@@ -1,13 +1,13 @@
-import { notFound } from "next/navigation";
-import type { Metadata } from "next";
-import { ArrowUpRight } from "lucide-react";
-import { prisma } from "@/lib/prisma";
-import type { Festival, Artist, Promoter } from "@/generated/prisma";
-import { formatRegion } from "@/lib/format";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
-import { PlanStatusSelect } from "@/components/PlanStatusSelect";
-import { Reveal } from "@/components/Reveal";
+import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
+import { ArrowUpRight } from 'lucide-react';
+import { prisma } from '@/lib/prisma';
+import type { Festival, Artist, Promoter } from '@/generated/prisma';
+import { formatRegion } from '@/lib/format';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import { FestivalStatusBadge } from '@/components/FestivalStatusBadge';
+import { PlanStatusSelect } from '@/components/PlanStatusSelect';
+import { Reveal } from '@/components/Reveal';
 
 export const revalidate = 3600;
 
@@ -20,8 +20,8 @@ export async function generateStaticParams() {
     return festivals.map((festival) => ({ slug: festival.slug }));
   } catch (error) {
     console.warn(
-      "generateStaticParams: could not reach the database, falling back to on-demand rendering for /festivals/[slug]",
-      error,
+      'generateStaticParams: could not reach the database, falling back to on-demand rendering for /festivals/[slug]',
+      error
     );
     return [];
   }
@@ -57,7 +57,7 @@ export async function generateMetadata({
     where: { slug },
     select: { name: true },
   });
-  if (!festival) return { title: "Festival Not Found" };
+  if (!festival) return { title: 'Festival Not Found' };
   return { title: `${festival.name} — Aotearoa Festivals` };
 }
 
@@ -71,13 +71,11 @@ function MetaCell({
   wide?: boolean;
 }) {
   return (
-    <div className={`bg-card p-5 ${wide ? "sm:col-span-2" : ""}`}>
+    <div className={`bg-card p-5 ${wide ? 'sm:col-span-2' : ''}`}>
       <dt className="text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
         {label}
       </dt>
-      <dd className="mt-1.5 text-sm leading-relaxed text-foreground">
-        {children}
-      </dd>
+      <dd className="mt-1.5 text-sm leading-relaxed text-foreground">{children}</dd>
     </div>
   );
 }
@@ -99,7 +97,7 @@ export default async function FestivalDetailPage({
       promoter: true,
       lineups: {
         include: { artist: true },
-        orderBy: [{ isHeadliner: "desc" }, { artist: { name: "asc" } }],
+        orderBy: [{ isHeadliner: 'desc' }, { artist: { name: 'asc' } }],
       },
     },
   })) as FestivalWithRelations | null;
@@ -117,7 +115,7 @@ export default async function FestivalDetailPage({
         ...(festival.genre
           ? [
               {
-                genre: { contains: festival.genre.split(",")[0]?.trim() ?? "" },
+                genre: { contains: festival.genre.split(',')[0]?.trim() ?? '' },
               },
             ]
           : []),
@@ -125,7 +123,7 @@ export default async function FestivalDetailPage({
       ],
     },
     take: 3,
-    orderBy: [{ startDate: "desc" }],
+    orderBy: [{ startDate: 'desc' }],
     select: { id: true, name: true, slug: true, genre: true, region: true },
   });
 
@@ -138,12 +136,9 @@ export default async function FestivalDetailPage({
   }
   const sortedYears = Array.from(lineupByYear.keys()).sort((a, b) => b - a);
 
-  const eyebrow = [
-    festival.region ? formatRegion(festival.region) : null,
-    festival.genre,
-  ]
+  const eyebrow = [festival.region ? formatRegion(festival.region) : null, festival.genre]
     .filter(Boolean)
-    .join(" · ");
+    .join(' · ');
 
   return (
     <>
@@ -151,22 +146,22 @@ export default async function FestivalDetailPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Festival",
+            '@context': 'https://schema.org',
+            '@type': 'Festival',
             name: festival.name,
             ...(festival.startDate && {
-              startDate: festival.startDate.toISOString().split("T")[0],
+              startDate: festival.startDate.toISOString().split('T')[0],
             }),
             ...(festival.endDate && {
-              endDate: festival.endDate.toISOString().split("T")[0],
+              endDate: festival.endDate.toISOString().split('T')[0],
             }),
             ...(festival.location && {
               location: {
-                "@type": "Place",
+                '@type': 'Place',
                 name: festival.location,
                 ...(festival.region && {
                   address: {
-                    "@type": "PostalAddress",
+                    '@type': 'PostalAddress',
                     addressRegion: festival.region,
                   },
                 }),
@@ -180,8 +175,8 @@ export default async function FestivalDetailPage({
       <main className="mx-auto max-w-4xl px-4 py-14 sm:px-6 sm:py-20">
         <Breadcrumbs
           items={[
-            { label: "Home", href: "/" },
-            { label: "Festivals", href: "/festivals" },
+            { label: 'Home', href: '/' },
+            { label: 'Festivals', href: '/festivals' },
             { label: festival.name },
           ]}
         />
@@ -231,28 +226,14 @@ export default async function FestivalDetailPage({
         {/* Meta grid */}
         <Reveal>
           <dl className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2">
-            {festival.region && (
-              <MetaCell label="Region">
-                {formatRegion(festival.region)}
-              </MetaCell>
-            )}
-            {festival.location && (
-              <MetaCell label="Location">{festival.location}</MetaCell>
-            )}
-            {festival.genre && (
-              <MetaCell label="Genre">{festival.genre}</MetaCell>
-            )}
+            {festival.region && <MetaCell label="Region">{formatRegion(festival.region)}</MetaCell>}
+            {festival.location && <MetaCell label="Location">{festival.location}</MetaCell>}
+            {festival.genre && <MetaCell label="Genre">{festival.genre}</MetaCell>}
             {festival.camping !== null && festival.camping !== undefined && (
-              <MetaCell label="Camping">
-                {festival.camping ? "Yes — bring a tent" : "No"}
-              </MetaCell>
+              <MetaCell label="Camping">{festival.camping ? 'Yes — bring a tent' : 'No'}</MetaCell>
             )}
-            {festival.dateText && (
-              <MetaCell label="Dates">{festival.dateText}</MetaCell>
-            )}
-            {festival.costText && (
-              <MetaCell label="Cost">{festival.costText}</MetaCell>
-            )}
+            {festival.dateText && <MetaCell label="Dates">{festival.dateText}</MetaCell>}
+            {festival.costText && <MetaCell label="Cost">{festival.costText}</MetaCell>}
             {festival.ticketPrice && (
               <MetaCell label="Tickets">
                 {festival.ticketUrl ? (
@@ -384,9 +365,7 @@ export default async function FestivalDetailPage({
         {similar.length > 0 && (
           <Reveal>
             <section className="mt-14 border-t border-border pt-10">
-              <h2 className="text-2xl font-bold tracking-[-0.02em]">
-                Similar festivals
-              </h2>
+              <h2 className="text-2xl font-bold tracking-[-0.02em]">Similar festivals</h2>
               <ul className="mt-5 grid gap-3 sm:grid-cols-3">
                 {similar.map((f) => (
                   <li key={f.id}>
@@ -394,9 +373,7 @@ export default async function FestivalDetailPage({
                       href={`/festivals/${f.slug}`}
                       className="group flex h-full flex-col justify-between gap-3 rounded-2xl border border-border bg-card p-4 transition-all duration-300 ease-out-expo hover:border-primary/30 hover:bg-muted/40"
                     >
-                      <span className="text-sm font-semibold tracking-tight">
-                        {f.name}
-                      </span>
+                      <span className="text-sm font-semibold tracking-tight">{f.name}</span>
                       <span className="flex items-center justify-between text-xs text-muted-foreground">
                         {f.genre}
                         <ArrowUpRight

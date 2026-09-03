@@ -1,9 +1,9 @@
-import { prisma } from "@/lib/prisma";
-import { notFound } from "next/navigation";
-import Link from "next/link";
-import type { Metadata } from "next";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
+import { prisma } from '@/lib/prisma';
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import type { Metadata } from 'next';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import { FestivalStatusBadge } from '@/components/FestivalStatusBadge';
 
 export const revalidate = 3600;
 
@@ -15,8 +15,8 @@ export async function generateStaticParams() {
     return promoters.map((promoter) => ({ slug: promoter.slug }));
   } catch (error) {
     console.warn(
-      "generateStaticParams: could not reach the database, falling back to on-demand rendering for /promoters/[slug]",
-      error,
+      'generateStaticParams: could not reach the database, falling back to on-demand rendering for /promoters/[slug]',
+      error
     );
     return [];
   }
@@ -29,11 +29,11 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const promoter = await prisma.promoter.findUnique({ where: { slug } });
-  if (!promoter) return { title: "Promoter not found — Aotearoa Festivals" };
+  if (!promoter) return { title: 'Promoter not found — Aotearoa Festivals' };
   return {
     title: `${promoter.name} — Aotearoa Festivals`,
     description: `Festivals and events run by ${promoter.name}${
-      promoter.region ? ` in ${promoter.region}` : ""
+      promoter.region ? ` in ${promoter.region}` : ''
     }.`,
   };
 }
@@ -45,7 +45,7 @@ export default async function PromoterDetailPage({ params }: Props) {
     where: { slug },
     include: {
       festivals: {
-        orderBy: [{ startDate: "desc" }, { name: "asc" }],
+        orderBy: [{ startDate: 'desc' }, { name: 'asc' }],
       },
     },
   });
@@ -53,19 +53,16 @@ export default async function PromoterDetailPage({ params }: Props) {
   if (!promoter) notFound();
 
   const socialLinks: { label: string; href: string }[] = [];
-  if (promoter.website)
-    socialLinks.push({ label: "Website", href: promoter.website });
-  if (promoter.instagram)
-    socialLinks.push({ label: "Instagram", href: promoter.instagram });
-  if (promoter.facebook)
-    socialLinks.push({ label: "Facebook", href: promoter.facebook });
+  if (promoter.website) socialLinks.push({ label: 'Website', href: promoter.website });
+  if (promoter.instagram) socialLinks.push({ label: 'Instagram', href: promoter.instagram });
+  if (promoter.facebook) socialLinks.push({ label: 'Facebook', href: promoter.facebook });
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
       <Breadcrumbs
         items={[
-          { label: "Home", href: "/" },
-          { label: "Promoters", href: "/promoters" },
+          { label: 'Home', href: '/' },
+          { label: 'Promoters', href: '/promoters' },
           { label: promoter.name },
         ]}
       />
@@ -115,16 +112,14 @@ export default async function PromoterDetailPage({ params }: Props) {
 
       <section className="mt-12">
         <h2 className="text-xl font-semibold tracking-tight">
-          Festivals{" "}
+          Festivals{' '}
           <span className="text-base font-normal text-muted-foreground">
             ({promoter.festivals.length})
           </span>
         </h2>
 
         {promoter.festivals.length === 0 ? (
-          <p className="mt-4 text-muted-foreground">
-            No festivals on record yet.
-          </p>
+          <p className="mt-4 text-muted-foreground">No festivals on record yet.</p>
         ) : (
           <ul className="mt-4 divide-y divide-border dark:divide-border">
             {promoter.festivals.map((festival) => (

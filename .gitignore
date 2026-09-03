@@ -46,3 +46,6 @@ docs/superpowers/
 .omo/
 .playwright-mcp/
 mobile-home.png
+
+# Prisma engine binaries (platform-specific, generated)
+src/generated/prisma/*.node
