@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 export default function Pagination({
   currentPage,
@@ -12,10 +12,7 @@ export default function Pagination({
   if (totalPages <= 1) return null;
 
   return (
-    <nav
-      aria-label="Pagination"
-      className="mt-8 flex items-center justify-between"
-    >
+    <nav aria-label="Pagination" className="mt-8 flex items-center justify-between">
       {currentPage > 1 ? (
         <Link
           href={buildHref(currentPage - 1)}

@@ -1,37 +1,37 @@
-import { describe, expect, it } from "vitest";
-import seedData from "../../prisma/data/festivals-seed.json";
-import { slugify } from "@/lib/format";
+import { describe, expect, it } from 'vitest';
+import seedData from '../../prisma/data/festivals-seed.json';
+import { slugify } from '@/lib/format';
 
-const KNOWN_STATUSES = ["active", "tbc", "hiatus", "defunct", "unconfirmed"];
+const KNOWN_STATUSES = ['active', 'tbc', 'hiatus', 'defunct', 'unconfirmed'];
 
-describe("prisma/data/festivals-seed.json", () => {
-  it("has at least one festival entry", () => {
+describe('prisma/data/festivals-seed.json', () => {
+  it('has at least one festival entry', () => {
     expect(seedData.festivals.length).toBeGreaterThan(0);
   });
 
   it.each(seedData.festivals.map((f) => [f.name, f] as const))(
-    "%s has a non-empty name",
+    '%s has a non-empty name',
     (_name, festival) => {
       expect(festival.name.trim().length).toBeGreaterThan(0);
-    },
+    }
   );
 
   it.each(seedData.festivals.map((f) => [f.name, f] as const))(
-    "%s has a status from the known set used by prisma/seed.ts",
+    '%s has a status from the known set used by prisma/seed.ts',
     (_name, festival) => {
       expect(KNOWN_STATUSES).toContain(festival.status);
-    },
+    }
   );
 
   it.each(seedData.festivals.map((f) => [f.name, f] as const))(
-    "%s has a non-empty region",
+    '%s has a non-empty region',
     (_name, festival) => {
-      expect(typeof festival.region).toBe("string");
+      expect(typeof festival.region).toBe('string');
       expect(festival.region.trim().length).toBeGreaterThan(0);
-    },
+    }
   );
 
-  it("has no case-insensitive duplicate festival names", () => {
+  it('has no case-insensitive duplicate festival names', () => {
     const seen = new Map<string, string[]>();
     for (const f of seedData.festivals) {
       const key = f.name.trim().toLowerCase();
@@ -52,36 +52,32 @@ describe("prisma/data/festivals-seed.json", () => {
   });
 
   it.each(seedData.festivals.map((f) => [f.name, f] as const))(
-    "%s camping field is boolean or missing (null/undefined handled by seed script)",
+    '%s camping field is boolean or missing (null/undefined handled by seed script)',
     (_name, festival) => {
       const f = festival as Record<string, unknown>;
-      if ("camping" in f && f.camping !== null) {
-        expect(typeof f.camping).toBe("boolean");
+      if ('camping' in f && f.camping !== null) {
+        expect(typeof f.camping).toBe('boolean');
       }
-    },
+    }
   );
 
   it.each(seedData.festivals.map((f) => [f.name, f] as const))(
-    "%s attendance field is a positive integer or missing",
+    '%s attendance field is a positive integer or missing',
     (_name, festival) => {
       const f = festival as Record<string, unknown>;
-      if ("attendance" in f && f.attendance !== null) {
-        expect(typeof f.attendance).toBe("number");
+      if ('attendance' in f && f.attendance !== null) {
+        expect(typeof f.attendance).toBe('number');
         expect(f.attendance as number).toBeGreaterThan(0);
       }
-    },
+    }
   );
 
-  it("has at least some festivals with the new detail fields populated", () => {
+  it('has at least some festivals with the new detail fields populated', () => {
     const fests = seedData.festivals as Array<Record<string, unknown>>;
-    const withVibe = fests.filter((f) => typeof f.vibe === "string" && f.vibe);
-    const withCamping = fests.filter((f) => typeof f.camping === "boolean");
-    const withTicketPrice = fests.filter(
-      (f) => typeof f.ticketPrice === "string" && f.ticketPrice,
-    );
-    const withAttendance = fests.filter(
-      (f) => typeof f.attendance === "number",
-    );
+    const withVibe = fests.filter((f) => typeof f.vibe === 'string' && f.vibe);
+    const withCamping = fests.filter((f) => typeof f.camping === 'boolean');
+    const withTicketPrice = fests.filter((f) => typeof f.ticketPrice === 'string' && f.ticketPrice);
+    const withAttendance = fests.filter((f) => typeof f.attendance === 'number');
 
     expect(withVibe.length).toBeGreaterThan(0);
     expect(withCamping.length).toBeGreaterThan(0);

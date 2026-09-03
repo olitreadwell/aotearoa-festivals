@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useTransition } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface ArtistResult {
   name: string;
@@ -16,23 +16,21 @@ interface ExtractionResult {
 
 export default function ImportPosterPage() {
   const router = useRouter();
-  const [url, setUrl] = useState("");
-  const [festivalName, setFestivalName] = useState("");
-  const [festivalYear, setFestivalYear] = useState(
-    new Date().getFullYear().toString(),
-  );
+  const [url, setUrl] = useState('');
+  const [festivalName, setFestivalName] = useState('');
+  const [festivalYear, setFestivalYear] = useState(new Date().getFullYear().toString());
   const [result, setResult] = useState<ExtractionResult | null>(null);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [isPending, startTransition] = useTransition();
 
   async function handleExtract() {
-    setError("");
+    setError('');
     setResult(null);
     startTransition(async () => {
       try {
-        const res = await fetch("/api/import-poster", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
+        const res = await fetch('/api/import-poster', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             imageUrl: url,
             festival: festivalName,
@@ -40,32 +38,32 @@ export default function ImportPosterPage() {
           }),
         });
         const data = await res.json();
-        if (!res.ok) throw new Error(data.error || "Extraction failed");
+        if (!res.ok) throw new Error(data.error || 'Extraction failed');
         setResult(data);
       } catch (e) {
-        setError(e instanceof Error ? e.message : "Unknown error");
+        setError(e instanceof Error ? e.message : 'Unknown error');
       }
     });
   }
 
   async function handleSave() {
     if (!result) return;
-    setError("");
+    setError('');
     startTransition(async () => {
       try {
-        const res = await fetch("/api/import-poster", {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
+        const res = await fetch('/api/import-poster', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             festival: festivalName,
             year: parseInt(festivalYear),
             artists: result.artists.map((a) => a.name),
           }),
         });
-        if (!res.ok) throw new Error("Save failed");
-        router.push("/festivals");
+        if (!res.ok) throw new Error('Save failed');
+        router.push('/festivals');
       } catch (e) {
-        setError(e instanceof Error ? e.message : "Save error");
+        setError(e instanceof Error ? e.message : 'Save error');
       }
     });
   }
@@ -118,7 +116,7 @@ export default function ImportPosterPage() {
               alt="Poster preview"
               className="max-h-64 w-full rounded object-contain"
               onError={(e) => {
-                (e.target as HTMLImageElement).style.display = "none";
+                (e.target as HTMLImageElement).style.display = 'none';
               }}
             />
           </div>
@@ -129,7 +127,7 @@ export default function ImportPosterPage() {
           disabled={isPending || !url || !festivalName}
           className="rounded-lg bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary disabled:opacity-50"
         >
-          {isPending ? "Extracting..." : "Extract Lineup"}
+          {isPending ? 'Extracting...' : 'Extract Lineup'}
         </button>
 
         {error && (
@@ -140,22 +138,20 @@ export default function ImportPosterPage() {
 
         {result && (
           <div className="mt-6 space-y-4">
-            <h2 className="text-lg font-semibold">
-              Extracted {result.artists.length} Artists
-            </h2>
+            <h2 className="text-lg font-semibold">Extracted {result.artists.length} Artists</h2>
             <ul className="space-y-1">
               {result.artists.map((a, i) => (
                 <li
                   key={i}
                   className={`rounded-lg border px-4 py-2 text-sm ${
                     a.exists
-                      ? "border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-900/20"
-                      : "border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-900/20"
+                      ? 'border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-900/20'
+                      : 'border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-900/20'
                   }`}
                 >
                   <span className="font-medium">{a.name}</span>
                   <span className="ml-2 text-xs">
-                    {a.exists ? "✓ In database" : "+ New artist"}
+                    {a.exists ? '✓ In database' : '+ New artist'}
                   </span>
                 </li>
               ))}
@@ -166,9 +162,7 @@ export default function ImportPosterPage() {
               disabled={isPending}
               className="rounded-lg bg-emerald-600 px-6 py-2.5 text-sm font-medium text-primary-foreground hover:bg-emerald-700 disabled:opacity-50"
             >
-              {isPending
-                ? "Saving..."
-                : `Save ${result.artists.length} Lineup Entries`}
+              {isPending ? 'Saving...' : `Save ${result.artists.length} Lineup Entries`}
             </button>
           </div>
         )}

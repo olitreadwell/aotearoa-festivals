@@ -1,23 +1,19 @@
-"use client";
+'use client';
 
-import { useEffect, useState, useMemo } from "react";
-import dynamic from "next/dynamic";
-import Link from "next/link";
-import type { Region } from "@/generated/prisma";
-import { formatRegion } from "@/lib/format";
+import { useEffect, useState, useMemo } from 'react';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import type { Region } from '@/generated/prisma';
+import { formatRegion } from '@/lib/format';
 
-const MapContainer = dynamic(
-  () => import("react-leaflet").then((m) => m.MapContainer),
-  { ssr: false },
-);
-const TileLayer = dynamic(
-  () => import("react-leaflet").then((m) => m.TileLayer),
-  { ssr: false },
-);
-const Marker = dynamic(() => import("react-leaflet").then((m) => m.Marker), {
+const MapContainer = dynamic(() => import('react-leaflet').then((m) => m.MapContainer), {
   ssr: false,
 });
-const Popup = dynamic(() => import("react-leaflet").then((m) => m.Popup), {
+const TileLayer = dynamic(() => import('react-leaflet').then((m) => m.TileLayer), { ssr: false });
+const Marker = dynamic(() => import('react-leaflet').then((m) => m.Marker), {
+  ssr: false,
+});
+const Popup = dynamic(() => import('react-leaflet').then((m) => m.Popup), {
   ssr: false,
 });
 
@@ -39,53 +35,46 @@ const NZ_BOUNDS: [[number, number], [number, number]] = [
 ];
 
 const GENRE_COLORS: Record<string, string> = {
-  "Drum & Bass": "#a3172e",
-  House: "#6b0f1e",
-  Electronic: "#a37710",
-  NYE: "#0a4a54",
-  Reggae: "#287028",
-  Dub: "#287028",
-  Jazz: "#a37710",
-  Rock: "#6b0f1e",
-  Pop: "#a3172e",
-  "Hip Hop": "#107080",
+  'Drum & Bass': '#a3172e',
+  House: '#6b0f1e',
+  Electronic: '#a37710',
+  NYE: '#0a4a54',
+  Reggae: '#287028',
+  Dub: '#287028',
+  Jazz: '#a37710',
+  Rock: '#6b0f1e',
+  Pop: '#a3172e',
+  'Hip Hop': '#107080',
 };
 function genreColor(g: string | null): string {
-  if (!g) return "#6e747c";
-  for (const [k, v] of Object.entries(GENRE_COLORS))
-    if (g.includes(k)) return v;
-  return "#6e747c";
+  if (!g) return '#6e747c';
+  for (const [k, v] of Object.entries(GENRE_COLORS)) if (g.includes(k)) return v;
+  return '#6e747c';
 }
 
-export default function MapPage({
-  festivals,
-}: {
-  festivals: FestivalMarker[];
-}) {
+export default function MapPage({ festivals }: { festivals: FestivalMarker[] }) {
   const [mounted, setMounted] = useState(false);
-  const [search, setSearch] = useState("");
-  const [filterRegion, setFilterRegion] = useState("");
-  const [filterStatus, setFilterStatus] = useState("ACTIVE");
-  const [icons, setIcons] = useState<Record<string, L.DivIcon>>(
-    {} as Record<string, L.DivIcon>,
-  );
+  const [search, setSearch] = useState('');
+  const [filterRegion, setFilterRegion] = useState('');
+  const [filterStatus, setFilterStatus] = useState('ACTIVE');
+  const [icons, setIcons] = useState<Record<string, L.DivIcon>>({} as Record<string, L.DivIcon>);
 
   useEffect(() => {
-    import("leaflet/dist/leaflet.css");
-    import("leaflet").then((L) => {
+    import('leaflet/dist/leaflet.css');
+    import('leaflet').then((L) => {
       setMounted(true);
       setIcons(
         Object.fromEntries(
           Object.entries(GENRE_COLORS).map(([k, v]) => [
             k,
             L.divIcon({
-              className: "",
+              className: '',
               html: `<div style="background:${v};width:14px;height:14px;border-radius:50%;border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,.3)"></div>`,
               iconSize: [14, 14],
               iconAnchor: [7, 7],
             }),
-          ]),
-        ),
+          ])
+        )
       );
     });
   }, []);
@@ -100,7 +89,7 @@ export default function MapPage({
         (f) =>
           f.name.toLowerCase().includes(q) ||
           f.genre?.toLowerCase().includes(q) ||
-          (f.region && formatRegion(f.region).toLowerCase().includes(q)),
+          (f.region && formatRegion(f.region).toLowerCase().includes(q))
       );
     }
     return result;
@@ -108,7 +97,7 @@ export default function MapPage({
 
   const regions = useMemo(
     () => [...new Set(festivals.map((f) => f.region).filter(Boolean))].sort(),
-    [festivals],
+    [festivals]
   );
 
   if (!mounted) {
@@ -136,7 +125,7 @@ export default function MapPage({
       {/* Map area */}
       <div
         className="relative flex-1"
-        style={{ minHeight: "50dvh" }}
+        style={{ minHeight: '50dvh' }}
         role="application"
         aria-label="Map"
       >
@@ -159,16 +148,14 @@ export default function MapPage({
               key={f.id}
               position={[f.latitude, f.longitude]}
               title={f.name}
-              icon={(icons[f.genre ?? ""] ?? icons["Rock"])!}
+              icon={(icons[f.genre ?? ''] ?? icons['Rock'])!}
               keyboard={true}
             >
               <Popup>
                 <div className="min-w-[160px] text-sm">
                   <strong className="block">{f.name}</strong>
                   {f.genre && (
-                    <span className="block text-xs text-muted-foreground">
-                      {f.genre}
-                    </span>
+                    <span className="block text-xs text-muted-foreground">{f.genre}</span>
                   )}
                   {f.region && (
                     <span className="block text-xs text-muted-foreground">
@@ -259,13 +246,11 @@ export default function MapPage({
                     style={{ background: genreColor(f.genre) }}
                   />
                   <div className="min-w-0 flex-1">
-                    <span className="block truncate text-sm font-medium">
-                      {f.name}
-                    </span>
+                    <span className="block truncate text-sm font-medium">{f.name}</span>
                     <span className="block truncate text-xs text-muted-foreground">
                       {[f.genre, f.region ? formatRegion(f.region) : null]
                         .filter(Boolean)
-                        .join(" · ")}
+                        .join(' · ')}
                     </span>
                   </div>
                 </Link>
@@ -273,9 +258,7 @@ export default function MapPage({
             ))}
           </ul>
           {filtered.length === 0 && (
-            <p className="p-4 text-sm text-muted-foreground">
-              No festivals match.
-            </p>
+            <p className="p-4 text-sm text-muted-foreground">No festivals match.</p>
           )}
         </div>
       </aside>

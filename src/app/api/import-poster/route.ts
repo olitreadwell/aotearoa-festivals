@@ -1,13 +1,13 @@
-import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
 
 function slugify(name: string): string {
   return name
     .toLowerCase()
-    .normalize("NFKD")
-    .replace(/[̀-ͯ]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
+    .normalize('NFKD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
 }
 
 // POST: Extract artists from poster image using Claude Vision
@@ -16,10 +16,7 @@ export async function POST(request: Request) {
     const { imageUrl, festival } = await request.json();
 
     if (!imageUrl || !festival) {
-      return NextResponse.json(
-        { error: "imageUrl and festival are required" },
-        { status: 400 },
-      );
+      return NextResponse.json({ error: 'imageUrl and festival are required' }, { status: 400 });
     }
 
     // Fetch the image
@@ -27,60 +24,57 @@ export async function POST(request: Request) {
     if (!imageResponse.ok) {
       return NextResponse.json(
         { error: `Failed to fetch image: ${imageResponse.status}` },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
     const imageBuffer = await imageResponse.arrayBuffer();
-    const base64Image = Buffer.from(imageBuffer).toString("base64");
-    const mediaType = imageResponse.headers.get("content-type") ?? "image/jpeg";
+    const base64Image = Buffer.from(imageBuffer).toString('base64');
+    const mediaType = imageResponse.headers.get('content-type') ?? 'image/jpeg';
 
     // Call Claude Vision API
-    const anthropicResponse = await fetch(
-      "https://api.anthropic.com/v1/messages",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": process.env.ANTHROPIC_API_KEY!,
-          "anthropic-version": "2023-06-01",
-        },
-        body: JSON.stringify({
-          model: "claude-sonnet-4-6",
-          max_tokens: 1024,
-          messages: [
-            {
-              role: "user",
-              content: [
-                {
-                  type: "image",
-                  source: {
-                    type: "base64",
-                    media_type: mediaType,
-                    data: base64Image,
-                  },
-                },
-                {
-                  type: "text",
-                  text: `Extract all artist and DJ names from this festival poster. Return ONLY a JSON array of strings with the artist names. Example: ["Artist Name 1", "DJ Name 2"]. Remove any duplicates. Do not include stage names, collectives, or non-artist text.`,
-                },
-              ],
-            },
-          ],
-        }),
+    const anthropicResponse = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': process.env.ANTHROPIC_API_KEY!,
+        'anthropic-version': '2023-06-01',
       },
-    );
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1024,
+        messages: [
+          {
+            role: 'user',
+            content: [
+              {
+                type: 'image',
+                source: {
+                  type: 'base64',
+                  media_type: mediaType,
+                  data: base64Image,
+                },
+              },
+              {
+                type: 'text',
+                text: `Extract all artist and DJ names from this festival poster. Return ONLY a JSON array of strings with the artist names. Example: ["Artist Name 1", "DJ Name 2"]. Remove any duplicates. Do not include stage names, collectives, or non-artist text.`,
+              },
+            ],
+          },
+        ],
+      }),
+    });
 
     if (!anthropicResponse.ok) {
       const err = await anthropicResponse.text();
       return NextResponse.json(
         { error: `Claude API error: ${anthropicResponse.status} - ${err}` },
-        { status: 500 },
+        { status: 500 }
       );
     }
 
     const aiData = await anthropicResponse.json();
-    const responseText = aiData.content?.[0]?.text ?? "";
+    const responseText = aiData.content?.[0]?.text ?? '';
 
     // Parse the JSON array from Claude's response
     let artistNames: string[] = [];
@@ -92,9 +86,9 @@ export async function POST(request: Request) {
     } catch {
       // Fallback: try to parse line-by-line
       artistNames = responseText
-        .split("\n")
-        .map((l: string) => l.replace(/^["'\-\d.\s]+|["'\s]+$/g, "").trim())
-        .filter((l: string) => l.length > 1 && !l.startsWith("["));
+        .split('\n')
+        .map((l: string) => l.replace(/^["'\-\d.\s]+|["'\s]+$/g, '').trim())
+        .filter((l: string) => l.length > 1 && !l.startsWith('['));
 
       if (artistNames.length === 0) {
         artistNames = [responseText.slice(0, 200)];
@@ -114,7 +108,7 @@ export async function POST(request: Request) {
           exists: !!existing,
           slug: existing?.slug,
         };
-      }),
+      })
     );
 
     return NextResponse.json({
@@ -122,10 +116,10 @@ export async function POST(request: Request) {
       rawText: responseText,
     });
   } catch (error) {
-    console.error("Import poster error:", error);
+    console.error('Import poster error:', error);
     return NextResponse.json(
-      { error: error instanceof Error ? error.message : "Internal error" },
-      { status: 500 },
+      { error: error instanceof Error ? error.message : 'Internal error' },
+      { status: 500 }
     );
   }
 }
@@ -137,8 +131,8 @@ export async function PUT(request: Request) {
 
     if (!festival || !year || !artists?.length) {
       return NextResponse.json(
-        { error: "festival, year, and artists are required" },
-        { status: 400 },
+        { error: 'festival, year, and artists are required' },
+        { status: 400 }
       );
     }
 
@@ -148,10 +142,7 @@ export async function PUT(request: Request) {
     });
 
     if (!festRecord) {
-      return NextResponse.json(
-        { error: `Festival not found: ${festival}` },
-        { status: 404 },
-      );
+      return NextResponse.json({ error: `Festival not found: ${festival}` }, { status: 404 });
     }
 
     let created = 0;
@@ -197,10 +188,10 @@ export async function PUT(request: Request) {
 
     return NextResponse.json({ created });
   } catch (error) {
-    console.error("Save lineup error:", error);
+    console.error('Save lineup error:', error);
     return NextResponse.json(
-      { error: error instanceof Error ? error.message : "Internal error" },
-      { status: 500 },
+      { error: error instanceof Error ? error.message : 'Internal error' },
+      { status: 500 }
     );
   }
 }

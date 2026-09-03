@@ -1,20 +1,16 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
+import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 
-const MapContainer = dynamic(
-  () => import("react-leaflet").then((m) => m.MapContainer),
-  { ssr: false },
-);
-const TileLayer = dynamic(
-  () => import("react-leaflet").then((m) => m.TileLayer),
-  { ssr: false },
-);
-const Marker = dynamic(() => import("react-leaflet").then((m) => m.Marker), {
+const MapContainer = dynamic(() => import('react-leaflet').then((m) => m.MapContainer), {
   ssr: false,
 });
-const Popup = dynamic(() => import("react-leaflet").then((m) => m.Popup), {
+const TileLayer = dynamic(() => import('react-leaflet').then((m) => m.TileLayer), { ssr: false });
+const Marker = dynamic(() => import('react-leaflet').then((m) => m.Marker), {
+  ssr: false,
+});
+const Popup = dynamic(() => import('react-leaflet').then((m) => m.Popup), {
   ssr: false,
 });
 
@@ -33,14 +29,11 @@ export default function HomeMap({ festivals }: { festivals: Fest[] }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    import("leaflet/dist/leaflet.css");
+    import('leaflet/dist/leaflet.css');
     setMounted(true);
   }, []);
 
-  if (!mounted)
-    return (
-      <div className="h-64 w-full animate-pulse rounded-xl bg-muted lg:h-full" />
-    );
+  if (!mounted) return <div className="h-64 w-full animate-pulse rounded-xl bg-muted lg:h-full" />;
 
   return (
     <MapContainer

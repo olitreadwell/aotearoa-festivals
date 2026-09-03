@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 export default function RegionNotFound() {
   return (
@@ -9,12 +9,9 @@ export default function RegionNotFound() {
       >
         <span aria-hidden="true">←</span> All regions
       </Link>
-      <h1 className="text-3xl font-semibold tracking-tight">
-        Region not found
-      </h1>
+      <h1 className="text-3xl font-semibold tracking-tight">Region not found</h1>
       <p className="mt-3 text-sm text-muted-foreground dark:text-muted-foreground">
-        We couldn&apos;t find a region matching that URL. Check the address or
-        browse all regions below.
+        We couldn't find a region matching that URL. Check the address or browse all regions below.
       </p>
       <Link
         href="/regions"

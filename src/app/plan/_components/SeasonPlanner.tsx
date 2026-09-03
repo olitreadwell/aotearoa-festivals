@@ -1,21 +1,21 @@
-"use client";
+'use client';
 
-import { useMemo, useState } from "react";
-import Link from "next/link";
-import { Check, Layers, Plus, Sparkles, Tent, Users } from "lucide-react";
-import type { PlanFestivalWithStatus } from "../page";
+import { useMemo, useState } from 'react';
+import Link from 'next/link';
+import { Check, Layers, Plus, Sparkles, Tent, Users } from 'lucide-react';
+import type { PlanFestivalWithStatus } from '../page';
 import {
   buildFestivalItinerary,
   festivalDurationDays,
   type PlanStrategy,
-} from "@/lib/plan-optimizer";
-import { formatDateRange, formatRegion } from "@/lib/format";
-import { useFestivalPlan } from "@/hooks/useFestivalPlan";
-import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
-import { PlanStatusSelect } from "@/components/PlanStatusSelect";
-import { Reveal } from "@/components/Reveal";
-import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
+} from '@/lib/plan-optimizer';
+import { formatDateRange, formatRegion } from '@/lib/format';
+import { useFestivalPlan } from '@/hooks/useFestivalPlan';
+import { FestivalStatusBadge } from '@/components/FestivalStatusBadge';
+import { PlanStatusSelect } from '@/components/PlanStatusSelect';
+import { Reveal } from '@/components/Reveal';
+import { Input } from '@/components/ui/input';
+import { Select } from '@/components/ui/select';
 
 const STRATEGIES: Array<{
   value: PlanStrategy;
@@ -24,29 +24,29 @@ const STRATEGIES: Array<{
   icon: typeof Users;
 }> = [
   {
-    value: "most",
-    label: "Most festivals",
-    description: "Maximise how many you can hit",
+    value: 'most',
+    label: 'Most festivals',
+    description: 'Maximise how many you can hit',
     icon: Layers,
   },
   {
-    value: "biggest",
-    label: "Biggest crowds",
-    description: "The big ones — most attendees",
+    value: 'biggest',
+    label: 'Biggest crowds',
+    description: 'The big ones — most attendees',
     icon: Users,
   },
   {
-    value: "indie",
-    label: "Small & intimate",
-    description: "Boutique festivals, tight-knit crowds",
+    value: 'indie',
+    label: 'Small & intimate',
+    description: 'Boutique festivals, tight-knit crowds',
     icon: Sparkles,
   },
 ];
 
-const REGION_LABELS: Record<"all" | "north" | "south", string> = {
-  all: "All of NZ",
-  north: "North Island",
-  south: "South Island",
+const REGION_LABELS: Record<'all' | 'north' | 'south', string> = {
+  all: 'All of NZ',
+  north: 'North Island',
+  south: 'South Island',
 };
 
 function FilterLabel({ children }: { children: React.ReactNode }) {
@@ -62,17 +62,13 @@ function parsedMinDays(value: string): number | undefined {
   return Number.isFinite(parsed) && parsed > 0 ? parsed : undefined;
 }
 
-export default function SeasonPlanner({
-  festivals,
-}: {
-  festivals: PlanFestivalWithStatus[];
-}) {
-  const [strategy, setStrategy] = useState<PlanStrategy>("most");
-  const [region, setRegion] = useState<"all" | "north" | "south">("all");
-  const [genre, setGenre] = useState("");
-  const [camping, setCamping] = useState<"any" | "yes" | "no">("any");
-  const [minDays, setMinDays] = useState("");
-  const [maxCount, setMaxCount] = useState("");
+export default function SeasonPlanner({ festivals }: { festivals: PlanFestivalWithStatus[] }) {
+  const [strategy, setStrategy] = useState<PlanStrategy>('most');
+  const [region, setRegion] = useState<'all' | 'north' | 'south'>('all');
+  const [genre, setGenre] = useState('');
+  const [camping, setCamping] = useState<'any' | 'yes' | 'no'>('any');
+  const [minDays, setMinDays] = useState('');
+  const [maxCount, setMaxCount] = useState('');
   const { setStatus } = useFestivalPlan();
 
   const itinerary = useMemo(() => {
@@ -89,7 +85,7 @@ export default function SeasonPlanner({
 
   function addAllToPlan() {
     for (const festival of itinerary) {
-      setStatus(festival.slug, "planned");
+      setStatus(festival.slug, 'planned');
     }
   }
 
@@ -113,24 +109,18 @@ export default function SeasonPlanner({
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-primary">
               Season builder
             </p>
-            <h2
-              id="season-builder-title"
-              className="mt-2 text-2xl font-bold tracking-[-0.02em]"
-            >
+            <h2 id="season-builder-title" className="mt-2 text-2xl font-bold tracking-[-0.02em]">
               Build your season
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Pick a strategy — the itinerary updates instantly and never
-              double-books a day. Genre matches the festival&apos;s own tag or
-              the genres of artists in its lineup.
+              Pick a strategy — the itinerary updates instantly and never double-books a day. Genre
+              matches the festival&apos;s own tag or the genres of artists in its lineup.
             </p>
           </div>
           <div className="rounded-full border border-border bg-muted/50 px-4 py-2">
-            <span className="tabular text-xl font-semibold tracking-tight">
-              {itinerary.length}
-            </span>
+            <span className="tabular text-xl font-semibold tracking-tight">{itinerary.length}</span>
             <span className="ml-1.5 text-xs text-muted-foreground">
-              festival{itinerary.length !== 1 ? "s" : ""}
+              festival{itinerary.length !== 1 ? 's' : ''}
             </span>
           </div>
         </div>
@@ -148,8 +138,8 @@ export default function SeasonPlanner({
                   key={option.value}
                   className={`group relative flex cursor-pointer flex-col gap-3 rounded-2xl border p-4 transition-all duration-300 ease-out-expo sm:p-5 ${
                     selected
-                      ? "border-primary/50 bg-primary/[0.04] shadow-[0_16px_32px_-20px_rgba(163,23,46,0.45)]"
-                      : "border-border bg-background/60 hover:border-primary/25 hover:bg-muted/40"
+                      ? 'border-primary/50 bg-primary/[0.04] shadow-[0_16px_32px_-20px_rgba(163,23,46,0.45)]'
+                      : 'border-border bg-background/60 hover:border-primary/25 hover:bg-muted/40'
                   }`}
                 >
                   <input
@@ -164,8 +154,8 @@ export default function SeasonPlanner({
                     <span
                       className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors duration-300 ease-out-expo ${
                         selected
-                          ? "border-primary/25 bg-primary/10 text-primary"
-                          : "border-border bg-muted/70 text-muted-foreground group-hover:text-foreground"
+                          ? 'border-primary/25 bg-primary/10 text-primary'
+                          : 'border-border bg-muted/70 text-muted-foreground group-hover:text-foreground'
                       }`}
                     >
                       <Icon size={16} strokeWidth={1.5} />
@@ -173,16 +163,14 @@ export default function SeasonPlanner({
                     <span
                       className={`flex h-5 w-5 items-center justify-center rounded-full transition-all duration-300 ease-out-expo ${
                         selected
-                          ? "scale-100 bg-primary text-primary-foreground opacity-100"
-                          : "scale-50 border border-border opacity-0"
+                          ? 'scale-100 bg-primary text-primary-foreground opacity-100'
+                          : 'scale-50 border border-border opacity-0'
                       }`}
                     >
                       <Check size={11} strokeWidth={3} />
                     </span>
                   </span>
-                  <span className="text-sm font-semibold tracking-tight">
-                    {option.label}
-                  </span>
+                  <span className="text-sm font-semibold tracking-tight">{option.label}</span>
                   <span className="text-xs leading-relaxed text-muted-foreground">
                     {option.description}
                   </span>
@@ -201,9 +189,7 @@ export default function SeasonPlanner({
               <FilterLabel>Region</FilterLabel>
               <Select
                 value={region}
-                onChange={(e) =>
-                  setRegion(e.target.value as "all" | "north" | "south")
-                }
+                onChange={(e) => setRegion(e.target.value as 'all' | 'north' | 'south')}
               >
                 {Object.entries(REGION_LABELS).map(([value, label]) => (
                   <option key={value} value={value}>
@@ -227,9 +213,7 @@ export default function SeasonPlanner({
               <FilterLabel>Camping</FilterLabel>
               <Select
                 value={camping}
-                onChange={(e) =>
-                  setCamping(e.target.value as "any" | "yes" | "no")
-                }
+                onChange={(e) => setCamping(e.target.value as 'any' | 'yes' | 'no')}
               >
                 <option value="any">Any</option>
                 <option value="yes">Camping available</option>
@@ -264,15 +248,10 @@ export default function SeasonPlanner({
         <div className="mt-8">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="text-sm text-muted-foreground">
-              <span className="tabular font-semibold text-foreground">
-                {itinerary.length}
-              </span>{" "}
-              festival{itinerary.length !== 1 ? "s" : ""}
+              <span className="tabular font-semibold text-foreground">{itinerary.length}</span>{' '}
+              festival{itinerary.length !== 1 ? 's' : ''}
               {firstDate && lastDate ? (
-                <span className="tabular">
-                  {" "}
-                  · {formatDateRange(firstDate, lastDate)}
-                </span>
+                <span className="tabular"> · {formatDateRange(firstDate, lastDate)}</span>
               ) : null}
             </p>
             {itinerary.length > 0 && (
@@ -291,8 +270,7 @@ export default function SeasonPlanner({
 
           {itinerary.length === 0 ? (
             <p className="mt-4 rounded-2xl border border-dashed border-border bg-muted/30 px-5 py-10 text-center text-sm text-muted-foreground">
-              No festivals match those choices — try widening the region, genre,
-              or camping filter.
+              No festivals match those choices — try widening the region, genre, or camping filter.
             </p>
           ) : (
             <ul className="mt-4 flex flex-col gap-1.5">
@@ -312,17 +290,13 @@ export default function SeasonPlanner({
                       </Link>
                       <p className="mt-0.5 truncate text-xs text-muted-foreground">
                         {[
-                          formatDateRange(
-                            festival.startDate,
-                            festival.endDate,
-                          ) ?? festival.dateText,
-                          festival.region
-                            ? formatRegion(festival.region)
-                            : null,
+                          formatDateRange(festival.startDate, festival.endDate) ??
+                            festival.dateText,
+                          festival.region ? formatRegion(festival.region) : null,
                           festival.genre,
                         ]
                           .filter(Boolean)
-                          .join(" · ")}
+                          .join(' · ')}
                       </p>
                       <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
                         {days >= 2 && (
@@ -338,7 +312,7 @@ export default function SeasonPlanner({
                         )}
                         {festival.attendance && (
                           <span className="tabular text-[10px] text-muted-foreground/80">
-                            ~{festival.attendance.toLocaleString("en-NZ")}
+                            ~{festival.attendance.toLocaleString('en-NZ')}
                           </span>
                         )}
                         {festival.ticketPrice && (
@@ -349,10 +323,7 @@ export default function SeasonPlanner({
                       </div>
                     </div>
                     <FestivalStatusBadge status={festival.status} />
-                    <PlanStatusSelect
-                      slug={festival.slug}
-                      name={festival.name}
-                    />
+                    <PlanStatusSelect slug={festival.slug} name={festival.name} />
                   </li>
                 );
               })}

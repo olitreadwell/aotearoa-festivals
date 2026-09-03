@@ -1,9 +1,9 @@
-import { notFound } from "next/navigation";
-import Link from "next/link";
-import type { Metadata } from "next";
-import { prisma } from "@/lib/prisma";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import type { Metadata } from 'next';
+import { prisma } from '@/lib/prisma';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import { FestivalStatusBadge } from '@/components/FestivalStatusBadge';
 
 export const revalidate = 3600;
 
@@ -15,8 +15,8 @@ export async function generateStaticParams() {
     return artists.map((artist) => ({ slug: artist.slug }));
   } catch (error) {
     console.warn(
-      "generateStaticParams: could not reach the database, falling back to on-demand rendering for /artists/[slug]",
-      error,
+      'generateStaticParams: could not reach the database, falling back to on-demand rendering for /artists/[slug]',
+      error
     );
     return [];
   }
@@ -26,16 +26,13 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const artist = await prisma.artist.findUnique({ where: { slug } });
-  if (!artist) return { title: "Artist not found" };
+  if (!artist) return { title: 'Artist not found' };
   return {
     title: `${artist.name} — Aotearoa Festivals`,
-    description:
-      [artist.genre, artist.homeCity].filter(Boolean).join(" · ") || undefined,
+    description: [artist.genre, artist.homeCity].filter(Boolean).join(' · ') || undefined,
   };
 }
 
@@ -47,7 +44,7 @@ export default async function ArtistDetailPage({ params }: PageProps) {
     include: {
       lineups: {
         include: { festival: true },
-        orderBy: [{ year: "desc" }],
+        orderBy: [{ year: 'desc' }],
       },
     },
   });
@@ -67,16 +64,14 @@ export default async function ArtistDetailPage({ params }: PageProps) {
     <main className="mx-auto max-w-3xl px-6 py-12">
       <Breadcrumbs
         items={[
-          { label: "Home", href: "/" },
-          { label: "Artists", href: "/artists" },
+          { label: 'Home', href: '/' },
+          { label: 'Artists', href: '/artists' },
           { label: artist.name },
         ]}
       />
 
       {/* Header */}
-      <h1 className="mt-4 text-3xl font-semibold tracking-tight">
-        {artist.name}
-      </h1>
+      <h1 className="mt-4 text-3xl font-semibold tracking-tight">{artist.name}</h1>
 
       <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground dark:text-muted-foreground">
         {artist.genre && <span>{artist.genre}</span>}
@@ -89,21 +84,19 @@ export default async function ArtistDetailPage({ params }: PageProps) {
         <div className="mt-4 flex gap-4">
           {artist.instagram && (
             <a
-              href={`https://instagram.com/${artist.instagram.replace(/^@/, "")}`}
+              href={`https://instagram.com/${artist.instagram.replace(/^@/, '')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm transition-colors hover:bg-muted dark:border-border dark:hover:bg-muted"
             >
               <span className="font-medium text-pink-500">IG</span>
-              <span className="text-muted-foreground dark:text-muted-foreground">
-                Instagram
-              </span>
+              <span className="text-muted-foreground dark:text-muted-foreground">Instagram</span>
             </a>
           )}
           {artist.soundcloud && (
             <a
               href={
-                artist.soundcloud.startsWith("http")
+                artist.soundcloud.startsWith('http')
                   ? artist.soundcloud
                   : `https://soundcloud.com/${artist.soundcloud}`
               }
@@ -112,17 +105,13 @@ export default async function ArtistDetailPage({ params }: PageProps) {
               className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm transition-colors hover:bg-muted dark:border-border dark:hover:bg-muted"
             >
               <span className="font-medium text-orange-500">SC</span>
-              <span className="text-muted-foreground dark:text-muted-foreground">
-                SoundCloud
-              </span>
+              <span className="text-muted-foreground dark:text-muted-foreground">SoundCloud</span>
             </a>
           )}
           {artist.raUrl && (
             <a
               href={
-                artist.raUrl.startsWith("http")
-                  ? artist.raUrl
-                  : `https://ra.co/${artist.raUrl}`
+                artist.raUrl.startsWith('http') ? artist.raUrl : `https://ra.co/${artist.raUrl}`
               }
               target="_blank"
               rel="noopener noreferrer"
@@ -198,7 +187,7 @@ async function AlsoPlayedWith({ artistId }: { artistId: string }) {
               await prisma.lineupEntry.findMany({
                 where: { artistId },
                 select: { festivalId: true },
-                distinct: ["festivalId"],
+                distinct: ['festivalId'],
               })
             ).map((l) => l.festivalId),
           },

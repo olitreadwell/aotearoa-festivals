@@ -1,17 +1,16 @@
-import { prisma } from "@/lib/prisma";
-import type { Metadata } from "next";
-import Link from "next/link";
-import Pagination from "@/components/Pagination";
-import Breadcrumbs from "@/components/Breadcrumbs";
+import { prisma } from '@/lib/prisma';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import Pagination from '@/components/Pagination';
+import Breadcrumbs from '@/components/Breadcrumbs';
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
 const PAGE_SIZE = 24;
 
 export const metadata: Metadata = {
-  title: "All Promoters — Aotearoa Festivals",
-  description:
-    "Browse promoters and production companies behind New Zealand music festivals.",
+  title: 'All Promoters — Aotearoa Festivals',
+  description: 'Browse promoters and production companies behind New Zealand music festivals.',
 };
 
 export default async function PromotersPage({
@@ -21,12 +20,12 @@ export default async function PromotersPage({
 }) {
   const { page, sort } = await searchParams;
   const requestedPage = Math.max(1, Math.floor(Number(page)) || 1);
-  const sortField = sort === "region" || sort === "genre" ? sort : "name";
+  const sortField = sort === 'region' || sort === 'genre' ? sort : 'name';
 
   const [totalCount, promoters] = await Promise.all([
     prisma.promoter.count(),
     prisma.promoter.findMany({
-      orderBy: { [sortField]: "asc" },
+      orderBy: { [sortField]: 'asc' },
       skip: (requestedPage - 1) * PAGE_SIZE,
       take: PAGE_SIZE,
       include: { _count: { select: { festivals: true } } },
@@ -38,22 +37,20 @@ export default async function PromotersPage({
 
   function pageUrl(p: number): string {
     const params = new URLSearchParams();
-    if (sort && sort !== "name") params.set("sort", sort);
-    if (p > 1) params.set("page", String(p));
-    return params.toString() ? `/promoters?${params}` : "/promoters";
+    if (sort && sort !== 'name') params.set('sort', sort);
+    if (p > 1) params.set('page', String(p));
+    return params.toString() ? `/promoters?${params}` : '/promoters';
   }
 
   function sortUrl(field: string): string {
     const params = new URLSearchParams();
-    if (field !== "name") params.set("sort", field);
-    return params.toString() ? `/promoters?${params}` : "/promoters";
+    if (field !== 'name') params.set('sort', field);
+    return params.toString() ? `/promoters?${params}` : '/promoters';
   }
 
   return (
     <main className="mx-auto max-w-5xl px-6 py-16">
-      <Breadcrumbs
-        items={[{ label: "Home", href: "/" }, { label: "Promoters" }]}
-      />
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Promoters' }]} />
       <h1 className="mt-4 text-3xl font-semibold tracking-tight">Promoters</h1>
       <p className="mt-1 text-muted-foreground dark:text-muted-foreground">
         {totalCount} promoters
@@ -62,14 +59,14 @@ export default async function PromotersPage({
       <div className="mt-6 mb-4 flex items-center gap-1 text-xs">
         <span className="text-muted-foreground">Sort:</span>
         {[
-          { label: "Name", field: "name" },
-          { label: "Region", field: "region" },
-          { label: "Genre", field: "genre" },
+          { label: 'Name', field: 'name' },
+          { label: 'Region', field: 'region' },
+          { label: 'Genre', field: 'genre' },
         ].map((s) => (
           <Link
             key={s.field}
             href={sortUrl(s.field)}
-            className={`rounded px-2 py-0.5 ${sortField === s.field ? "bg-muted font-medium dark:bg-muted" : "hover:underline"}`}
+            className={`rounded px-2 py-0.5 ${sortField === s.field ? 'bg-muted font-medium dark:bg-muted' : 'hover:underline'}`}
           >
             {s.label}
           </Link>
@@ -97,18 +94,15 @@ export default async function PromotersPage({
                   className="border-b border-border transition-colors hover:bg-muted/50 dark:border-border dark:hover:bg-muted/50"
                 >
                   <td className="py-2.5 pr-4">
-                    <Link
-                      href={`/promoters/${p.slug}`}
-                      className="font-medium hover:underline"
-                    >
+                    <Link href={`/promoters/${p.slug}`} className="font-medium hover:underline">
                       {p.name}
                     </Link>
                   </td>
                   <td className="py-2.5 pr-4 text-muted-foreground dark:text-muted-foreground">
-                    {p.region || "—"}
+                    {p.region || '—'}
                   </td>
                   <td className="py-2.5 pr-4 text-muted-foreground dark:text-muted-foreground">
-                    {p.genreFocus || "—"}
+                    {p.genreFocus || '—'}
                   </td>
                   <td className="py-2.5 pr-4">{p._count.festivals}</td>
                   <td className="py-2.5">
@@ -126,7 +120,7 @@ export default async function PromotersPage({
                       )}
                       {p.instagram && (
                         <a
-                          href={`https://instagram.com/${p.instagram.replace(/^@/, "")}`}
+                          href={`https://instagram.com/${p.instagram.replace(/^@/, '')}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-sm text-muted-foreground hover:text-primary"
@@ -138,7 +132,7 @@ export default async function PromotersPage({
                       {p.facebook && (
                         <a
                           href={
-                            p.facebook.startsWith("http")
+                            p.facebook.startsWith('http')
                               ? p.facebook
                               : `https://facebook.com/${p.facebook}`
                           }
@@ -159,11 +153,7 @@ export default async function PromotersPage({
         </div>
       )}
 
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        buildHref={pageUrl}
-      />
+      <Pagination currentPage={currentPage} totalPages={totalPages} buildHref={pageUrl} />
     </main>
   );
 }

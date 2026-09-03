@@ -57,10 +57,7 @@ export default function FestivalsLoading() {
           <div className="h-3 w-12 animate-pulse rounded bg-muted dark:bg-muted" />
           <div className="flex gap-1.5">
             {Array.from({ length: 6 }).map((_, i) => (
-              <div
-                key={i}
-                className="h-6 w-16 animate-pulse rounded-full bg-muted dark:bg-muted"
-              />
+              <div key={i} className="h-6 w-16 animate-pulse rounded-full bg-muted dark:bg-muted" />
             ))}
           </div>
         </div>

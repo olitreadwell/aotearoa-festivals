@@ -1,46 +1,43 @@
 export const revalidate = 3600;
 
-import { notFound } from "next/navigation";
-import type { Metadata } from "next";
-import Link from "next/link";
-import { prisma } from "@/lib/prisma";
-import type { Festival, Promoter } from "@/generated/prisma";
-import { Region } from "@/generated/prisma";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import { FestivalStatusBadge } from "@/components/FestivalStatusBadge";
+import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { prisma } from '@/lib/prisma';
+import type { Festival, Promoter } from '@/generated/prisma';
+import { Region } from '@/generated/prisma';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import { FestivalStatusBadge } from '@/components/FestivalStatusBadge';
 
 // ---------------------------------------------------------------------------
 // Region helpers
 // ---------------------------------------------------------------------------
 
 const REGION_LABELS: Record<Region, string> = {
-  NORTHLAND: "Northland",
-  AUCKLAND: "Auckland",
-  WAIKATO: "Waikato",
-  BAY_OF_PLENTY: "Bay of Plenty",
-  GISBORNE: "Gisborne",
+  NORTHLAND: 'Northland',
+  AUCKLAND: 'Auckland',
+  WAIKATO: 'Waikato',
+  BAY_OF_PLENTY: 'Bay of Plenty',
+  GISBORNE: 'Gisborne',
   HAWKES_BAY: "Hawke's Bay",
-  TARANAKI: "Taranaki",
-  MANAWATU_WHANGANUI: "Manawatū-Whanganui",
-  WELLINGTON: "Wellington",
-  WAIRARAPA: "Wairarapa",
-  TASMAN: "Tasman",
-  NELSON: "Nelson",
-  MARLBOROUGH: "Marlborough",
-  WEST_COAST: "West Coast",
-  CANTERBURY: "Canterbury",
-  OTAGO: "Otago",
-  SOUTHLAND: "Southland",
-  ONLINE: "Online",
+  TARANAKI: 'Taranaki',
+  MANAWATU_WHANGANUI: 'Manawatū-Whanganui',
+  WELLINGTON: 'Wellington',
+  WAIRARAPA: 'Wairarapa',
+  TASMAN: 'Tasman',
+  NELSON: 'Nelson',
+  MARLBOROUGH: 'Marlborough',
+  WEST_COAST: 'West Coast',
+  CANTERBURY: 'Canterbury',
+  OTAGO: 'Otago',
+  SOUTHLAND: 'Southland',
+  ONLINE: 'Online',
 };
 
 // Reverse map: slug → Region enum value
 // Build from REGION_LABELS so it stays in sync automatically.
 const SLUG_TO_REGION: Record<string, Region> = Object.fromEntries(
-  (Object.keys(REGION_LABELS) as Region[]).map((key) => [
-    key.toLowerCase().replace(/_/g, "-"),
-    key,
-  ]),
+  (Object.keys(REGION_LABELS) as Region[]).map((key) => [key.toLowerCase().replace(/_/g, '-'), key])
 );
 
 /** Resolve a URL slug to a Region enum value, or undefined if unknown. */
@@ -69,7 +66,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { region: slug } = await params;
   const enumVal = slugToRegion(slug);
-  if (!enumVal) return { title: "Region Not Found | Aotearoa Festivals" };
+  if (!enumVal) return { title: 'Region Not Found | Aotearoa Festivals' };
   return {
     title: `${REGION_LABELS[enumVal]} Festivals | Aotearoa Festivals`,
   };
@@ -93,42 +90,44 @@ export default async function RegionDetailPage({
 
   const regionLabel = REGION_LABELS[enumVal];
 
-  const festivals: FestivalWithPromoter[] = await prisma.festival.findMany({
-    where: { region: enumVal, approved: true },
-    orderBy: [{ startDate: "asc" }, { name: "asc" }],
-    include: { promoter: true },
-  });
+  let festivals: FestivalWithPromoter[] = [];
+  try {
+    festivals = await prisma.festival.findMany({
+      where: { region: enumVal, approved: true },
+      orderBy: [{ startDate: 'asc' }, { name: 'asc' }],
+      include: { promoter: true },
+    });
+  } catch (error) {
+    // No database during static export: render the empty state; ISR re-runs
+    // this with real data once DATABASE_URL is set.
+    console.warn('regions/[region]: database unavailable, rendering empty region', error);
+  }
 
   return (
     <main className="mx-auto min-h-screen max-w-6xl px-4 py-8">
       <Breadcrumbs
         items={[
-          { label: "Home", href: "/" },
-          { label: "Regions", href: "/regions" },
+          { label: 'Home', href: '/' },
+          { label: 'Regions', href: '/regions' },
           { label: regionLabel },
         ]}
       />
 
       {/* Header */}
       <header className="mb-8">
-        <h1 className="mb-1 text-3xl font-bold tracking-tight">
-          {regionLabel}
-        </h1>
+        <h1 className="mb-1 text-3xl font-bold tracking-tight">{regionLabel}</h1>
         <p className="text-sm text-muted-foreground dark:text-muted-foreground">
           {festivals.length === 0
-            ? "No approved festivals in this region yet."
+            ? 'No approved festivals in this region yet.'
             : festivals.length === 1
-              ? "1 approved festival"
+              ? '1 approved festival'
               : `${festivals.length} approved festivals`}
         </p>
       </header>
 
       {/* Festival grid */}
       {festivals.length > 0 ? (
-        <ul
-          className="mb-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
-          role="list"
-        >
+        <ul className="mb-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3" role="list">
           {festivals.map((festival) => (
             <li key={festival.id}>
               <Link
@@ -139,10 +138,7 @@ export default async function RegionDetailPage({
                 <div className="flex flex-1 flex-col gap-3 p-5">
                   {/* Status badge + name */}
                   <div>
-                    <FestivalStatusBadge
-                      status={festival.status}
-                      className="mb-2"
-                    />
+                    <FestivalStatusBadge status={festival.status} className="mb-2" />
                     <h2 className="text-base leading-snug font-bold transition-colors group-hover:text-primary dark:group-hover:text-primary">
                       {festival.name}
                     </h2>
@@ -231,15 +227,12 @@ export default async function RegionDetailPage({
         aria-labelledby="subscribe-heading"
         className="rounded-xl border border-tangaroa-300/60 bg-tangaroa-400/50 px-6 py-8 dark:border-tangaroa-100/30 dark:bg-tangaroa-100/20"
       >
-        <h2
-          id="subscribe-heading"
-          className="mb-1 text-lg font-semibold tracking-tight"
-        >
+        <h2 id="subscribe-heading" className="mb-1 text-lg font-semibold tracking-tight">
           Get notified about {regionLabel} festivals
         </h2>
         <p className="mb-5 text-sm text-muted-foreground dark:text-muted-foreground">
-          Be the first to hear about new and upcoming festivals in {regionLabel}
-          . No spam — unsubscribe any time.
+          Be the first to hear about new and upcoming festivals in {regionLabel}. No spam —
+          unsubscribe any time.
         </p>
         <form
           method="POST"

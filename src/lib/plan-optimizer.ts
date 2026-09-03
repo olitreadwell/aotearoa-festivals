@@ -1,9 +1,9 @@
 // Season itinerary builder: picks a non-overlapping run of festivals that
 // best matches a strategy (most festivals, biggest lineups, or indie picks).
 
-import type { Region } from "@/generated/prisma";
+import type { Region } from '@/generated/prisma';
 
-export type PlanStrategy = "most" | "biggest" | "indie";
+export type PlanStrategy = 'most' | 'biggest' | 'indie';
 
 export interface PlanFestival {
   slug: string;
@@ -20,49 +20,46 @@ export interface PlanFestival {
 
 export interface PlannerOptions {
   strategy: PlanStrategy;
-  region: "all" | "north" | "south";
+  region: 'all' | 'north' | 'south';
   genre?: string;
-  camping?: "any" | "yes" | "no";
+  camping?: 'any' | 'yes' | 'no';
   minDays?: number;
   maxCount?: number;
 }
 
 export const NORTH_ISLAND_REGIONS: Region[] = [
-  "NORTHLAND",
-  "AUCKLAND",
-  "WAIKATO",
-  "BAY_OF_PLENTY",
-  "GISBORNE",
-  "HAWKES_BAY",
-  "TARANAKI",
-  "MANAWATU_WHANGANUI",
-  "WELLINGTON",
-  "WAIRARAPA",
+  'NORTHLAND',
+  'AUCKLAND',
+  'WAIKATO',
+  'BAY_OF_PLENTY',
+  'GISBORNE',
+  'HAWKES_BAY',
+  'TARANAKI',
+  'MANAWATU_WHANGANUI',
+  'WELLINGTON',
+  'WAIRARAPA',
 ];
 
 export const SOUTH_ISLAND_REGIONS: Region[] = [
-  "TASMAN",
-  "NELSON",
-  "MARLBOROUGH",
-  "WEST_COAST",
-  "CANTERBURY",
-  "OTAGO",
-  "SOUTHLAND",
+  'TASMAN',
+  'NELSON',
+  'MARLBOROUGH',
+  'WEST_COAST',
+  'CANTERBURY',
+  'OTAGO',
+  'SOUTHLAND',
 ];
 
-function regionMatches(
-  region: Region | null,
-  filter: PlannerOptions["region"],
-): boolean {
-  if (filter === "all") return true;
+function regionMatches(region: Region | null, filter: PlannerOptions['region']): boolean {
+  if (filter === 'all') return true;
   if (!region) return false;
-  const set = filter === "north" ? NORTH_ISLAND_REGIONS : SOUTH_ISLAND_REGIONS;
+  const set = filter === 'north' ? NORTH_ISLAND_REGIONS : SOUTH_ISLAND_REGIONS;
   return set.includes(region);
 }
 
 export function filterFestivalsForPlanner<T extends PlanFestival>(
   festivals: T[],
-  options: PlannerOptions,
+  options: PlannerOptions
 ): T[] {
   const genre = options.genre?.trim().toLowerCase();
   return festivals.filter(
@@ -70,14 +67,13 @@ export function filterFestivalsForPlanner<T extends PlanFestival>(
       f.startDate !== null &&
       regionMatches(f.region, options.region) &&
       (!genre ||
-        (f.genre ?? "").toLowerCase().includes(genre) ||
+        (f.genre ?? '').toLowerCase().includes(genre) ||
         f.lineupGenres.some((g) => g.toLowerCase().includes(genre))) &&
       (options.camping === undefined ||
-        options.camping === "any" ||
-        (options.camping === "yes" && f.camping === true) ||
-        (options.camping === "no" && f.camping === false)) &&
-      (options.minDays === undefined ||
-        festivalDurationDays(f) >= options.minDays),
+        options.camping === 'any' ||
+        (options.camping === 'yes' && f.camping === true) ||
+        (options.camping === 'no' && f.camping === false)) &&
+      (options.minDays === undefined || festivalDurationDays(f) >= options.minDays)
   );
 }
 
@@ -85,23 +81,16 @@ export function festivalDurationDays(festival: PlanFestival): number {
   if (!festival.startDate) return 0;
   if (!festival.endDate) return 1;
   const msPerDay = 24 * 60 * 60 * 1000;
-  return (
-    Math.round(
-      (festival.endDate.getTime() - festival.startDate.getTime()) / msPerDay,
-    ) + 1
-  );
+  return Math.round((festival.endDate.getTime() - festival.startDate.getTime()) / msPerDay) + 1;
 }
 
-function festivalWeight(
-  festival: PlanFestival,
-  strategy: PlanStrategy,
-): number {
+function festivalWeight(festival: PlanFestival, strategy: PlanStrategy): number {
   switch (strategy) {
-    case "most":
+    case 'most':
       return 1;
-    case "biggest":
+    case 'biggest':
       return (festival.attendance ?? 0) + 1;
-    case "indie":
+    case 'indie':
       return 1 / ((festival.attendance ?? 0) + 1);
   }
 }
@@ -109,21 +98,17 @@ function festivalWeight(
 // endDate is the inclusive last day (matching the per-festival iCal feed).
 // A festival with no endDate occupies only its start date.
 function festivalLastDay(festival: PlanFestival): number {
-  return festival.endDate
-    ? festival.endDate.getTime()
-    : festival.startDate!.getTime();
+  return festival.endDate ? festival.endDate.getTime() : festival.startDate!.getTime();
 }
 
 export function buildFestivalItinerary<T extends PlanFestival>(
   festivals: T[],
-  options: PlannerOptions,
+  options: PlannerOptions
 ): T[] {
   const candidates = filterFestivalsForPlanner(festivals, options);
   if (candidates.length === 0) return [];
 
-  const sorted = [...candidates].sort(
-    (a, b) => festivalLastDay(a) - festivalLastDay(b),
-  );
+  const sorted = [...candidates].sort((a, b) => festivalLastDay(a) - festivalLastDay(b));
   const n = sorted.length;
 
   // p(i): last festival whose final day is before festival i starts.
@@ -162,11 +147,7 @@ export function buildFestivalItinerary<T extends PlanFestival>(
   let result = itinerary.reverse();
   if (options.maxCount && result.length > options.maxCount) {
     result = [...result]
-      .sort(
-        (a, b) =>
-          festivalWeight(b, options.strategy) -
-          festivalWeight(a, options.strategy),
-      )
+      .sort((a, b) => festivalWeight(b, options.strategy) - festivalWeight(a, options.strategy))
       .slice(0, options.maxCount)
       .sort((a, b) => a.startDate!.getTime() - b.startDate!.getTime());
   }

@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 export function Reveal({
   children,
-  className = "",
+  className = '',
   delay = 0,
 }: {
   children: React.ReactNode;
@@ -17,7 +17,7 @@ export function Reveal({
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
-    if (typeof IntersectionObserver === "undefined") {
+    if (typeof IntersectionObserver === 'undefined') {
       setVisible(true);
       return;
     }
@@ -30,7 +30,7 @@ export function Reveal({
           }
         }
       },
-      { rootMargin: "0px 0px -10% 0px", threshold: 0.05 },
+      { rootMargin: '0px 0px -10% 0px', threshold: 0.05 }
     );
     observer.observe(node);
     return () => observer.disconnect();
@@ -39,7 +39,7 @@ export function Reveal({
   return (
     <div
       ref={ref}
-      className={`reveal ${visible ? "reveal-visible" : ""} ${className}`}
+      className={`reveal ${visible ? 'reveal-visible' : ''} ${className}`}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
     >
       {children}

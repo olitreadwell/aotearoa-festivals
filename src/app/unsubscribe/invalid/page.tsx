@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: "Invalid Link — Aotearoa Festivals",
-  description: "This unsubscribe link is invalid or has expired.",
+  title: 'Invalid Link — Aotearoa Festivals',
+  description: 'This unsubscribe link is invalid or has expired.',
 };
 
 export default function UnsubscribeInvalidPage() {
@@ -32,9 +32,8 @@ export default function UnsubscribeInvalidPage() {
           Invalid or expired unsubscribe link
         </h1>
         <p className="mb-8 text-sm text-muted-foreground dark:text-muted-foreground">
-          This unsubscribe link is invalid or has already been used. If
-          you&apos;re still receiving emails, please contact us or try
-          subscribing again and using the new unsubscribe link.
+          This unsubscribe link is invalid or has already been used. If you&apos;re still receiving
+          emails, please contact us or try subscribing again and using the new unsubscribe link.
         </p>
 
         <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
