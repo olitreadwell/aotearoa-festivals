@@ -21,7 +21,7 @@ export default function ContactPage() {
               href="https://github.com/olitreadwell/aotearoa-festivals"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:underline dark:text-primary"
+              className="text-primary underline underline-offset-4 hover:text-primary/80 dark:text-primary"
             >
               github.com/olitreadwell/aotearoa-festivals
             </a>
